@@ -43,15 +43,17 @@ Each **ADA Microcourse** is structured in **4 key phases**, inspired by the **th
 
 The ADA methodology is built around **Learning Atoms**—modular, reusable units that combine theory, example, and brief practice. These atoms can be implemented in any phase of the microcourse.
 
+<p align="center">
+  <img src="https://github.com/ada-school/metodologia/blob/main/img/ada-learning-atom.svg" alt="Learning Atom Structure" width="800">
+</p>
+
 📌 They allow you to design a course as a sequence of components with increasing complexity, aligned with **Bloom’s Taxonomy**, facilitating progressive skills acquisition.
 
 🔗 By combining learning atoms of varying complexity, learners can follow personalized and modular learning paths that move from foundational understanding to real-world application.
 
-<p align="center">
-  <img src="./img/ada-learning-atom.svg" alt="Learning Atom Structure" width="500">
-</p>
 
----
+
+# Learning Phases ADA
 
 ### 🙊 Phase 1: Hear and Forget – *Self-Learning*  
 > "**I hear and I forget.**" — Confucius
