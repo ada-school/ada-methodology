@@ -11,7 +11,6 @@
   <a href="#️-estructura-de-aprendizaje"><strong>Explora el modelo pedagógico »</strong></a>
 </p>
 
----
 
 ## 🌱 ¿Qué es la Metodología ADA?
 
@@ -23,7 +22,6 @@ La **Metodología ADA (Aprendizaje Digital Aplicado)** es un enfoque educativo d
 
 Esta metodología propone un camino estructurado para el aprendizaje profesional a través de **microcursos o microcredenciales**, con un enfoque centrado en hacer para comprender.
 
----
 
 ## 🌟 Objetivo de esta Tecnología Abierta
 
@@ -31,11 +29,22 @@ Esta metodología propone un camino estructurado para el aprendizaje profesional
 - 🧠 Facilitar la creación de cursos laborales prácticos y efectivos.
 - 🤝 Fomentar la colaboración entre instituciones educativas, profesionales y tecnólogos.
 
----
 
 ## 🔍 Estructura de Aprendizaje
 
 Cada **Microcurso ADA** se compone de **4 fases clave**, representadas por los **tres monos sabios** 🐒 y una fase colaborativa 🐵 para ilustrar el camino de la comprensión:
+
+### 🧬 Átomos de Aprendizaje
+
+La metodología ADA organiza el aprendizaje en **Átomos de Aprendizaje**, que son unidades mínimas y reutilizables de contenido. Cada átomo combina teoría, ejemplo y una breve práctica, y puede implementarse en cualquiera de las fases del microcurso.
+
+📌 Los átomos permiten estructurar un curso como una combinación de componentes con distintos niveles de profundidad, basados en la **Taxonomía de Bloom**, facilitando así el desarrollo progresivo de habilidades.
+
+🔗 Al combinar varios átomos de aprendizaje de distinta complejidad, se pueden crear rutas personalizadas y modulares que permiten al estudiante avanzar desde la comprensión básica hasta la aplicación práctica de una habilidad.
+
+<p align="center">
+  <img src="./learning-atom-structure.svg" alt="Estructura del Átomo de Aprendizaje" width="500">
+</p>
 
 ---
 
@@ -48,42 +57,56 @@ Cada **Microcurso ADA** se compone de **4 fases clave**, representadas por los *
 - Lecturas ilustradas e interactivas.
 - Videos explicativos cortos.
 - Casos reales de éxito o fracaso.
+- Microactividades de reflexión o discusión.
+- Evaluaciones sumativas con Quizzes Interactivos.
+- Lecturas ilustradas e interactivas.
+- Videos explicativos cortos.
+- Casos reales de éxito o fracaso.
+- Microactividades de reflexión o discusión.
 - Evaluaciones automatizadas (quizzes y prompts con IA).
 - Clases en vivo para interactuar con mentores.
+- Contenido multimodal (texto, imagen, código, simulación, etc.)
 
----
 
-### 🙉 Fase 2: Ver y Recordar – *Laboratorios*  
+### 🙈 Fase 2: Ver y Recordar – *Laboratorios*  
 > “**Veo y recuerdo.**” — Confucio
 
 **Objetivo:** Reforzar lo aprendido mediante actividades visuales y experimentales.
 
 🧪 **Elementos:**
+- Laboratorios que son evaluaciones formativas.
+- Calificados por IA Generativa mediante prompts personalizables.
+- En programación, se usan pruebas automatizadas (Unit Tests).
 - Experimentos y retos guiados.
 - Práctica basada en ensayo y error.
 - Retroalimentación automática y personalizada.
 - Entorno de aprendizaje activo.
 
----
 
-### 🙈 Fase 3: Hacer y Entender – *Proyecto Integrador*  
+### 🙉 Fase 3: Hacer y Entender – *Proyecto Capstone*  
 > “**Hago y entiendo.**” — Confucio
 
 **Objetivo:** Demostrar dominio en un escenario real.
 
 🚀 **Elementos:**
-- Proyecto práctico que integra todos los aprendizajes.
+- Evaluación formativa mediante un Proyecto Capstone.
+- Aplicación de lo aprendido en un contexto real.
+- Calificación automática por IA Generativa o revisión manual.
+- Proyecto práctico integrador que sintetiza todas las habilidades desarrolladas.
 - Evaluación con rúbrica por IA.
 - Feedback por criterios detallado.
 - Certificado de finalización compatible con LinkedIn.
 
----
 
 ### 🐵 Fase 4: Colaborar y Crear – *Conocimiento Compartido*  
 
 **Objetivo:** Potenciar el aprendizaje colectivo a través de la colaboración.
 
 🤝 **Elementos:**
+- Clases en vivo para interactuar con mentores.
+- Espacios de encuentro virtuales, presenciales o mixtos.
+- Actividades en grupo para resolver desafíos o construir conocimiento.
+- Compartir experiencias, aprendizajes y proyectos con la comunidad.
 - Espacios de encuentro virtuales, presenciales o mixtos.
 - Actividades en grupo para resolver desafíos o construir conocimiento.
 - Compartir experiencias, aprendizajes y proyectos con la comunidad.
@@ -98,8 +121,6 @@ Cada **Microcurso ADA** se compone de **4 fases clave**, representadas por los *
 3. 💪 Aplicar y demostrar competencias reales (hacer y entender).
 4. 🤝 Fortalecer el aprendizaje colectivo (colaborar y crear).💪 Aplicar y demostrar competencias reales (hacer y entender).
 
----
-
 ## 🤝 ¿Cómo contribuir?
 
 Cualquier educador, institución o experto puede:
@@ -109,8 +130,6 @@ Cualquier educador, institución o experto puede:
 - 🌐 Traducir o adaptar esta metodología a nuevos contextos
 
 Consulta nuestra 👉 [`guía de contribución`](./CONTRIBUTING.md)
-
----
 
 ## 🏫 Invitación a Instituciones Educativas
 
@@ -122,7 +141,7 @@ Te invitamos a:
 - Co-crear experiencias de aprendizaje
 - Compartir tus adaptaciones con la comunidad
 
-📧 Escríbenos a [contacto@ada-school.org](mailto:contacto@ada-school.org)
+📧 Escríbenos a [ada@ada-school.org](mailto:ada@ada-school.org)
 
 ---
 
