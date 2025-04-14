@@ -71,7 +71,7 @@ La metodología ADA organiza el aprendizaje en **Átomos de Aprendizaje**, que s
 - Contenido multimodal (texto, imagen, código, simulación, etc.)
 
 
-### 🙈 Fase 2: Ver y Recordar – *Laboratorios*  
+### 🙉 Fase 2: Ver y Recordar – *Laboratorios*  
 > “**Veo y recuerdo.**” — Confucio
 
 **Objetivo:** Reforzar lo aprendido mediante actividades visuales y experimentales.
@@ -86,7 +86,7 @@ La metodología ADA organiza el aprendizaje en **Átomos de Aprendizaje**, que s
 - Entorno de aprendizaje activo.
 
 
-### 🙉 Fase 3: Hacer y Entender – *Proyecto Capstone*  
+### 🙈 Fase 3: Hacer y Entender – *Proyecto Capstone*  
 > “**Hago y entiendo.**” — Confucio
 
 **Objetivo:** Demostrar dominio en un escenario real.
