@@ -1,4 +1,4 @@
-# 🧠 Plantilla de Microcurso ADA (Español)
+# 🧠 Plantilla de Microcurso ADA
 
 Esta plantilla sigue la **Metodología ADA (Aprendizaje Digital Aplicado)** y está estructurada en 4 fases de aprendizaje basadas en **Átomos de Aprendizaje**: unidades pequeñas, modulares, que combinan teoría, ejemplos y práctica.
 
