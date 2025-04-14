@@ -1,5 +1,5 @@
 ---
-name: " ✨ Suggest a new idea or improvement"
+name: ISSUE_TEMPLATE
 about: Propose enhancements for the ADA methodology or new educational content
 title: ''
 labels: ''
