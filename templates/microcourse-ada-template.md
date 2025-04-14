@@ -1,4 +1,4 @@
-# 🧠 ADA Microcourse Template (English)
+# 🧠 ADA Microcourse Template
 
 This template follows the **ADA Methodology (Applied Digital Apprenticeship)** and is structured in 4 learning phases powered by **Learning Atoms** — small modular units that combine theory, examples, and practice.
 
