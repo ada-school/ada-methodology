@@ -73,7 +73,7 @@ The ADA methodology is built around **Learning Atoms**—modular, reusable units
 
 ---
 
-### 🙈 Phase 2: See and Remember – *Labs*  
+### 🙉 Phase 2: See and Remember – *Labs*  
 > "**I see and I remember.**" — Confucius
 
 **Objective:** Reinforce learning through visual and hands-on experimentation.
@@ -89,7 +89,7 @@ The ADA methodology is built around **Learning Atoms**—modular, reusable units
 
 ---
 
-### 🙉 Phase 3: Do and Understand – *Capstone Project*  
+### 🙈 Phase 3: Do and Understand – *Capstone Project*  
 > "**I do and I understand.**" — Confucius
 
 **Objective:** Demonstrate mastery in a real-world context.
