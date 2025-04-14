@@ -33,7 +33,7 @@ Esta metodología propone un camino estructurado para el aprendizaje profesional
 - 🤝 Fomentar la colaboración entre instituciones educativas, profesionales y tecnólogos.
 
 
-<h3 id"estructura-de-aprendizaje">🔍 Estructura de Aprendizaje</h3>
+<h3 id="estructura-de-aprendizaje">🔍 Estructura de Aprendizaje</h3>
 
 Cada **Microcurso ADA** se compone de **4 fases clave**, representadas por los **tres monos sabios** 🐒 y una fase colaborativa 🐵 para ilustrar el camino de la comprensión:
 
