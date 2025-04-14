@@ -42,8 +42,8 @@ Thank you for your interest in contributing to the **ADA Methodology**. This rep
 
 ## 🌐 Explore the Methodology
 
-- 📘 [ADA Methodology (English)](https://github.com/ada-school/ada-methodology/blob/main/README.md)
-- 🇪🇸 [Metodología ADA (Español)](https://github.com/ada-school/ada-methodology/blob/main/README-ES.md)
+- 🇬🇧 [ADA Methodology](https://github.com/ada-school/ada-methodology/blob/main/README.md)
+- 🇪🇸 [Metodología ADA](https://github.com/ada-school/ada-methodology/blob/main/README-ES.md)
 
 ## 🙋 Need Help?
 
