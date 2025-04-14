@@ -39,14 +39,14 @@ Cada **Microcurso ADA** se compone de **4 fases clave**, representadas por los *
 La metodología ADA organiza el aprendizaje en **Átomos de Aprendizaje**, que son unidades mínimas y reutilizables de contenido. Cada átomo combina teoría, ejemplo y una breve práctica, y puede implementarse en cualquiera de las fases del microcurso.
 
 <p align="center">
-  <img src="./img/ada-atomo-de-aprendizaje.svg" alt="Estructura del Átomo de Aprendizaje" width="500">
+  <img src="https://github.com/ada-school/metodologia/blob/main/img/ada-atomo-de-aprendizaje.svg" alt="Estructura del Átomo de Aprendizaje" width="800">
 </p>
 
 📌 Los átomos permiten estructurar un curso como una combinación de componentes con distintos niveles de profundidad, basados en la **Taxonomía de Bloom**, facilitando así el desarrollo progresivo de habilidades.
 
 🔗 Al combinar varios átomos de aprendizaje de distinta complejidad, se pueden crear rutas personalizadas y modulares que permiten al estudiante avanzar desde la comprensión básica hasta la aplicación práctica de una habilidad.
 
----
+# Fases de Aprendizaje ADA
 
 ### 🙊 Fase 1: Oír y Olvidar – *Autoaprendizaje*  
 > “**Oigo y olvido.**” — Confucio
