@@ -131,7 +131,7 @@ The ADA methodology is built around **Learning Atoms**—modular, reusable units
 
 Any educator, institution, or expert can:
 
-- 💡 Suggest improvements → [Open an Issue](./.github/ISSUE_TEMPLATE.md)
+- 💡 Suggest improvements → [Open an Issue](https://github.com/ada-school/ada-methodology/blob/main/.github/ISSUE_TEMPLATE/-%E2%9C%A8-suggest-a-new-idea-or-improvement.md)
 - 📝 Share your own microcourses using our templates
 - 🌍 Translate or adapt this methodology for other contexts
 
