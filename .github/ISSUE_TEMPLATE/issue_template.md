@@ -1,19 +1,6 @@
----
-name: ISSUE_TEMPLATE
-about: Propose enhancements for the ADA methodology or new educational content
-title: ''
-labels: ''
-assignees: ''
-
----
-
----
-name:  ✨ Suggest a new idea or improvement
-about: Propose enhancements for the ADA methodology or new educational content
-title: "[SUGGESTION] "
-labels: enhancement
-assignees: ''
----
+**Name:**  ✨ Suggest a new idea or improvement <br/>
+**About:** Propose enhancements for the ADA methodology or new educational content <br/>
+**Title:** "[SUGGESTION] " <br/>
 
 ## 📌 Description
 Briefly describe the idea, improvement, or feature you would like to suggest.
