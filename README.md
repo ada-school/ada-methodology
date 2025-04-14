@@ -2,163 +2,168 @@
   <img src="https://avatars.githubusercontent.com/u/61118853?s=400&u=33dd0f8a4cc4f6f48e006866dc36555525181483&v=4" width="120" alt="Ada School Logo">
 </p>
 
-<h1 align="center">Metodología ADA</h1>
-<h3 align="center">⚙️ Aprendizaje Digital Aplicado</h3>
+<h1 align="center">ADA Methodology</h1>
+<h3 align="center">⚙️ Applied Digital Learning</h3>
 
 <p align="center">
-  Innovar, aprender y aplicar. Una metodología abierta para desarrollar talento digital listo para el mundo laboral.
+  Innovate, learn, and apply. An open methodology designed to develop digital talent ready for the modern workforce.
   <br />
-  <a href="#️-estructura-de-aprendizaje"><strong>Explora el modelo pedagógico »</strong></a>
+  <a href="#learning-structure"><strong>Explore the pedagogical model »</strong></a>
 </p>
 
+---
 
-## 🌱 ¿Qué es la Metodología ADA?
+## 🌱 What is the ADA Methodology?
 
-La **Metodología ADA (Aprendizaje Digital Aplicado)** es un enfoque educativo diseñado por <a href="https://ada-school.org/" target="_blank"><strong>Ada School</strong></a> que pone énfasis en el desarrollo progresivo de habilidades laborales mediante la **experimentación, la práctica guiada y la aplicación real**.
+The **ADA Methodology (Applied Digital Learning)** is an educational approach developed by <a href="https://ada-school.org/" target="_blank"><strong>Ada School</strong></a> that emphasizes the progressive development of workplace skills through **experimentation, guided practice, and real-world application**.
 
-📜 Inspirada en el proverbio de Confucio:
+📜 Inspired by the proverb of Confucius:
 
-> 🐵 **“Oigo y olvido, veo y recuerdo, hago y entiendo.”**
+> 🐵 **"I hear and I forget, I see and I remember, I do and I understand."**
 
-Esta metodología propone un camino estructurado para el aprendizaje profesional a través de **microcursos o microcredenciales**, con un enfoque centrado en hacer para comprender.
+This methodology offers a structured path for professional learning through **micro-credentials or micro-courses**, with a hands-on learning focus.
 
+---
 
-## 🌟 Objetivo de esta Tecnología Abierta
+## 🌟 Purpose of this Open Technology
 
-- 📖 Compartir un modelo de formación centrado en competencias digitales.
-- 🧠 Facilitar la creación de cursos laborales prácticos y efectivos.
-- 🤝 Fomentar la colaboración entre instituciones educativas, profesionales y tecnólogos.
+- 📖 Share a competency-based training model for digital skills.
+- 🧠 Enable the creation of practical, job-ready learning experiences.
+- 🤝 Foster collaboration among educators, professionals, and tech institutions.
 
+---
 
-## 🔍 Estructura de Aprendizaje
+## 🔍 Learning Structure
 
-Cada **Microcurso ADA** se compone de **4 fases clave**, representadas por los **tres monos sabios** 🐒 y una fase colaborativa 🐵 para ilustrar el camino de la comprensión:
+Each **ADA Microcourse** is structured in **4 key phases**, inspired by the **three wise monkeys** 🐒 and a collaborative phase 🐵 that represents the full journey toward comprehension:
 
-### 🧬 Átomos de Aprendizaje
+---
 
-La metodología ADA organiza el aprendizaje en **Átomos de Aprendizaje**, que son unidades mínimas y reutilizables de contenido. Cada átomo combina teoría, ejemplo y una breve práctica, y puede implementarse en cualquiera de las fases del microcurso.
+### 🧬 Learning Atoms
 
-📌 Los átomos permiten estructurar un curso como una combinación de componentes con distintos niveles de profundidad, basados en la **Taxonomía de Bloom**, facilitando así el desarrollo progresivo de habilidades.
+The ADA methodology is built around **Learning Atoms**—modular, reusable units that combine theory, example, and brief practice. These atoms can be implemented in any phase of the microcourse.
 
-🔗 Al combinar varios átomos de aprendizaje de distinta complejidad, se pueden crear rutas personalizadas y modulares que permiten al estudiante avanzar desde la comprensión básica hasta la aplicación práctica de una habilidad.
+📌 They allow you to design a course as a sequence of components with increasing complexity, aligned with **Bloom’s Taxonomy**, facilitating progressive skills acquisition.
+
+🔗 By combining learning atoms of varying complexity, learners can follow personalized and modular learning paths that move from foundational understanding to real-world application.
 
 <p align="center">
-  <img src="./learning-atom-structure.svg" alt="Estructura del Átomo de Aprendizaje" width="500">
+  <img src="./img/ada-learning-atom.svg" alt="Learning Atom Structure" width="500">
 </p>
 
 ---
 
-### 🙊 Fase 1: Oír y Olvidar – *Autoaprendizaje*  
-> “**Oigo y olvido.**” — Confucio
+### 🙊 Phase 1: Hear and Forget – *Self-Learning*  
+> "**I hear and I forget.**" — Confucius
 
-**Objetivo:** Introducir conceptos fundamentales de forma auditiva y visual.
+**Objective:** Introduce core concepts through auditory and visual content.
 
-📚 **Elementos:**
-- Lecturas ilustradas e interactivas.
-- Videos explicativos cortos.
-- Casos reales de éxito o fracaso.
-- Microactividades de reflexión o discusión.
-- Evaluaciones sumativas con Quizzes Interactivos.
-- Lecturas ilustradas e interactivas.
-- Videos explicativos cortos.
-- Casos reales de éxito o fracaso.
-- Microactividades de reflexión o discusión.
-- Evaluaciones automatizadas (quizzes y prompts con IA).
-- Clases en vivo para interactuar con mentores.
-- Contenido multimodal (texto, imagen, código, simulación, etc.)
-
-
-### 🙈 Fase 2: Ver y Recordar – *Laboratorios*  
-> “**Veo y recuerdo.**” — Confucio
-
-**Objetivo:** Reforzar lo aprendido mediante actividades visuales y experimentales.
-
-🧪 **Elementos:**
-- Laboratorios que son evaluaciones formativas.
-- Calificados por IA Generativa mediante prompts personalizables.
-- En programación, se usan pruebas automatizadas (Unit Tests).
-- Experimentos y retos guiados.
-- Práctica basada en ensayo y error.
-- Retroalimentación automática y personalizada.
-- Entorno de aprendizaje activo.
-
-
-### 🙉 Fase 3: Hacer y Entender – *Proyecto Capstone*  
-> “**Hago y entiendo.**” — Confucio
-
-**Objetivo:** Demostrar dominio en un escenario real.
-
-🚀 **Elementos:**
-- Evaluación formativa mediante un Proyecto Capstone.
-- Aplicación de lo aprendido en un contexto real.
-- Calificación automática por IA Generativa o revisión manual.
-- Proyecto práctico integrador que sintetiza todas las habilidades desarrolladas.
-- Evaluación con rúbrica por IA.
-- Feedback por criterios detallado.
-- Certificado de finalización compatible con LinkedIn.
-
-
-### 🐵 Fase 4: Colaborar y Crear – *Conocimiento Compartido*  
-
-**Objetivo:** Potenciar el aprendizaje colectivo a través de la colaboración.
-
-🤝 **Elementos:**
-- Clases en vivo para interactuar con mentores.
-- Espacios de encuentro virtuales, presenciales o mixtos.
-- Actividades en grupo para resolver desafíos o construir conocimiento.
-- Compartir experiencias, aprendizajes y proyectos con la comunidad.
-- Espacios de encuentro virtuales, presenciales o mixtos.
-- Actividades en grupo para resolver desafíos o construir conocimiento.
-- Compartir experiencias, aprendizajes y proyectos con la comunidad.
-- Fomento del pensamiento colectivo y del aprendizaje entre pares.
+📚 **Components:**
+- Illustrated and interactive readings
+- Short explanatory videos
+- Real-world success and failure cases
+- Reflection or discussion micro-activities
+- Summative assessments via interactive quizzes
+- Automated assessments (quizzes and AI-generated prompts)
+- Live sessions with mentors
+- Multimodal content (text, image, code, simulation, etc.)
 
 ---
 
-## 🎓 Resultados de Aprendizaje
+### 🙈 Phase 2: See and Remember – *Labs*  
+> "**I see and I remember.**" — Confucius
 
-1. 🧠 Comprender los fundamentos de una habilidad (oír).
-2. 🔍 Desarrollar habilidades prácticas (ver y experimentar).
-3. 💪 Aplicar y demostrar competencias reales (hacer y entender).
-4. 🤝 Fortalecer el aprendizaje colectivo (colaborar y crear).💪 Aplicar y demostrar competencias reales (hacer y entender).
+**Objective:** Reinforce learning through visual and hands-on experimentation.
 
-## 🤝 ¿Cómo contribuir?
-
-Cualquier educador, institución o experto puede:
-
-- 💡 Proponer mejoras → [Abre un Issue](./.github/ISSUE_TEMPLATE.md)
-- 📝 Crear y compartir microcursos con nuestras plantillas
-- 🌐 Traducir o adaptar esta metodología a nuevos contextos
-
-Consulta nuestra 👉 [`guía de contribución`](./CONTRIBUTING.md)
-
-## 🏫 Invitación a Instituciones Educativas
-
-¿Eres parte de una universidad, bootcamp o iniciativa educativa?
-
-Te invitamos a:
-
-- Adoptar la metodología ADA
-- Co-crear experiencias de aprendizaje
-- Compartir tus adaptaciones con la comunidad
-
-📧 Escríbenos a [ada@ada-school.org](mailto:ada@ada-school.org)
+🧪 **Components:**
+- Labs as formative assessments
+- AI-generated feedback with customizable prompts
+- Unit tests for programming tasks
+- Guided experiments and challenges
+- Trial-and-error practice
+- Automated personalized feedback
+- Active learning environment
 
 ---
 
-## 📄 Licencia
+### 🙉 Phase 3: Do and Understand – *Capstone Project*  
+> "**I do and I understand.**" — Confucius
 
-Esta tecnología está licenciada bajo [**Creative Commons Attribution-ShareAlike 4.0 (CC BY-SA 4.0)**](https://creativecommons.org/licenses/by-sa/4.0/).
+**Objective:** Demonstrate mastery in a real-world context.
 
-✅ Puedes:
-- Usar, adaptar y distribuir libremente.
-- Atribuir a Ada School como fuente.
-- Compartir mejoras con la misma licencia.
+🚀 **Components:**
+- Capstone project as a formative assessment
+- Application of acquired skills in real contexts
+- Automatic or manual evaluation (AI or mentor)
+- Integrative practical project synthesizing all learned skills
+- Rubric-based assessment with AI support
+- Criteria-based personalized feedback
+- Completion certificate (LinkedIn compatible)
+
+---
+
+### 🐵 Phase 4: Collaborate and Create – *Shared Knowledge*  
+
+**Objective:** Strengthen collective learning through collaboration.
+
+🤝 **Components:**
+- Live sessions with mentors and peers
+- Virtual, in-person, or hybrid learning spaces
+- Group challenges and knowledge co-construction
+- Community project presentations and peer feedback
+- Collaborative thinking and peer-based learning
+
+---
+
+## 🎓 Learning Outcomes
+
+1. 🧠 Understand foundational concepts (hear)
+2. 🔍 Develop practical skills (see & experiment)
+3. 💪 Apply and demonstrate competencies (do & understand)
+4. 🤝 Strengthen collective learning (collaborate & create)
+
+---
+
+## 🤝 How to Contribute?
+
+Any educator, institution, or expert can:
+
+- 💡 Suggest improvements → [Open an Issue](./.github/ISSUE_TEMPLATE.md)
+- 📝 Share your own microcourses using our templates
+- 🌍 Translate or adapt this methodology for other contexts
+
+Read our 👉 [`Contribution Guide`](./CONTRIBUTING.md)
+
+---
+
+## 🏫 Invitation to Educational Institutions
+
+Are you part of a university, bootcamp, or educational initiative?
+
+We invite you to:
+
+- Adopt the ADA methodology
+- Co-create learning experiences
+- Share your adaptations with the community
+
+📧 Contact us: [ada@ada-school.org](mailto:ada@ada-school.org)
+
+---
+
+## 📄 License
+
+This project is licensed under [**Creative Commons Attribution-ShareAlike 4.0 (CC BY-SA 4.0)**](https://creativecommons.org/licenses/by-sa/4.0/).
+
+✅ You can:
+- Use, adapt, and redistribute freely
+- Attribute Ada School as the source
+- Share improvements under the same license
 
 ---
 
 <p align="center">
   <img src="https://avatars.githubusercontent.com/u/61118853?s=400&u=33dd0f8a4cc4f6f48e006866dc36555525181483&v=4" width="60">
   <br />
-  <strong>Hecho con 💙 por <a href="https://ada-school.org/" target="_blank">Ada School</a></strong>
+  <strong>Made with 💙 by <a href="https://ada-school.org/" target="_blank">Ada School</a></strong>
 </p>
 
