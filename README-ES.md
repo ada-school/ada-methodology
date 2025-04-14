@@ -8,7 +8,7 @@
 <p align="center">
   Innovar, aprender y aplicar. Una metodología abierta para desarrollar talento digital listo para el mundo laboral.
   <br />
-  <a href="#️-estructura-de-aprendizaje"><strong>Explora el modelo pedagógico »</strong></a>
+  <a href="#estructura-de-aprendizaje"><strong>Explora el modelo pedagógico »</strong></a>
   <br />
   <br />
   🌐 <a href="https://github.com/ada-school/ada-methodology/blob/main/README.md">English Version</a> 🇬🇧 | Other languages coming soon 🌍
@@ -33,7 +33,7 @@ Esta metodología propone un camino estructurado para el aprendizaje profesional
 - 🤝 Fomentar la colaboración entre instituciones educativas, profesionales y tecnólogos.
 
 
-## 🔍 Estructura de Aprendizaje
+<h3 id"estructura-de-aprendizaje">🔍 Estructura de Aprendizaje</h3>
 
 Cada **Microcurso ADA** se compone de **4 fases clave**, representadas por los **tres monos sabios** 🐒 y una fase colaborativa 🐵 para ilustrar el camino de la comprensión:
 
