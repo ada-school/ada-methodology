@@ -3,19 +3,22 @@
 </p>
 
 <h1 align="center">ADA Methodology</h1>
-<h3 align="center">⚙️ Applied Digital Learning</h3>
+<h3 align="center">⚙️ Applied Digital Apprenticeship</h3>
 
 <p align="center">
   Innovate, learn, and apply. An open methodology designed to develop digital talent ready for the modern workforce.
   <br />
   <a href="#learning-structure"><strong>Explore the pedagogical model »</strong></a>
+  <br />
+  <br />
+  🌐 <a href="https://github.com/ada-school/ada-methodology/blob/main/README-ES.md">Versión en Español</a> 🇪🇸 | Other languages coming soon 🌍
 </p>
 
 ---
 
 ## 🌱 What is the ADA Methodology?
 
-The **ADA Methodology (Applied Digital Learning)** is an educational approach developed by <a href="https://ada-school.org/" target="_blank"><strong>Ada School</strong></a> that emphasizes the progressive development of workplace skills through **experimentation, guided practice, and real-world application**.
+The **ADA Methodology (Applied Digital Apprenticeship)** is an educational approach developed by <a href="https://ada-school.org/" target="_blank"><strong>Ada School</strong></a> that emphasizes the progressive development of workplace skills through **experimentation, guided practice, and real-world application**.
 
 📜 Inspired by the proverb of Confucius:
 
@@ -43,17 +46,15 @@ Each **ADA Microcourse** is structured in **4 key phases**, inspired by the **th
 
 The ADA methodology is built around **Learning Atoms**—modular, reusable units that combine theory, example, and brief practice. These atoms can be implemented in any phase of the microcourse.
 
-<p align="center">
-  <img src="https://github.com/ada-school/metodologia/blob/main/img/ada-learning-atom.svg" alt="Learning Atom Structure" width="800">
-</p>
-
 📌 They allow you to design a course as a sequence of components with increasing complexity, aligned with **Bloom’s Taxonomy**, facilitating progressive skills acquisition.
 
 🔗 By combining learning atoms of varying complexity, learners can follow personalized and modular learning paths that move from foundational understanding to real-world application.
 
+<p align="center">
+  <img src="https://github.com/ada-school/metodologia/raw/main/img/ada-learning-atom.svg" alt="Learning Atom Structure" width="800">
+</p>
 
-
-# Learning Phases ADA
+---
 
 ### 🙊 Phase 1: Hear and Forget – *Self-Learning*  
 > "**I hear and I forget.**" — Confucius
