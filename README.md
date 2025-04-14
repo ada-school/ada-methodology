@@ -36,7 +36,7 @@ This methodology offers a structured path for professional learning through **mi
 
 ---
 
-## 🔍 Learning Structure
+<h3 id="learning-structure"> 🔍 Learning Structure </h3>
 
 Each **ADA Microcourse** is structured in **4 key phases**, inspired by the **three wise monkeys** 🐒 and a collaborative phase 🐵 that represents the full journey toward comprehension:
 
