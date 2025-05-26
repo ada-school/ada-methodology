@@ -2,23 +2,21 @@
   <img src="https://avatars.githubusercontent.com/u/61118853?s=400&u=33dd0f8a4cc4f6f48e006866dc36555525181483&v=4" width="120" alt="Ada School Logo">
 </p>
 
-<h1 align="center">ADA Methodology</h1>
-<h3 align="center">⚙️ Applied Digital Apprenticeship</h3>
+<h1 align="center">ADA: Applied Digital Apprenticeship </h1>
+<h3 align="center">🧬 Learning Atom Methodology</h3>
 
 <p align="center">
-  Innovate, learn, and apply. An open methodology designed to develop digital talent ready for the modern workforce.
-  <br />
-  <a href="#learning-structure"><strong>Explore the pedagogical model »</strong></a>
-  <br />
+  Innovate, learn, and apply. An open methodology designed to develop digital talent ready for the modern workforce.<br />
+  <a href="#learning-structure"><strong>Explore the pedagogical model »</strong></a><br />
   <br />
   🌐 <a href="https://github.com/ada-school/ada-methodology/blob/main/README-ES.md">Versión en Español</a> 🇪🇸 | Other languages coming soon 🌍
 </p>
 
 ---
 
-## 🌱 What is the ADA Methodology?
+## 🧠 What is the ADA Learning Atom Methodology?
 
-The **ADA Methodology (Applied Digital Apprenticeship)** is an educational approach developed by <a href="https://ada-school.org/" target="_blank"><strong>Ada School</strong></a> that emphasizes the progressive development of workplace skills through **experimentation, guided practice, and real-world application**.
+The **ADA Methodology (Applied Digital Apprenticeship)** is an educational approach developed by [**Ada School**](https://ada-school.org/) that emphasizes the progressive development of workplace skills through **experimentation, guided practice, and real-world application**.
 
 📜 Inspired by the proverb of Confucius:
 
@@ -30,137 +28,132 @@ This methodology offers a structured path for professional learning through **mi
 
 ## 🌟 Purpose of this Open Technology
 
-- 📖 Share a competency-based training model for digital skills.
-- 🧠 Enable the creation of practical, job-ready learning experiences.
-- 🤝 Foster collaboration among educators, professionals, and tech institutions.
+* 📖 Share a competency-based training model for digital skills.
+* 🧠 Enable the creation of practical, job-ready learning experiences.
+* 🤝 Foster collaboration among educators, professionals, and tech institutions.
 
 ---
 
-<h3 id="learning-structure"> 🔍 Learning Structure </h3>
+## 🧬 ADA Learning Atom Methodology
 
-Each **ADA Microcourse** is structured in **4 key phases**, inspired by the **three wise monkeys** 🐒 and a collaborative phase 🐵 that represents the full journey toward comprehension:
+Each **Learning Atom** is a balanced **micro-learning experience** that nurtures **self-learning skills**, scaffolded by a platform that provides multimodal content and formative feedback. At its core, an atom enables autonomy through structure and practical application.
+
+### 🧰 Definition
+
+A **Learning Atom** is the smallest pedagogical unit in the ADA Methodology. Each atom is organized around a practical learning objective and integrates self-directed exploration, diverse media, and formative assessment.
+
+Atoms are modular and composable—they can stand alone or be grouped into sprints, bootcamps, or full programs.
+
+### 🌐 Core Philosophy
+
+> “Autonomy through scaffolding.”
+
+Atoms help learners develop self-regulated learning through four interconnected learning modes:
+
+### 🎯 Atom Framework: The Four Learning Modes
+
+| Mode            | Description                                           | Learning Objects Supported                          |
+| --------------- | ----------------------------------------------------- | --------------------------------------------------- |
+| **1. Read**     | Comprehend via text and visual concepts               | Articles, case studies, analogies, examples         |
+| **2. Hear**     | Understand through storytelling and narration         | Podcasts, audio files, anecdotes                    |
+| **3. View**     | Visualize and absorb through multimedia               | Explainer videos, animations, TikTok-style capsules |
+| **4. Practice** | Apply in context using interactive and hands-on tools | Labs, AI prompts, Code Challenges, Projects         |
 
 ---
 
-### 🧬 Learning Atoms
-
-The ADA methodology is built around **Learning Atoms**—modular, reusable units that combine theory, example, and brief practice. These atoms can be implemented in any phase of the microcourse.
-
-📌 They allow you to design a course as a sequence of components with increasing complexity, aligned with **Bloom’s Taxonomy**, facilitating progressive skills acquisition.
-
-🔗 By combining learning atoms of varying complexity, learners can follow personalized and modular learning paths that move from foundational understanding to real-world application.
+## 🧬 Atom Structure
 
 <p align="center">
-  <img src="https://github.com/ada-school/metodologia/raw/main/img/ada-learning-atom.svg" alt="Learning Atom Structure" width="800">
+  <img src="https://github.com/ada-school/metodologia/raw/main/img/ada-learning-atom.svg" alt="Learning Atom Structure" width="600">
 </p>
 
----
 
-### 🙊 Phase 1: Hear and Forget – *Self-Learning*  
-> "**I hear and I forget.**" — Confucius
+Each atom includes:
 
-**Objective:** Introduce core concepts through auditory and visual content.
+1. **Title** – Skill-centered and descriptive
+2. **Description** – Why the concept matters
+3. **Learning Objectives** – One for conceptual understanding (Bloom Level 1–2), another for application (Level 3+)
+4. **Context** – A scenario or story
+5. **Modes 1–4**:
 
-📚 **Components:**
-- Illustrated and interactive readings
-- Short explanatory videos
-- Real-world success and failure cases
-- Reflection or discussion micro-activities
-- Summative assessments via interactive quizzes
-- Automated assessments (quizzes and AI-generated prompts)
-- Live sessions with mentors
-- Multimodal content (text, image, code, simulation, etc.)
+   * Learners can start with any mode; the platform guides to balance
+6. **Feedback**:
 
----
+   * **Quizzes** (T/F, multiple choice, trivias)
+   * **AI-graded open questions** (score 0–100 with feedback)
+7. **Assessment**:
 
-### 🙉 Phase 2: See and Remember – *Labs*  
-> "**I see and I remember.**" — Confucius
+   * Code challenges, projects, or guided labs
+8. **Time Estimate**: 20–60 minutes per atom
 
-**Objective:** Reinforce learning through visual and hands-on experimentation.
+### 🛠️ Learning Objects
 
-🧪 **Components:**
-- Labs as formative assessments
-- AI-generated feedback with customizable prompts
-- Unit tests for programming tasks
-- Guided experiments and challenges
-- Trial-and-error practice
-- Automated personalized feedback
-- Active learning environment
+| Object            | Use                          | Tools                       |
+| ----------------- | ---------------------------- | --------------------------- |
+| 📘 Article        | Explain concepts             | Markdown, Notion            |
+| ❓ Quiz            | Test understanding           | Trivia, MCQ                 |
+| 📽️ Video         | Explain visually             | YouTube, Vimeo              |
+| 🎧 Audio          | Complement with narration    | Google Drive, Spotify       |
+| 🤖 AI Question    | Reflect and receive feedback | Open text + AI scoring      |
+| 💻 Code Challenge | Solve in IDE with test cases | Unit test runner            |
+| 💡 Code Project   | Real repo challenge (TDD)    | GitHub repo + failing tests |
+| 🧪 Lab            | Step-by-step guided activity | Manual or auto-evaluated    |
 
----
-
-### 🙈 Phase 3: Do and Understand – *Capstone Project*  
-> "**I do and I understand.**" — Confucius
-
-**Objective:** Demonstrate mastery in a real-world context.
-
-🚀 **Components:**
-- Capstone project as a formative assessment
-- Application of acquired skills in real contexts
-- Automatic or manual evaluation (AI or mentor)
-- Integrative practical project synthesizing all learned skills
-- Rubric-based assessment with AI support
-- Criteria-based personalized feedback
-- Completion certificate (LinkedIn compatible)
 
 ---
 
-### 🐵 Phase 4: Collaborate and Create – *Shared Knowledge*  
+## 🔄 From Atom to Experience
 
-**Objective:** Strengthen collective learning through collaboration.
+Atoms can be combined to form:
 
-🤝 **Components:**
-- Live sessions with mentors and peers
-- Virtual, in-person, or hybrid learning spaces
-- Group challenges and knowledge co-construction
-- Community project presentations and peer feedback
-- Collaborative thinking and peer-based learning
+* **Sprints** (a sequence of 3–5 Atoms)
+* **Microcredentials** (competency-based microcourses)
+* **Bootcamps** (project-driven programs)
+* **Certifications** (aligned to Bloom + industry skill frameworks)
 
 ---
 
-## 🎓 Learning Outcomes
+## 💼 Learning Outcomes
 
-1. 🧠 Understand foundational concepts (hear)
-2. 🔍 Develop practical skills (see & experiment)
-3. 💪 Apply and demonstrate competencies (do & understand)
-4. 🤝 Strengthen collective learning (collaborate & create)
+1. 🧠 Comprehend digital and technical concepts
+2. 📝 Apply skills in context and solve real-world challenges
+3. 🤝 Collaborate, reflect, and adapt learning strategies
+4. 📊 Demonstrate mastery through application and feedback
 
 ---
 
 ## 🤝 How to Contribute?
 
-Any educator, institution, or expert can:
+* 💡 Propose Atom designs or course structures
+* 📄 Translate the methodology
+* 🔧 Suggest enhancements via [Issues](https://github.com/ada-school/ada-methodology/issues)
+* 📘 Share your custom atoms or microcredentials
 
-- 💡 Suggest improvements → [Open an Issue](https://github.com/ada-school/ada-methodology/blob/main/.github/ISSUE_TEMPLATE/issue_template.md)
-- 📝 Share your own microcourses using our templates
-- 🌍 Translate or adapt this methodology for other contexts
-
-Read our 👉 [`Contribution Guide`](./CONTRIBUTING.md)
+Read the [Contribution Guide](./CONTRIBUTING.md) for details.
 
 ---
 
-## 🏫 Invitation to Educational Institutions
+## 🏫 Educational Partnerships
 
-Are you part of a university, bootcamp, or educational initiative?
+Are you part of a university, bootcamp, or learning project?
 
-We invite you to:
+Join the open network:
 
-- Adopt the ADA methodology
-- Co-create learning experiences
-- Share your adaptations with the community
+* Adopt ADA in your platform
+* Create open atoms or share private tracks
+* Co-design certification paths
 
-📧 Contact us: [ada@ada-school.org](mailto:ada@ada-school.org)
+Contact us: [ada@ada-school.org](mailto:ada@ada-school.org)
 
 ---
 
 ## 📄 License
 
-This project is licensed under [**Creative Commons Attribution-ShareAlike 4.0 (CC BY-SA 4.0)**](https://creativecommons.org/licenses/by-sa/4.0/).
+Licensed under [**Creative Commons Attribution-ShareAlike 4.0 (CC BY-SA 4.0)**](https://creativecommons.org/licenses/by-sa/4.0/).
 
-✅ You can:
-- Use, adapt, and redistribute freely
-- Attribute Ada School as the source
-- Share improvements under the same license
+* ✅ Use, adapt, and share freely
+* ✅ Attribute Ada School as the source
+* ✅ Share improvements under the same license
 
 ---
 
@@ -169,4 +162,7 @@ This project is licensed under [**Creative Commons Attribution-ShareAlike 4.0 (C
   <br />
   <strong>Made with 💙 by <a href="https://ada-school.org/" target="_blank">Ada School</a></strong>
 </p>
+
+
+
 
