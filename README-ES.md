@@ -6,14 +6,15 @@
 
 <p align="center">
   Innovar, aprender y aplicar. Una metodología abierta para desarrollar talento digital listo para el mundo laboral.
-  <br />
-  <a href="#estructura-de-aprendizaje"><strong>Explora el modelo pedagógico »</strong></a>
+    
   <br />
   <br />
   🌐 <a href="https://github.com/ada-school/ada-methodology/blob/main/README.md">English Version</a> 🇬🇧 | Other languages coming soon 🌍
 </p>
 
 
+
+<br />
 
 ## 🎯 Principio pedagógico central
 
