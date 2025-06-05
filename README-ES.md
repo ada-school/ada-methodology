@@ -2,8 +2,7 @@
   <img src="https://avatars.githubusercontent.com/u/61118853?s=400&u=33dd0f8a4cc4f6f48e006866dc36555525181483&v=4" width="120" alt="Ada School Logo">
 </p>
 
-<h1 align="center">Metodología ADA</h1>
-<h3 align="center">⚙️ Aprendizaje Digital Aplicado</h3>
+<h1 align="center">🚀 Metodología ADA<br/>(Aprendizaje Digital Aplicado)</h1>
 
 <p align="center">
   Innovar, aprender y aplicar. Una metodología abierta para desarrollar talento digital listo para el mundo laboral.
@@ -15,105 +14,171 @@
 </p>
 
 
-## 🌱 ¿Qué es la Metodología ADA?
 
-La **Metodología ADA (Aprendizaje Digital Aplicado)** es un enfoque educativo diseñado por <a href="https://ada-school.org/" target="_blank"><strong>Ada School</strong></a> que pone énfasis en el desarrollo progresivo de habilidades laborales mediante la **experimentación, la práctica guiada y la aplicación real**.
+## 🎯 Principio pedagógico central
 
-📜 Inspirada en el proverbio de Confucio:
+> “Lo oigo y lo olvido, lo veo y lo recuerdo, lo hago y lo entiendo, lo comparto y lo multiplico.”
 
-> 🐵 **“Oigo y olvido, veo y recuerdo, hago y entiendo.”**
+ADA promueve el aprendizaje experiencial y progresivo, centrado en el desarrollo de competencias laborales reales mediante microcursos estructurados en módulos, con átomos de aprendizaje como unidad didáctica mínima, y espacios humanos de colaboración.
 
-Esta metodología propone un camino estructurado para el aprendizaje profesional a través de **microcursos o microcredenciales**, con un enfoque centrado en hacer para comprender.
+---
+## 🧬 Unidad Base: Átomo de Aprendizaje
 
+Cada átomo combina recursos y experiencias en torno a una competencia específica, utilizando distintos tipos de medios para maximizar la comprensión, retención y aplicación.
 
-## 🌟 Objetivo de esta Tecnología Abierta
+| Tipo de elemento | Propósito pedagógico                          | Ejemplos de recursos                                            |
+| ---------------- | --------------------------------------------- | --------------------------------------------------------------- |
+| Leer             | Introducir y explorar conceptos clave         | Artículos, casos ilustrados, guías interactivas                 |
+| Escuchar         | Conectar emocionalmente y reforzar el mensaje | Podcasts, entrevistas, explicaciones narradas                   |
+| Ver              | Modelar, ilustrar o demostrar procesos        | Videos, animaciones, tutoriales, simulaciones                   |
+| Practicar        | Aplicar lo aprendido en contextos concretos   | Laboratorios, retos paso a paso, ejercicios en simuladores      |
+| Evaluar          | Medir comprensión, habilidades y desempeño    | Quizzes interactivos, rúbricas de proyectos, prompts evaluables |
 
-- 📖 Compartir un modelo de formación centrado en competencias digitales.
-- 🧠 Facilitar la creación de cursos laborales prácticos y efectivos.
-- 🤝 Fomentar la colaboración entre instituciones educativas, profesionales y tecnólogos.
+Los átomos pueden componerse y recomponerse según el estilo de aprendizaje, el objetivo del módulo y el nivel cognitivo propuesto por la Taxonomía de Bloom.
 
+---
 
-<h3 id="estructura-de-aprendizaje">🔍 Estructura de Aprendizaje</h3>
+## 🧱 Estructura modular del microcurso ADA
 
-Cada **Microcurso ADA** se compone de **4 fases clave**, representadas por los **tres monos sabios** 🐒 y una fase colaborativa 🐵 para ilustrar el camino de la comprensión:
+Cada microcurso contiene hasta tres módulos, con la siguiente estructura:
 
-### 🧬 Átomos de Aprendizaje
+1. **Nombre del módulo**: Indica el foco temático.
+2. **Competencia laboral a desarrollar**: Conecta con el perfil ocupacional.
+3. **Herramientas y recursos necesarios**: Tecnologías, materiales y plataformas.
+4. **Objetivos de aprendizaje** (basados en la Taxonomía de Bloom):
 
-La metodología ADA organiza el aprendizaje en **Átomos de Aprendizaje**, que son unidades mínimas y reutilizables de contenido. Cada átomo combina teoría, ejemplo y una breve práctica, y puede implementarse en cualquiera de las fases del microcurso.
+   * Recordar: Identificar, listar, reconocer.
+   * Comprender: Explicar, resumir, interpretar.
+   * Aplicar: Usar, ejecutar, implementar en un contexto práctico.
+5. **Átomos de aprendizaje combinados** para cada objetivo.
+6. **Laboratorio o reto práctico** (evaluación formativa).
+7. **Evaluación** (automatizada o manual, con rúbrica o IA).
+8. **Entregable final**: Producto digital, reflexión, prototipo o proyecto compartible.
 
-<p align="center">
-  <img src="https://github.com/ada-school/metodologia/blob/main/img/ada-atomo-de-aprendizaje.svg" alt="Estructura del Átomo de Aprendizaje" width="800">
-</p>
+---
 
-📌 Los átomos permiten estructurar un curso como una combinación de componentes con distintos niveles de profundidad, basados en la **Taxonomía de Bloom**, facilitando así el desarrollo progresivo de habilidades.
+## 🔄 Fases del Aprendizaje ADA
 
-🔗 Al combinar varios átomos de aprendizaje de distinta complejidad, se pueden crear rutas personalizadas y modulares que permiten al estudiante avanzar desde la comprensión básica hasta la aplicación práctica de una habilidad.
+### 🙊 Fase 1: Oír y Olvidar – *Autoaprendizaje*
 
-# Fases de Aprendizaje ADA
-
-### 🙊 Fase 1: Oír y Olvidar – *Autoaprendizaje*  
 > “**Oigo y olvido.**” — Confucio
 
 **Objetivo:** Introducir conceptos fundamentales de forma auditiva y visual.
 
 📚 **Elementos:**
-- Lecturas ilustradas e interactivas.
-- Videos explicativos cortos.
-- Casos reales de éxito o fracaso.
-- Microactividades de reflexión o discusión.
-- Evaluaciones sumativas con Quizzes Interactivos.
-- Lecturas ilustradas e interactivas.
-- Videos explicativos cortos.
-- Casos reales de éxito o fracaso.
-- Microactividades de reflexión o discusión.
-- Evaluaciones automatizadas (quizzes y prompts con IA).
-- Clases en vivo para interactuar con mentores.
-- Contenido multimodal (texto, imagen, código, simulación, etc.)
 
+* Lecturas ilustradas e interactivas.
+* Videos explicativos breves.
+* Casos reales de éxito o fracaso.
+* Podcasts, narraciones y explicaciones en audio.
+* Verificación de entendimiento (evaluación sumativa): quizzes interactivos.
+* Clases sincrónicas opcionales con facilitadores.
+* Microactividades de reflexión y discusión.
+* Presentaciones animadas o interactivas.
+* Contenido multimodal (texto, imagen, simulación, audio).
 
-### 🙉 Fase 2: Ver y Recordar – *Laboratorios*  
+### 🙉 Fase 2: Ver y Recordar – *Exploración Visual*
+
 > “**Veo y recuerdo.**” — Confucio
 
 **Objetivo:** Reforzar lo aprendido mediante actividades visuales y experimentales.
 
 🧪 **Elementos:**
-- Laboratorios que son evaluaciones formativas.
-- Calificados por IA Generativa mediante prompts personalizables.
-- En programación, se usan pruebas automatizadas (Unit Tests).
-- Experimentos y retos guiados.
-- Práctica basada en ensayo y error.
-- Retroalimentación automática y personalizada.
-- Entorno de aprendizaje activo.
 
+* Laboratorios aplicados con guías paso a paso.
+* Experimentos guiados con ensayo y error.
+* Casos de Estudio prácticos.
+* Visualizaciones interactivas.
+* Simuladores con retroalimentación.
+* Retroalimentación humana o automática mediante prompts usando inteligencia artificial.
 
-### 🙈 Fase 3: Hacer y Entender – *Proyecto Capstone*  
+### 🙈 Fase 3: Hacer y Entender – *Aplicación práctica*
+
 > “**Hago y entiendo.**” — Confucio
 
-**Objetivo:** Demostrar dominio en un escenario real.
+**Objetivo:** Aplicar lo aprendido en escenarios reales y construir conocimiento a partir de la experiencia.
 
 🚀 **Elementos:**
-- Evaluación formativa mediante un Proyecto Capstone.
-- Aplicación de lo aprendido en un contexto real.
-- Calificación automática por IA Generativa o revisión manual.
-- Proyecto práctico integrador que sintetiza todas las habilidades desarrolladas.
-- Evaluación con rúbrica por IA.
-- Feedback por criterios detallado.
-- Certificado de finalización compatible con LinkedIn.
 
+* Proyecto Capstone para aplicar el conocimiento en un caso real.
+* Evaluación formativa con rúbricas personalizables.
+* Evidencia de un prototipo real aplicable a un entorno laboral.
+* Retroalimentación humana o automática mediante prompts usando inteligencia artificial.
+* Certificación o insignia digital.
+* Revisión colaborativa entre pares o mentores.
 
-### 🐵 Fase 4: Colaborar y Crear – *Conocimiento Compartido*  
+### 🐵 Fase 4: Compartir y Multiplicar – *Colaborar y Crear*
+
+> “**Comparto y multiplico.**” — ADA School
 
 **Objetivo:** Potenciar el aprendizaje colectivo a través de la colaboración.
 
 🤝 **Elementos:**
-- Clases en vivo para interactuar con mentores.
-- Espacios de encuentro virtuales, presenciales o mixtos.
-- Actividades en grupo para resolver desafíos o construir conocimiento.
-- Compartir experiencias, aprendizajes y proyectos con la comunidad.
-- Espacios de encuentro virtuales, presenciales o mixtos.
-- Actividades en grupo para resolver desafíos o construir conocimiento.
-- Compartir experiencias, aprendizajes y proyectos con la comunidad.
-- Fomento del pensamiento colectivo y del aprendizaje entre pares.
+
+* Actividades colaborativas (sincrónicas o asincrónicas).
+* Foros de reflexión y discusión entre pares.
+* Clases en vivo con mentores o invitados expertos.
+* Espacios de encuentro virtuales, presenciales o híbridos.
+* Co-creación de proyectos o soluciones compartidas.
+* Evaluación entre pares y fomento del pensamiento colectivo.
+* Presentación pública o socialización de resultados.
+
+---
+
+## 🌀 Ruta de Aprendizaje con Átomos ADA
+
+```text
+[LEER] ➝ [ESCUCHAR] ➝ [VER] ➝ [PRACTICAR] ➝ [EVALUAR] ➝ [COLABORAR]
+         ↘ reforzamiento ↙       ↘ aplicación ↙     ↘ comunidad ↙
+```
+
+Esta estructura permite configurar experiencias personalizadas, adaptativas y accesibles.
+
+---
+
+## 🎓 Resultados de Aprendizaje Esperados
+
+* Comprensión profunda de conceptos.
+* Desarrollo práctico de habilidades aplicables.
+* Transferencia de conocimientos a contextos reales.
+* Aprendizaje colectivo, social y significativo.
+
+---
+
+## 🤝 Espacio Humano y Colaborativo
+
+ADA integra un componente humano fundamental para enriquecer el aprendizaje:
+
+* Clases en vivo con mentores y expertos.
+* Dinámicas de co-creación y resolución de desafíos.
+* Comunidades de aprendizaje en línea.
+* Proyectos colaborativos interdisciplinarios.
+* Feedback horizontal entre pares.
+
+---
+
+## 📘 Ejemplo Aplicado
+
+**Competencia:** Comprender cómo funciona la inteligencia artificial generativa en la creación de imágenes.
+
+**Átomos combinados por objetivo:**
+
+* **Leer:** Artículo sobre modelos de difusión y redes generativas.
+* **Ver:** Video explicativo del proceso paso a paso.
+* **Practicar:** Generar imágenes con DALL·E, Midjourney o Leonardo AI.
+* **Evaluar:** Crear una imagen a partir de un prompt estructurado y reflexionar sobre la calidad del resultado.
+
+---
+
+## 🧩 Pasos para Construir un Microcurso ADA
+
+1. Seleccionar una competencia laboral clara.
+2. Definir objetivos de aprendizaje: uno para recordar, otro para comprender y uno para aplicar.
+3. Diseñar los átomos de aprendizaje por objetivo.
+4. Crear un laboratorio o práctica aplicada.
+5. Incluir evaluación formativa con rúbrica o IA.
+6. Establecer el entregable final.
+7. Integrar espacios colaborativos y feedback entre pares.
 
 ---
 
@@ -122,7 +187,7 @@ La metodología ADA organiza el aprendizaje en **Átomos de Aprendizaje**, que s
 1. 🧠 Comprender los fundamentos de una habilidad (oír).
 2. 🔍 Desarrollar habilidades prácticas (ver y experimentar).
 3. 💪 Aplicar y demostrar competencias reales (hacer y entender).
-4. 🤝 Fortalecer el aprendizaje colectivo (colaborar y crear).💪 Aplicar y demostrar competencias reales (hacer y entender).
+4. 🤝 Fortalecer el aprendizaje colectivo (colaborar y crear).
 
 ## 🤝 ¿Cómo contribuir?
 
@@ -144,7 +209,7 @@ Te invitamos a:
 - Co-crear experiencias de aprendizaje
 - Compartir tus adaptaciones con la comunidad
 
-📧 Escríbenos a [ada@ada-school.org](mailto:ada@ada-school.org)
+📬 Escríbenos a [ada@ada-school.org](mailto:ada@ada-school.org)
 
 ---
 
