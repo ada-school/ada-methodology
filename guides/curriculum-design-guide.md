@@ -10,6 +10,23 @@ Choose a real-world skill the learner must develop and why it matters.
 ## 2. Map Learning Objectives
 Use Bloom's taxonomy to write objectives for **remember**, **understand**, and **apply** levels.
 
+### Bloom's Taxonomy Quick Guide
+Each learning objective starts with an action verb that signals the expected cognitive skill. Select verbs that align with the desired level using the table below:
+
+| Level       | Sample Verbs               |
+| ----------- | ------------------------- |
+| Remember    | list, define, recall      |
+| Understand  | explain, summarize, describe |
+| Apply       | use, implement, demonstrate |
+| Analyze     | differentiate, compare, organize |
+| Evaluate    | critique, justify, assess |
+| Create      | design, construct, formulate |
+
+**Example:**
+*Remember*: "List the primary colors."  
+*Understand*: "Explain how complementary colors interact."  
+*Apply*: "Create a color wheel demonstrating complementary pairs."
+
 ## 3. Design Learning Atoms
 For each objective, assemble a combination of atoms:
 - **Read** – texts or infographics

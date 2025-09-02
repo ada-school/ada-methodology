@@ -1,7 +1,7 @@
 # 🎨 Learning Atom: Exploring Color Theory
 
 ## 🎯 Objective
-Understand how primary, secondary, and complementary colors interact to create balanced compositions.
+Explain how primary, secondary, and complementary colors interact to create balanced compositions. *(Bloom: Understand)*
 
 ---
 

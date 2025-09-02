@@ -8,7 +8,7 @@ This template helps you design an ADA-aligned learning atom. Each atom blends co
 Example: Understanding Color Theory Basics
 
 ## 🎯 Objective
-Describe the specific outcome the learner will achieve.
+Describe the specific outcome the learner will achieve. Use an action verb from Bloom's taxonomy (e.g., identify, explain, create).
 
 ---
 

@@ -175,7 +175,7 @@ Adaptive, personalized, and inclusive experiences.
 
 ## 🧭 Curriculum Designer Resources
 
-- [Step-by-Step Guide](guides/curriculum-design-guide.md)
+- [Step-by-Step Guide](guides/curriculum-design-guide.md) — includes a Bloom's taxonomy verb table
 - [Learning Atom Template](templates/learning-atom-template.md)
 - [Example Learning Atom: Art](examples/learning-atom-art.md)
 
