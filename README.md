@@ -173,6 +173,14 @@ Adaptive, personalized, and inclusive experiences.
 
 ---
 
+## 🧭 Curriculum Designer Resources
+
+- [Step-by-Step Guide](guides/curriculum-design-guide.md)
+- [Learning Atom Template](templates/learning-atom-template.md)
+- [Example Learning Atom: Art](examples/learning-atom-art.md)
+
+---
+
 ## 📄 Certification and Evidence
 
 * Evidence of job-ready skills
