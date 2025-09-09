@@ -1,34 +1,81 @@
-# 🔬 ADA Learning Atom Template
+## ⚛ Learning Atom: *\[Name of the Atom]*
 
-This template helps you design an ADA-aligned learning atom. Each atom blends content and experiences around a single competency.
+### 🎯 Learning Objective 
 
----
-
-## 🧠 Atom Title
-Example: Understanding Color Theory Basics
-
-## 🎯 Objective
-Describe the specific outcome the learner will achieve. Use an action verb from Bloom's taxonomy (e.g., identify, explain, create).
+* *\[State the objective using an action verb from Bloom’s Taxonomy, e.g., Analyze, Implement, Design, Evaluate, etc.]*
 
 ---
 
-## 📚 Resource Stack
+### 📌 Related Job Competency
 
-- **Read:** Article or infographic that introduces the concept
-- **Listen:** Podcast, narration, or interview reinforcing key ideas
-- **Watch:** Short video or animation that models the concept
-- **Practice:** Hands-on task or lab to apply the knowledge
-- **Evaluate:** Quiz, rubric, or AI prompt to check understanding
-- **Collaborate:** Space for peer interaction or mentor feedback
+* *\[Name the specific job-related competency / skill this atom develops or contributes to]*
 
 ---
 
-## ✅ Completion Criteria
-List what must be done for the atom to be considered complete.
+### 🧩 Prerequisites
 
-- [ ] Reading and multimedia resources consumed
-- [ ] Practice activity submitted
-- [ ] Evaluation passed or feedback received
+* *\[List the prior knowledge, skills, or concepts needed to successfully engage with this atom]*
+
+---
+
+### 🧭 Atom Description
+
+* *\[Briefly describe the purpose of the atom, its context, and its relevance to professional development]*
+
+---
+
+### 📚 Key Content
+
+* *\[List the concepts, techniques, or tools to be covered]*
+
+    * [ ] Concept 1.
+    * [ ] Concept 2.
+    * [ ] Technique/Tool 1.
+
+---
+
+### 🛠️ Learning Activities
+
+#### 1. **Guided Self-Learning**
+
+* [ ] Reading: *\[Title or link]*
+* [ ] Video: *\[Title or link]*
+* [ ] Interactive tutorial or hands-on resource
+
+#### 2. **Lab or Practical Exercise**
+
+* *\[Describe the hands-on task: What should the learner build, simulate, analyze, or solve?]*
+* *Lab goal: \[state clearly]*
+
+---
+
+### 📦 Expected Deliverable
+
+* *\[Type of output: code, visualization, analysis, report, etc.]*
+* *Acceptance criteria or basic rubric to evaluate the work*
+
+---
+
+### 🧩 Connections with Other Atoms
+
+* **Predecessors:** *\[Mention atoms that should be completed first]*
+* **Successors:** *\[Mention atoms that follow this one]*
+
+---
+
+### 🧠 Final Reflection
+
+* *\[Include a prompt or question to stimulate metacognitive reflection]*
+  Example: How could you apply this technique in a real-world professional context?
+
+---
+
+### ✅ Facilitator Validation Checklist
+
+* [ ] Objective aligns with the target competency.
+* [ ] Activities are applied and contextualized.
+* [ ] Assessment is clear and criteria-based.
+* [ ] Resources are current and accessible.
 
 ---
 

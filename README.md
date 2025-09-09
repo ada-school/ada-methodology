@@ -1,216 +1,203 @@
-<p align="center">
+
+<div style="text-align: center;">
+
+# 🚀 Methodology ADA
+### Applied Digital Apprenticeship
+</div>
+<p style="text-align: center;">
   <img src="https://avatars.githubusercontent.com/u/61118853?s=400&u=33dd0f8a4cc4f6f48e006866dc36555525181483&v=4" width="120" alt="Ada School Logo">
 </p>
 
-<h1 align="center">🚀 ADA Methodology<br/>(Applied Digital Apprenticeship)</h1>
-
-<p align="center">
-  Innovate, learn, and apply. An open methodology to develop job-ready digital talent.
+<p style="text-align: center;">
+  Innovate, learn, and apply. An open framework to develop job-ready digital talent through competency-based, modular learning.
   <br />
   <br />
-  🌐 <a href="https://github.com/ada-school/ada-methodology/blob/main/README-ES.md">Versión en Español</a> 🇨🇴 | Other languages coming soon 🌍
+  🌐 <a href="https://github.com/ada-school/ada-methodology/blob/main/README-ES.md">Spanish Version</a> 🇨🇴 | Other languages coming soon 🌍
 </p>
 
-<br />
+---
 
 ## 🎯 Pedagogical Principle
 
 > “I hear and I forget, I see and I remember, I do and I understand, I share and I multiply.”
 
-The ADA methodology promotes experiential and progressive learning, focused on developing real-world professional competencies. Microcourses are structured into modules, with **learning atoms** as the minimum didactic unit and **collaborative human spaces** to foster interaction.
+The **ADA methodology** promotes **experiential and progressive learning**, focused on developing **real-world job competencies**. Learning is structured in **modular micro-credentials**, each composed of **learning atoms**, the smallest instructional unit supported by collaborative and reflective learning spaces.
 
 ---
 
-## 🧬 Learning Atom: Foundational Modular Unit
+##  ⚛ Learning Atom: The Foundational Modular Unit
 
-Each atom combines content and experiences around a specific competency, using various formats to maximize understanding, retention, and application.
+Each **learning atom** addresses a **single learning objective**, and integrates theory, practice, and evaluation aligned to Bloom’s Taxonomy.
 
-| Type     | Pedagogical Purpose                        | Resource Examples                                        |
-| -------- | ------------------------------------------ | -------------------------------------------------------- |
-| Read     | Introduce and contextualize concepts       | Articles, infographics, case studies, interactive guides |
-| Listen   | Connect emotionally and reinforce concepts | Podcasts, interviews, narrated explanations              |
-| Watch    | Model or demonstrate processes             | Videos, animations, simulations, visual examples         |
-| Practice | Apply knowledge in practical contexts      | Labs, step-by-step challenges, simulations               |
-| Evaluate | Validate comprehension and performance     | Interactive quizzes, rubrics, AI-evaluable prompts       |
+| Format   | Pedagogical Purpose                  | Resource Examples                                  |
+| -------- | ------------------------------------ | -------------------------------------------------- |
+| Read     | Introduce and contextualize concepts | Articles, guides, infographics, case studies       |
+| Listen   | Reinforce concepts emotionally       | Podcasts, expert interviews, narrated content      |
+| Watch    | Demonstrate ideas or processes       | Videos, animations, simulations                    |
+| Practice | Apply skills in realistic contexts   | Hands-on labs, coding challenges, design exercises |
+| Evaluate | Assess understanding and performance | Quizzes, rubrics, reflective prompts               |
 
-Atoms can be composed and recombined depending on learning styles, module objectives, and Bloom's taxonomy levels.
+> 🔗 See: [Learning Atom Template](templates/learning-atom-template.md)
 
 ---
 
-## 🧱 ADA Microcourse Modular Structure
+## 🧱 ADA Micro-Credential Structure
 
-Each microcourse includes up to three modules with the following structure:
+ADA micro-credentials are short learning experiences (10–30 hours) designed to develop specific, high-impact job skills. Each includes 4–8 **learning atoms** and follows a structured instructional design.
 
-1. **Module name**: Thematic focus
-2. **Target competency**: Linked to job profiles
-3. **Tools and resources**: Platforms and technologies
-4. **Learning objectives** (based on Bloom's taxonomy):
+### Standard Components:
 
-   * Remember: Identify, list, recognize
-   * Understand: Explain, summarize, interpret
-   * Apply: Use, execute, implement
-5. **Learning atoms** mapped to each objective
-6. **Lab or challenge**: Formative evaluation
-7. **Assessment**: Automated or manual (AI or rubric-based)
-8. **Deliverable**: Digital product, reflection, prototype, or shareable project
+1. **Micro-credential title**: Clear, competency-aligned.
+2. **Target job competency**: Based on frameworks like SFIA, O\*NET, ESCO.
+3. **Prerequisites**: Required knowledge or skills.
+4. **Learning objectives**: Based on Bloom’s Taxonomy.
+5. **Learning atoms**: Modular and reusable units.
+6. **Lab or practical experience**: Applied learning.
+7. **Assessment**: Rubric-based with Human or AI evaluation.
+8. **Capstone project**: A shareable, portfolio-ready deliverable.
+
+> 🔗 See: [Micro-Credential Template](templates/micro-credential-ada-template.md)
 
 ---
 
 ## 🔄 ADA Learning Phases
 
-### 🙊 Phase 1: Hear and Forget — *Self-Guided Learning*
+### 🙊 Phase 1: *Self-Guided Introduction*
 
 > “I hear and I forget.” — Confucius
 
-**Objective:** Introduce key concepts through audio and visual materials.
+> **Goal:** Introduce concepts through self-directed content
+> Includes: readings, podcasts, videos, short case studies, and comprehension checks.
 
-**Includes:**
+---
 
-* Illustrated and interactive readings
-* Short explanatory videos
-* Real success or failure stories
-* Podcasts and narrated explanations
-* Checks for understanding: interactive quizzes
-* Online lecture or workshop to promote human collaboration.
-
-### 🙉 Phase 2: See and Remember — *Visual Exploration*
+### 🙉 Phase 2: *Visual Exploration*
 
 > “I see and I remember.” — Confucius
 
-**Objective:** Reinforce learning through visual and experimental activities.
+> **Goal:** Reinforce learning visually and experimentally
+> Includes: animations, role-play scenarios, case walkthroughs, and guided demos.
 
-**Includes:**
+---
 
-* Labs with guided steps
-* Guided experiments
-* Simulations with feedback
-* Practical case studies
-* AI-assisted personalized feedback
-
-### 🙈 Phase 3: Do and Understand — *Practical Application*
+### 🙈 Phase 3:  *Applied Practice*
 
 > “I do and I understand.” — Confucius
 
-**Objective:** Apply knowledge in real-world scenarios.
+> **Goal:** Apply knowledge in practical challenges
+> Includes: hands-on labs, tools, simulations, and rubric-based assessments.
 
-**Includes:**
+---
 
-* Capstone project based on real cases
-* Customizable evaluation rubrics
-* Feedback by peers or AI evaluation
-* Digital badge or certificate
+### 🐵 Phase 4: *Collaboration and Reflection*
 
-### 🐵 Phase 4: Share and Multiply — *Collaborate and Create*
+> “I share and I multiply.” — ADA Methodology
 
-> “I share and I multiply.” — Ada School
-
-**Objective:** Empower collaborative and social learning.
-
-**Includes:**
-
-* Group activities (synchronous or asynchronous)
-* Peer reflection forums
-* Live sessions with mentors or guests
-* Hybrid collaboration spaces
-* Project co-creation
-* Peer feedback and community engagement
-* Project presentations
+> **Goal:** Promote collaborative and social learning
+> Includes: peer feedback, co-creation, virtual meetups, forums, and project showcases.
 
 ---
 
 ## 🌀 ADA Atom-Based Learning Flow
 
 ```
-[READ] ➔ [LISTEN] ➔ [WATCH] ➔ [PRACTICE] ➔ [EVALUATE] ➔ [COLLABORATE]
-       ⤷ Reinforcement ⤷ Application ⤷ Community
+[READ] ➝ [LISTEN] ➝ [WATCH] ➝ [PRACTICE] ➝ [EVALUATE] ➝ [COLLABORATE]
+              ↪ Reinforcement   ↪ Application   ↪ Social Learning
 ```
 
-Adaptive, personalized, and inclusive experiences.
+This sequence creates **adaptive, inclusive, and skill-focused learning experiences**.
 
 ---
 
-## 🎓 Expected Learning Outcomes
+## 🎓 Learning Outcomes
 
-* Deep conceptual understanding
-* Hands-on skill development
-* Knowledge transfer to real contexts
-* Collaborative, meaningful learning
+Learners completing ADA micro-credentials will demonstrate:
+
+* Conceptual mastery of relevant topics.
+* Practical application of job-related skills.
+* Evaluation and reflection capabilities.
+* Portfolio-ready evidence of learning.
+* Collaborative learning engagement.
 
 ---
 
 ## 🤝 Human and Collaborative Dimension
 
-* Live sessions with mentors and experts
-* Co-creation dynamics and challenge solving
-* Online learning communities
-* Interdisciplinary collaborative projects
-* Peer-to-peer feedback
+ADA learning methodology emphasizes the **human element**, promoting:
+
+* Mentor-led sessions.
+* Expert guest talks.
+* Peer-to-peer feedback.
+* Interdisciplinary team challenges.
+* Community co-creation.
+* Presentation and public speaking opportunities.
 
 ---
 
 ## 📘 Example in Practice
 
-**Competency:** Understanding how generative AI creates images
+> 🔗 View the full [**Example in Practice: Generative AI Micro-Credential**](examples/example-generative-ai.md)
 
-**Atom combination by objective:**
-
-* **Read:** Article on diffusion models
-* **Watch:** Animated step-by-step explanation
-* **Practice:** Generate images using DALL·E or Midjourney
-* **Evaluate:** Create image from structured prompt + reflection
+This example outlines how to structure atoms around a real job competency using Bloom's levels, from understanding diffusion models to creating image-generating applications.
 
 ---
 
-## 🧰 Build Your ADA Microcourse in 7 Steps
+## 🛠 How to Build an ADA Micro-Credential
 
-1. Choose a real-world competency
-2. Define one learning objective for each level (remember, understand, apply)
-3. Design matching learning atoms
-4. Create a lab or practical experience
-5. Set up formative evaluation with rubric or AI
-6. Specify the deliverable
-7. Include collaborative spaces and peer feedback
+1. Identify a **real-world job competency**.
+2. Define **learning objectives** across Bloom’s levels.
+3. Design **learning atoms** for each objective.
+4. Develop **hands-on labs or simulations**.
+5. Create **formative and summative evaluations**.
+6. Specify a **final deliverable**.
+7. Integrate **collaborative opportunities**.
+
+> 🔗 Use the [Step-by-Step Guide](guides/curriculum-design-guide.md)
 
 ---
 
 ## 🧭 Curriculum Designer Resources
 
-- [Step-by-Step Guide](guides/curriculum-design-guide.md) — includes a Bloom's taxonomy verb table
-- [Learning Atom Template](templates/learning-atom-template.md)
-- [Example Learning Atom: Art](examples/learning-atom-art.md)
+* [Step-by-Step Guide](guides/curriculum-design-guide.md).
+* [Learning Atom Template.](templates/learning-atom-template.md)
+* [Example Learning Atoms.](examples/learning-atom-art.md)
+* [Micro-Credential Template.](templates/micro-credential-ada-template.md)
 
 ---
 
-## 📄 Certification and Evidence
+## 📄 Certification & Recognition
 
-* Evidence of job-ready skills
-* Auto-evaluation and optional manual review
-* Portfolio-ready final projects
-* LinkedIn-compatible digital badges
+Graduates receive:
+
+* AI or human-evaluated feedback.
+* Shareable capstone project.
+* **LinkedIn-compatible digital badge**.
+* Recognition of verified, job-ready skills.
 
 ---
 
 ## 💬 How to Contribute
 
-Any educator or institution can:
+Any educator or organization can:
 
-* Propose improvements → [Open an Issue](https://github.com/ada-school/ada-methodology/issues)
-* Build and share microcourses using our templates
-* Translate or adapt the methodology
+* Suggest improvements → [Open an Issue](https://github.com/ada-school/ada-methodology/issues).
+* Create and publish your own micro-credentials.
+* Adapt and translate resources.
 
-See our [Contribution Guide](https://github.com/ada-school/ada-methodology/blob/main/CONTRIBUTING.md)
+> 📘 See: [Contribution Guide](https://github.com/ada-school/ada-methodology/blob/main/CONTRIBUTING.md)
 
 ---
 
-## 🏫 Call to Educational Institutions
+## 🏫 For Educational Institutions
 
-Are you part of a university, bootcamp, or learning initiative?
+Are you part of a school, bootcamp, or learning initiative?
 
-You're invited to:
+You’re invited to:
 
-* Adopt the ADA Methodology
-* Co-create learning experiences
-* Share your adaptations with the community
+* Adopt the ADA Methodology.
+* Co-create learning experiences.
+* Help people master skills that matter.
+* Share your work with the community.
 
 📧 Contact us: [ada@ada-school.org](mailto:ada@ada-school.org)
 
@@ -223,18 +210,15 @@ This framework is licensed under [Creative Commons Attribution-ShareAlike 4.0 (C
 ✅ You may:
 
 * Use, adapt, and distribute freely
-* Attribute Ada School as the source
+* Attribute **Ada School** as the source
 * Share improvements under the same license
 
+---
 
-
-
-<p align="center">
-  <img src="https://avatars.githubusercontent.com/u/61118853?s=400&u=33dd0f8a4cc4f6f48e006866dc36555525181483&v=4" width="60">
+<p style="text-align: center">
+  <img src="https://avatars.githubusercontent.com/u/61118853?s=400&u=33dd0f8a4cc4f6f48e006866dc36555525181483&v=4" width="60" alt="ADA School Logo">
   <br />
-  <strong>Made with 💙 by <a href="https://ada-school.org/" target="_blank">Ada School</a></strong>
+  <strong>Made with 💙 by <a href="https://ada-school.org" target="_blank">Ada School</a></strong>
 </p>
 
-
-
-
+---

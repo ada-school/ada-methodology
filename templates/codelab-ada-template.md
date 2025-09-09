@@ -95,5 +95,5 @@ Test it with: `http://127.0.0.1:5000/greet/Ada`
 
 ---
 
-> You can duplicate this template to build your own ADA-aligned codelabs in any technology domain.
+> You can duplicate this template to build your own ADA-aligned codelabs in any domain.
 
