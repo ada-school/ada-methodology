@@ -9,7 +9,7 @@
   Innovate, learn, and apply. An open methodology to develop job-ready digital talent.
   <br />
   <br />
-  🌐 <a href="https://github.com/ada-school/ada-methodology/blob/main/README-ES.md">Versión en Español</a> 🇨🇴 | Other languages coming soon 🌍
+  🌐 <a href="https://github.com/ada-school/ada-methodology/blob/main/README-ES.md">Versión en Español</a> 🇨🇴 | <a href="https://github.com/ada-school/ada-methodology/blob/main/README-PT-BR.md">Versão em Português</a> 🇧🇷
 </p>
 
 <br />
