@@ -10,13 +10,13 @@ This guide provides a **practical workflow** for instructors, mentors, and cours
 
 Identify a **real-world job competency** that the learner must develop. Connect it to recognized frameworks when possible:
 
-* [SFIA – Skills Framework for the Information Age](https://sfia-online.org/en/framework)
+* [SFIA – Skills Framework for the Information Age.](https://sfia-online.org/en/framework)
 
-* [O\*NET Online – Occupational Information Network (US)](https://www.onetonline.org/)
+* [O\*NET Online – Occupational Information Network (US).](https://www.onetonline.org/)
 
-* [ESCO – European Skills, Competences, Qualifications and Occupations](https://esco.ec.europa.eu/en)
+* [ESCO – European Skills, Competences, Qualifications and Occupations.](https://esco.ec.europa.eu/en)
 
-* [ILO – International Labour Organization Skills and Employability](https://www.ilo.org/skills/lang--en/index.htm)
+* [ILO – International Labour Organization Skills and Employability.](https://www.ilo.org/skills/lang--en/index.htm)
 
 
 ---
@@ -109,29 +109,29 @@ Integrate opportunities for mentorship, feedback, and community learning.
 
 Make sure your course flows through the **4 ADA learning phases**:
 
-1. **🙊 Self-Guided Introduction** → readings, videos, quizzes
-2. **🙉 Visual Exploration** → demos, role-play, walkthroughs
-3. **🙈 Applied Practice** → labs, tools, simulations
-4. **🐵 Collaboration & Reflection** → peer interaction, project sharing
+1. **🙊 Self-Guided Introduction** → readings, videos, quizzes.
+2. **🙉 Visual Exploration** → demos, role-play, walkthroughes.
+3. **🙈 Applied Practice** → labs, tools, simulations.
+4. **🐵 Collaboration & Reflection** → peer interaction, project sharing.
 
 ---
 
 ## 9. Example Workflow
 
-1. Competency: *Data Visualization with Python*
-2. Objectives: *Understand charts → Apply libraries → Create dashboard.*
-3. Atoms: *Intro to matplotlib, Case study, Lab on bar charts.*
-4. Module: *Data Visualization Basics.*
-5. Assessment: *Mini-rubric for labs, capstone dashboard with rubric.*
-6. Deliverable: *Interactive dashboard shared on GitHub.*
-7. Human Interaction: *Peer feedback on dashboard design.*
-8. Phases: *Concept (Self-study) → Demo (Visual) → Lab (Practice) → Peer Showcase (Collaboration).*
+1. **Competency**: *Data Visualization with Python*.
+2. **Objectives**: *Understand charts → Apply libraries → Create dashboard.*
+3. **Atoms**: *Intro to matplotlib, Case study, Lab on bar charts.*
+4. **Module**: *Data Visualization Basics.*
+5. **Assessment**: *Mini-rubric for labs, capstone dashboard with rubric.*
+6. **Deliverable**: *Interactive dashboard shared on GitHub.*
+7. **Human Interaction**: *Peer feedback on dashboard design.*
+8. **Phases**: *Concept (Self-study) → Demo (Visual) → Lab (Practice) → Peer Showcase (Collaboration).*
 
 ---
 
 ## ✅ Checklist for Designers
 
-Use this checklist to ensure your microcourse is ADA-aligned. Examples are included in italics for clarity.
+Use this checklist to ensure your micro-credential is ADA-aligned. Examples are included in italics for clarity.
 
 * [ ] **Defined a real-world competency**
   *Example: "Ability to design a customer journey map for digital marketing."*
@@ -154,4 +154,4 @@ Use this checklist to ensure your microcourse is ADA-aligned. Examples are inclu
 
 ---
 
-> For inspiration, see the [Art Learning Atom Example](../examples/learning-atom-art.md) or [Generative AI Micro-Credential Example](../examples/example-generative-ai.md).
+> For inspiration, see the [Art Learning Atom Example](../examples/learning-atom-art.md) or [Art Learning Micro-Credential Example](../examples/art_microcredential_template.md).

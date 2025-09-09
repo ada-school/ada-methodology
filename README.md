@@ -1,19 +1,18 @@
 
-<div style="text-align: center;">
-
-# 🚀 Methodology ADA
-### Applied Digital Apprenticeship
-</div>
-<p style="text-align: center;">
-  <img src="https://avatars.githubusercontent.com/u/61118853?s=400&u=33dd0f8a4cc4f6f48e006866dc36555525181483&v=4" width="120" alt="Ada School Logo">
+<p align="center">
+  <img alt="ADA School Logo" src="https://avatars.githubusercontent.com/u/61118853?s=400&u=33dd0f8a4cc4f6f48e006866dc36555525181483&v=4" width="120" alt="Ada School Logo">
 </p>
 
-<p style="text-align: center;">
-  Innovate, learn, and apply. An open framework to develop job-ready digital talent through competency-based, modular learning.
+<h1 align="center">🚀 ADA Methodology<br/>(Applied Digital Apprenticeship)</h1>
+
+<p align="center">
+  Innovate, learn, and apply. An open methodology to develop job-ready digital talent.
   <br />
   <br />
-  🌐 <a href="https://github.com/ada-school/ada-methodology/blob/main/README-ES.md">Spanish Version</a> 🇨🇴 | Other languages coming soon 🌍
+  🌐 <a href="https://github.com/ada-school/ada-methodology/blob/main/README-ES.md">Versión en Español</a> 🇨🇴 | Other languages coming soon 🌍
 </p>
+
+<br />
 
 ---
 
@@ -136,7 +135,7 @@ ADA learning methodology emphasizes the **human element**, promoting:
 
 ## 📘 Example in Practice
 
-> 🔗 View the full [**Example in Practice: Generative AI Micro-Credential**](examples/example-generative-ai.md)
+> 🔗 View the full [**ART Micro-Credential Example**](examples/art_microcredential_template.md)
 
 This example outlines how to structure atoms around a real job competency using Bloom's levels, from understanding diffusion models to creating image-generating applications.
 
@@ -162,6 +161,7 @@ This example outlines how to structure atoms around a real job competency using 
 * [Learning Atom Template.](templates/learning-atom-template.md)
 * [Example Learning Atoms.](examples/learning-atom-art.md)
 * [Micro-Credential Template.](templates/micro-credential-ada-template.md)
+* [Example Micro-Credential.](examples/art_microcredential_template.md)
 
 ---
 
@@ -215,10 +215,10 @@ This framework is licensed under [Creative Commons Attribution-ShareAlike 4.0 (C
 
 ---
 
-<p style="text-align: center">
-  <img src="https://avatars.githubusercontent.com/u/61118853?s=400&u=33dd0f8a4cc4f6f48e006866dc36555525181483&v=4" width="60" alt="ADA School Logo">
+<p align="center">
+  <img alt="ADA School Logo" src="https://avatars.githubusercontent.com/u/61118853?s=400&u=33dd0f8a4cc4f6f48e006866dc36555525181483&v=4" width="60">
   <br />
-  <strong>Made with 💙 by <a href="https://ada-school.org" target="_blank">Ada School</a></strong>
+  <strong>Made with 💙 by <a href="https://ada-school.org/" target="_blank">Ada School</a></strong>
 </p>
 
 ---

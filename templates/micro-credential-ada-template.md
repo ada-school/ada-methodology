@@ -1,6 +1,4 @@
-# 🚀 ADA Micro Credential Template
-
-### Applied Digital Apprenticeship (ADA Methodology)
+# 🚀ADA Micro Credential Template
 
 This template is designed to help you **create modular, job-ready micro-credentials**. Each section includes **\[instructions in brackets]** so you can adapt it to your domain.
 
@@ -111,7 +109,7 @@ Includes: 🧪 hands-on labs · 💻 coding tasks · 🛠️ simulations · 📝
 
 ### 🐵 Phase 4: Collaboration and Reflection
 
-> *“I share and I multiply.”  — ADA*
+> *“I share and I multiply.”  — ADA Methodology*
 
 **Goal:** Promote collaborative learning and reflection.
 Includes: 👥 peer feedback · 🗣️ co-creation projects · 🌐 forums · 🎤 showcase presentations.
@@ -215,4 +213,3 @@ Includes: 👥 peer feedback · 🗣️ co-creation projects · 🌐 forums · �
 ## 👥 Credits & Contributors
 
 \[Add the author(s), mentors, or organization that created the micro-credential.]
-a
