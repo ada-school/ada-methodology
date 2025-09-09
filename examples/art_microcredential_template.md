@@ -133,5 +133,5 @@ Learners will:
 ---
 
 ## 👥 Credits & Contributors
-Author: ADA School Team · Mentor: [Add instructor name]
+Author: ADA School Team · Mentor: @sancarbar
 
