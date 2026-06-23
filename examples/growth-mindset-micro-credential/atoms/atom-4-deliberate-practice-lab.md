@@ -69,6 +69,10 @@ https://www.youtube.com/watch?v=5eW6Eagr9XA
 
 ### 🖼️ See — Diagram: the deliberate-practice loop vs. the plateau
 
+![Deliberate practice loop vs. the plateau — generated diagram](../img/atom-4-deliberate-practice-lab.png)
+
+> 🖼️ *Generated image — produced from the prompt below.*
+
 ```prompt
 Create a diagram titled "Why Deliberate Practice Beats the Plateau". Top: a flat dotted line
 labeled "Ordinary practice (autopilot) → plateau", with a small grey figure coasting. Bottom: a

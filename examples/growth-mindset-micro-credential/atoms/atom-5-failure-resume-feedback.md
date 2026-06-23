@@ -70,6 +70,10 @@ Sheila Heen — "How to use others' feedback to learn and grow" (receiving feedb
 
 ### 🖼️ See — Template: the Failure Résumé
 
+![Failure résumé template — generated graphic](../img/atom-5-failure-resume-feedback.png)
+
+> 🖼️ *Generated image — produced from the prompt below.*
+
 ```prompt
 Design a clean one-page "Failure Résumé" template graphic. Header with a small phoenix/spark
 icon and title "Failure Résumé — a record of reaches and lessons". Below, a 3-column table

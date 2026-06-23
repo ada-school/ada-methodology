@@ -63,6 +63,10 @@ Day __ / 21   ·   Goal: ____________________
 
 ### 🖼️ See — The 21-day growth arc
 
+![The 21-day growth arc — generated graphic](../img/atom-6-growth-in-the-wild-capstone.png)
+
+> 🖼️ *Generated image — produced from the prompt below.*
+
 ```prompt
 Create an inspiring but professional "21-Day Growth Arc" graphic. A horizontal timeline from
 Day 0 to Day 21 shaped as a gently rising, jagged line (ups AND downs — show 3–4 dips labeled

@@ -12,6 +12,14 @@ import os
 import re
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+CUR_DIR = ""  # dir of the page being converted, relative to the course root (for image paths)
+
+
+def resolve_src(src):
+    """Rewrite a page-relative path to be relative to course.html (the course root)."""
+    if not src or re.match(r"^([a-z]+:)?//", src) or src.startswith("data:") or src.startswith("/"):
+        return src
+    return os.path.normpath(os.path.join(CUR_DIR, src)).replace(os.sep, "/")
 
 # (file, id, sidebar title, group)
 PAGES = [
@@ -28,6 +36,26 @@ PAGES = [
     ("skills-map.md",                          "skillsmap", "Skills map → job match",     "Assess"),
 ]
 ATOM_IDS = ["atom-1", "atom-2", "atom-3", "atom-4", "atom-5", "atom-6"]
+
+PATH2ID = {p[0]: p[1] for p in PAGES}          # course file path -> in-app page id
+COURSE_REL = "examples/growth-mindset-micro-credential"  # course root, relative to repo root
+MAIN_INDEX_REL = "../../index.html"            # main interactive site, from course root
+
+
+def resolve_link(url):
+    """Route a Markdown link target. Internal course pages -> in-app #id; other repo .md
+    files -> open in the main interactive site; everything else -> left as-is."""
+    if url.startswith("#") or re.match(r"^([a-z]+:)?//", url) or url.startswith("mailto:"):
+        return url
+    base = url.split("#", 1)[0]
+    anchor = url[len(base):]
+    resolved = resolve_src(base)  # course-root-relative
+    if resolved in PATH2ID:
+        return "#" + PATH2ID[resolved]
+    if base.lower().endswith(".md"):
+        repo_rel = os.path.normpath(os.path.join(COURSE_REL, resolved)).replace(os.sep, "/")
+        return MAIN_INDEX_REL + "#/" + repo_rel + anchor
+    return resolve_src(base) + anchor
 
 
 # ----------------------------------------------------------------------------- inline markdown
@@ -47,9 +75,13 @@ def inline(text):
     text = re.sub(r"`([^`]+)`", stash, text)
     text = html.escape(text, quote=False)
     text = re.sub(r"!\[([^\]]*)\]\(([^)]+)\)",
-                  lambda m: '<img alt="%s" src="%s">' % (html.escape(m.group(1)), html.escape(m.group(2))), text)
-    text = re.sub(r"\[([^\]]+)\]\(([^)]+)\)",
-                  lambda m: '<a href="%s">%s</a>' % (html.escape(m.group(2)), m.group(1)), text)
+                  lambda m: '<img alt="%s" src="%s">' % (html.escape(m.group(1)), html.escape(resolve_src(m.group(2)))), text)
+    def _link(m):
+        href = resolve_link(m.group(2))
+        extra = "" if href.startswith("#") else ' target="_blank" rel="noopener"'
+        return '<a href="%s"%s>%s</a>' % (html.escape(href, quote=True), extra, m.group(1))
+
+    text = re.sub(r"\[([^\]]+)\]\(([^)]+)\)", _link, text)
     text = re.sub(r"\*\*([^*]+)\*\*", r"<strong>\1</strong>", text)
     text = re.sub(r"(?<!\*)\*(?!\s)([^*]+?)\*", r"<em>\1</em>", text)
     text = re.sub(r"\x00(\d+)\x00", lambda m: "<code>%s</code>" % html.escape(spans[int(m.group(1))]), text)
@@ -125,9 +157,10 @@ def md_to_html(md):
                 out.append('<pre class="code">%s<code>%s</code></pre>' % (tag, html.escape(src)))
             continue
 
-        # raw block html passthrough (details/summary)
-        if re.match(r"</?(details|summary|p|div)\b", stripped):
-            out.append(line)
+        # raw block html passthrough (details/summary/p/div/img...) with image-path fixup
+        if re.match(r"</?[a-zA-Z][\w-]*", stripped):
+            out.append(re.sub(r'src="([^"]+)"',
+                              lambda m: 'src="%s"' % html.escape(resolve_src(m.group(1))), line))
             i += 1
             continue
 
@@ -202,7 +235,7 @@ def md_to_html(md):
         i += 1
         while i < n and lines[i].strip() and not re.match(
                 r"^\s*(#{1,6}\s|[-*]\s|\d+\.\s|>|```|---+\s*$|\|)", lines[i]) \
-                and not re.match(r"</?(details|summary)\b", lines[i].strip()):
+                and not re.match(r"</?[a-zA-Z]", lines[i].strip()):
             buf.append(lines[i])
             i += 1
         out.append("<p>%s</p>" % inline(" ".join(buf)))
@@ -212,12 +245,14 @@ def md_to_html(md):
 
 # ----------------------------------------------------------------------------- assemble
 def build():
+    global CUR_DIR
     pages_html = []
     nav_groups = []
     cur_group = None
     for path, pid, title, group in PAGES:
         with open(os.path.join(HERE, path), encoding="utf-8") as f:
             md = f.read()
+        CUR_DIR = os.path.dirname(path)
         body = md_to_html(md)
         is_atom = pid in ATOM_IDS
         done = ('<label class="donebox"><input type="checkbox" class="donechk" data-atom="%s"> '

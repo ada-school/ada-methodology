@@ -22,6 +22,10 @@ this course you'll be assessed on *doing*, not *knowing*.
 
 ### 🖼️ See — Mental model: the **YET Loop**
 
+![The YET Loop mental model — generated diagram](../img/atom-3-power-of-yet.png)
+
+> 🖼️ *Generated image — produced from the prompt below.*
+
 ```prompt
 Create a circular "loop" diagram titled "The YET Loop". Four nodes around a circle connected by
 arrows, each with a small icon: 1) "NAME the fixed thought" (icon: thought bubble), 2) "ADD the

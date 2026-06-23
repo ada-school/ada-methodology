@@ -92,6 +92,10 @@ The "Learning Zone vs. Performance Zone" — why always performing blocks improv
 
 ### 🖼️ See — Diagram: *Real vs. false growth mindset*
 
+![Real vs. false growth mindset — generated diagram](../img/atom-2-myths-and-nuance.png)
+
+> 🖼️ *Generated image — produced from the prompt below.*
+
 ```prompt
 Design a two-panel comparison graphic titled "Real vs. False Growth Mindset". Panel A "FALSE
 (performative)" in muted grey: speech bubbles "Great effort!", "I'm a growth-mindset person",

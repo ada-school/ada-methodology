@@ -87,7 +87,9 @@ Khan Academy — "You Can Learn Anything" (90s; neuroplasticity framing).
 
 ### 🖼️ See — Infographic: *The two mindsets at the moment of difficulty*
 
-> Reuse this prompt with any image model to generate the on-brand visual.
+![Two mindsets at the moment of difficulty — generated infographic](../img/atom-1-science-of-mindset.png)
+
+> 🖼️ *Generated image — produced from the prompt below. Reuse this prompt with any image model to regenerate the on-brand visual.*
 
 ```prompt
 Create a clean, modern educational infographic titled "Two Mindsets, One Moment of Difficulty".
