@@ -1,5 +1,12 @@
 # 🧬 ADA v2 Specifications — KSA-Driven, Job-Matched, Gen AI-Authored
 
+<p align="center">
+  <img alt="Indigo #1E2A6E" src="https://img.shields.io/badge/Indigo-1E2A6E?style=flat-square&labelColor=1E2A6E&color=1E2A6E">
+  <img alt="Turquoise #15B5C6" src="https://img.shields.io/badge/Turquoise-15B5C6?style=flat-square&labelColor=15B5C6&color=15B5C6">
+  <img alt="Gold #E0A53C" src="https://img.shields.io/badge/Gold-E0A53C?style=flat-square&labelColor=E0A53C&color=E0A53C">
+  <img alt="Ink #0A1124" src="https://img.shields.io/badge/Ink-0A1124?style=flat-square&labelColor=0A1124&color=0A1124">
+</p>
+
 This folder specifies **ADA Methodology v2**: an evolution of the ADA (Applied Digital
 Apprenticeship) framework that makes the methodology **competency-precise** and
 **job-matchable** by adopting the **KSA framework — Knowledge, Skills, Abilities** — and a

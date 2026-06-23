@@ -78,35 +78,21 @@ Un átomo se construye con **7 modalidades** agrupadas como **Adquirir → Aplic
 | 🤝 **Colaborar** | Amplificar | Aprender socialmente; mostrar disposiciones | Programación en Pareja, Taller, Hackathon, Club de Lectura, Showcase, Mentoría |
 
 ```mermaid
-mindmap
-  root((⚛ Átomo de Aprendizaje))
-    📖 Leer
-      Artículo
-      Caso de Estudio
-      Artículo Técnico
-    🎧 Escuchar
-      Podcast
-      Narración
-    🎬 Ver
-      Explicativo
-      Screencast
-      Documental
-    🖼️ Visualizar
-      Diagrama
-      Modelo Mental
-      Marco
-    🧪 Practicar
-      Codelab
-      Simulación
-      Pregunta de Prompt IA
-    ✅ Evaluar
-      Pop Quiz
-      Capstone
-      Evaluación Conductual
-    🤝 Colaborar
-      Programación en Pareja
-      Taller
-      Hackathon
+flowchart TD
+  A(["⚛ Átomo de Aprendizaje"]) --> R["📖 Leer"]
+  A --> L["🎧 Escuchar"]
+  A --> W["🎬 Ver"]
+  A --> S["🖼️ Visualizar"]
+  A --> P["🧪 Practicar"]
+  A --> E["✅ Evaluar"]
+  A --> C["🤝 Colaborar"]
+  R --> R1["Artículo · Caso de Estudio · Artículo Técnico"]
+  L --> L1["Podcast · Narración"]
+  W --> W1["Explicativo · Screencast · Documental"]
+  S --> S1["Diagrama · Modelo Mental · Marco"]
+  P --> P1["Codelab · Simulación · Pregunta de Prompt IA"]
+  E --> E1["Pop Quiz · Capstone · Evaluación Conductual"]
+  C --> C1["Programación en Pareja · Taller · Hackathon"]
 ```
 
 > 🔗 Ver el **mapa completo y detallado** de cada subtipo con diagramas: [**Topología del Átomo de Aprendizaje**](specs/learning-atom-topology.md).
@@ -260,6 +246,7 @@ OFERTA LABORAL → [IA Generativa + validación humana] → PERFIL KSA OBJETIVO
 * 🤝 [Habilidad humana — Dar y Recibir Retroalimentación](examples/ksa-human-skill-feedback.md)
 * 🌱 [Actitud — Adaptabilidad y Mentalidad de Crecimiento](examples/ksa-attitude-adaptability.md)
 * 🗺️ [De principio a fin — Oferta laboral → mapa de habilidades → listo para el trabajo](examples/skills-map-job-match-frontend.md)
+* 🌱 [**Curso completo** — microcredencial de Mentalidad de Crecimiento](examples/growth-mindset-micro-credential/README.md) · 🖥️ [abrir el `course.html` interactivo](examples/growth-mindset-micro-credential/course.html) *(contenido en inglés)*
 
 ---
 
@@ -331,6 +318,7 @@ a continuación.
 * [Esquema de Micro-Credencial v2.](specs/micro-credential-v2-schema.md)
 * [Ejemplos KSA: técnico / humano / actitud / match laboral.](examples/skills-map-job-match-frontend.md)
 * [Ejemplo de ruta de cargo: Procesamiento de Datos → Científico/a de Datos.](examples/role-data-scientist-pathway.md)
+* [Curso completo: microcredencial de Mentalidad de Crecimiento](examples/growth-mindset-micro-credential/README.md) (con [`course.html`](examples/growth-mindset-micro-credential/course.html) interactivo).
 
 ---
 

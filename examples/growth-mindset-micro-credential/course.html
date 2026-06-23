@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>🌱 Growth Mindset · ADA Micro-Credential</title>
+<link rel="icon" href="../../img/Isotipo.png">
+<style>
+:root{
+  --ink:#0A1124; --indigo:#1E2A6E; --turq:#15B5C6; --gold:#E0A53C;
+  --bg:#f6f8fc; --surface:#ffffff; --border:#e2e7f2; --text:#1b2440; --muted:#5b6685;
+  --radius:14px; --shadow:0 6px 24px rgba(20,30,70,.08);
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Arial,sans-serif;
+  background:var(--bg);color:var(--text);line-height:1.65}
+a{color:var(--indigo);text-decoration:none}
+a:hover{text-decoration:underline}
+.app{display:grid;grid-template-columns:300px minmax(0,1fr);min-height:100vh}
+
+/* sidebar */
+.side{position:sticky;top:0;height:100vh;overflow-y:auto;background:var(--ink);color:#dfe5fb;
+  padding:18px 14px;border-right:1px solid #111a36}
+.brand{display:flex;align-items:center;gap:10px;padding:6px 6px 14px}
+.brand img{width:40px;height:40px;animation:spin 9s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.brand b{font-size:15px;color:#fff;line-height:1.2}
+.brand small{display:block;color:var(--turq);font-weight:600;font-size:11px;letter-spacing:.04em}
+.progwrap{margin:8px 6px 16px}
+.progbar{height:8px;border-radius:8px;background:#1b2547;overflow:hidden}
+.progfill{height:100%;width:0;background:linear-gradient(90deg,var(--turq),var(--gold));transition:width .5s}
+.progtext{font-size:11px;color:#9fb0e6;margin-top:6px}
+.nav-group{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:#8fa0d8;
+  margin:14px 8px 4px;font-weight:700}
+.navlink{display:block;padding:8px 10px;border-radius:9px;color:#cdd6f6;font-size:14px;margin:2px 0}
+.navlink:hover{background:#16204180;text-decoration:none;color:#fff}
+.navlink.active{background:linear-gradient(90deg,var(--indigo),#2a3aa0);color:#fff;font-weight:600}
+
+/* main */
+.main{padding:0}
+.topbar{position:sticky;top:0;z-index:5;background:rgba(246,248,252,.85);backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--border);padding:12px 28px;display:flex;align-items:center;gap:14px}
+.topbar .pill{font-size:12px;font-weight:700;color:#fff;background:var(--indigo);padding:4px 12px;border-radius:30px}
+.topbar .sp{flex:1}
+.navbtn{border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:9px;
+  padding:7px 14px;font-size:13px;cursor:pointer;font-weight:600}
+.navbtn:hover{border-color:var(--turq)}
+.navbtn:disabled{opacity:.4;cursor:not-allowed}
+.wrap{max-width:880px;margin:0 auto;padding:30px 28px 90px}
+.page{display:none;animation:fade .35s ease}
+.page.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+h1,h2,h3,h4{color:var(--indigo);line-height:1.25}
+h1{font-size:30px;margin:.2em 0 .5em;border-bottom:3px solid var(--turq);padding-bottom:.3em}
+h2{font-size:22px;margin:1.5em 0 .5em}
+h3{font-size:18px;margin:1.3em 0 .4em}
+h4{font-size:15px;margin:1.1em 0 .3em;color:var(--ink)}
+p{margin:.7em 0}
+hr{border:0;border-top:1px solid var(--border);margin:1.6em 0}
+ul,ol{padding-left:1.4em;margin:.6em 0}
+li{margin:.3em 0}
+li input[type=checkbox]{margin-right:6px}
+img{max-width:100%;border-radius:10px}
+code{background:#eef1f9;padding:.12em .4em;border-radius:6px;font-size:.88em;
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:#27306b}
+pre.code{background:var(--ink);color:#e7ecff;padding:16px 18px;border-radius:var(--radius);
+  overflow:auto;position:relative;box-shadow:var(--shadow)}
+pre.code code{background:none;color:inherit;padding:0}
+pre.code .lang{position:absolute;top:8px;right:12px;font-size:10px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--turq);font-family:inherit}
+blockquote{margin:1em 0;padding:.7em 1.1em;border-left:4px solid var(--gold);
+  background:#fff8ec;border-radius:0 10px 10px 0;color:#5a4a23}
+.tablewrap{overflow-x:auto;margin:1em 0;border:1px solid var(--border);border-radius:var(--radius)}
+table{border-collapse:collapse;width:100%;font-size:14px;background:var(--surface)}
+th,td{padding:9px 12px;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+th{background:var(--indigo);color:#fff;font-weight:600}
+tr:nth-child(even) td{background:#f7f9fe}
+
+.donebox{float:right;display:inline-flex;align-items:center;gap:7px;background:var(--surface);
+  border:1px solid var(--border);border-radius:30px;padding:6px 14px;font-size:13px;font-weight:600;
+  color:var(--muted);cursor:pointer;box-shadow:var(--shadow)}
+.donebox input{accent-color:var(--turq)}
+
+/* youtube facade */
+.yt{margin:1.2em 0;border-radius:var(--radius);overflow:hidden;background:var(--ink);box-shadow:var(--shadow)}
+.yt .yt-play{position:relative;display:block;width:100%;aspect-ratio:16/9;border:0;cursor:pointer;
+  background:radial-gradient(circle at 50% 45%,#243069,#0A1124);color:#fff}
+.yt-tri{font-size:42px;color:#fff;background:rgba(225,165,60,.92);width:84px;height:58px;
+  border-radius:16px;display:grid;place-items:center;margin:0 auto;box-shadow:0 6px 18px rgba(0,0,0,.4);
+  transition:transform .2s}
+.yt .yt-play:hover .yt-tri{transform:scale(1.08)}
+.yt iframe{display:block;width:100%;aspect-ratio:16/9;border:0}
+.yt-meta{padding:9px 14px;font-size:13px;background:#121c3a}
+.yt-meta a{color:var(--turq);word-break:break-all}
+.yt-cap{color:#aebadf;font-size:12px;margin-top:2px}
+
+/* prompt card */
+.promptcard{margin:1.2em 0;border:1px solid #d9c79a;border-radius:var(--radius);overflow:hidden;
+  background:#fffdf6;box-shadow:var(--shadow)}
+.promptcard-h{display:flex;align-items:center;justify-content:space-between;padding:8px 14px;
+  background:linear-gradient(90deg,#fbf0d6,#fff7e6);font-weight:700;color:#7a5b16;font-size:13px}
+.promptcard pre{margin:0;padding:14px 16px;white-space:pre-wrap;font-size:13px;color:#4a4634;
+  font-family:ui-monospace,Menlo,monospace}
+.copybtn{border:1px solid var(--gold);background:#fff;color:#8a6516;border-radius:7px;
+  padding:3px 12px;font-size:12px;cursor:pointer;font-weight:700}
+.copybtn:hover{background:var(--gold);color:#fff}
+.copybtn.ok{background:var(--turq);border-color:var(--turq);color:#fff}
+
+/* mermaid */
+.mermaid{margin:1.2em 0;text-align:center;background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
+.mermaid.fallback{text-align:left;background:var(--ink)}
+.mermaid.fallback pre{color:#e7ecff;margin:0;white-space:pre-wrap;font-size:12px}
+.mermaid svg .nodeLabel,.mermaid svg .label{font-weight:600}
+.mermaid svg .edgeLabel,.mermaid svg .edgeLabel *{color:#1E2A6E !important;font-weight:600}
+
+@media(max-width:880px){
+  .app{grid-template-columns:1fr}
+  .side{position:fixed;left:-300px;width:300px;z-index:30;transition:left .25s}
+  .side.open{left:0}
+  .menutoggle{display:inline-flex !important}
+}
+.menutoggle{display:none;align-items:center;justify-content:center;width:38px;height:38px;
+  border:1px solid var(--border);background:var(--surface);border-radius:9px;cursor:pointer;font-size:18px}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side" id="side">
+    <div class="brand">
+      <img src="../../img/Isotipo.png" alt="ADA">
+      <div><b>Growth Mindset</b><small>ADA MICRO-CREDENTIAL</small></div>
+    </div>
+    <div class="progwrap">
+      <div class="progbar"><div class="progfill" id="progfill"></div></div>
+      <div class="progtext" id="progtext">0 / 6 atoms complete</div>
+    </div>
+    <nav id="nav"><div class="nav-group">Start</div>
+<a class="navlink" data-target="overview" href="#overview">Course overview</a>
+<a class="navlink" data-target="spec" href="#spec">Micro-credential spec</a>
+<div class="nav-group">🙉 Phase 1 · hear</div>
+<a class="navlink" data-target="atom-1" href="#atom-1">1 · The science of mindset</a>
+<div class="nav-group">🙈 Phase 2 · see</div>
+<a class="navlink" data-target="atom-2" href="#atom-2">2 · Myths &amp; nuance</a>
+<a class="navlink" data-target="atom-3" href="#atom-3">3 · The power of yet</a>
+<div class="nav-group">🙊 Phase 3 · do</div>
+<a class="navlink" data-target="atom-4" href="#atom-4">4 · Deliberate-practice lab</a>
+<a class="navlink" data-target="atom-5" href="#atom-5">5 · Failure résumé &amp; feedback</a>
+<div class="nav-group">🐵 Phase 4 · share</div>
+<a class="navlink" data-target="atom-6" href="#atom-6">6 · Growth in the wild 🚀</a>
+<div class="nav-group">Assess</div>
+<a class="navlink" data-target="capstone" href="#capstone">Capstone brief</a>
+<a class="navlink" data-target="rubrics" href="#rubrics">Rubrics</a>
+<a class="navlink" data-target="skillsmap" href="#skillsmap">Skills map → job match</a></nav>
+  </aside>
+  <div class="main">
+    <div class="topbar">
+      <button class="menutoggle" id="menutoggle" aria-label="Menu">&#9776;</button>
+      <span class="pill">🌱 Growth Mindset Practitioner</span>
+      <span class="sp"></span>
+      <button class="navbtn" id="prevbtn">&larr; Prev</button>
+      <button class="navbtn" id="nextbtn">Next &rarr;</button>
+    </div>
+    <div class="wrap"><section class="page" id="page-overview" data-id="overview"><h1>🌱 Worked Example — Growth Mindset Micro-Credential (full course)</h1>
+<p align="center">
+<p>  &lt;img alt="Indigo #1E2A6E" src="https://img.shields.io/badge/Indigo-1E2A6E?style=flat-square&amp;labelColor=1E2A6E&amp;color=1E2A6E"&gt;   &lt;img alt="Turquoise #15B5C6" src="https://img.shields.io/badge/Turquoise-15B5C6?style=flat-square&amp;labelColor=15B5C6&amp;color=15B5C6"&gt;   &lt;img alt="Gold #E0A53C" src="https://img.shields.io/badge/Gold-E0A53C?style=flat-square&amp;labelColor=E0A53C&amp;color=E0A53C"&gt;   &lt;img alt="Ink #0A1124" src="https://img.shields.io/badge/Ink-0A1124?style=flat-square&amp;labelColor=0A1124&amp;color=0A1124"&gt; &lt;/p&gt;</p>
+<p>A <strong>complete, ready-to-run ADA micro-credential</strong> about <strong>Growth Mindset</strong>, built end-to-end with the ADA Methodology (KSA + 4 phases + learning-atom topology). It is a <em>fully populated</em> example: every atom contains <strong>real reading text</strong>, <strong>curated video links</strong>, <strong>image-generation prompts</strong> for diagrams, practice labs, and rubrics.</p>
+<blockquote>🖥️ <strong>See it live:</strong> open <a href="course.html"><code>course.html</code></a> in any browser for an interactive, navigable version of this course (sidebar, phase progress, embedded videos, diagrams).</blockquote>
+<p>Conforms to <a href="../../specs/micro-credential-v2-schema.md"><code>../../specs/micro-credential-v2-schema.md</code></a> · modalities from <a href="../../specs/learning-atom-topology.md"><code>../../specs/learning-atom-topology.md</code></a> · KSA from <a href="../../specs/ksa-taxonomy.md"><code>../../specs/ksa-taxonomy.md</code></a>.</p>
+<hr>
+<h2>🧭 What this teaches</h2>
+<p><strong>Growth Mindset</strong> — the belief that abilities can be developed through effort, strategy, and help from others — is one of the <strong>durable Abilities</strong> that employers list most often (<em>"learning agility", "coachable", "thrives on feedback", "growth mindset"</em>) yet rarely train on purpose. This course makes it <strong>trainable and certifiable</strong>: it gives learners the science, a concrete reframing <strong>Skill</strong>, deliberate-practice reps, and then builds the <strong>Ability</strong> through authentic, repeated exposure to challenge — assessed with a <strong>behavioral rubric + reflection + peer 360</strong>, never a single quiz.</p>
+<div class='tablewrap'><table><thead><tr><th></th><th></th></tr></thead><tbody>
+<tr><td><strong>Title</strong></td><td>Growth Mindset for High-Performing Professionals</td></tr>
+<tr><td><strong>Duration</strong></td><td>~16 hours · 3–4 weeks</td></tr>
+<tr><td><strong>Primary KSA</strong></td><td>🌱 Ability — <em>Growth Mindset</em> (treat failure as learning, seek challenge &amp; feedback)</td></tr>
+<tr><td><strong>Target competency</strong></td><td>O*NET Work Styles (Adaptability, Persistence, Achievement/Effort) · ESCO transversal attitudes · SFIA <em>LEDA</em> (learning &amp; development)</td></tr>
+<tr><td><strong>Badge</strong></td><td>🏅 <em>Growth Mindset Practitioner</em></td></tr>
+</tbody></table></div>
+<hr>
+<h2>📚 Course contents</h2>
+<div class='tablewrap'><table><thead><tr><th>#</th><th>File</th><th>What it is</th></tr></thead><tbody>
+<tr><td>—</td><td><a href="micro-credential.md"><code>micro-credential.md</code></a></td><td>The full micro-credential spec (YAML schema, objectives, KSA map, phase planner)</td></tr>
+<tr><td>1</td><td><a href="atoms/atom-1-science-of-mindset.md"><code>atoms/atom-1-science-of-mindset.md</code></a></td><td>🙉 P1 · 🧠 K — The science of mindset (readings + Dweck TED + quiz)</td></tr>
+<tr><td>2</td><td><a href="atoms/atom-2-myths-and-nuance.md"><code>atoms/atom-2-myths-and-nuance.md</code></a></td><td>🙈 P2 · 🧠 K — Myths &amp; nuance: <em>false</em> growth mindset (evidence + cases)</td></tr>
+<tr><td>3</td><td><a href="atoms/atom-3-power-of-yet.md"><code>atoms/atom-3-power-of-yet.md</code></a></td><td>🙈 P2 · 🛠️ S — The <em>Power of Yet</em> reframing protocol</td></tr>
+<tr><td>4</td><td><a href="atoms/atom-4-deliberate-practice-lab.md"><code>atoms/atom-4-deliberate-practice-lab.md</code></a></td><td>🙊 P3 · 🛠️ S — Deliberate-practice lab</td></tr>
+<tr><td>5</td><td><a href="atoms/atom-5-failure-resume-feedback.md"><code>atoms/atom-5-failure-resume-feedback.md</code></a></td><td>🙊 P3 → 🐵 P4 · 🌱 A — Failure résumé &amp; feedback seeking</td></tr>
+<tr><td>6</td><td><a href="atoms/atom-6-growth-in-the-wild-capstone.md"><code>atoms/atom-6-growth-in-the-wild-capstone.md</code></a></td><td>🐵 P4 · 🌱 A — Growth in the wild (21-day challenge)</td></tr>
+<tr><td>—</td><td><a href="capstone.md"><code>capstone.md</code></a></td><td>Capstone brief + how it maps to KSA</td></tr>
+<tr><td>—</td><td><a href="rubrics.md"><code>rubrics.md</code></a></td><td>All rubrics (knowledge-mini, skill, behavioral, capstone-5)</td></tr>
+<tr><td>—</td><td><a href="skills-map.md"><code>skills-map.md</code></a></td><td>Badge → skills map and how it closes a job-match gap</td></tr>
+</tbody></table></div>
+<hr>
+<h2>🔄 Phase journey</h2>
+<div class="mermaid">flowchart LR
+  P1[&quot;🙉 P1 · hear&lt;br/&gt;Science of mindset&quot;] --&gt; P2[&quot;🙈 P2 · see&lt;br/&gt;Myths · Power of Yet&quot;]
+  P2 --&gt; P3[&quot;🙊 P3 · do&lt;br/&gt;Deliberate practice · Failure résumé&quot;]
+  P3 --&gt; P4[&quot;🐵 P4 · share&lt;br/&gt;21-day challenge + 360&quot;]
+  P4 --&gt; BADGE[&quot;🏅 Growth Mindset Practitioner&quot;]</div>
+<hr>
+<h2>🤖 How it was authored (and how to reuse it)</h2>
+<p>This course follows the Gen AI authoring workflow in <a href="../../specs/genai-authoring-workflow.md"><code>../../specs/genai-authoring-workflow.md</code></a>: job competency → KSA → atoms → modalities → rubrics → badge. Two conventions used throughout:</p>
+<ul>
+<li><strong>🎬 Videos</strong> are written as a <code>youtube</code> block with the real URL + a caption, so the text</li>
+</ul>
+<p>  file is self-describing (and the interactive site embeds them as a player).</p>
+<ul>
+<li><strong>🖼️ Diagrams/images</strong> include a reusable <strong>image-generation prompt</strong> in a <code>prompt</code> block —</li>
+</ul>
+<p>  feed it to any image model to produce the asset on brand.</p>
+<blockquote>⚠️ <strong>Human-in-the-loop (methodology guardrail):</strong> the external links, reports, and citations below are <strong>curated starting points</strong>. A mentor/employer should verify each link, licensing, and currency before delivery — AI-suggested sources are never authoritative on their own. See <a href="../../CLAUDE.md"><code>../../CLAUDE.md</code></a> §5.</blockquote></section>
+<section class="page" id="page-spec" data-id="spec"><h1>🎓 Micro-Credential — Growth Mindset for High-Performing Professionals</h1>
+<p>The full specification for this micro-credential. It conforms to <a href="../../specs/micro-credential-v2-schema.md"><code>../../specs/micro-credential-v2-schema.md</code></a>.</p>
+<hr>
+<h2>YAML front matter</h2>
+<pre class="code"><span class="lang">yaml</span><code>schema: ada-microcredential/v2
+id: mc-growth-mindset-pro
+title: &quot;Growth Mindset for High-Performing Professionals&quot;
+language: en
+duration_hours: 16
+status: published
+license: CC-BY-SA-4.0
+mentors: [&quot;@sancarbar&quot;]
+
+target_roles:
+  - role: &quot;Any role in a fast-changing, learning-intensive digital team&quot;
+    framework_ref: &gt;
+      O*NET Work Styles: Adaptability/Flexibility, Persistence, Achievement/Effort ·
+      ESCO transversal attitudes (maintaining a growth mindset, coping with uncertainty) ·
+      SFIA: LEDA (learning &amp; development), behavioural factors (autonomy, complexity)
+
+ksa:
+  - { id: K-mindset-science, type: knowledge, label: &quot;Fixed vs. growth mindset; neuroplasticity; what research does and doesn&#x27;t claim&quot;, target_level: 1, bloom: understand }
+  - { id: K-mindset-nuance,  type: knowledge, label: &quot;False growth mindset; effect-size nuance; when mindset matters most&quot;, target_level: 1, bloom: understand }
+  - { id: S-yet-reframe,     type: skill,     label: &quot;Apply a &#x27;power of yet&#x27; reframing move to a real setback&quot;, target_level: 2, bloom: apply }
+  - { id: S-deliberate-practice, type: skill, label: &quot;Design and run a deliberate-practice loop with feedback&quot;, target_level: 2, bloom: apply }
+  - { id: A-growth-mindset,  type: ability,   label: &quot;Treat failure as learning; seek challenge &amp; feedback; persist&quot;, target_level: 3, primary: true, affective_stage: organize, assessed_occasions: 5 }
+  - { id: A-adaptability,    type: ability,   label: &quot;Stay effective and keep learning amid change/ambiguity&quot;, target_level: 2, affective_stage: value, assessed_occasions: 3 }
+
+atoms:
+  - { id: atom-1, title: &quot;The science of mindset&quot;, ksa_refs: [K-mindset-science], phase: 1, modalities: [{dimension: read, subtype: Article}, {dimension: watch, subtype: Video Explainer}, {dimension: see, subtype: Infographic}, {dimension: evaluate, subtype: Pop Quiz}], rubric: knowledge-mini }
+  - { id: atom-2, title: &quot;Myths &amp; nuance&quot;, ksa_refs: [K-mindset-science, K-mindset-nuance], phase: 2, modalities: [{dimension: read, subtype: Scientific Paper}, {dimension: read, subtype: Case Study}, {dimension: watch, subtype: Short}, {dimension: evaluate, subtype: AI QA Check}], rubric: knowledge-mini }
+  - { id: atom-3, title: &quot;The power of yet&quot;, ksa_refs: [S-yet-reframe, A-growth-mindset], phase: 2, modalities: [{dimension: see, subtype: Mental Model}, {dimension: watch, subtype: Tutorial / Screencast}, {dimension: practice, subtype: Worksheet / Exercise}, {dimension: evaluate, subtype: Mini-Rubric}], rubric: skill }
+  - { id: atom-4, title: &quot;Deliberate-practice lab&quot;, ksa_refs: [S-deliberate-practice, A-growth-mindset], phase: 3, modalities: [{dimension: read, subtype: Technical Article}, {dimension: practice, subtype: Lab}, {dimension: collaborate, subtype: Pair Programming}, {dimension: evaluate, subtype: Performance Task}], rubric: skill }
+  - { id: atom-5, title: &quot;Failure résumé &amp; feedback seeking&quot;, ksa_refs: [A-growth-mindset, A-adaptability], phase: 3, modalities: [{dimension: practice, subtype: Project Task}, {dimension: collaborate, subtype: Study Group}, {dimension: evaluate, subtype: Behavioral Assessment}], rubric: ability-behavioral }
+  - { id: atom-6, title: &quot;Growth in the wild (21-day challenge)&quot;, ksa_refs: [A-growth-mindset, A-adaptability], phase: 4, modalities: [{dimension: practice, subtype: Project Task}, {dimension: read, subtype: Journal / Diary}, {dimension: collaborate, subtype: Showcase / Demo Day}, {dimension: evaluate, subtype: Behavioral Assessment}], rubric: ability-behavioral }
+
+capstone:
+  title: &quot;Growth in the wild — a 21-day stretch challenge&quot;
+  integrates_ksa: [K-mindset-science, K-mindset-nuance, S-yet-reframe, S-deliberate-practice, A-growth-mindset, A-adaptability]
+  rubric: capstone-5
+
+badge:
+  name: &quot;Growth Mindset Practitioner&quot;
+  evidence_required: [&quot;atom-3&quot;, &quot;atom-4&quot;, &quot;atom-5&quot;, &quot;capstone&quot;]
+  issued_on: verified-evidence</code></pre>
+<hr>
+<h2>🎯 Target job competency</h2>
+<p>Keep learning and stay effective when <strong>goals, tools, or feedback are hard</strong> — written in postings as <em>growth mindset, learning agility, coachable, resilient, thrives on feedback</em>. Mapped to <strong>O*NET Work Styles</strong> (Adaptability/Flexibility, Persistence, Achievement/Effort), <strong>ESCO</strong> transversal attitudes, and <strong>SFIA</strong> behavioural factors + <em>LEDA</em>.</p>
+<h2>🧬 KSA breakdown — an attitude made trainable</h2>
+<div class='tablewrap'><table><thead><tr><th>KSA</th><th>Component</th><th>Why this type</th><th>Target</th></tr></thead><tbody>
+<tr><td>🧠 Knowledge</td><td>Mindset science (fixed vs. growth, neuroplasticity)</td><td>Concepts to understand — a small enabling base</td><td>L1</td></tr>
+<tr><td>🧠 Knowledge</td><td>Myths &amp; nuance (false growth mindset, effect sizes)</td><td>Prevents shallow / performative adoption</td><td>L1</td></tr>
+<tr><td>🛠️ Skill</td><td>The <em>power of yet</em> reframing move</td><td>A concrete, repeatable move you can practice</td><td>L2</td></tr>
+<tr><td>🛠️ Skill</td><td>Deliberate-practice loop with feedback</td><td>A teachable method that <em>operationalizes</em> the mindset</td><td>L2</td></tr>
+<tr><td>🌱 Ability</td><td><strong>Growth mindset</strong> (failure = learning)</td><td>A disposition proven by behavior over time</td><td><strong>L3</strong></td></tr>
+<tr><td>🌱 Ability</td><td>Adaptability amid change</td><td>Cross-cutting disposition, reinforced throughout</td><td>L2</td></tr>
+</tbody></table></div>
+<blockquote><strong>Why this shape:</strong> you can't lecture an attitude into existence. v2 gives a light <strong>Knowledge</strong> base, two concrete <strong>Skills</strong> the learner can actually <em>do</em>, and then grows the <strong>Ability</strong> through repeated, authentic challenge — because dispositions are evidenced by <em>behavior across occasions</em>, not by a test.</blockquote>
+<h2>📘 Learning objectives (Bloom + Affective + KSA)</h2>
+<div class='tablewrap'><table><thead><tr><th>Objective</th><th>Bloom / Affective</th><th>KSA</th><th>Component</th><th>Target</th></tr></thead><tbody>
+<tr><td>Explain fixed vs. growth mindset and the neuroscience behind it</td><td>Understand</td><td>🧠 K</td><td>K-mindset-science</td><td>L1</td></tr>
+<tr><td>Distinguish real growth mindset from <em>false</em> growth mindset</td><td>Understand / Analyze</td><td>🧠 K</td><td>K-mindset-nuance</td><td>L1</td></tr>
+<tr><td>Apply a <em>power of yet</em> reframing move to a live setback</td><td>Apply</td><td>🛠️ S</td><td>S-yet-reframe</td><td>L2</td></tr>
+<tr><td>Design and run a deliberate-practice loop with feedback</td><td>Apply / Create</td><td>🛠️ S</td><td>S-deliberate-practice</td><td>L2</td></tr>
+<tr><td>Treat failure as data; seek challenge and feedback; persist</td><td>Organize (affective)</td><td>🌱 A</td><td>A-growth-mindset</td><td>L3</td></tr>
+<tr><td>Stay effective and keep learning when conditions change</td><td>Value (affective)</td><td>🌱 A</td><td>A-adaptability</td><td>L2</td></tr>
+</tbody></table></div>
+<hr>
+<h2>🔍 Phase planner</h2>
+<div class='tablewrap'><table><thead><tr><th>Phase</th><th>Atom(s)</th><th>KSA focus</th><th>Activity</th><th>Assessment</th></tr></thead><tbody>
+<tr><td>🙉 1 · hear</td><td>Atom 1</td><td>🧠 K</td><td>mindset readings + Dweck TED + infographic</td><td>knowledge-mini (pop quiz)</td></tr>
+<tr><td>🙈 2 · see</td><td>Atom 2, Atom 3</td><td>🧠 K → 🛠️ S</td><td>evidence + cases; learn the <em>yet</em> reframe</td><td>knowledge-mini + skill mini-rubric</td></tr>
+<tr><td>🙊 3 · do</td><td>Atom 4, Atom 5</td><td>🛠️ S + 🌱 A</td><td>deliberate-practice lab; failure résumé</td><td>performance + behavioral</td></tr>
+<tr><td>🐵 4 · share</td><td>Atom 6 (capstone)</td><td>🌱 A</td><td>21-day challenge + journal + peer 360 + showcase</td><td>behavioral + capstone-5</td></tr>
+</tbody></table></div>
+<hr>
+<h2>🚀 Capstone &amp; 📊 assessment</h2>
+<p>Full brief in <a href="capstone.md"><code>capstone.md</code></a>; all rubrics in <a href="rubrics.md"><code>rubrics.md</code></a>. In short: formative checks per atom, a behavioral rubric across <strong>5 occasions</strong>, and a capstone graded on the standard 5-criteria rubric. The badge → skills-map mapping is in <a href="skills-map.md"><code>skills-map.md</code></a>.</p>
+<h2>🎓 Outcomes &amp; recognition</h2>
+<ul>
+<li>Conceptual mastery of mindset science <strong>and its limits</strong> (no hype).</li>
+<li>Two job-ready moves: a reframing technique and a deliberate-practice loop.</li>
+<li>A portfolio artifact (21-day growth log + showcase) proving the Ability.</li>
+<li>LinkedIn-compatible digital badge: <strong>🏅 Growth Mindset Practitioner</strong>.</li>
+</ul></section>
+<section class="page" id="page-atom-1" data-id="atom-1"><label class="donebox"><input type="checkbox" class="donechk" data-atom="atom-1"> Mark this atom complete</label><h2>⚛ Learning Atom 1 — <em>The Science of Mindset</em></h2>
+<p><strong>Phase:</strong> 🙉 1 · Self-Guided Introduction (<em>hear</em>) · <strong>KSA:</strong> 🧠 Knowledge · <strong>Target level:</strong> L1 · <strong>Component id:</strong> <code>K-mindset-science</code></p>
+<h3>🎯 Learning objective</h3>
+<ul>
+<li><strong>Explain</strong> the difference between a fixed and a growth mindset, and describe the</li>
+</ul>
+<p>  neuroscience (neuroplasticity) that makes "abilities can grow" literally true.</p>
+<h3>🧩 Prerequisites</h3>
+<ul>
+<li>None. Curiosity and a recent example of something you found hard to learn.</li>
+</ul>
+<h3>🧭 Atom description</h3>
+<p>Before you can <em>practice</em> a growth mindset, you need an accurate mental model of what it is — and what it is not. This atom gives you the core science from the researchers who built the field, so the rest of the course rests on evidence, not slogans.</p>
+<hr>
+<h3>📖 Reading — <em>What "mindset" actually means</em> (≈ 6 min)</h3>
+<blockquote>Author: ADA Methodology · concepts attributed to Carol Dweck and colleagues.</blockquote>
+<p>A <strong>mindset</strong> is a belief about where ability comes from. People with a more <strong>fixed mindset</strong> tend to believe that intelligence and talent are largely <em>traits you either have or don't</em>. People with a more <strong>growth mindset</strong> believe ability is more like a <em>muscle</em> — it grows with effort, good strategy, and help from others. Almost nobody is purely one or the other; we each hold a <em>blend</em> that shifts by domain ("I'm a math person but not a creative person") and by situation (a public failure can push anyone toward the fixed end for a while).</p>
+<p>Why does this belief matter? Because it changes <strong>what you do when something gets hard</strong> — the exact moment that decides whether you learn. Carol Dweck's research at Stanford found that the two mindsets produce different responses to difficulty:</p>
+<ul>
+<li>A <strong>fixed</strong> orientation treats a struggle as a <em>verdict</em>: "this is hard → maybe I'm not good</li>
+</ul>
+<p>  at this → I should protect my image and stop." Effort feels like evidence of low ability, so   feedback stings and challenges are avoided.</p>
+<ul>
+<li>A <strong>growth</strong> orientation treats the same struggle as <em>information</em>: "this is hard → I haven't</li>
+</ul>
+<p>  learned it <em>yet</em> → what strategy or feedback do I need?" Effort is the path, feedback is fuel,   and challenge is where the growth happens.</p>
+<p>The biology backs this up. The brain is <strong>neuroplastic</strong>: when you practice something difficult, neurons form and strengthen connections, and well-used pathways get myelinated so signals travel faster. In other words, the discomfort of effortful practice is the <em>felt sense of your brain physically rewiring</em>. This is why "I can't do this" is more accurately "I can't do this <strong>yet</strong>."</p>
+<p>A crucial nuance you'll go deeper on in Atom 2: a growth mindset is <strong>not</strong> "everyone can be anything," "just try harder," or "praise all effort." It is a precise claim — <em>that ability is developable, and that the response to difficulty (strategy + effort + help) is what develops it.</em> Hold onto that precision; it's what separates a real practitioner from someone repeating a poster.</p>
+<p><strong>Key takeaways</strong></p>
+<ul>
+<li><input type="checkbox" disabled> Mindset = a belief about the <em>source</em> of ability (trait vs. developable).</li>
+<li><input type="checkbox" disabled> It's a <em>blend</em>, domain- and situation-specific — not a fixed label for a person.</li>
+<li><input type="checkbox" disabled> It matters because it changes behavior <strong>at the point of difficulty</strong>.</li>
+<li><input type="checkbox" disabled> Neuroplasticity makes "abilities can grow" a physical fact, not a metaphor.</li>
+<li><input type="checkbox" disabled> Growth mindset ≠ "try harder"; it = <em>developable ability + the right response to struggle.</em></li>
+</ul>
+<hr>
+<h3>🎬 Watch — Carol Dweck, "The power of believing that you can improve" (TED, ~10 min)</h3>
+<div class="yt" data-id="_X0mgOOSpLU"><button class="yt-play" type="button" aria-label="Play video"><span class="yt-tri">&#9654;</span></button><div class="yt-meta"><a href="https://www.youtube.com/watch?v=_X0mgOOSpLU" target="_blank" rel="noopener">https://www.youtube.com/watch?v=_X0mgOOSpLU</a><div class="yt-cap">Carol Dweck (Stanford) — the origin of "the power of yet" and the research behind it.</div></div></div>
+<p><strong>Optional shorts (pick one):</strong></p>
+<div class="yt" data-id="KUWn_TJTrnU"><button class="yt-play" type="button" aria-label="Play video"><span class="yt-tri">&#9654;</span></button><div class="yt-meta"><a href="https://www.youtube.com/watch?v=KUWn_TJTrnU" target="_blank" rel="noopener">https://www.youtube.com/watch?v=KUWn_TJTrnU</a><div class="yt-cap">Sprouts — "Growth Mindset vs Fixed Mindset" (animated 4-min overview).</div></div></div>
+<div class="yt" data-id="JC82Il2cjqA"><button class="yt-play" type="button" aria-label="Play video"><span class="yt-tri">&#9654;</span></button><div class="yt-meta"><a href="https://www.youtube.com/watch?v=JC82Il2cjqA" target="_blank" rel="noopener">https://www.youtube.com/watch?v=JC82Il2cjqA</a><div class="yt-cap">Khan Academy — "You Can Learn Anything" (90s; neuroplasticity framing).</div></div></div>
+<hr>
+<h3>🖼️ See — Infographic: <em>The two mindsets at the moment of difficulty</em></h3>
+<blockquote>Reuse this prompt with any image model to generate the on-brand visual.</blockquote>
+<div class="promptcard"><div class="promptcard-h"><span>🖼️ Image-generation prompt</span><button class="copybtn" type="button">Copy</button></div><pre><code>Create a clean, modern educational infographic titled &quot;Two Mindsets, One Moment of Difficulty&quot;.
+Split the canvas vertically into two columns that meet at a central icon of a brain with a
+small lightning/spark. LEFT column = &quot;Fixed mindset&quot; using a muted grey palette; show a chain
+of cards: &quot;This is hard&quot; -&gt; &quot;Maybe I&#x27;m not good at this&quot; -&gt; &quot;Protect my image&quot; -&gt; &quot;Avoid /
+quit&quot;. RIGHT column = &quot;Growth mindset&quot; using ADA brand colors (Indigo #1E2A6E, Turquoise
+#15B5C6, Gold #E0A53C accents on dark Ink #0A1124); show: &quot;This is hard&quot; -&gt; &quot;I haven&#x27;t learned
+it YET&quot; -&gt; &quot;What strategy / feedback?&quot; -&gt; &quot;Practice &amp; grow&quot;. Flat vector style, generous white
+space, high contrast, legible sans-serif, no photoreal faces. 16:9.</code></pre></div>
+<p>You can also study the relationship as a quick model:</p>
+<div class="mermaid">flowchart LR
+  DIFF[&quot;⚡ Difficulty hits&quot;] --&gt; FIX[&quot;🪨 Fixed read:&lt;br/&gt;&#x27;a verdict about me&#x27;&quot;]
+  DIFF --&gt; GRO[&quot;🌱 Growth read:&lt;br/&gt;&#x27;information — not yet&#x27;&quot;]
+  FIX --&gt; AVOID[&quot;Avoid challenge · hide effort · reject feedback&quot;]
+  GRO --&gt; SEEK[&quot;Seek challenge · invest effort · use feedback&quot;]
+  SEEK --&gt; LEARN[&quot;🧠 Neurons rewire → ability grows&quot;]</div>
+<hr>
+<h3>✅ Evaluate — Pop quiz (formative, <code>knowledge-mini</code>)</h3>
+<p>Answer, then check yourself against the key.</p>
+<ol>
+<li>True/False: "A growth mindset means anyone can become anything if they try hard enough."</li>
+<li>In one sentence, what <em>behavioral</em> difference shows up at the moment a task gets hard?</li>
+<li>What does neuroplasticity have to do with the word <strong>yet</strong>?</li>
+</ol>
+<details>
+<summary>Answer key</summary>
+<ol>
+<li><strong>False</strong> — that's a common distortion. Growth mindset claims ability is <em>developable</em> via</li>
+</ol>
+<p>   strategy + effort + help, not that outcomes are unlimited or guaranteed.</p>
+<ol>
+<li>Fixed → avoids the challenge / withdraws effort / rejects feedback; growth → engages the</li>
+</ol>
+<p>   challenge / invests effort / seeks and uses feedback.</p>
+<ol>
+<li>Effortful practice physically strengthens and myelinates neural pathways, so "I can't" is</li>
+</ol>
+<p>   better stated as "I can't <strong>yet</strong>" — the capacity is built by the practice itself.</p>
+</details>
+<hr>
+<h3>📦 Deliverable</h3>
+<ul>
+<li>A 3–5 sentence written reflection: *one task you currently read as a "verdict," restated as a</li>
+</ul>
+<p>  "not yet," with the next strategy or source of help you'd try.* (Carries into Atom 3.)</p>
+<h3>🧠 Final reflection</h3>
+<ul>
+<li>Where in your work do you most often slip into a fixed read — and what would change if you</li>
+</ul>
+<p>  treated that exact moment as information instead of a verdict?</p>
+<h3>🔗 Sources to verify (human-in-the-loop)</h3>
+<ul>
+<li>Dweck, C. <em>Mindset: The New Psychology of Success</em> (2006/2016).</li>
+<li>Stanford <strong>Mindset Kit</strong> / PERTS — mindsetkit.org (practitioner resources).</li>
+<li>Blackwell, Trzesniewski &amp; Dweck (2007), <em>Child Development</em> — the "brainology" study.</li>
+<li>MIT News / Brain &amp; Cognitive Sciences — neuroplasticity &amp; learning (verify a current piece).</li>
+</ul>
+<h3>🧩 Connections</h3>
+<ul>
+<li><strong>Successors:</strong> Atom 2 (myths &amp; nuance), Atom 3 (turn the science into a move).</li>
+</ul></section>
+<section class="page" id="page-atom-2" data-id="atom-2"><label class="donebox"><input type="checkbox" class="donechk" data-atom="atom-2"> Mark this atom complete</label><h2>⚛ Learning Atom 2 — <em>Myths &amp; Nuance: the "false" growth mindset</em></h2>
+<p><strong>Phase:</strong> 🙈 2 · Visual Exploration (<em>see</em>) · <strong>KSA:</strong> 🧠 Knowledge · <strong>Target level:</strong> L1 · <strong>Component id:</strong> <code>K-mindset-nuance</code></p>
+<h3>🎯 Learning objective</h3>
+<ul>
+<li><strong>Distinguish</strong> a real, evidence-based growth mindset from the watered-down "<em>false</em> growth</li>
+</ul>
+<p>  mindset," and <strong>explain</strong> when and for whom mindset interventions actually move outcomes.</p>
+<h3>🧩 Prerequisites</h3>
+<ul>
+<li>Atom 1 (the core science).</li>
+</ul>
+<h3>🧭 Atom description</h3>
+<p>The biggest risk with growth mindset is <em>shallow adoption</em> — turning a precise psychological construct into a motivational poster. This atom inoculates you against the hype by going to the primary evidence, including the researchers' own self-corrections and the large-scale trials and meta-analyses that map the limits.</p>
+<hr>
+<h3>📖 Reading — <em>Three myths that quietly kill a growth mindset</em> (≈ 7 min)</h3>
+<blockquote>Author: ADA Methodology · grounded in Dweck &amp; Yeager's later work and replication research.</blockquote>
+<p><strong>Myth 1 — "Growth mindset = praising effort."</strong> Dweck has been explicit that <em>praising effort alone</em>, especially when a learner is stuck, can become a consolation prize ("great effort!" after failure with no path forward). Real practice praises <strong>effort linked to strategy and progress</strong>: <em>"that approach didn't work — which other strategy, or whose help, gets you unstuck?"</em> Effort without strategy is just noise; the mindset is about the <strong>learning process</strong>, not cheerleading.</p>
+<p><strong>Myth 2 — "I already have a growth mindset."</strong> Dweck calls this the <em>false growth mindset</em>: most of us claim it, then behave from the fixed end the moment our competence feels threatened — when we're criticized, when a peer outshines us, when we fail publicly. A growth mindset isn't a badge you own; it's a response you choose, repeatedly, under threat. Knowing your personal <strong>fixed-mindset triggers</strong> is more useful than declaring you're "a growth-mindset person."</p>
+<p><strong>Myth 3 — "Mindset fixes everything."</strong> It doesn't. Large studies show the effect is <strong>real but bounded</strong>. The <em>National Study of Learning Mindsets</em> (Yeager et al., 2019, <em>Nature</em>) ran a short online growth-mindset intervention across a nationally representative sample of U.S. high schools and found a <em>modest but meaningful</em> improvement in grades — concentrated among <strong>lower-achieving students</strong> and strongest where the <strong>school culture</strong> supported the message (peers and norms made challenge-seeking safe). Meta-analyses (e.g., Sisk et al., 2018) likewise find <strong>small average effects</strong> that are <strong>larger for at-risk and disadvantaged learners</strong>. The honest summary: mindset is a <em>lever</em>, not a magic wand — most powerful for those facing real barriers, and only when the surrounding environment makes effort and help-seeking safe.</p>
+<p><strong>Why a professional should care.</strong> In a team, your mindset is <em>contagious through systems</em>: how you respond to a teammate's mistake, whether feedback is treated as attack or asset, whether "I don't know yet" is sayable. The organizational research is blunt about this — culture either amplifies or silences individual growth mindset.</p>
+<p><strong>Key takeaways</strong></p>
+<ul>
+<li><input type="checkbox" disabled> Praise <strong>strategy + progress</strong>, not raw effort or innate talent.</li>
+<li><input type="checkbox" disabled> Everyone has <strong>fixed-mindset triggers</strong>; naming yours beats claiming a label.</li>
+<li><input type="checkbox" disabled> Effects are <strong>real but modest</strong>, <strong>largest for at-risk learners</strong>, and <strong>culture-dependent</strong>.</li>
+<li><input type="checkbox" disabled> Your individual mindset shapes a <strong>team's</strong> psychological safety to struggle out loud.</li>
+</ul>
+<hr>
+<h3>📖 Reading — Evidence &amp; industry context (skim the primary sources)</h3>
+<ul>
+<li>**Stanford / <em>Nature</em> (2019):** Yeager, Dweck et al., *A national experiment reveals where a</li>
+</ul>
+<p>  growth mindset improves achievement.* The canonical large-scale RCT.</p>
+<ul>
+<li><strong>Meta-analysis (2018):</strong> Sisk, Burnette et al., *To what extent and under which circumstances</li>
+</ul>
+<p>  are growth mindsets important to academic achievement?* — <em>Psychological Science.</em></p>
+<ul>
+<li><strong>Dweck &amp; Yeager (2019):</strong> <em>Mindsets: A View From Two Eras</em>, *Perspectives on Psychological</li>
+</ul>
+<p>  Science* — the field's own maturation and caveats.</p>
+<ul>
+<li><strong>McKinsey (2020):</strong> Brassey, van Dam et al., *The most fundamental skill: Intentional</li>
+</ul>
+<p>  learning and the career advantage* — why a deliberate learning stance is an economic edge.</p>
+<ul>
+<li><strong>BCG / Accenture:</strong> reskilling and learning-culture reports (e.g., Accenture, *"It's</li>
+</ul>
+<p>  learning. Just not as we know it."*) — the business case for a learning workforce.</p>
+<ul>
+<li><strong>Y Combinator / Paul Graham:</strong> <em>How to Do Great Work</em> (2023) — curiosity, persistence, and</li>
+</ul>
+<p>  treating not-knowing as the start of the work, in a builder's voice.</p>
+<blockquote>⚠️ Verify each link, edition, and license before delivery (human-in-the-loop).</blockquote>
+<hr>
+<h3>🎬 Watch — Eduardo Briceño, "How to get better at the things you care about" (TED, ~11 min)</h3>
+<div class="yt" data-id="U9FBpJVwsps"><button class="yt-play" type="button" aria-label="Play video"><span class="yt-tri">&#9654;</span></button><div class="yt-meta"><a href="https://www.youtube.com/watch?v=U9FBpJVwsps" target="_blank" rel="noopener">https://www.youtube.com/watch?v=U9FBpJVwsps</a><div class="yt-cap">The "Learning Zone vs. Performance Zone" — why always performing blocks improvement.</div></div></div>
+<hr>
+<h3>🖼️ See — Diagram: <em>Real vs. false growth mindset</em></h3>
+<div class="promptcard"><div class="promptcard-h"><span>🖼️ Image-generation prompt</span><button class="copybtn" type="button">Copy</button></div><pre><code>Design a two-panel comparison graphic titled &quot;Real vs. False Growth Mindset&quot;. Panel A &quot;FALSE
+(performative)&quot; in muted grey: speech bubbles &quot;Great effort!&quot;, &quot;I&#x27;m a growth-mindset person&quot;,
+&quot;Just try harder&quot;, &quot;Mindset fixes everything&quot;. Panel B &quot;REAL (evidence-based)&quot; in ADA brand
+colors (Indigo #1E2A6E base, Turquoise #15B5C6, Gold #E0A53C accent): &quot;Which strategy next?&quot;,
+&quot;What are my fixed-mindset triggers?&quot;, &quot;Effort + strategy + help&quot;, &quot;A bounded lever — biggest
+for those facing barriers, needs a safe culture&quot;. Add a thin footer band: &quot;Effect sizes: real
+but modest; largest for at-risk learners (Yeager 2019; Sisk 2018)&quot;. Flat vector, high contrast,
+clean sans-serif. 16:9.</code></pre></div>
+<hr>
+<h3>✅ Evaluate — AI Q&amp;A check (formative, <code>knowledge-mini</code>)</h3>
+<p>Use this prompt with any AI tutor; it should <em>probe</em>, not lecture.</p>
+<div class="promptcard"><div class="promptcard-h"><span>🖼️ Image-generation prompt</span><button class="copybtn" type="button">Copy</button></div><pre><code>You are a Socratic tutor checking my understanding of growth-mindset nuance. Ask me, one at a
+time: (1) to give an example of &quot;false growth mindset&quot; from my own workplace; (2) to name two
+of my personal fixed-mindset triggers; (3) to explain, using the Yeager 2019 study, who
+benefits most and why culture matters. After each answer, point out any oversimplification
+(e.g., &quot;just try harder&quot;, &quot;mindset fixes everything&quot;) and ask a sharper follow-up. Keep it under
+8 exchanges and end with one misconception I should watch for.</code></pre></div>
+<p><strong>Self-check:</strong> you pass when you can state, without notes, <em>one</em> myth, <em>one</em> of your triggers, and the <em>bounded</em> nature of the effect.</p>
+<hr>
+<h3>📦 Deliverable</h3>
+<ul>
+<li>A short "myth-buster" note (5–7 sentences): the myth you were most guilty of, your top two</li>
+</ul>
+<p>  fixed-mindset triggers, and one sentence on who benefits most from mindset work and why.</p>
+<h3>🧠 Final reflection</h3>
+<ul>
+<li>When was the last time you <em>claimed</em> a growth mindset but <em>behaved</em> from the fixed end? What</li>
+</ul>
+<p>  triggered it?</p>
+<h3>🔗 Sources to verify</h3>
+<ul>
+<li>Yeager et al. (2019), <em>Nature</em> 573 · Sisk et al. (2018), <em>Psychological Science</em> · Dweck &amp;</li>
+</ul>
+<p>  Yeager (2019), <em>Perspectives on Psychological Science</em> · McKinsey (2020) intentional learning   · Accenture learning report · Paul Graham, <em>How to Do Great Work</em> (paulgraham.com).</p>
+<h3>🧩 Connections</h3>
+<ul>
+<li><strong>Predecessors:</strong> Atom 1. <strong>Successors:</strong> Atom 3 (the reframing move that operationalizes the</li>
+</ul>
+<p>  <em>real</em> version).</p></section>
+<section class="page" id="page-atom-3" data-id="atom-3"><label class="donebox"><input type="checkbox" class="donechk" data-atom="atom-3"> Mark this atom complete</label><h2>⚛ Learning Atom 3 — <em>The Power of Yet: a reframing protocol</em></h2>
+<p><strong>Phase:</strong> 🙈 2 · Visual Exploration (<em>see</em>) → first reps · <strong>KSA:</strong> 🛠️ Skill · <strong>Target level:</strong> L2 · <strong>Component id:</strong> <code>S-yet-reframe</code></p>
+<h3>🎯 Learning objective</h3>
+<ul>
+<li><strong>Apply</strong> a concrete "power of yet" reframing move that converts a fixed-mindset reaction into</li>
+</ul>
+<p>  a next learning action — on a <em>real</em> setback, on demand.</p>
+<h3>🧩 Prerequisites</h3>
+<ul>
+<li>Atoms 1–2. A current, genuine struggle you can practice on.</li>
+</ul>
+<h3>🧭 Atom description</h3>
+<p>Knowledge doesn't change behavior; a <strong>rehearsed move</strong> does. This atom turns the science into a 4-step protocol you can run in under two minutes whenever you hit a wall. It's the first thing in this course you'll be assessed on <em>doing</em>, not <em>knowing</em>.</p>
+<hr>
+<h3>🖼️ See — Mental model: the <strong>YET Loop</strong></h3>
+<div class="promptcard"><div class="promptcard-h"><span>🖼️ Image-generation prompt</span><button class="copybtn" type="button">Copy</button></div><pre><code>Create a circular &quot;loop&quot; diagram titled &quot;The YET Loop&quot;. Four nodes around a circle connected by
+arrows, each with a small icon: 1) &quot;NAME the fixed thought&quot; (icon: thought bubble), 2) &quot;ADD the
+word &#x27;yet&#x27;&quot; (icon: small gold key), 3) &quot;CHOOSE one strategy or source of help&quot; (icon: compass),
+4) &quot;TAKE the smallest next action&quot; (icon: footstep). Center label: &quot;YET&quot;. Use ADA brand colors
+(Indigo #1E2A6E nodes with white text, Turquoise #15B5C6 arrows, one Gold #E0A53C accent on the
+&#x27;yet&#x27; step). Flat vector, clean, high contrast, dark Ink #0A1124 background. Square 1:1.</code></pre></div>
+<div class="mermaid">flowchart LR
+  N1[&quot;1 · NAME&lt;br/&gt;the fixed thought&quot;] --&gt; N2[&quot;2 · ADD &#x27;yet&#x27;&lt;br/&gt;reframe the claim&quot;]
+  N2 --&gt; N3[&quot;3 · CHOOSE&lt;br/&gt;one strategy / source of help&quot;]
+  N3 --&gt; N4[&quot;4 · ACT&lt;br/&gt;smallest next step&quot;]
+  N4 -. repeat on next wall .-&gt; N1</div>
+<p><strong>The protocol, in words</strong></p>
+<ol>
+<li><strong>Name</strong> the fixed thought out loud or on paper, verbatim: *"I'm just not good at public</li>
+</ol>
+<p>   speaking."* (Naming it strips its authority.)</p>
+<ol>
+<li><strong>Add "yet"</strong> to convert a verdict into a status: <em>"I'm not good at public speaking <strong>yet</strong>."</em></li>
+</ol>
+<p>   "Yet" smuggles in time, growth, and agency.</p>
+<ol>
+<li><strong>Choose one</strong> strategy or source of help — not ten. *"I'll record a 2-minute version and get</li>
+</ol>
+<p>   one piece of feedback from Priya."* Strategy + help is the part Atom 2 said most people skip.</p>
+<ol>
+<li><strong>Act</strong> on the smallest next step <em>today</em>. Momentum, not a master plan, breaks the fixed</li>
+</ol>
+<p>   spiral.</p>
+<hr>
+<h3>🎬 Watch — Demo screencast: running the YET Loop live (~5 min)</h3>
+<div class="yt" data-id="pN34FNbOKXc"><button class="yt-play" type="button" aria-label="Play video"><span class="yt-tri">&#9654;</span></button><div class="yt-meta"><a href="https://www.youtube.com/watch?v=pN34FNbOKXc" target="_blank" rel="noopener">https://www.youtube.com/watch?v=pN34FNbOKXc</a><div class="yt-cap">Eduardo Briceño / Mindset Works — "The Power of belief: mindset and success" (model the reframe).</div></div></div>
+<blockquote>Facilitator option: record your <em>own</em> 3-minute screencast walking through the YET Loop on a real example from your team — modeling beats explaining.</blockquote>
+<hr>
+<h3>🧪 Practice — The Reframe Worksheet (Worksheet / Exercise)</h3>
+<p>Complete <strong>three</strong> rows from <em>your own life this week</em> (one work, one skill, one personal).</p>
+<div class='tablewrap'><table><thead><tr><th>Fixed thought (verbatim)</th><th>+ "yet" reframe</th><th>One strategy / source of help</th><th>Smallest next action (today)</th></tr></thead><tbody>
+<tr><td><em>e.g. "I can't read this codebase."</em></td><td><em>"…can't read this codebase <strong>yet</strong>."</em></td><td><em>Pair with the module owner for 20 min</em></td><td><em>Open the entry file; map 3 functions</em></td></tr>
+<tr><td></td><td></td><td></td><td></td></tr>
+<tr><td></td><td></td><td></td><td></td></tr>
+<tr><td></td><td></td><td></td><td></td></tr>
+</tbody></table></div>
+<p><strong>AI rehearsal (optional):</strong></p>
+<div class="promptcard"><div class="promptcard-h"><span>🖼️ Image-generation prompt</span><button class="copybtn" type="button">Copy</button></div><pre><code>Act as a supportive but rigorous coach. I&#x27;ll paste a fixed-mindset thought. Walk me through the
+YET Loop: make me (1) restate it with &quot;yet&quot;, (2) propose exactly ONE strategy AND one specific
+person/resource for help, (3) commit to the smallest action I can finish today. Reject vague
+strategies (&quot;study more&quot;) and push for specifics. Then have me run it again on a second thought.</code></pre></div>
+<hr>
+<h3>✅ Evaluate — Skill mini-rubric</h3>
+<div class='tablewrap'><table><thead><tr><th>Criterion</th><th>Excellent (3)</th><th>Adequate (2)</th><th>Needs improvement (1)</th></tr></thead><tbody>
+<tr><td><strong>Accurate reframe</strong></td><td>"Yet" used to change a <em>verdict</em> into a <em>status</em>, not as filler</td><td>Reframe present but generic</td><td>Restates the complaint; no real shift</td></tr>
+<tr><td><strong>Strategy + help</strong></td><td>One <em>specific</em> strategy <strong>and</strong> a named person/resource</td><td>Strategy or help, but vague</td><td>Missing or "just try harder"</td></tr>
+<tr><td><strong>Actionability</strong></td><td>Next step is concrete and doable <em>today</em></td><td>Doable but fuzzy/large</td><td>No real next step</td></tr>
+</tbody></table></div>
+<blockquote>Pass = <strong>2+ on every criterion across all three rows.</strong> This is your first <strong>L2 Skill</strong> evidence for <code>S-yet-reframe</code>.</blockquote>
+<hr>
+<h3>📦 Deliverable</h3>
+<ul>
+<li>The completed Reframe Worksheet (3 rows) + a 2-sentence note on which row was hardest and why.</li>
+</ul>
+<h3>🧠 Final reflection</h3>
+<ul>
+<li>Which step do you skip under pressure — naming, adding <em>yet</em>, choosing help, or acting? That</li>
+</ul>
+<p>  skip is your personal failure point; design around it.</p>
+<h3>🔗 Sources to verify</h3>
+<ul>
+<li>Stanford <strong>Mindset Kit</strong> — "the power of yet" practitioner materials · Briceño/Mindset Works.</li>
+</ul>
+<h3>🧩 Connections</h3>
+<ul>
+<li><strong>Predecessors:</strong> Atoms 1–2. <strong>Successors:</strong> Atom 4 (scale the reframe into a practice loop),</li>
+</ul>
+<p>  Atom 5 (use it on real failure).</p></section>
+<section class="page" id="page-atom-4" data-id="atom-4"><label class="donebox"><input type="checkbox" class="donechk" data-atom="atom-4"> Mark this atom complete</label><h2>⚛ Learning Atom 4 — <em>The Deliberate-Practice Lab</em></h2>
+<p><strong>Phase:</strong> 🙊 3 · Applied Practice (<em>do</em>) · <strong>KSA:</strong> 🛠️ Skill · <strong>Target level:</strong> L2 · <strong>Component id:</strong> <code>S-deliberate-practice</code></p>
+<h3>🎯 Learning objective</h3>
+<ul>
+<li><strong>Design and run</strong> a deliberate-practice loop on a real skill: a stretch target, focused reps,</li>
+</ul>
+<p>  immediate feedback, and a correction — proving the mindset by <em>operationalizing</em> it.</p>
+<h3>🧩 Prerequisites</h3>
+<ul>
+<li>Atoms 1–3 (you can already run the YET Loop).</li>
+</ul>
+<h3>🧭 Atom description</h3>
+<p>A growth mindset without a <em>method</em> stalls at motivation. <strong>Deliberate practice</strong> (Anders Ericsson's research) is that method: it's not "more hours," it's a tight loop of <em>edge-of-ability targets + full attention + immediate feedback + correction</em>. This lab makes the loop concrete on a skill you actually need.</p>
+<hr>
+<h3>📖 Reading — <em>Deliberate practice, minus the 10,000-hour myth</em> (≈ 6 min)</h3>
+<blockquote>Author: ADA Methodology · grounded in Ericsson &amp; Pool, <em>Peak</em> (2016), and Ericsson, Krampe &amp; Tesch-Römer (1993).</blockquote>
+<p>Popular culture compressed Ericsson's work into "10,000 hours" — and got it wrong. The hours were a <em>correlation in one study of violinists</em>, not a magic threshold, and Ericsson spent years correcting it. The real finding is about the <strong>structure</strong> of practice, not the volume. Ordinary practice plateaus: once you can do something "well enough," autopilot takes over and you stop improving even with years of repetition (think of your driving). <strong>Deliberate practice</strong> breaks the plateau with four ingredients:</p>
+<ol>
+<li><strong>A specific stretch target</strong> just beyond your current reliable ability — concrete enough to</li>
+</ol>
+<p>   tell if you hit it (<em>"land the talk's opening in 30s without filler words,"</em> not "get better    at speaking").</p>
+<ol>
+<li><strong>Focused repetition</strong> with full attention — short, intense, deliberate reps, not background</li>
+</ol>
+<p>   grinding.</p>
+<ol>
+<li><strong>Immediate, specific feedback</strong> — from a coach, a rubric, a recording, tests, or a metric —</li>
+</ol>
+<p>   so error is visible <em>now</em>.</p>
+<ol>
+<li><strong>Correction</strong> — adjust the next rep based on the feedback. Feedback you don't act on is</li>
+</ol>
+<p>   trivia.</p>
+<p>This is where mindset becomes muscle: the loop <em>requires</em> you to seek the edge (challenge), treat errors as data (failure = learning), and use feedback (coachability). McKinsey's work on <em>intentional learning</em> makes the same point for careers — the differentiator isn't talent, it's turning everyday work into reps with feedback. Y Combinator gives founders the builder's version: ship, measure, learn, iterate — a deliberate-practice loop pointed at a product.</p>
+<p><strong>Key takeaways</strong></p>
+<ul>
+<li><input type="checkbox" disabled> "10,000 hours" is a myth; <strong>structure</strong> beats volume.</li>
+<li><input type="checkbox" disabled> The loop = <em>stretch target → focused reps → immediate feedback → correction.</em></li>
+<li><input type="checkbox" disabled> Ordinary practice plateaus; deliberate practice keeps you at the edge on purpose.</li>
+<li><input type="checkbox" disabled> The loop <em>is</em> a growth mindset, made operational.</li>
+</ul>
+<hr>
+<h3>🎬 Watch — Trevor Ragan (The Learner Lab) on the practice that actually works</h3>
+<div class="yt" data-id="5eW6Eagr9XA"><button class="yt-play" type="button" aria-label="Play video"><span class="yt-tri">&#9654;</span></button><div class="yt-meta"><a href="https://www.youtube.com/watch?v=5eW6Eagr9XA" target="_blank" rel="noopener">https://www.youtube.com/watch?v=5eW6Eagr9XA</a><div class="yt-cap">"The Struggle Switch" / learning how to learn — embracing productive struggle in practice.</div></div></div>
+<hr>
+<h3>🖼️ See — Diagram: the deliberate-practice loop vs. the plateau</h3>
+<div class="promptcard"><div class="promptcard-h"><span>🖼️ Image-generation prompt</span><button class="copybtn" type="button">Copy</button></div><pre><code>Create a diagram titled &quot;Why Deliberate Practice Beats the Plateau&quot;. Top: a flat dotted line
+labeled &quot;Ordinary practice (autopilot) → plateau&quot;, with a small grey figure coasting. Bottom: a
+rising staircase made of repeating loop icons; each step labeled in sequence &quot;Stretch target →
+Focused reps → Immediate feedback → Correction&quot;, climbing upward and to the right toward a gold
+flag &quot;New ceiling&quot;. Use ADA brand colors (Indigo #1E2A6E, Turquoise #15B5C6 arrows, Gold
+#E0A53C flag) on a light background, flat vector, clean sans-serif, high contrast. 16:9.</code></pre></div>
+<div class="mermaid">flowchart LR
+  T[&quot;🎯 Stretch target&lt;br/&gt;(just past your edge)&quot;] --&gt; R[&quot;🔁 Focused reps&lt;br/&gt;(full attention)&quot;]
+  R --&gt; F[&quot;📣 Immediate feedback&lt;br/&gt;(coach · rubric · metric)&quot;]
+  F --&gt; C[&quot;🛠️ Correction&lt;br/&gt;(adjust next rep)&quot;]
+  C -. raise the target .-&gt; T</div>
+<hr>
+<h3>🧪 Practice — The Lab (Lab + Pair Programming)</h3>
+<p>Run <strong>two full loops</strong> on a real skill you need in your role.</p>
+<ul>
+<li><strong>Step 0 — Pick a skill</strong> that matters at work and is currently <em>uncomfortable</em> (e.g.,</li>
+</ul>
+<p>  reviewing a PR, explaining a design, writing a test, facilitating a stand-up).</p>
+<ul>
+<li><strong>Step 1 — Define a stretch target</strong> for one rep, measurable in ≤ 10 minutes.</li>
+<li><strong>Step 2 — Set the feedback source</strong> <em>before</em> you start: a peer, a checklist/rubric, a</li>
+</ul>
+<p>  recording, or a test you can run.</p>
+<ul>
+<li><strong>Step 3 — Rep 1:</strong> do it. Capture feedback immediately.</li>
+<li><strong>Step 4 — Correction:</strong> write the single change you'll make.</li>
+<li><strong>Step 5 — Rep 2:</strong> do it again with the correction. Capture feedback again.</li>
+<li><strong>Pair step:</strong> swap with a partner — you observe their loop and give feedback against the</li>
+</ul>
+<p>  rubric; they do the same for you. (This is your <code>collaborate</code> modality.)</p>
+<p><strong>Lab log template</strong></p>
+<div class='tablewrap'><table><thead><tr><th></th><th>Rep 1</th><th>Rep 2</th></tr></thead><tbody>
+<tr><td>Stretch target</td><td></td><td></td></tr>
+<tr><td>Feedback source</td><td></td><td></td></tr>
+<tr><td>What happened</td><td></td><td></td></tr>
+<tr><td>Specific feedback</td><td></td><td></td></tr>
+<tr><td>Correction applied</td><td></td><td></td></tr>
+</tbody></table></div>
+<hr>
+<h3>✅ Evaluate — Performance task (skill rubric)</h3>
+<div class='tablewrap'><table><thead><tr><th>Criterion</th><th>Excellent (3)</th><th>Adequate (2)</th><th>Needs improvement (1)</th></tr></thead><tbody>
+<tr><td><strong>Target quality</strong></td><td>Specific, measurable, genuinely at the edge</td><td>Somewhat specific</td><td>Vague ("get better")</td></tr>
+<tr><td><strong>Feedback loop</strong></td><td>Real, immediate feedback captured both reps</td><td>Feedback once / delayed</td><td>No usable feedback</td></tr>
+<tr><td><strong>Visible correction</strong></td><td>Rep 2 clearly changed based on feedback</td><td>Minor/uncertain change</td><td>No change between reps</td></tr>
+<tr><td><strong>Reframe under struggle</strong></td><td>Used the YET Loop when it got hard</td><td>Some reframing</td><td>Defaulted to fixed read</td></tr>
+</tbody></table></div>
+<blockquote>Pass = <strong>2+ on all four</strong> → <strong>L2</strong> evidence for <code>S-deliberate-practice</code> (and partial <code>A-growth-mindset</code>).</blockquote>
+<hr>
+<h3>📦 Deliverable</h3>
+<ul>
+<li>The completed two-rep lab log + a 3-sentence note: what improved between reps, and the</li>
+</ul>
+<p>  feedback that caused it.</p>
+<h3>🧠 Final reflection</h3>
+<ul>
+<li>Where in your <em>normal week</em> could you quietly insert one deliberate-practice loop with a</li>
+</ul>
+<p>  feedback source — turning routine work into reps?</p>
+<h3>🔗 Sources to verify</h3>
+<ul>
+<li>Ericsson &amp; Pool, <em>Peak</em> (2016) · Ericsson, Krampe &amp; Tesch-Römer (1993), <em>Psychological Review</em></li>
+</ul>
+<p>  · McKinsey (2020), <em>Intentional learning</em> · YC Startup School (startupschool.org).</p>
+<h3>🧩 Connections</h3>
+<ul>
+<li><strong>Predecessors:</strong> Atom 3. <strong>Successors:</strong> Atom 5 (feedback + failure as identity), Atom 6</li>
+</ul>
+<p>  (the loop, sustained for 21 days).</p></section>
+<section class="page" id="page-atom-5" data-id="atom-5"><label class="donebox"><input type="checkbox" class="donechk" data-atom="atom-5"> Mark this atom complete</label><h2>⚛ Learning Atom 5 — <em>Failure Résumé &amp; Feedback Seeking</em></h2>
+<p><strong>Phase:</strong> 🙊 3 (<em>do</em>) → 🐵 4 (<em>share</em>) · <strong>KSA:</strong> 🌱 Ability · <strong>Target level:</strong> L2→L3 · <strong>Component id:</strong> <code>A-growth-mindset</code> (+ <code>A-adaptability</code>)</p>
+<h3>🎯 Learning objective</h3>
+<ul>
+<li><strong>Demonstrate</strong> growth-mindset <em>behavior</em>: reinterpret real failures as learning, and</li>
+</ul>
+<p>  proactively seek challenging feedback — across more than one occasion, with peers watching.</p>
+<h3>🧩 Prerequisites</h3>
+<ul>
+<li>Atoms 1–4. Willingness to be a little uncomfortable in front of peers (that's the point).</li>
+</ul>
+<h3>🧭 Atom description</h3>
+<p>You can't quiz your way to an attitude. This atom builds the <strong>Ability</strong> through two authentic, slightly vulnerable acts that high performers do on purpose: writing a <strong>failure résumé</strong> and <strong>actively soliciting hard feedback</strong> — then sharing both with a peer group. This is your first <em>behavioral</em> evidence, assessed across occasions.</p>
+<hr>
+<h3>📖 Reading — <em>Why the best professionals collect their failures</em> (≈ 5 min)</h3>
+<blockquote>Author: ADA Methodology.</blockquote>
+<p>Most résumés are highlight reels. A <strong>failure résumé</strong> (popularized by Stanford's Tina Seelig and economist Johannes Haushofer, who published his own) is the inverse: a deliberate record of rejections, flops, and dead ends — <em>plus what each one taught you.</em> Writing one does three things. It <strong>normalizes failure</strong> as the cost of attempting hard things (if your résumé has no failures, you haven't reached far enough). It <strong>converts events into data</strong> — the core growth-mindset move from Atom 1, now applied to your own history. And it <strong>builds the muscle of saying it out loud</strong>, which is what makes feedback-seeking possible.</p>
+<p><strong>Feedback seeking</strong> is the second behavior, and it's a stronger signal of a growth mindset than feedback <em>receiving</em>. Research on feedback-seeking behavior shows that people who actively ask for critical input learn and adapt faster — but most of us avoid it because, in the moment, it threatens our competence image (the fixed trigger from Atom 2). The fix is structural: ask a <strong>specific</strong> question to a <strong>specific</strong> person at a <strong>specific</strong> time, so it's easy to give and hard to dodge. <em>"What's one thing I could have done better in that review?"</em> beats <em>"any feedback?"</em> every time.</p>
+<p>The workplace stakes are real: McKinsey, BCG, and Accenture all tie organizational performance to a <em>learning culture</em> where people surface mistakes and ask for help without fear. You can't control the whole culture — but you can be the person who models it.</p>
+<p><strong>Key takeaways</strong></p>
+<ul>
+<li><input type="checkbox" disabled> A failure résumé turns your own history into learning data and normalizes reaching far.</li>
+<li><input type="checkbox" disabled> <strong>Seeking</strong> feedback signals growth mindset more than passively receiving it.</li>
+<li><input type="checkbox" disabled> Make feedback easy to give: specific question + specific person + specific moment.</li>
+<li><input type="checkbox" disabled> Modeling this behavior quietly upgrades your team's psychological safety.</li>
+</ul>
+<hr>
+<h3>🎬 Watch — Failure &amp; feedback as fuel</h3>
+<div class="yt" data-id="H14bBuluwB8"><button class="yt-play" type="button" aria-label="Play video"><span class="yt-tri">&#9654;</span></button><div class="yt-meta"><a href="https://www.youtube.com/watch?v=H14bBuluwB8" target="_blank" rel="noopener">https://www.youtube.com/watch?v=H14bBuluwB8</a><div class="yt-cap">Angela Duckworth — "Grit: the power of passion and perseverance" (TED) — persistence + learning.</div></div></div>
+<div class="yt" data-id="FWTNMzK9vG4"><button class="yt-play" type="button" aria-label="Play video"><span class="yt-tri">&#9654;</span></button><div class="yt-meta"><a href="https://www.youtube.com/watch?v=FWTNMzK9vG4" target="_blank" rel="noopener">https://www.youtube.com/watch?v=FWTNMzK9vG4</a><div class="yt-cap">Sheila Heen — "How to use others' feedback to learn and grow" (receiving feedback well).</div></div></div>
+<hr>
+<h3>🖼️ See — Template: the Failure Résumé</h3>
+<div class="promptcard"><div class="promptcard-h"><span>🖼️ Image-generation prompt</span><button class="copybtn" type="button">Copy</button></div><pre><code>Design a clean one-page &quot;Failure Résumé&quot; template graphic. Header with a small phoenix/spark
+icon and title &quot;Failure Résumé — a record of reaches and lessons&quot;. Below, a 3-column table
+styled like a résumé: column 1 &quot;The reach / attempt&quot;, column 2 &quot;What went wrong&quot;, column 3
+&quot;What it taught me → next reach&quot;. Add a sidebar callout: &quot;If there are no failures here, aim
+higher.&quot; Use ADA brand colors (Indigo #1E2A6E headers, Turquoise #15B5C6 rules, Gold #E0A53C
+accent on the callout) on white, flat vector, professional, legible. A4 portrait.</code></pre></div>
+<hr>
+<h3>🧪 Practice — Two behavioral acts (Project Task + Study Group)</h3>
+<p><strong>Act 1 — Write your Failure Résumé (occasion 1).</strong> List 4–6 real reaches that didn't work out (a rejected proposal, a missed deadline, a skill you bailed on). For each, add <em>what it taught you</em> and <em>the next reach it points to.</em> No sugar-coating, no false modesty.</p>
+<div class='tablewrap'><table><thead><tr><th>The reach / attempt</th><th>What went wrong</th><th>What it taught me → next reach</th></tr></thead><tbody>
+<tr><td></td><td></td><td></td></tr>
+<tr><td></td><td></td><td></td></tr>
+<tr><td></td><td></td><td></td></tr>
+</tbody></table></div>
+<p><strong>Act 2 — Run a real feedback-seeking ask (occasion 2).</strong> Pick something you did recently. Ask <strong>one specific person</strong> a <strong>specific</strong> question within 48 hours. Record: the question you asked, what you heard, and the one change you'll make. Resist defending yourself — your job is to collect data.</p>
+<p><strong>Share (Study Group).</strong> Bring both to a small peer group (3–5 people). Each person reads one failure-résumé line aloud and shares one piece of feedback they sought. Peers give <em>supportive challenge</em>, not comfort. (occasion 3)</p>
+<hr>
+<h3>✅ Evaluate — Behavioral assessment (<code>ability-behavioral</code>)</h3>
+<div class='tablewrap'><table><thead><tr><th>Criterion</th><th>Excellent (3)</th><th>Adequate (2)</th><th>Needs improvement (1)</th></tr></thead><tbody>
+<tr><td><strong>Failure as data</strong></td><td>Names real failures <em>and</em> the specific learning + next reach</td><td>Lists failures, thin on learning</td><td>Vague, defensive, or sanitized</td></tr>
+<tr><td><strong>Feedback seeking</strong></td><td>Specific ask to a specific person; acted on it</td><td>Asked, but generic or unacted</td><td>Avoided / only received passively</td></tr>
+<tr><td><strong>Out-loud vulnerability</strong></td><td>Shared candidly; gave peers supportive challenge</td><td>Shared with hedging</td><td>Withheld / deflected</td></tr>
+<tr><td><strong>Across occasions</strong></td><td>Behavior consistent across all 3 occasions</td><td>2 of 3</td><td>Only when pushed</td></tr>
+</tbody></table></div>
+<blockquote>This produces <strong>behavioral evidence</strong> toward <code>A-growth-mindset</code> <strong>L2→L3</strong>. The Ability is not certified here alone — Atom 6 sustains it across weeks.</blockquote>
+<hr>
+<h3>📦 Deliverable</h3>
+<ul>
+<li>Failure résumé (4–6 lines) + a feedback-seeking log (question / response / change) + a</li>
+</ul>
+<p>  one-line peer reflection from the study group.</p>
+<h3>🧠 Final reflection</h3>
+<ul>
+<li>Which was harder — writing the failures or asking for the feedback? What does that tell you</li>
+</ul>
+<p>  about your fixed-mindset triggers?</p>
+<h3>🔗 Sources to verify</h3>
+<ul>
+<li>Tina Seelig (Stanford d.school) on the "failure résumé" · Johannes Haushofer's published "CV</li>
+</ul>
+<p>  of Failures" · Stone &amp; Heen, <em>Thanks for the Feedback</em> · feedback-seeking behavior research   (Ashford et al.).</p>
+<h3>🧩 Connections</h3>
+<ul>
+<li><strong>Predecessors:</strong> Atoms 1–4. <strong>Successors:</strong> Atom 6 / capstone (sustain across 21 days + 360).</li>
+</ul></section>
+<section class="page" id="page-atom-6" data-id="atom-6"><label class="donebox"><input type="checkbox" class="donechk" data-atom="atom-6"> Mark this atom complete</label><h2>⚛ Learning Atom 6 — <em>Growth in the Wild (21-Day Challenge)</em> · 🚀 Capstone</h2>
+<p><strong>Phase:</strong> 🐵 4 · Collaboration &amp; Reflection (<em>share</em>) · <strong>KSA:</strong> 🌱 Ability · <strong>Target level:</strong> L3 · <strong>Component id:</strong> <code>A-growth-mindset</code> (+ <code>A-adaptability</code>)</p>
+<h3>🎯 Learning objective</h3>
+<ul>
+<li><strong>Sustain and evidence</strong> a growth mindset on a <em>real</em> stretch goal over 21 days — running</li>
+</ul>
+<p>  deliberate-practice loops, reframing setbacks, seeking feedback, and reflecting — culminating   in a peer-reviewed showcase.</p>
+<h3>🧩 Prerequisites</h3>
+<ul>
+<li>All prior atoms. A genuine, slightly scary stretch goal you can move on for three weeks.</li>
+</ul>
+<h3>🧭 Atom description</h3>
+<p>An attitude is proven by <strong>behavior across time</strong>, so the capstone is not a presentation you make <em>about</em> growth mindset — it's three weeks of <em>living it</em> on something that matters, documented as you go. This is the atom that turns the badge from "knows about" into "does." It integrates every KSA in the course.</p>
+<blockquote>📄 The full grading brief is in <a href="../capstone.md"><code>../capstone.md</code></a>; rubrics in <a href="../rubrics.md"><code>../rubrics.md</code></a>.</blockquote>
+<hr>
+<h3>🧪 The challenge</h3>
+<ol>
+<li><strong>Choose a stretch goal (Day 0).</strong> Real and uncomfortable: *"run my first design review,"</li>
+</ol>
+<p>   "ship a feature in an unfamiliar language," "give a talk at the team demo."* It must have a    visible outcome and room to fail.</p>
+<ol>
+<li><strong>Design the loop (Day 0).</strong> Define your stretch targets, your feedback source(s), and a</li>
+</ol>
+<p>   daily 20–40 min practice block. (Reuses Atom 4.)</p>
+<ol>
+<li><strong>Run it for 21 days.</strong> Each session: one deliberate-practice rep + capture feedback. Each</li>
+</ol>
+<p>   time you hit a wall, run the <strong>YET Loop</strong> and log it. (Reuses Atoms 3–4.)</p>
+<ol>
+<li><strong>Seek feedback weekly (×3 occasions).</strong> A specific ask to a specific person each week.</li>
+</ol>
+<p>   (Reuses Atom 5.)</p>
+<ol>
+<li><strong>Keep a growth journal.</strong> A short daily/most-days entry: what you attempted, what failed,</li>
+</ol>
+<p>   what you learned, the next reach. (<code>read: Journal / Diary</code> modality.)</p>
+<ol>
+<li><strong>Showcase (Demo Day).</strong> A 5-minute share to the cohort: the goal, your biggest <em>useful</em></li>
+</ol>
+<p>   failure, what the feedback changed, and your evidence. Then a <strong>peer + mentor 360</strong>.</p>
+<p>This gives the <strong>5 assessed occasions</strong> the primary Ability requires: the curveball reframes, three feedback asks, the sustained journal, and the showcase.</p>
+<hr>
+<h3>📖 Read — Growth journal (your own, Journal / Diary)</h3>
+<p>Use this lightweight daily template (most days for 21 days):</p>
+<pre class="code"><span class="lang">text</span><code>Day __ / 21   ·   Goal: ____________________
+- Attempted today:
+- Where it got hard (and my YET Loop reframe):
+- Feedback / data I got:
+- What I learned → next reach:
+- Mindset self-rating (1 fixed ··· 5 growth): __</code></pre>
+<hr>
+<h3>🖼️ See — The 21-day growth arc</h3>
+<div class="promptcard"><div class="promptcard-h"><span>🖼️ Image-generation prompt</span><button class="copybtn" type="button">Copy</button></div><pre><code>Create an inspiring but professional &quot;21-Day Growth Arc&quot; graphic. A horizontal timeline from
+Day 0 to Day 21 shaped as a gently rising, jagged line (ups AND downs — show 3–4 dips labeled
+&quot;setback → reframe&quot;). Mark &quot;Week 1 / 2 / 3&quot; checkpoints with small feedback-loop icons, and 3
+gold stars at the weekly &quot;feedback ask&quot; points. End at a gold flag &quot;Showcase + 360&quot;. Use ADA
+brand colors (Indigo #1E2A6E line on light, Turquoise #15B5C6 checkpoints, Gold #E0A53C accents)
+flat vector, clean sans-serif, high contrast. 16:9.</code></pre></div>
+<div class="mermaid">flowchart LR
+  D0[&quot;Day 0&lt;br/&gt;Pick goal + design loop&quot;] --&gt; W1[&quot;Week 1&lt;br/&gt;reps · reframe · feedback #1&quot;]
+  W1 --&gt; W2[&quot;Week 2&lt;br/&gt;reps · reframe · feedback #2&quot;]
+  W2 --&gt; W3[&quot;Week 3&lt;br/&gt;reps · reframe · feedback #3&quot;]
+  W3 --&gt; SHOW[&quot;🎤 Showcase + 360&quot;]
+  SHOW --&gt; BADGE[&quot;🏅 Growth Mindset Practitioner&quot;]</div>
+<hr>
+<h3>🤝 Collaborate — Showcase / Demo Day + 360</h3>
+<ul>
+<li><strong>5-min showcase</strong> per learner (template in <code>capstone.md</code>).</li>
+<li><strong>Peer 360:</strong> each learner rates 2 peers on the behavioral rubric and gives one strength + one</li>
+</ul>
+<p>  stretch.</p>
+<ul>
+<li><strong>Mentor review:</strong> validates evidence against the rubric (human-in-the-loop sign-off).</li>
+</ul>
+<hr>
+<h3>✅ Evaluate — Behavioral rubric + Capstone-5</h3>
+<p>Graded with the <strong>behavioral rubric</strong> (consistency across the 5 occasions, self-awareness, response to setback/feedback) <strong>and</strong> the standard <strong>Capstone-5</strong> rubric. Full tables in <a href="../rubrics.md"><code>../rubrics.md</code></a>.</p>
+<blockquote><strong>Badge issued</strong> when evidence from <code>atom-3</code>, <code>atom-4</code>, <code>atom-5</code>, and this capstone is verified → sets <code>A-growth-mindset = 3</code>, <code>A-adaptability = 2</code>, plus the two L2 Skills in the learner's <a href="../skills-map.md">skills map</a>.</blockquote>
+<hr>
+<h3>📦 Deliverable</h3>
+<ul>
+<li>21-day growth journal + deliberate-practice logs + 3 feedback-ask records + a 5-minute</li>
+</ul>
+<p>  showcase (slides or recording) + completed peer 360 forms.</p>
+<h3>🧠 Final reflection</h3>
+<ul>
+<li>Compare your Day-0 and Day-21 mindset self-ratings. What <em>behavior</em> changed — and what will</li>
+</ul>
+<p>  you keep doing after the badge?</p>
+<h3>🔗 Sources to verify</h3>
+<ul>
+<li>Stanford Mindset Kit · Ericsson, <em>Peak</em> · McKinsey <em>Intentional learning</em> · YC Startup School.</li>
+</ul>
+<h3>🧩 Connections</h3>
+<ul>
+<li><strong>Predecessors:</strong> all atoms. <strong>Successors:</strong> the learner's <a href="../skills-map.md">skills map</a> and</li>
+</ul>
+<p>  job match.</p></section>
+<section class="page" id="page-capstone" data-id="capstone"><h1>🚀 Capstone — <em>Growth in the Wild: a 21-Day Stretch Challenge</em></h1>
+<p>The capstone is delivered as <a href="atoms/atom-6-growth-in-the-wild-capstone.md">Atom 6</a>. This file is the <strong>grading brief</strong>: what learners submit, how it maps to KSA, and the showcase format.</p>
+<hr>
+<h2>🎯 The brief</h2>
+<blockquote>Choose a real, slightly scary <strong>stretch goal</strong> and pursue it for <strong>21 days</strong> using everything in this course — deliberate-practice loops, the YET Loop for setbacks, weekly feedback asks, and a growth journal — then <strong>showcase</strong> it to your cohort for a peer + mentor 360.</blockquote>
+<p>The point is not a polished outcome. The point is <strong>documented behavior under real difficulty</strong>. A capstone where everything went smoothly scores <em>lower</em> than one full of setbacks that were reframed and learned from — because the Ability is only visible when things get hard.</p>
+<hr>
+<h2>📦 What to submit</h2>
+<ul>
+<li><input type="checkbox" disabled> <strong>Goal one-pager</strong> — the stretch goal, why it's at your edge, and your loop design (targets, feedback sources, practice block).</li>
+<li><input type="checkbox" disabled> <strong>Growth journal</strong> — most-days entries across 21 days (template in Atom 6).</li>
+<li><input type="checkbox" disabled> <strong>Deliberate-practice logs</strong> — at least 8 rep logs showing target → feedback → correction.</li>
+<li><input type="checkbox" disabled> <strong>Feedback-ask records ×3</strong> — one specific ask per week (question / response / change made).</li>
+<li><input type="checkbox" disabled> <strong>Setback log</strong> — at least 3 YET-Loop reframes of real walls you hit.</li>
+<li><input type="checkbox" disabled> <strong>Showcase</strong> — a 5-minute talk or recording (structure below).</li>
+<li><input type="checkbox" disabled> <strong>Peer 360 forms</strong> — your ratings of 2 peers + the ratings you received.</li>
+</ul>
+<hr>
+<h2>🎤 Showcase structure (5 minutes)</h2>
+<ol>
+<li><strong>The reach (30s)</strong> — what you went after and why it scared you a little.</li>
+<li><strong>The best failure (90s)</strong> — the most <em>useful</em> thing that went wrong, and the YET-Loop reframe.</li>
+<li><strong>What feedback changed (90s)</strong> — a before/after from your weekly asks.</li>
+<li><strong>The evidence (60s)</strong> — journal + logs; your Day-0 vs Day-21 mindset self-rating.</li>
+<li><strong>What you'll keep (30s)</strong> — the one habit that outlives the badge.</li>
+</ol>
+<hr>
+<h2>🧬 How the capstone maps to KSA</h2>
+<div class='tablewrap'><table><thead><tr><th>Capstone element</th><th>Evidences</th><th>Component</th></tr></thead><tbody>
+<tr><td>Accurate framing of mindset in the goal one-pager</td><td>Understanding the construct</td><td>🧠 K-mindset-science, K-mindset-nuance</td></tr>
+<tr><td>YET-Loop reframes in the setback log</td><td>The reframing move under pressure</td><td>🛠️ S-yet-reframe</td></tr>
+<tr><td>Deliberate-practice rep logs</td><td>Designed + ran feedback loops</td><td>🛠️ S-deliberate-practice</td></tr>
+<tr><td>Journal + feedback asks + showcase across 21 days</td><td>Failure-as-learning, feedback-seeking, persistence</td><td>🌱 A-growth-mindset (<strong>L3</strong>)</td></tr>
+<tr><td>Handling pivots/walls without stalling</td><td>Stayed effective amid change</td><td>🌱 A-adaptability (L2)</td></tr>
+</tbody></table></div>
+<hr>
+<h2>✅ Grading</h2>
+<p>Two instruments, both in <a href="rubrics.md"><code>rubrics.md</code></a>:</p>
+<ul>
+<li><strong>Behavioral rubric</strong> — consistency across the <strong>5 assessed occasions</strong>, self-awareness, and</li>
+</ul>
+<p>  response to setback/feedback. <em>(This is what certifies the Ability.)</em></p>
+<ul>
+<li><strong>Capstone-5 rubric</strong> — the standard 5-criteria ADA capstone rubric (relevance, application,</li>
+</ul>
+<p>  problem-solving, clarity, collaboration).</p>
+<blockquote><strong>Pass for the badge:</strong> behavioral rubric ≥ 2 on every criterion <strong>across occasions</strong> AND capstone-5 weighted score ≥ 60%, <strong>verified by a mentor</strong>. See <a href="skills-map.md"><code>skills-map.md</code></a> for what the badge unlocks.</blockquote></section>
+<section class="page" id="page-rubrics" data-id="rubrics"><h1>📊 Rubrics — Growth Mindset Micro-Credential</h1>
+<p>All assessment instruments used across the course. Atoms reference these by <code>rubric</code> flavor: <code>knowledge-mini</code>, <code>skill</code>, <code>ability-behavioral</code>, <code>capstone-5</code>.</p>
+<hr>
+<h2>🔹 <code>knowledge-mini</code> — concept checks (Atoms 1–2)</h2>
+<p>Quick formative check; used for pop quizzes and AI Q&amp;A checks.</p>
+<div class='tablewrap'><table><thead><tr><th>Criterion</th><th>Excellent (3)</th><th>Adequate (2)</th><th>Needs improvement (1)</th></tr></thead><tbody>
+<tr><td><strong>Accuracy</strong></td><td>Correct, and avoids the common myths</td><td>Mostly correct</td><td>Repeats a myth as fact</td></tr>
+<tr><td><strong>Precision</strong></td><td>States the <em>bounded</em> claim (developable ability + response to struggle)</td><td>Roughly right</td><td>Slogan-level ("just try harder")</td></tr>
+<tr><td><strong>Self-application</strong></td><td>Connects to a real personal example</td><td>Generic example</td><td>None</td></tr>
+</tbody></table></div>
+<blockquote>Pass = 2+ on each. Knowledge here is intentionally <strong>L1</strong> — it only enables the Abilities.</blockquote>
+<hr>
+<h2>🔹 <code>skill</code> — performance mini-rubric (Atoms 3–4)</h2>
+<p>For the YET Loop reframe and the deliberate-practice lab.</p>
+<div class='tablewrap'><table><thead><tr><th>Criterion</th><th>Excellent (3)</th><th>Adequate (2)</th><th>Needs improvement (1)</th></tr></thead><tbody>
+<tr><td><strong>Correct move</strong></td><td>Executes the technique as designed (reframe / loop)</td><td>Minor gaps</td><td>Technique not really used</td></tr>
+<tr><td><strong>Strategy + feedback</strong></td><td>Specific strategy AND a real feedback source</td><td>One present, vague</td><td>Missing</td></tr>
+<tr><td><strong>Visible improvement</strong></td><td>Clear change/correction between attempts</td><td>Slight change</td><td>No change</td></tr>
+<tr><td><strong>Reframe under struggle</strong></td><td>Uses YET Loop when stuck</td><td>Sometimes</td><td>Defaults to fixed read</td></tr>
+</tbody></table></div>
+<blockquote>Pass = 2+ on each → <strong>L2</strong> evidence for the relevant Skill component.</blockquote>
+<hr>
+<h2>🔹 <code>ability-behavioral</code> — the attitude rubric (Atoms 5–6) ⭐</h2>
+<p>The instrument that <strong>certifies the Ability</strong>. An attitude cannot be proven by one moment or a quiz — this rubric explicitly requires evidence <strong>across the 5 assessed occasions</strong> (2 curveball reframes, 3 feedback asks, sustained journal, showcase).</p>
+<div class='tablewrap'><table><thead><tr><th>Criterion</th><th>Excellent (3)</th><th>Adequate (2)</th><th>Needs improvement (1)</th></tr></thead><tbody>
+<tr><td><strong>Consistency across occasions</strong></td><td>Growth behavior shown across all 5 occasions</td><td>Shown in 3–4</td><td>Only when pushed</td></tr>
+<tr><td><strong>Failure as learning</strong></td><td>Reframes setbacks as data; reaches again</td><td>Accepts setbacks passively</td><td>Defensive / avoids reaching</td></tr>
+<tr><td><strong>Feedback seeking</strong></td><td>Proactively seeks specific, hard feedback and acts on it</td><td>Seeks occasionally</td><td>Avoids; only receives</td></tr>
+<tr><td><strong>Self-awareness (reflection)</strong></td><td>Names triggers, choices, and growth with insight</td><td>Some reflection</td><td>Minimal / none</td></tr>
+<tr><td><strong>Persistence / adaptability</strong></td><td>Stays effective and re-plans amid walls &amp; change</td><td>Recovers slowly</td><td>Stalls or quits</td></tr>
+</tbody></table></div>
+<blockquote>Pass = 2+ on <strong>every</strong> criterion. Excellent across the board supports <strong>L3</strong> for <code>A-growth-mindset</code>.</blockquote>
+<hr>
+<h2>✨ <code>capstone-5</code> — standard ADA capstone rubric</h2>
+<div class='tablewrap'><table><thead><tr><th>Criterion</th><th>Excellent (5)</th><th>Good (3–4)</th><th>Needs improvement (1–2)</th><th>Weight</th></tr></thead><tbody>
+<tr><td><strong>Relevance (competency alignment)</strong></td><td>Goal is a real, job-relevant stretch; mindset framing accurate</td><td>Mostly relevant</td><td>Weak / off-target</td><td>20%</td></tr>
+<tr><td><strong>Application of skills</strong></td><td>YET Loop + deliberate-practice loops used well and visibly</td><td>Adequate use</td><td>Minimal / incorrect</td><td>25%</td></tr>
+<tr><td><strong>Problem-solving &amp; creativity</strong></td><td>Setbacks reframed into smart next reaches</td><td>Conventional responses</td><td>Stalled at obstacles</td><td>20%</td></tr>
+<tr><td><strong>Clarity &amp; communication</strong></td><td>Journal + showcase clear, honest, well-structured</td><td>Generally clear</td><td>Unclear / sanitized</td><td>15%</td></tr>
+<tr><td><strong>Collaboration &amp; reflection</strong></td><td>Strong feedback-seeking, peer 360, insightful reflection</td><td>Moderate</td><td>Minimal</td><td>20%</td></tr>
+</tbody></table></div>
+<blockquote><strong>Badge pass:</strong> <code>ability-behavioral</code> ≥ 2 on every criterion <strong>across occasions</strong> AND <code>capstone-5</code> weighted ≥ 60%, <strong>mentor-verified</strong> (human-in-the-loop).</blockquote>
+<hr>
+<h2>🧮 Evidence → badge logic</h2>
+<div class="mermaid">flowchart LR
+  A3[&quot;Atom 3&lt;br/&gt;skill ✔&quot;] --&gt; BADGE
+  A4[&quot;Atom 4&lt;br/&gt;skill ✔&quot;] --&gt; BADGE
+  A5[&quot;Atom 5&lt;br/&gt;behavioral ✔&quot;] --&gt; BADGE
+  CAP[&quot;Capstone&lt;br/&gt;behavioral + capstone-5 ✔&quot;] --&gt; BADGE
+  MENTOR[&quot;🧑‍🏫 Mentor verification&quot;] --&gt; BADGE
+  BADGE[&quot;🏅 Growth Mindset Practitioner&lt;br/&gt;A-growth-mindset=3 · A-adaptability=2&quot;]</div></section>
+<section class="page" id="page-skillsmap" data-id="skillsmap"><h1>🗺️ Skills Map — what the badge unlocks</h1>
+<p>How the <strong>🏅 Growth Mindset Practitioner</strong> badge writes into a learner's skills map and closes a real job-match gap. Conforms to <a href="../../specs/skills-map-and-job-matching.md"><code>../../specs/skills-map-and-job-matching.md</code></a>.</p>
+<hr>
+<h2>🏅 What the badge certifies</h2>
+<p>On verified completion, the badge sets these components in the learner's skills map:</p>
+<div class='tablewrap'><table><thead><tr><th>Component</th><th>Type</th><th>Level earned</th></tr></thead><tbody>
+<tr><td><code>A-growth-mindset</code></td><td>🌱 Ability</td><td><strong>3</strong></td></tr>
+<tr><td><code>A-adaptability</code></td><td>🌱 Ability</td><td>2</td></tr>
+<tr><td><code>S-yet-reframe</code></td><td>🛠️ Skill</td><td>2</td></tr>
+<tr><td><code>S-deliberate-practice</code></td><td>🛠️ Skill</td><td>2</td></tr>
+<tr><td><code>K-mindset-science</code></td><td>🧠 Knowledge</td><td>1</td></tr>
+<tr><td><code>K-mindset-nuance</code></td><td>🧠 Knowledge</td><td>1</td></tr>
+</tbody></table></div>
+<pre class="code"><span class="lang">yaml</span><code># fragment merged into the learner&#x27;s skills map on badge issuance
+badge: growth-mindset-practitioner
+issued_on: verified-evidence
+components:
+  A-growth-mindset: 3
+  A-adaptability: 2
+  S-yet-reframe: 2
+  S-deliberate-practice: 2
+  K-mindset-science: 1
+  K-mindset-nuance: 1</code></pre>
+<hr>
+<h2>🎯 Why this matters for job matching</h2>
+<p>Job postings reliably ask for <em>attitudes</em> — "growth mindset," "coachable," "learning agility," "thrives on feedback," "comfortable with ambiguity" — and these are exactly the components a <strong>Knowledge-only</strong> course can never certify. A typical match before and after this badge:</p>
+<div class='tablewrap'><table><thead><tr><th>Job requirement (<code>must_have</code>)</th><th>Before</th><th>After badge</th></tr></thead><tbody>
+<tr><td>Growth mindset / learning agility (Ability ≥ 2)</td><td>❌ 0</td><td>✅ 3</td></tr>
+<tr><td>Adapts to change / ambiguity (Ability ≥ 2)</td><td>⚠️ 1</td><td>✅ 2</td></tr>
+<tr><td>Seeks &amp; acts on feedback (Skill/Ability ≥ 2)</td><td>❌ 0</td><td>✅ via <code>A-growth-mindset</code> + <code>S-yet-reframe</code></td></tr>
+</tbody></table></div>
+<div class="mermaid">flowchart LR
+  GAP[&quot;🔎 Job match gap&lt;br/&gt;Ability: growth mindset = MISSING&quot;] --&gt; MC[&quot;🎓 Growth Mindset&lt;br/&gt;micro-credential&quot;]
+  MC --&gt; EV[&quot;📦 Behavioral evidence&lt;br/&gt;across 5 occasions + capstone&quot;]
+  EV --&gt; BADGE[&quot;🏅 Growth Mindset Practitioner&quot;]
+  BADGE --&gt; MAP[&quot;🗺️ Skills map&lt;br/&gt;A-growth-mindset = 3&quot;]
+  MAP --&gt; MATCH[&quot;✅ Meets must-have&lt;br/&gt;attitude requirement&quot;]</div>
+<hr>
+<h2>🔗 Where this fits a role pathway</h2>
+<p><code>A-growth-mindset</code> and <code>A-adaptability</code> are <strong>durable, transferable</strong> Abilities — they belong in the <em>foundation layer</em> of almost every role pathway built with <a href="../../specs/role-to-credential-mapping.md"><code>../../specs/role-to-credential-mapping.md</code></a>. Pair this badge with role-specific technical micro-credentials (e.g., <a href="../role-data-scientist-pathway.md">the Data Scientist pathway</a>) so a learner matches <strong>both</strong> the hard-skill <em>and</em> the attitude minimums a job demands.</p>
+<blockquote>⚠️ Per the methodology, AI-suggested matches are <strong>decision support</strong>, not a hiring decision — a mentor/employer validates the evidence before the badge counts (human-in-the-loop).</blockquote></section></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var pages=Array.prototype.slice.call(document.querySelectorAll(".page"));
+  var ids=pages.map(function(p){return p.getAttribute("data-id");});
+  var links=Array.prototype.slice.call(document.querySelectorAll(".navlink"));
+  var atomIds=["atom-1","atom-2","atom-3","atom-4","atom-5","atom-6"];
+  var idx=0;
+
+  function show(id){
+    var i=ids.indexOf(id); if(i<0)i=0; idx=i;
+    pages.forEach(function(p){p.classList.toggle("active",p.getAttribute("data-id")===id);});
+    links.forEach(function(a){a.classList.toggle("active",a.getAttribute("data-target")===id);});
+    document.getElementById("prevbtn").disabled=(idx===0);
+    document.getElementById("nextbtn").disabled=(idx===pages.length-1);
+    if(location.hash.slice(1)!==id) history.replaceState(null,"","#"+id);
+    document.getElementById("side").classList.remove("open");
+    window.scrollTo(0,0);
+    renderMermaid();
+  }
+  links.forEach(function(a){a.addEventListener("click",function(e){e.preventDefault();show(a.getAttribute("data-target"));});});
+  document.getElementById("prevbtn").addEventListener("click",function(){if(idx>0)show(ids[idx-1]);});
+  document.getElementById("nextbtn").addEventListener("click",function(){if(idx<ids.length-1)show(ids[idx+1]);});
+  document.getElementById("menutoggle").addEventListener("click",function(){document.getElementById("side").classList.toggle("open");});
+
+  // progress (localStorage)
+  var KEY="ada-growth-mindset-progress";
+  function load(){try{return JSON.parse(localStorage.getItem(KEY)||"{}");}catch(e){return {};}}
+  function save(s){try{localStorage.setItem(KEY,JSON.stringify(s));}catch(e){}}
+  function refresh(){
+    var s=load(),done=0;
+    document.querySelectorAll(".donechk").forEach(function(c){
+      c.checked=!!s[c.getAttribute("data-atom")]; if(c.checked)done++;});
+    var pct=Math.round(done/atomIds.length*100);
+    document.getElementById("progfill").style.width=pct+"%";
+    document.getElementById("progtext").textContent=done+" / "+atomIds.length+" atoms complete";
+  }
+  document.querySelectorAll(".donechk").forEach(function(c){
+    c.addEventListener("change",function(){var s=load();s[c.getAttribute("data-atom")]=c.checked;save(s);refresh();});
+  });
+  refresh();
+
+  // copy buttons
+  document.querySelectorAll(".copybtn").forEach(function(b){
+    b.addEventListener("click",function(){
+      var pre=b.closest(".promptcard").querySelector("pre");
+      var txt=pre.innerText;
+      (navigator.clipboard?navigator.clipboard.writeText(txt):Promise.reject()).then(function(){
+        b.textContent="Copied!";b.classList.add("ok");setTimeout(function(){b.textContent="Copy";b.classList.remove("ok");},1400);
+      }).catch(function(){
+        var r=document.createRange();r.selectNodeContents(pre);var sel=getSelection();sel.removeAllRanges();sel.addRange(r);
+        try{document.execCommand("copy");}catch(e){} sel.removeAllRanges();
+        b.textContent="Copied!";b.classList.add("ok");setTimeout(function(){b.textContent="Copy";b.classList.remove("ok");},1400);
+      });
+    });
+  });
+
+  // youtube click-to-play
+  document.querySelectorAll(".yt").forEach(function(y){
+    var btn=y.querySelector(".yt-play");
+    btn.addEventListener("click",function(){
+      var id=y.getAttribute("data-id"); if(!id)return;
+      var f=document.createElement("iframe");
+      f.src="https://www.youtube-nocookie.com/embed/"+id+"?autoplay=1&rel=0";
+      f.allow="accelerated-sensors;autoplay;encrypted-media;picture-in-picture";
+      f.setAttribute("allowfullscreen","");
+      btn.replaceWith(f);
+    });
+  });
+
+  // mermaid (CDN, brand theme, root emphasis, graceful fallback)
+  var mmReady=null;
+  function ensureMermaid(){
+    if(mmReady)return mmReady;
+    mmReady=new Promise(function(res,rej){
+      if(window.mermaid)return res(window.mermaid);
+      var s=document.createElement("script");
+      s.src="https://cdn.jsdelivr.net/npm/mermaid@11.15.0/dist/mermaid.min.js";
+      s.onload=function(){res(window.mermaid);};
+      s.onerror=function(){
+        var s2=document.createElement("script");
+        s2.src="https://unpkg.com/mermaid@11.15.0/dist/mermaid.min.js";
+        s2.onload=function(){res(window.mermaid);}; s2.onerror=rej;
+        document.head.appendChild(s2);
+      };
+      document.head.appendChild(s);
+    });
+    return mmReady;
+  }
+  function src(n){var s=n.getAttribute("data-src");if(s===null){s=n.textContent;n.setAttribute("data-src",s);}return s;}
+  function fallback(n){n.classList.add("fallback");n.innerHTML="<pre>"+src(n).replace(/[&<>]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;"}[c];})+"</pre>";}
+  function detectRoots(s){
+    try{var L=s.split(/\r?\n/);if(!/^\s*(flowchart|graph)\b/i.test(L[0]||""))return [];
+      var all={},tg={};
+      for(var i=1;i<L.length;i++){var t=(L[i]||"").trim();
+        if(!t||/^%%/.test(t))continue;
+        if(/^(classdef|class|style|linkstyle|click|direction|subgraph|end)\b/i.test(t))continue;
+        var x=L[i];for(var k=0;k<8;k++){x=x.replace(/\(\([^()]*\)\)/g," ").replace(/\[[^\[\]]*\]/g," ").replace(/\{[^{}]*\}/g," ").replace(/\([^()]*\)/g," ");}
+        x=x.replace(/\|[^|]*\|/g," ");if(x.indexOf("--")<0&&x.indexOf("==")<0)continue;
+        var ids=x.split(/\s*(?:-{2,}>?|={2,}>?|-\.->?)\s*/).map(function(z){return (z.trim().match(/^[A-Za-z0-9_]+/)||[""])[0];}).filter(Boolean);
+        for(var j=0;j<ids.length;j++){all[ids[j]]=1;if(j>0)tg[ids[j]]=1;}}
+      var r=Object.keys(all).filter(function(id){return !tg[id];});
+      return r.length&&r.length<=4?r:[];
+    }catch(e){return [];}
+  }
+  function emphasize(s){var r=detectRoots(s);if(!r.length)return s;
+    return s+"\nclassDef adaRootNode fill:#1E2A6E,stroke:#E0A53C,stroke-width:3px,color:#ffffff,font-weight:bold,font-size:21px;\nclass "+r.join(",")+" adaRootNode;";}
+  var seq=0;
+  function renderMermaid(){
+    var nodes=Array.prototype.slice.call(document.querySelectorAll(".page.active .mermaid:not([data-done])"));
+    if(!nodes.length)return;
+    nodes.forEach(src);
+    ensureMermaid().then(function(m){
+      m.initialize({startOnLoad:false,securityLevel:"loose",theme:"base",fontFamily:"inherit",fontSize:"16px",
+        flowchart:{htmlLabels:true,useMaxWidth:true,curve:"basis",padding:14,nodeSpacing:52,rankSpacing:58},
+        themeVariables:{fontSize:"16px",primaryColor:"#1E2A6E",primaryTextColor:"#ffffff",primaryBorderColor:"#15B5C6",
+          mainBkg:"#1E2A6E",nodeBorder:"#15B5C6",nodeTextColor:"#ffffff",lineColor:"#1E2A6E",
+          clusterBkg:"#eef2fb",clusterBorder:"#15B5C6",titleColor:"#1E2A6E",
+          background:"#ffffff",textColor:"#1E2A6E",edgeLabelBackground:"#ffffff",
+          cScale0:"#1E2A6E",cScale1:"#15B5C6",cScale2:"#E0A53C",cScale3:"#2a3aa0",
+          cScaleLabel0:"#ffffff",cScaleLabel1:"#0A1124",cScaleLabel2:"#0A1124",cScaleLabel3:"#ffffff"}});
+      nodes.forEach(function(n){
+        n.setAttribute("data-done","1");
+        var id="mm-"+(Date.now())+"-"+(seq++);
+        try{m.render(id,emphasize(src(n))).then(function(o){n.innerHTML=o.svg;}).catch(function(){fallback(n);});}
+        catch(e){fallback(n);}
+      });
+    }).catch(function(){nodes.forEach(fallback);});
+  }
+
+  window.addEventListener("hashchange",function(){show(location.hash.slice(1)||ids[0]);});
+  show(location.hash.slice(1)||ids[0]);
+})();
+</script>
+</body>
+</html>

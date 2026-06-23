@@ -78,35 +78,21 @@ An atom is built from **7 modalities** grouped as **Acquire → Apply → Assess
 | 🤝 **Collaborate** | Amplify | Learn socially; show dispositions | Pair Programming, Workshop, Hackathon, Reading Club, Showcase, Mentorship |
 
 ```mermaid
-mindmap
-  root((⚛ Learning Atom))
-    📖 Read
-      Article
-      Case Study
-      Technical Article
-    🎧 Listen
-      Podcast
-      Narration
-    🎬 Watch
-      Explainer
-      Screencast
-      Documentary
-    🖼️ See
-      Diagram
-      Mental Model
-      Framework
-    🧪 Practice
-      Codelab
-      Simulation
-      AI Prompt Question
-    ✅ Evaluate
-      Pop Quiz
-      Capstone
-      Behavioral Assessment
-    🤝 Collaborate
-      Pair Programming
-      Workshop
-      Hackathon
+flowchart TD
+  A(["⚛ Learning Atom"]) --> R["📖 Read"]
+  A --> L["🎧 Listen"]
+  A --> W["🎬 Watch"]
+  A --> S["🖼️ See"]
+  A --> P["🧪 Practice"]
+  A --> E["✅ Evaluate"]
+  A --> C["🤝 Collaborate"]
+  R --> R1["Article · Case Study · Technical Article"]
+  L --> L1["Podcast · Narration"]
+  W --> W1["Explainer · Screencast · Documentary"]
+  S --> S1["Diagram · Mental Model · Framework"]
+  P --> P1["Codelab · Simulation · AI Prompt Question"]
+  E --> E1["Pop Quiz · Capstone · Behavioral Assessment"]
+  C --> C1["Pair Programming · Workshop · Hackathon"]
 ```
 
 > 🔗 See the **full, detailed map** of every sub-type with diagrams: [**Learning Atom Topology**](specs/learning-atom-topology.md).
@@ -259,6 +245,7 @@ JOB POSTING → [Gen AI + human validation] → TARGET KSA PROFILE
 * 🤝 [Human skill — Giving & Receiving Feedback](examples/ksa-human-skill-feedback.md)
 * 🌱 [Attitude — Adaptability & Growth Mindset](examples/ksa-attitude-adaptability.md)
 * 🗺️ [End-to-end — Job posting → skills map → job-ready](examples/skills-map-job-match-frontend.md)
+* 🌱 [**Full course** — Growth Mindset micro-credential](examples/growth-mindset-micro-credential/README.md) · 🖥️ [open the interactive `course.html`](examples/growth-mindset-micro-credential/course.html)
 
 ---
 
@@ -327,6 +314,7 @@ number** that tells the learner exactly what to earn next.
 * [Micro-Credential v2 Schema.](specs/micro-credential-v2-schema.md)
 * [KSA Examples: technical / human / attitude / job-match.](examples/skills-map-job-match-frontend.md)
 * [Role pathway example: Data Processing → Data Scientist.](examples/role-data-scientist-pathway.md)
+* [Full worked course: Growth Mindset micro-credential](examples/growth-mindset-micro-credential/README.md) (with interactive [`course.html`](examples/growth-mindset-micro-credential/course.html)).
 
 ---
 

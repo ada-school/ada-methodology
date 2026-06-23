@@ -1,5 +1,12 @@
 # 🌱 Worked Example — Growth Mindset Micro-Credential (full course)
 
+<p align="center">
+  <img alt="Indigo #1E2A6E" src="https://img.shields.io/badge/Indigo-1E2A6E?style=flat-square&labelColor=1E2A6E&color=1E2A6E">
+  <img alt="Turquoise #15B5C6" src="https://img.shields.io/badge/Turquoise-15B5C6?style=flat-square&labelColor=15B5C6&color=15B5C6">
+  <img alt="Gold #E0A53C" src="https://img.shields.io/badge/Gold-E0A53C?style=flat-square&labelColor=E0A53C&color=E0A53C">
+  <img alt="Ink #0A1124" src="https://img.shields.io/badge/Ink-0A1124?style=flat-square&labelColor=0A1124&color=0A1124">
+</p>
+
 A **complete, ready-to-run ADA micro-credential** about **Growth Mindset**, built end-to-end
 with the ADA Methodology (KSA + 4 phases + learning-atom topology). It is a *fully populated*
 example: every atom contains **real reading text**, **curated video links**, **image-generation
