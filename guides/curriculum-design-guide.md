@@ -109,9 +109,9 @@ Integrate opportunities for mentorship, feedback, and community learning.
 
 Make sure your course flows through the **4 ADA learning phases**:
 
-1. **🙊 Self-Guided Introduction** → readings, videos, quizzes.
-2. **🙉 Visual Exploration** → demos, role-play, walkthroughes.
-3. **🙈 Applied Practice** → labs, tools, simulations.
+1. **🙉 Self-Guided Introduction** → readings, videos, quizzes.
+2. **🙈 Visual Exploration** → demos, role-play, walkthroughes.
+3. **🙊 Applied Practice** → labs, tools, simulations.
 4. **🐵 Collaboration & Reflection** → peer interaction, project sharing.
 
 ---

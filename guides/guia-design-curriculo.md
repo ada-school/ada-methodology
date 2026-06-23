@@ -108,9 +108,9 @@ Integre oportunidades para mentoria, feedback e aprendizado comunitário.
 
 Certifique-se de que seu curso flua através das **4 fases de aprendizado ADA**:
 
-1. **🙊 Introdução Autoguiada** → leituras, vídeos, questionários.
-2. **🙉 Exploração Visual** → demonstrações, interpretação, percursos.
-3. **🙈 Prática Aplicada** → laboratórios, ferramentas, simulações.
+1. **🙉 Introdução Autoguiada** → leituras, vídeos, questionários.
+2. **🙈 Exploração Visual** → demonstrações, interpretação, percursos.
+3. **🙊 Prática Aplicada** → laboratórios, ferramentas, simulações.
 4. **🐵 Colaboração e Reflexão** → interação entre pares, compartilhamento de projetos.
 
 ---

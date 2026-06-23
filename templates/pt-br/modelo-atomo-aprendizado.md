@@ -6,6 +6,17 @@
 
 ---
 
+### 🧬 Tipo e Nível KSA *(v2 — opcional, mas recomendado)*
+
+* **Tipo:** *\[🧠 Conhecimento | 🛠️ Habilidade | 🌱 Aptidão]*
+* **Nível alvo (0–4):** *\[ver [Taxonomia KSA](../../specs/ksa-taxonomy.md)]*
+* **Id do componente:** *\[ex., S-build-rest-endpoint]*
+
+> O tipo KSA determina como ensinar e avaliar este átomo. Consulte a
+> [Topologia do Átomo de Aprendizado](../../specs/learning-atom-topology.md) para saber quais modalidades combinam com cada tipo.
+
+---
+
 ### 📌 Competência Profissional Relacionada
 
 * *\[Nomeie a competência/habilidade específica relacionada ao trabalho que este átomo desenvolve ou ao qual contribui]*
@@ -34,15 +45,31 @@
 
 ---
 
+### 🧱 Modalidades — *escolha subtipos da [Topologia do Átomo de Aprendizado](../../specs/learning-atom-topology.md)*
+
+Selecione um ou mais formatos por grupo. Escolha formatos que correspondam ao **tipo KSA**
+do átomo (Conhecimento → Adquirir; Habilidade → Praticar; Aptidão → Visualizar + Praticar + Colaborar).
+
+| Grupo | Dimensão | Subtipo(s) escolhido(s) | Recurso / Link |
+| ----- | -------- | ----------------------- | -------------- |
+| Adquirir | 📖 Ler | *\[Artigo · Artigo Técnico · Estudo de Caso · …]* | *\[link]* |
+| Adquirir | 🎧 Escutar | *\[Podcast · Narração · Entrevista · …]* | *\[link]* |
+| Adquirir | 🎬 Assistir | *\[Explicativo · Screencast · Documentário · …]* | *\[link]* |
+| Adquirir | 🖼️ Visualizar | *\[Diagrama · Modelo Mental · Infográfico · …]* | *\[link]* |
+| Aplicar | 🧪 Praticar | *\[Laboratório · Codelab · Simulação · Pergunta de Prompt IA · …]* | *\[link]* |
+| Avaliar | ✅ Avaliar | *\[Pop Quiz · Mini-Rubrica · Tarefa de Desempenho · Avaliação Comportamental · …]* | *\[link]* |
+| Amplificar | 🤝 Colaborar | *\[Programação em Par · Workshop · Showcase · …]* | *\[link]* |
+
+---
+
 ### 🛠️ Atividades de Aprendizado
 
-#### 1. **Autoaprendizado Guiado**
+#### 1. **Autoaprendizado Guiado (Adquirir)**
 
-* [ ] Leitura: *\[Título ou link]*
-* [ ] Vídeo: *\[Título ou link]*
+* [ ] Ler / Escutar / Assistir / Visualizar: *\[Título ou link do(s) subtipo(s) escolhido(s)]*
 * [ ] Tutorial interativo ou recurso prático
 
-#### 2. **Laboratório ou Exercício Prático**
+#### 2. **Laboratório ou Exercício Prático (Aplicar)**
 
 * *\[Descreva a tarefa prática: O que o aprendiz deve construir, simular, analisar ou resolver?]*
 * *Objetivo do laboratório: \[estabeleça claramente]*

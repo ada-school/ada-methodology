@@ -64,13 +64,13 @@ Linked to frameworks:
 
 ## 🔍 ADA Learning Phases
 
-### 🙊 Phase 1: Self-Guided Introduction  
+### 🙉 Phase 1: Self-Guided Introduction  
 Learners explore **basic color theory** through readings, videos, and podcasts.
 
-### 🙉 Phase 2: Visual Exploration  
+### 🙈 Phase 2: Visual Exploration  
 Learners **see color harmonies in action** through case studies, demos, and visual examples.
 
-### 🙈 Phase 3: Applied Practice  
+### 🙊 Phase 3: Applied Practice  
 Learners **create their own color wheels** and apply them in small art exercises.
 
 ### 🐵 Phase 4: Collaboration & Reflection  

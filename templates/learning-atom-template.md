@@ -6,6 +6,17 @@
 
 ---
 
+### 🧬 KSA Type & Level *(v2 — optional but recommended)*
+
+* **Type:** *\[🧠 Knowledge | 🛠️ Skill | 🌱 Ability]*
+* **Target level (0–4):** *\[see [KSA Taxonomy](../specs/ksa-taxonomy.md)]*
+* **Component id:** *\[e.g., S-build-rest-endpoint]*
+
+> The KSA type determines how to teach and assess this atom. See the
+> [Learning Atom Topology](../specs/learning-atom-topology.md) for which modalities fit each type.
+
+---
+
 ### 📌 Related Job Competency
 
 * *\[Name the specific job-related competency / skill this atom develops or contributes to]*
@@ -34,15 +45,31 @@
 
 ---
 
+### 🧱 Modalities — *choose sub-types from the [Learning Atom Topology](../specs/learning-atom-topology.md)*
+
+Select one or more formats per group. Pick formats that match the atom's **KSA type**
+(Knowledge → Acquire; Skill → Practice; Ability → See + Practice + Collaborate).
+
+| Group | Dimension | Chosen sub-type(s) | Resource / Link |
+| ----- | --------- | ------------------ | --------------- |
+| Acquire | 📖 Read | *\[Article · Technical Article · Case Study · …]* | *\[link]* |
+| Acquire | 🎧 Listen | *\[Podcast · Narration · Interview · …]* | *\[link]* |
+| Acquire | 🎬 Watch | *\[Explainer · Screencast · Documentary · …]* | *\[link]* |
+| Acquire | 🖼️ See | *\[Diagram · Mental Model · Infographic · …]* | *\[link]* |
+| Apply | 🧪 Practice | *\[Lab · Codelab · Simulation · AI Prompt Question · …]* | *\[link]* |
+| Assess | ✅ Evaluate | *\[Pop Quiz · Mini-Rubric · Performance Task · Behavioral Assessment · …]* | *\[link]* |
+| Amplify | 🤝 Collaborate | *\[Pair Programming · Workshop · Showcase · …]* | *\[link]* |
+
+---
+
 ### 🛠️ Learning Activities
 
-#### 1. **Guided Self-Learning**
+#### 1. **Guided Self-Learning (Acquire)**
 
-* [ ] Reading: *\[Title or link]*
-* [ ] Video: *\[Title or link]*
+* [ ] Read / Listen / Watch / See: *\[Title or link of chosen sub-type(s)]*
 * [ ] Interactive tutorial or hands-on resource
 
-#### 2. **Lab or Practical Exercise**
+#### 2. **Lab or Practical Exercise (Apply)**
 
 * *\[Describe the hands-on task: What should the learner build, simulate, analyze, or solve?]*
 * *Lab goal: \[state clearly]*

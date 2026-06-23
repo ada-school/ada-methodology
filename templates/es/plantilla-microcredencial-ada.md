@@ -80,7 +80,7 @@ Cada fase usa **Átomos de Aprendizaje** y sigue la progresión de Confucio:
 
 ---
 
-### 🙊 Fase 1: Introducción Autoguiada
+### 🙉 Fase 1: Introducción Autoguiada
 
 > *"Lo oigo y lo olvido."  — Confucio*
 
@@ -89,7 +89,7 @@ Incluye: 📖 lecturas · 🎥 videos · 🎧 podcasts · 📚 casos de estudio 
 
 ---
 
-### 🙉 Fase 2: Exploración Visual
+### 🙈 Fase 2: Exploración Visual
 
 > *"Lo veo y lo recuerdo."  — Confucio*
 
@@ -98,7 +98,7 @@ Incluye: 🧩 demostraciones · 🎞️ recorridos · 🧪 juego de roles · �
 
 ---
 
-### 🙈 Fase 3: Práctica Aplicada
+### 🙊 Fase 3: Práctica Aplicada
 
 > *"Lo hago y lo entiendo."  — Confucio*
 

@@ -80,7 +80,7 @@ Each phase uses **Learning Atoms** and follows Confucius’ progression:
 
 ---
 
-### 🙊 Phase 1: Self-Guided Introduction
+### 🙉 Phase 1: Self-Guided Introduction
 
 > *“I hear and I forget.”  — Confucius*
 
@@ -89,7 +89,7 @@ Includes: 📖 readings · 🎥 videos · 🎧 podcasts · 📚 case studies · 
 
 ---
 
-### 🙉 Phase 2: Visual Exploration
+### 🙈 Phase 2: Visual Exploration
 
 > *“I see and I remember.”  — Confucius*
 
@@ -98,7 +98,7 @@ Includes: 🧩 demos · 🎞️ walkthroughs · 🧪 role-play · 📊 scenario 
 
 ---
 
-### 🙈 Phase 3: Applied Practice
+### 🙊 Phase 3: Applied Practice
 
 > *“I do and I understand.”  — Confucius*
 
