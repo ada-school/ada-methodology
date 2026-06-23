@@ -106,4 +106,6 @@ del átomo (Conocimiento → Adquirir; Habilidad → Practicar; Aptitud → Visu
 
 ---
 
-> Duplica este archivo para crear nuevos átomos de aprendizaje para cualquier área temática.
+> Duplica este archivo para crear nuevos átomos de aprendizaje para cualquier área temática. Los
+> átomos son los bloques de un Micro Curso — ensambla de 4 a 8 con la
+> [Plantilla de Micro-Credencial](plantilla-microcredencial-ada.md).

@@ -106,4 +106,6 @@ Select one or more formats per group. Pick formats that match the atom's **KSA t
 
 ---
 
-> Duplicate this file to create new learning atoms for any subject area.
+> Duplicate this file to create new learning atoms for any subject area. Atoms are the building
+> blocks of a Micro Course — assemble 4–8 of them with the
+> [Micro-Credential Template](micro-credential-ada-template.md).

@@ -2,6 +2,17 @@
 
 Este modelo de codelab é projetado seguindo a Metodologia ADA e a estrutura de Átomos de Aprendizado. Cada codelab deve combinar explicação, demonstração de código e exercícios guiados.
 
+> **Onde se encaixa:** um codelab é um átomo de 🧪 **Prática** que constrói uma 🛠️ **Habilidade**
+> (o *saber-fazer* que alguém precisa executar). Use-o dentro de um Micro Curso criado com o
+> [Modelo de Micro-Credencial](modelo-microcredencial-ada.md) — registre qual átomo/objetivo ele
+> apoia e avalie-o com a **rubrica de habilidade / desempenho**.
+
+| Encaixa em | Valor |
+| ---------- | ----- |
+| Micro-credencial | \[título do curso] |
+| Apoia átomo / objetivo | \[Átomo #, objetivo] |
+| Tipo KSA / nível alvo | 🛠️ Habilidade · \[0–4] |
+
 ---
 
 ## 🧠 Título

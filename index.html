@@ -6547,6 +6547,17 @@ Usa esta lista de verificación para asegurar que tu micro-credencial esté alin
 
 This codelab template is designed following the ADA Methodology and Learning Atoms structure. Each codelab should combine explanation, code demonstration, and guided exercises.
 
+> **Where this fits:** a codelab is a 🧪 **Practice** atom that builds a 🛠️ **Skill** (the *know-how*
+> someone must perform). Use it inside a Micro Course built with the
+> [Micro-Credential Template](micro-credential-ada-template.md) — record which atom/objective it
+> supports and assess it with the **skill / performance rubric**.
+
+| Fits in | Value |
+| ------- | ----- |
+| Micro-credential | \[course title] |
+| Supports atom / objective | \[Atom #, objective] |
+| KSA type / target level | 🛠️ Skill · \[0–4] |
+
 ---
 
 ## 🧠 Title
@@ -6751,11 +6762,63 @@ Select one or more formats per group. Pick formats that match the atom's **KSA t
 
 ---
 
-> Duplicate this file to create new learning atoms for any subject area.
+> Duplicate this file to create new learning atoms for any subject area. Atoms are the building
+> blocks of a Micro Course — assemble 4–8 of them with the
+> [Micro-Credential Template](micro-credential-ada-template.md).
 </script>
-<script type="text/markdown" data-path="templates/micro-credential-ada-template.md"># 🚀ADA Micro Credential Template
+<script type="text/markdown" data-path="templates/micro-credential-ada-template.md"># 🚀 ADA Micro-Credential Template
 
-This template is designed to help you **create modular, job-ready micro-credentials**. Each section includes **\[instructions in brackets]** so you can adapt it to your domain.
+Use this template to design a **Micro Course (ADA micro-credential)** that develops **any skill
+your organization needs someone to actually perform** — a real job task, done to a real standard.
+Each section has **\[instructions in brackets]**; replace them with your content. Worked example:
+[Growth Mindset micro-credential](../examples/growth-mindset-micro-credential/README.md).
+
+---
+
+## 🧭 How to use this template — *from a skill need to a course in 7 steps*
+
+```mermaid
+flowchart LR
+  S0["🏢 Step 0<br/>Skill need at work"] --> S1["🎯 Step 1<br/>Target competency"]
+  S1 --> S2["🧬 Step 2<br/>KSA breakdown"]
+  S2 --> S3["📘 Step 3<br/>Objectives (Bloom+KSA)"]
+  S3 --> S4["⚛ Step 4<br/>Atoms + modalities"]
+  S4 --> S5["🔄 Step 5<br/>4 phases + planner"]
+  S5 --> S6["🚀 Step 6<br/>Capstone + rubrics"]
+  S6 --> S7["🏅 Step 7<br/>Badge → skills map"]
+```
+
+1. **Step 0 — Name the skill need** (below): what must someone *do* at work, and what does "good" look like?
+2. **Step 1 — Anchor it** to a recognized competency (SFIA · O\*NET · ESCO · ILO).
+3. **Step 2 — Break it into KSA** — 🧠 Knowledge, 🛠️ Skill, 🌱 Ability — so each piece is taught/assessed correctly.
+4. **Step 3 — Write Bloom objectives**, each tagged with its KSA type.
+5. **Step 4 — Design 4–8 learning atoms**, choosing modalities from the topology.
+6. **Step 5 / 6 — Sequence the 4 phases**, then add a capstone + rubrics.
+7. **Step 7 — Issue a badge** that writes KSA levels into a skills map for job matching.
+
+> 🔗 Deeper method for Step 0–2: [Role-to-Credential Mapping](../specs/role-to-credential-mapping.md)
+> · KSA types & levels: [KSA Taxonomy](../specs/ksa-taxonomy.md)
+> · modality menu: [Learning Atom Topology](../specs/learning-atom-topology.md).
+
+---
+
+## 🏢 Step 0 — Organizational Skill Need *(intake)*
+
+Start here. Describe the **real task** you need someone to perform — not a topic. If you can
+observe a high performer doing it, even better (see the role-mapping spec for DACUM / shadowing).
+
+| Intake question | Your answer |
+| --------------- | ----------- |
+| **What must the person be able to *do*?** (an observable task) | \[e.g. "Run a blameless incident retro that produces fix-forward actions"] |
+| **Who performs it / in which role(s)?** | \[role, team, seniority] |
+| **Why it matters** (business outcome / cost of the gap) | \[impact if done well vs. poorly] |
+| **What "good" looks like** (high-performer behavior, the bar) | \[1–3 observable signs of mastery] |
+| **Recognized framework reference** | \[SFIA · O\*NET · ESCO · ILO competency] |
+| **Current gap** (where learners are today) | \[what they can't yet do / do inconsistently] |
+| **Evidence of mastery** (how you'll know they can do it) | \[the artifact/behavior that proves it] |
+
+> ⚠️ AI-assisted skill mappings are **decision support** — have a mentor or the hiring manager
+> validate the task, the bar, and the evidence before building (human-in-the-loop).
 
 ---
 
@@ -6780,6 +6843,24 @@ This template is designed to help you **create modular, job-ready micro-credenti
 
 ---
 
+## 🧬 Step 2 — KSA Breakdown
+
+Split the competency into typed components. The **type decides how you teach and assess it**:
+Knowledge → acquire + quiz; Skill → practice + performance rubric; Ability → repeated authentic
+practice + behavioral rubric across occasions. Set a target level **0–4** (see
+[KSA Taxonomy](../specs/ksa-taxonomy.md)).
+
+| KSA type | Component (what they know / can do) | Why this type | Target level |
+| -------- | ----------------------------------- | ------------- | ------------ |
+| 🧠 Knowledge | \[concept / fact to understand] | enabling base | \[0–4] |
+| 🛠️ Skill | \[a concrete, practiceable procedure] | the *know-how* | \[0–4] |
+| 🌱 Ability | \[a durable disposition / attitude] | proven by behavior over time | \[0–4] |
+
+> A "skill someone must perform" almost always needs **all three**: a little Knowledge, the
+> core Skill, and the Abilities (judgment, adaptability, collaboration) that make it stick.
+
+---
+
 ## 🔑 Prerequisites
 
 \[List the knowledge, skills, or tools learners should already have. If none, write “None.”]
@@ -6791,7 +6872,14 @@ This template is designed to help you **create modular, job-ready micro-credenti
 
 ## 📘 Learning Objectives
 
-\[Define 3–5 objectives using **Bloom’s taxonomy verbs**. Each will be supported by Learning Atoms.]
+\[Define 3–5 objectives using **Bloom’s taxonomy verbs**. Tag each with its **KSA type**
+(🧠 K / 🛠️ S / 🌱 A) so the matching modality and rubric are obvious. Each is supported by Learning Atoms.]
+
+**Example (tagged):**
+
+* 🧠 **Understand** models of organizational resilience.
+* 🛠️ **Design** a resilience strategy for a crisis scenario.
+* 🌱 **Adapt** decisions calmly as conditions change (shown across occasions).
 
 **Example:**
 
@@ -6818,12 +6906,18 @@ This template is designed to help you **create modular, job-ready micro-credenti
 ## ⚛ Learning Atoms
 
 Each **Learning Atom** = *Concept + Example + Practice + Evaluation*
-\[Design 4–8 atoms, one per learning objective. Fill in details using the table below.]
+\[Design 4–8 atoms, one per learning objective. Fill in details using the table below.] Build
+each atom from the [Learning Atom Template](learning-atom-template.md) and pick **modalities**
+from the [Learning Atom Topology](../specs/learning-atom-topology.md) that fit the atom's KSA type:
 
-| Atom   | Objective       | Concept (Read/Listen/Watch)       | Example               | Practice                | Evaluate                         |   |
-| ------ | --------------- | --------------------------------- | --------------------- | ----------------------- | -------------------------------- | - |
-| Atom 1 | \[Objective #1] | \[Article, guide, video, podcast] | \[Case study or demo] | \[Mini-lab or exercise] | \[Quiz, reflection, mini-rubric] |   |
-| Atom 2 | \[Objective #2] | …                                 | …                     | …                       | …                                | … |
+- 🧠 **Knowledge** → 📖 Read · 🎧 Listen · 🎬 Watch · 🖼️ See
+- 🛠️ **Skill** → 🧪 Practice (Lab · Codelab · Simulation) + performance rubric
+- 🌱 **Ability** → 🖼️ See (model it) + 🧪 Practice + 🤝 Collaborate, across multiple occasions
+
+| Atom   | Objective       | KSA | Modalities (sub-types)              | Practice                | Evaluate                         |
+| ------ | --------------- | --- | ----------------------------------- | ----------------------- | -------------------------------- |
+| Atom 1 | \[Objective #1] | \[🧠/🛠️/🌱] | \[e.g. Article · Explainer · Diagram] | \[Mini-lab or exercise] | \[Quiz, reflection, mini-rubric] |
+| Atom 2 | \[Objective #2] | …   | …                                   | …                       | …                                |
 
 ---
 
@@ -6954,14 +7048,53 @@ Includes: 👥 peer feedback · 🗣️ co-creation projects · 🌐 forums · �
 
 ---
 
+## 🏅 Step 7 — Badge → Skills Map *(job matching)*
+
+Define the badge so completion **writes proven KSA levels into the learner's skills map**, which
+can then be matched against any job's minimum bar (see
+[Skills Map & Job Matching](../specs/skills-map-and-job-matching.md)).
+
+```yaml
+badge:
+  name: "[Badge name — e.g. Resilience Practitioner]"
+  evidence_required: ["[atom-x]", "[atom-y]", "capstone"]   # what must be verified
+  issued_on: verified-evidence                              # mentor/employer sign-off
+  components:                                               # KSA levels this badge certifies
+    K-[id]: [0-4]
+    S-[id]: [0-4]
+    A-[id]: [0-4]
+```
+
+| The job asks for… (must-have) | This badge proves | Match |
+| ----------------------------- | ----------------- | ----- |
+| \[skill / ability + min level] | \[component → level earned] | ✅ / ⚠️ / ❌ |
+
+---
+
 ## 🎓 Outcomes & Recognition
 
 \[Define what learners gain at the end.]
 
 * Conceptual mastery of \[domain/skill].
-* Practical, job-ready application.
+* Practical, job-ready application of the **skill your org needs performed**.
 * Portfolio project to showcase.
-* LinkedIn-compatible **digital badge**.
+* LinkedIn-compatible **digital badge** that updates the learner's skills map.
+
+---
+
+## ✅ Design Conformance Checklist
+
+Before you publish, confirm the Micro Course is **job-ready and on-method**:
+
+* [ ] Step 0 names a real **task someone must perform**, with an observable "what good looks like".
+* [ ] The competency is anchored to **SFIA / O\*NET / ESCO / ILO**.
+* [ ] Every objective is **Bloom-verb + KSA-typed** (🧠/🛠️/🌱).
+* [ ] **4–8 atoms**, each with modalities chosen to fit its KSA type.
+* [ ] Abilities/attitudes are assessed with a **behavioral rubric across multiple occasions** (never a single quiz).
+* [ ] There is a **capstone** that simulates the real task + a 5-criteria rubric.
+* [ ] The **badge** maps to KSA levels and feeds a **skills map** for job matching.
+* [ ] A **mentor/employer** validated the skill need and the evidence (human-in-the-loop).
+* [ ] Resources are current, accessible, and properly licensed.
 
 ---
 
@@ -7077,10 +7210,23 @@ del átomo (Conocimiento → Adquirir; Habilidad → Practicar; Aptitud → Visu
 
 ---
 
-> Duplica este archivo para crear nuevos átomos de aprendizaje para cualquier área temática.</script>
+> Duplica este archivo para crear nuevos átomos de aprendizaje para cualquier área temática. Los
+> átomos son los bloques de un Micro Curso — ensambla de 4 a 8 con la
+> [Plantilla de Micro-Credencial](plantilla-microcredencial-ada.md).</script>
 <script type="text/markdown" data-path="templates/es/plantilla-codelab-ada.md"># 🧪 Plantilla de Codelab ADA
 
 Esta plantilla de codelab está diseñada siguiendo la Metodología ADA y la estructura de Átomos de Aprendizaje. Cada codelab debe combinar explicación, demostración de código y ejercicios guiados.
+
+> **Dónde encaja:** un codelab es un átomo de 🧪 **Práctica** que construye una 🛠️ **Habilidad**
+> (el *saber-hacer* que alguien debe realizar). Úsalo dentro de un Micro Curso creado con la
+> [Plantilla de Micro-Credencial](plantilla-microcredencial-ada.md) — registra qué átomo/objetivo
+> apoya y evalúalo con la **rúbrica de habilidad / desempeño**.
+
+| Encaja en | Valor |
+| --------- | ----- |
+| Micro-credencial | \[título del curso] |
+| Apoya átomo / objetivo | \[Átomo #, objetivo] |
+| Tipo KSA / nivel objetivo | 🛠️ Habilidad · \[0–4] |
 
 ---
 
@@ -7176,9 +7322,60 @@ Pruébalo en: `http://127.0.0.1:5000/saludo/Ada`
 ---
 
 > Puedes duplicar esta plantilla para crear tus propios codelabs alineados con la metodología ADA en cualquier tecnología.</script>
-<script type="text/markdown" data-path="templates/es/plantilla-microcredencial-ada.md"># 🚀Plantilla de Micro-Credencial ADA
+<script type="text/markdown" data-path="templates/es/plantilla-microcredencial-ada.md"># 🚀 Plantilla de Micro-Credencial ADA
 
-Esta plantilla está diseñada para ayudarte a **crear micro-credenciales modulares y listas para el trabajo**. Cada sección incluye **\[instrucciones entre corchetes]** para que puedas adaptarla a tu dominio.
+Usa esta plantilla para diseñar un **Micro Curso (micro-credencial ADA)** que desarrolle
+**cualquier habilidad que tu organización necesite que alguien realice** — una tarea laboral real,
+hecha a un estándar real. Cada sección tiene **\[instrucciones entre corchetes]**; reemplázalas con
+tu contenido. Ejemplo completo:
+[micro-credencial de Mentalidad de Crecimiento](../../examples/growth-mindset-micro-credential/README.md) *(contenido en inglés)*.
+
+---
+
+## 🧭 Cómo usar esta plantilla — *de una necesidad de habilidad a un curso en 7 pasos*
+
+```mermaid
+flowchart LR
+  S0["🏢 Paso 0<br/>Necesidad en el trabajo"] --> S1["🎯 Paso 1<br/>Competencia objetivo"]
+  S1 --> S2["🧬 Paso 2<br/>Desglose KSA"]
+  S2 --> S3["📘 Paso 3<br/>Objetivos (Bloom+KSA)"]
+  S3 --> S4["⚛ Paso 4<br/>Átomos + modalidades"]
+  S4 --> S5["🔄 Paso 5<br/>4 fases + planificador"]
+  S5 --> S6["🚀 Paso 6<br/>Capstone + rúbricas"]
+  S6 --> S7["🏅 Paso 7<br/>Insignia → mapa de habilidades"]
+```
+
+1. **Paso 0 — Nombra la necesidad** (abajo): ¿qué debe *hacer* alguien en el trabajo y cómo se ve "lo bueno"?
+2. **Paso 1 — Anclala** a una competencia reconocida (SFIA · O\*NET · ESCO · ILO).
+3. **Paso 2 — Desglósala en KSA** — 🧠 Conocimiento, 🛠️ Habilidad, 🌱 Aptitud — para enseñar/evaluar cada parte correctamente.
+4. **Paso 3 — Escribe objetivos Bloom**, cada uno etiquetado con su tipo KSA.
+5. **Paso 4 — Diseña 4–8 átomos de aprendizaje**, eligiendo modalidades de la topología.
+6. **Paso 5 / 6 — Secuencia las 4 fases**, luego agrega capstone + rúbricas.
+7. **Paso 7 — Emite una insignia** que escriba niveles KSA en un mapa de habilidades para emparejamiento laboral.
+
+> 🔗 Método detallado para Paso 0–2: [Mapeo de Rol a Credencial](../../specs/role-to-credential-mapping.md)
+> · Tipos y niveles KSA: [Taxonomía KSA](../../specs/ksa-taxonomy.md)
+> · menú de modalidades: [Topología del Átomo de Aprendizaje](../../specs/learning-atom-topology.md).
+
+---
+
+## 🏢 Paso 0 — Necesidad de Habilidad Organizacional *(intake)*
+
+Empieza aquí. Describe la **tarea real** que necesitas que alguien realice — no un tema. Si puedes
+observar a una persona de alto desempeño haciéndolo, mejor aún (ver DACUM / shadowing en el spec de mapeo de rol).
+
+| Pregunta de intake | Tu respuesta |
+| ------------------ | ------------ |
+| **¿Qué debe ser capaz de *hacer* la persona?** (una tarea observable) | \[ej. "Facilitar un retro de incidentes sin culpas que produzca acciones correctivas"] |
+| **¿Quién lo realiza / en qué rol(es)?** | \[rol, equipo, seniority] |
+| **Por qué importa** (resultado de negocio / costo de la brecha) | \[impacto si se hace bien vs. mal] |
+| **Cómo se ve "lo bueno"** (comportamiento de alto desempeño, el estándar) | \[1–3 señales observables de maestría] |
+| **Referencia a marco reconocido** | \[competencia SFIA · O\*NET · ESCO · ILO] |
+| **Brecha actual** (dónde están hoy los estudiantes) | \[lo que aún no pueden hacer / hacen de forma inconsistente] |
+| **Evidencia de maestría** (cómo sabrás que pueden hacerlo) | \[el artefacto/comportamiento que lo demuestra] |
+
+> ⚠️ Los mapeos de habilidades asistidos por IA son **apoyo a la decisión** — pide a un mentor o
+> al responsable de contratación que valide la tarea, el estándar y la evidencia antes de construir (humano en el ciclo).
 
 ---
 
@@ -7203,6 +7400,24 @@ Esta plantilla está diseñada para ayudarte a **crear micro-credenciales modula
 
 ---
 
+## 🧬 Paso 2 — Desglose KSA
+
+Divide la competencia en componentes tipificados. El **tipo decide cómo lo enseñas y evalúas**:
+Conocimiento → adquirir + quiz; Habilidad → practicar + rúbrica de desempeño; Aptitud → práctica
+auténtica repetida + rúbrica conductual a lo largo de varias ocasiones. Define un nivel objetivo
+**0–4** (ver [Taxonomía KSA](../../specs/ksa-taxonomy.md)).
+
+| Tipo KSA | Componente (qué sabe / puede hacer) | Por qué este tipo | Nivel objetivo |
+| -------- | ----------------------------------- | ----------------- | -------------- |
+| 🧠 Conocimiento | \[concepto / hecho a comprender] | base habilitante | \[0–4] |
+| 🛠️ Habilidad | \[un procedimiento concreto y practicable] | el *saber-hacer* | \[0–4] |
+| 🌱 Aptitud | \[una disposición / actitud duradera] | probada por el comportamiento en el tiempo | \[0–4] |
+
+> Una "habilidad que alguien debe realizar" casi siempre necesita **las tres**: algo de
+> Conocimiento, la Habilidad central, y las Aptitudes (juicio, adaptabilidad, colaboración) que la consolidan.
+
+---
+
 ## 🔑 Prerrequisitos
 
 \[Lista el conocimiento, habilidades o herramientas que los estudiantes ya deben tener. Si no hay ninguno, escribe "Ninguno."]
@@ -7214,7 +7429,14 @@ Esta plantilla está diseñada para ayudarte a **crear micro-credenciales modula
 
 ## 📘 Objetivos de Aprendizaje
 
-\[Define 3–5 objetivos usando **verbos de la taxonomía de Bloom**. Cada uno será apoyado por Átomos de Aprendizaje.]
+\[Define 3–5 objetivos usando **verbos de la taxonomía de Bloom**. Etiqueta cada uno con su
+**tipo KSA** (🧠 C / 🛠️ H / 🌱 A) para que la modalidad y la rúbrica correctas sean obvias. Cada uno será apoyado por Átomos de Aprendizaje.]
+
+**Ejemplo (etiquetado):**
+
+* 🧠 **Comprender** modelos de resiliencia organizacional.
+* 🛠️ **Diseñar** una estrategia de resiliencia para un escenario de crisis.
+* 🌱 **Adaptar** decisiones con calma a medida que cambian las condiciones (demostrado en varias ocasiones).
 
 **Ejemplo:**
 
@@ -7242,11 +7464,18 @@ Esta plantilla está diseñada para ayudarte a **crear micro-credenciales modula
 
 Cada **Átomo de Aprendizaje** = *Concepto + Ejemplo + Práctica + Evaluación*
 \[Diseña 4–8 átomos, uno por objetivo de aprendizaje. Completa los detalles usando la tabla de abajo.]
+Construye cada átomo desde la [Plantilla de Átomo de Aprendizaje](plantilla-atomo-aprendizaje.md)
+y elige **modalidades** de la [Topología del Átomo de Aprendizaje](../../specs/learning-atom-topology.md)
+que se ajusten al tipo KSA del átomo:
 
-| Átomo  | Objetivo        | Concepto (Leer/Escuchar/Ver)         | Ejemplo               | Práctica                 | Evaluar                              |   |
-| ------ | --------------- | ------------------------------------ | --------------------- | ------------------------ | ------------------------------------ | - |
-| Átomo 1| \[Objetivo #1]  | \[Artículo, guía, video, podcast]   | \[Caso de estudio o demo] | \[Mini-laboratorio o ejercicio] | \[Quiz, reflexión, mini-rúbrica] |   |
-| Átomo 2| \[Objetivo #2]  | …                                    | …                     | …                        | …                                    | … |
+- 🧠 **Conocimiento** → 📖 Leer · 🎧 Escuchar · 🎬 Ver (video) · 🖼️ Visualizar
+- 🛠️ **Habilidad** → 🧪 Practicar (Lab · Codelab · Simulación) + rúbrica de desempeño
+- 🌱 **Aptitud** → 🖼️ Modelar · 🧪 Practicar · 🤝 Colaborar, en varias ocasiones
+
+| Átomo  | Objetivo        | KSA | Modalidades (sub-tipos)              | Práctica                 | Evaluar                              |
+| ------ | --------------- | --- | ----------------------------------- | ------------------------ | ------------------------------------ |
+| Átomo 1| \[Objetivo #1]  | \[🧠/🛠️/🌱] | \[ej. Artículo · Explainer · Diagrama] | \[Mini-laboratorio o ejercicio] | \[Quiz, reflexión, mini-rúbrica] |
+| Átomo 2| \[Objetivo #2]  | …   | …                                   | …                        | …                                    |
 
 ---
 
@@ -7377,14 +7606,53 @@ Incluye: 👥 retroalimentación entre pares · 🗣️ proyectos de co-creació
 
 ---
 
+## 🏅 Paso 7 — Insignia → Mapa de Habilidades *(emparejamiento laboral)*
+
+Define la insignia para que al completarla se **escriban niveles KSA comprobados en el mapa de
+habilidades del estudiante**, que luego puede compararse contra el mínimo requerido por cualquier
+empleo (ver [Mapa de Habilidades y Emparejamiento Laboral](../../specs/skills-map-and-job-matching.md)).
+
+```yaml
+badge:
+  name: "[Nombre de la insignia — ej. Practicante de Resiliencia]"
+  evidence_required: ["[atomo-x]", "[atomo-y]", "capstone"]   # qué debe verificarse
+  issued_on: verified-evidence                                # firma de mentor/empleador
+  components:                                                 # niveles KSA que certifica
+    K-[id]: [0-4]
+    S-[id]: [0-4]
+    A-[id]: [0-4]
+```
+
+| El empleo pide… (imprescindible) | Esta insignia comprueba | Match |
+| -------------------------------- | ----------------------- | ----- |
+| \[habilidad / aptitud + nivel mín.] | \[componente → nivel logrado] | ✅ / ⚠️ / ❌ |
+
+---
+
 ## 🎓 Resultados y Reconocimiento
 
 \[Define lo que los estudiantes obtienen al final.]
 
 * Dominio conceptual de \[dominio/habilidad].
-* Aplicación práctica y lista para el trabajo.
+* Aplicación práctica y lista para el trabajo de la **habilidad que tu organización necesita**.
 * Proyecto de portafolio para exhibir.
-* **Insignia digital** compatible con LinkedIn.
+* **Insignia digital** compatible con LinkedIn que actualiza el mapa de habilidades del estudiante.
+
+---
+
+## ✅ Checklist de Conformidad de Diseño
+
+Antes de publicar, confirma que el Micro Curso esté **listo para el trabajo y alineado al método**:
+
+* [ ] El Paso 0 nombra una **tarea real que alguien debe realizar**, con un "cómo se ve lo bueno" observable.
+* [ ] La competencia está anclada a **SFIA / O\*NET / ESCO / ILO**.
+* [ ] Cada objetivo es **verbo de Bloom + tipo KSA** (🧠/🛠️/🌱).
+* [ ] **4–8 átomos**, cada uno con modalidades elegidas según su tipo KSA.
+* [ ] Las aptitudes/actitudes se evalúan con una **rúbrica conductual en varias ocasiones** (nunca un solo quiz).
+* [ ] Hay un **capstone** que simula la tarea real + una rúbrica de 5 criterios.
+* [ ] La **insignia** mapea a niveles KSA y alimenta un **mapa de habilidades** para emparejamiento laboral.
+* [ ] Un **mentor/empleador** validó la necesidad de habilidad y la evidencia (humano en el ciclo).
+* [ ] Los recursos son actuales, accesibles y con licencia adecuada.
 
 ---
 
@@ -7499,10 +7767,23 @@ do átomo (Conhecimento → Adquirir; Habilidade → Praticar; Aptidão → Visu
 
 ---
 
-> Duplique este arquivo para criar novos átomos de aprendizado para qualquer área temática.</script>
+> Duplique este arquivo para criar novos átomos de aprendizado para qualquer área temática. Os
+> átomos são os blocos de um Micro Curso — monte de 4 a 8 com o
+> [Modelo de Micro-Credencial](modelo-microcredencial-ada.md).</script>
 <script type="text/markdown" data-path="templates/pt-br/modelo-codelab-ada.md"># 🧪 Modelo de Codelab ADA
 
 Este modelo de codelab é projetado seguindo a Metodologia ADA e a estrutura de Átomos de Aprendizado. Cada codelab deve combinar explicação, demonstração de código e exercícios guiados.
+
+> **Onde se encaixa:** um codelab é um átomo de 🧪 **Prática** que constrói uma 🛠️ **Habilidade**
+> (o *saber-fazer* que alguém precisa executar). Use-o dentro de um Micro Curso criado com o
+> [Modelo de Micro-Credencial](modelo-microcredencial-ada.md) — registre qual átomo/objetivo ele
+> apoia e avalie-o com a **rubrica de habilidade / desempenho**.
+
+| Encaixa em | Valor |
+| ---------- | ----- |
+| Micro-credencial | \[título do curso] |
+| Apoia átomo / objetivo | \[Átomo #, objetivo] |
+| Tipo KSA / nível alvo | 🛠️ Habilidade · \[0–4] |
 
 ---
 
@@ -7598,9 +7879,60 @@ Teste com: `http://127.0.0.1:5000/saudar/Ada`
 ---
 
 > Você pode duplicar este modelo para construir seus próprios codelabs alinhados com ADA em qualquer domínio.</script>
-<script type="text/markdown" data-path="templates/pt-br/modelo-microcredencial-ada.md"># 🚀Modelo de Micro-Credencial ADA
+<script type="text/markdown" data-path="templates/pt-br/modelo-microcredencial-ada.md"># 🚀 Modelo de Micro-Credencial ADA
 
-Este modelo foi projetado para ajudá-lo a **criar micro-credenciais modulares e prontas para o trabalho**. Cada seção inclui **\[instruções entre colchetes]** para que você possa adaptá-lo ao seu domínio.
+Use este modelo para projetar um **Micro Curso (micro-credencial ADA)** que desenvolva
+**qualquer habilidade que sua organização precise que alguém execute** — uma tarefa profissional
+real, feita a um padrão real. Cada seção tem **\[instruções entre colchetes]**; substitua-as pelo
+seu conteúdo. Exemplo completo:
+[micro-credencial de Mentalidade de Crescimento](../../examples/growth-mindset-micro-credential/README.md) *(conteúdo em inglês)*.
+
+---
+
+## 🧭 Como usar este modelo — *de uma necessidade de habilidade a um curso em 7 passos*
+
+```mermaid
+flowchart LR
+  S0["🏢 Passo 0<br/>Necessidade no trabalho"] --> S1["🎯 Passo 1<br/>Competência alvo"]
+  S1 --> S2["🧬 Passo 2<br/>Desdobramento KSA"]
+  S2 --> S3["📘 Passo 3<br/>Objetivos (Bloom+KSA)"]
+  S3 --> S4["⚛ Passo 4<br/>Átomos + modalidades"]
+  S4 --> S5["🔄 Passo 5<br/>4 fases + planejador"]
+  S5 --> S6["🚀 Passo 6<br/>Capstone + rubricas"]
+  S6 --> S7["🏅 Passo 7<br/>Distintivo → mapa de habilidades"]
+```
+
+1. **Passo 0 — Nomeie a necessidade** (abaixo): o que alguém precisa *fazer* no trabalho e como é "o bom"?
+2. **Passo 1 — Ancore-a** a uma competência reconhecida (SFIA · O\*NET · ESCO · ILO).
+3. **Passo 2 — Desdobre em KSA** — 🧠 Conhecimento, 🛠️ Habilidade, 🌱 Aptidão — para ensinar/avaliar cada parte corretamente.
+4. **Passo 3 — Escreva objetivos Bloom**, cada um marcado com seu tipo KSA.
+5. **Passo 4 — Projete 4–8 átomos de aprendizado**, escolhendo modalidades da topologia.
+6. **Passo 5 / 6 — Sequencie as 4 fases**, depois adicione capstone + rubricas.
+7. **Passo 7 — Emita um distintivo** que escreva níveis KSA em um mapa de habilidades para correspondência profissional.
+
+> 🔗 Método detalhado para os Passos 0–2: [Mapeamento de Papel para Credencial](../../specs/role-to-credential-mapping.md)
+> · Tipos e níveis KSA: [Taxonomia KSA](../../specs/ksa-taxonomy.md)
+> · menu de modalidades: [Topologia do Átomo de Aprendizado](../../specs/learning-atom-topology.md).
+
+---
+
+## 🏢 Passo 0 — Necessidade de Habilidade Organizacional *(intake)*
+
+Comece aqui. Descreva a **tarefa real** que você precisa que alguém execute — não um tema. Se você
+puder observar uma pessoa de alto desempenho fazendo-a, melhor ainda (ver DACUM / shadowing no spec de mapeamento de papel).
+
+| Pergunta de intake | Sua resposta |
+| ------------------ | ------------ |
+| **O que a pessoa precisa ser capaz de *fazer*?** (uma tarefa observável) | \[ex. "Facilitar um retro de incidentes sem culpa que produza ações corretivas"] |
+| **Quem executa / em qual(is) papel(éis)?** | \[papel, equipe, senioridade] |
+| **Por que importa** (resultado de negócio / custo da lacuna) | \[impacto se bem feito vs. malfeito] |
+| **Como é "o bom"** (comportamento de alto desempenho, o padrão) | \[1–3 sinais observáveis de maestria] |
+| **Referência a framework reconhecido** | \[competência SFIA · O\*NET · ESCO · ILO] |
+| **Lacuna atual** (onde os aprendizes estão hoje) | \[o que ainda não conseguem fazer / fazem de forma inconsistente] |
+| **Evidência de maestria** (como você saberá que conseguem fazer) | \[o artefato/comportamento que comprova] |
+
+> ⚠️ Mapeamentos de habilidades assistidos por IA são **apoio à decisão** — peça a um mentor ou
+> ao gestor de contratação que valide a tarefa, o padrão e a evidência antes de construir (humano no ciclo).
 
 ---
 
@@ -7625,6 +7957,24 @@ Este modelo foi projetado para ajudá-lo a **criar micro-credenciais modulares e
 
 ---
 
+## 🧬 Passo 2 — Desdobramento KSA
+
+Divida a competência em componentes tipificados. O **tipo decide como você ensina e avalia**:
+Conhecimento → adquirir + questionário; Habilidade → praticar + rubrica de desempenho; Aptidão →
+prática autêntica repetida + rubrica comportamental ao longo de várias ocasiões. Defina um nível
+alvo **0–4** (ver [Taxonomia KSA](../../specs/ksa-taxonomy.md)).
+
+| Tipo KSA | Componente (o que sabe / consegue fazer) | Por que este tipo | Nível alvo |
+| -------- | ---------------------------------------- | ----------------- | ---------- |
+| 🧠 Conhecimento | \[conceito / fato a compreender] | base habilitadora | \[0–4] |
+| 🛠️ Habilidade | \[um procedimento concreto e praticável] | o *saber-fazer* | \[0–4] |
+| 🌱 Aptidão | \[uma disposição / atitude duradoura] | comprovada pelo comportamento ao longo do tempo | \[0–4] |
+
+> Uma "habilidade que alguém precisa executar" quase sempre precisa das **três**: um pouco de
+> Conhecimento, a Habilidade central, e as Aptidões (julgamento, adaptabilidade, colaboração) que a consolidam.
+
+---
+
 ## 🔑 Pré-requisitos
 
 \[Liste o conhecimento, habilidades ou ferramentas que os aprendizes já devem ter. Se não houver nenhum, escreva "Nenhum."]
@@ -7636,7 +7986,14 @@ Este modelo foi projetado para ajudá-lo a **criar micro-credenciais modulares e
 
 ## 📘 Objetivos de Aprendizado
 
-\[Defina 3–5 objetivos usando **verbos da taxonomia de Bloom**. Cada um será apoiado por Átomos de Aprendizado.]
+\[Defina 3–5 objetivos usando **verbos da taxonomia de Bloom**. Marque cada um com seu
+**tipo KSA** (🧠 C / 🛠️ H / 🌱 A) para que a modalidade e a rubrica corretas sejam óbvias. Cada um será apoiado por Átomos de Aprendizado.]
+
+**Exemplo (marcado):**
+
+* 🧠 **Compreender** modelos de resiliência organizacional.
+* 🛠️ **Projetar** uma estratégia de resiliência para um cenário de crise.
+* 🌱 **Adaptar** decisões com calma à medida que as condições mudam (demonstrado em várias ocasiões).
 
 **Exemplo:**
 
@@ -7664,11 +8021,18 @@ Este modelo foi projetado para ajudá-lo a **criar micro-credenciais modulares e
 
 Cada **Átomo de Aprendizado** = *Conceito + Exemplo + Prática + Avaliação*
 \[Projete 4–8 átomos, um por objetivo de aprendizado. Preencha os detalhes usando a tabela abaixo.]
+Construa cada átomo a partir do [Modelo de Átomo de Aprendizado](modelo-atomo-aprendizado.md) e
+escolha **modalidades** da [Topologia do Átomo de Aprendizado](../../specs/learning-atom-topology.md)
+que se ajustem ao tipo KSA do átomo:
 
-| Átomo  | Objetivo        | Conceito (Ler/Escutar/Assistir)        | Exemplo               | Prática                  | Avaliar                              |   |
-| ------ | --------------- | --------------------------------------- | --------------------- | ------------------------ | ------------------------------------ | - |
-| Átomo 1| \[Objetivo #1]  | \[Artigo, guia, vídeo, podcast]        | \[Estudo de caso ou demo] | \[Mini-laboratório ou exercício] | \[Questionário, reflexão, mini-rubrica] |   |
-| Átomo 2| \[Objetivo #2]  | …                                       | …                     | …                        | …                                    | … |
+- 🧠 **Conhecimento** → 📖 Ler · 🎧 Escutar · 🎬 Assistir · 🖼️ Visualizar
+- 🛠️ **Habilidade** → 🧪 Praticar (Lab · Codelab · Simulação) + rubrica de desempenho
+- 🌱 **Aptidão** → 🖼️ Modelar · 🧪 Praticar · 🤝 Colaborar, em várias ocasiões
+
+| Átomo  | Objetivo        | KSA | Modalidades (sub-tipos)             | Prática                  | Avaliar                              |
+| ------ | --------------- | --- | ----------------------------------- | ------------------------ | ------------------------------------ |
+| Átomo 1| \[Objetivo #1]  | \[🧠/🛠️/🌱] | \[ex. Artigo · Explainer · Diagrama] | \[Mini-laboratório ou exercício] | \[Questionário, reflexão, mini-rubrica] |
+| Átomo 2| \[Objetivo #2]  | …   | …                                   | …                        | …                                    |
 
 ---
 
@@ -7799,14 +8163,53 @@ Inclui: 👥 feedback entre pares · 🗣️ projetos de cocriação · 🌐 fó
 
 ---
 
+## 🏅 Passo 7 — Distintivo → Mapa de Habilidades *(correspondência profissional)*
+
+Defina o distintivo para que a conclusão **escreva níveis KSA comprovados no mapa de habilidades do
+aprendiz**, que pode então ser comparado com o mínimo exigido por qualquer vaga (ver
+[Mapa de Habilidades e Correspondência Profissional](../../specs/skills-map-and-job-matching.md)).
+
+```yaml
+badge:
+  name: "[Nome do distintivo — ex. Praticante de Resiliência]"
+  evidence_required: ["[atomo-x]", "[atomo-y]", "capstone"]   # o que deve ser verificado
+  issued_on: verified-evidence                                # assinatura de mentor/empregador
+  components:                                                 # níveis KSA que certifica
+    K-[id]: [0-4]
+    S-[id]: [0-4]
+    A-[id]: [0-4]
+```
+
+| A vaga pede… (obrigatório) | Este distintivo comprova | Match |
+| -------------------------- | ------------------------ | ----- |
+| \[habilidade / aptidão + nível mín.] | \[componente → nível alcançado] | ✅ / ⚠️ / ❌ |
+
+---
+
 ## 🎓 Resultados e Reconhecimento
 
 \[Defina o que os aprendizes obtêm no final.]
 
 * Maestria conceitual de \[domínio/habilidade].
-* Aplicação prática e pronta para o trabalho.
+* Aplicação prática e pronta para o trabalho da **habilidade que sua organização precisa**.
 * Projeto de portfólio para apresentar.
-* **Distintivo digital** compatível com LinkedIn.
+* **Distintivo digital** compatível com LinkedIn que atualiza o mapa de habilidades do aprendiz.
+
+---
+
+## ✅ Checklist de Conformidade de Design
+
+Antes de publicar, confirme que o Micro Curso está **pronto para o trabalho e alinhado ao método**:
+
+* [ ] O Passo 0 nomeia uma **tarefa real que alguém precisa executar**, com um "como é o bom" observável.
+* [ ] A competência está ancorada em **SFIA / O\*NET / ESCO / ILO**.
+* [ ] Cada objetivo é **verbo de Bloom + tipo KSA** (🧠/🛠️/🌱).
+* [ ] **4–8 átomos**, cada um com modalidades escolhidas conforme seu tipo KSA.
+* [ ] Aptidões/atitudes são avaliadas com uma **rubrica comportamental em várias ocasiões** (nunca um único questionário).
+* [ ] Há um **capstone** que simula a tarefa real + uma rubrica de 5 critérios.
+* [ ] O **distintivo** mapeia para níveis KSA e alimenta um **mapa de habilidades** para correspondência profissional.
+* [ ] Um **mentor/empregador** validou a necessidade de habilidade e a evidência (humano no ciclo).
+* [ ] Os recursos são atuais, acessíveis e devidamente licenciados.
 
 ---
 

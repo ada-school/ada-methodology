@@ -2,6 +2,17 @@
 
 Esta plantilla de codelab está diseñada siguiendo la Metodología ADA y la estructura de Átomos de Aprendizaje. Cada codelab debe combinar explicación, demostración de código y ejercicios guiados.
 
+> **Dónde encaja:** un codelab es un átomo de 🧪 **Práctica** que construye una 🛠️ **Habilidad**
+> (el *saber-hacer* que alguien debe realizar). Úsalo dentro de un Micro Curso creado con la
+> [Plantilla de Micro-Credencial](plantilla-microcredencial-ada.md) — registra qué átomo/objetivo
+> apoya y evalúalo con la **rúbrica de habilidad / desempeño**.
+
+| Encaja en | Valor |
+| --------- | ----- |
+| Micro-credencial | \[título del curso] |
+| Apoya átomo / objetivo | \[Átomo #, objetivo] |
+| Tipo KSA / nivel objetivo | 🛠️ Habilidad · \[0–4] |
+
 ---
 
 ## 🧠 Título

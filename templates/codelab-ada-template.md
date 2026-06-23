@@ -2,6 +2,17 @@
 
 This codelab template is designed following the ADA Methodology and Learning Atoms structure. Each codelab should combine explanation, code demonstration, and guided exercises.
 
+> **Where this fits:** a codelab is a 🧪 **Practice** atom that builds a 🛠️ **Skill** (the *know-how*
+> someone must perform). Use it inside a Micro Course built with the
+> [Micro-Credential Template](micro-credential-ada-template.md) — record which atom/objective it
+> supports and assess it with the **skill / performance rubric**.
+
+| Fits in | Value |
+| ------- | ----- |
+| Micro-credential | \[course title] |
+| Supports atom / objective | \[Atom #, objective] |
+| KSA type / target level | 🛠️ Skill · \[0–4] |
+
 ---
 
 ## 🧠 Title
