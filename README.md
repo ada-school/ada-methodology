@@ -255,6 +255,8 @@ JOB POSTING → [Gen AI + human validation] → TARGET KSA PROFILE
 * 🗣️ [**Full course** — Effective Communication micro-credential](examples/effective-communication-micro-credential/README.md) · 🖥️ [open the interactive `course.html`](examples/effective-communication-micro-credential/course.html)
 * 🧭 [**Full course** — Self-Learning micro-credential (online + AI)](examples/self-learning-micro-credential/README.md) · 🖥️ [open the interactive `course.html`](examples/self-learning-micro-credential/course.html)
 * 🧩 [**Full course** — Problem Solving micro-credential](examples/problem-solving-micro-credential/README.md) · 🖥️ [open the interactive `course.html`](examples/problem-solving-micro-credential/course.html)
+* 🧠 [**Full course** — Critical Thinking micro-credential](examples/critical-thinking-micro-credential/README.md) · 🖥️ [open the interactive `course.html`](examples/critical-thinking-micro-credential/course.html)
+* 💡 [**Full course** — Innovation & Creativity micro-credential](examples/innovation-creativity-micro-credential/README.md) · 🖥️ [open the interactive `course.html`](examples/innovation-creativity-micro-credential/course.html)
 
 ---
 
@@ -330,6 +332,8 @@ number** that tells the learner exactly what to earn next.
 * 🗣️ [Full worked course: Effective Communication micro-credential](examples/effective-communication-micro-credential/README.md) — a near-universal human skill (with interactive [`course.html`](examples/effective-communication-micro-credential/course.html)).
 * 🧭 [Full worked course: Self-Learning micro-credential](examples/self-learning-micro-credential/README.md) — learn anything online & with AI, the meta-skill (with interactive [`course.html`](examples/self-learning-micro-credential/course.html)).
 * 🧩 [Full worked course: Problem Solving micro-credential](examples/problem-solving-micro-credential/README.md) — define, diagnose & decide (with interactive [`course.html`](examples/problem-solving-micro-credential/course.html)).
+* 🧠 [Full worked course: Critical Thinking micro-credential](examples/critical-thinking-micro-credential/README.md) — reason, evaluate evidence & defend a position (with interactive [`course.html`](examples/critical-thinking-micro-credential/course.html)).
+* 💡 [Full worked course: Innovation & Creativity micro-credential](examples/innovation-creativity-micro-credential/README.md) — reframe, generate ideas, prototype & pitch (with interactive [`course.html`](examples/innovation-creativity-micro-credential/course.html)).
 
 ---
 

@@ -221,6 +221,17 @@ main{min-width:0;padding:34px 46px 120px;animation:fadeUp .5s ease}
 .md tr{transition:background .15s ease}
 .md tbody tr:hover{background:var(--bg-soft)}
 .md img{max-width:100%;border-radius:10px}
+.yt{margin:1.4em 0;border-radius:var(--radius);overflow:hidden;background:#0A1124;box-shadow:var(--shadow);border:1px solid var(--border)}
+.yt .yt-play{position:relative;display:block;width:100%;aspect-ratio:16/9;border:0;cursor:pointer;
+  background:radial-gradient(circle at 50% 45%,#243069,#0A1124);background-size:cover;background-position:center;color:#fff}
+.yt .yt-play::after{content:"";position:absolute;inset:0;background:rgba(10,17,36,.38)}
+.yt-tri{position:relative;z-index:1;font-size:42px;color:#fff;background:rgba(225,165,60,.95);width:84px;height:58px;
+  border-radius:16px;display:grid;place-items:center;margin:0 auto;box-shadow:0 6px 18px rgba(0,0,0,.4);transition:transform .2s}
+.yt .yt-play:hover .yt-tri{transform:scale(1.08)}
+.yt iframe{display:block;width:100%;aspect-ratio:16/9;border:0}
+.yt-meta{padding:10px 14px;font-size:13px;background:var(--bg-soft);border-top:1px solid var(--border)}
+.yt-meta a{color:var(--link);word-break:break-all}
+.yt-cap{color:var(--text-dim);margin-top:4px}
 .md h2,.md h3{position:relative}
 .anchor{opacity:0;margin-left:8px;font-size:.7em;color:var(--link);transition:opacity .2s}
 .md h2:hover .anchor,.md h3:hover .anchor{opacity:1}
@@ -571,8 +582,21 @@ JS = r"""
       if(line.trim()===""){i++;continue;}
       var cb=line.match(/^\u0000(\d+)\u0000$/);
       if(cb){var b=blocks[+cb[1]];
-        if((b.lang||"").toLowerCase()==="mermaid"){
+        var blang=(b.lang||"").toLowerCase();
+        if(blang==="mermaid"){
           out.push('<div class="mermaid" data-src="'+escapeHtml(b.code).replace(/"/g,"&quot;")+'">'+escapeHtml(b.code)+'</div>');
+        } else if(blang==="youtube"){
+          var yl=b.code.trim().split("\n");
+          var yurl=(yl[0]||"").trim();
+          var ycap=yl.slice(1).join(" ").trim();
+          var ym=yurl.match(/(?:v=|youtu\.be\/|embed\/|shorts\/)([A-Za-z0-9_-]{6,})/);
+          var yid=ym?ym[1]:"";
+          var ythumb=yid?' style="background-image:url(https://i.ytimg.com/vi/'+yid+'/hqdefault.jpg)"':"";
+          out.push('<div class="yt" data-id="'+escapeHtml(yid)+'">'+
+            '<button class="yt-play" type="button" aria-label="Play video"'+ythumb+'>'+
+            '<span class="yt-tri">&#9654;</span></button>'+
+            '<div class="yt-meta"><a href="'+escapeHtml(yurl)+'" target="_blank" rel="noopener">'+escapeHtml(yurl)+'</a>'+
+            (ycap?'<div class="yt-cap">'+inline(ycap)+'</div>':'')+'</div></div>');
         } else {
           out.push('<pre>'+(b.lang?'<span class="lang-tag">'+escapeHtml(b.lang.split(":").pop())+'</span>':"")+
                    '<code>'+escapeHtml(b.code)+'</code></pre>');
@@ -982,6 +1006,7 @@ JS = r"""
     } else { toc.innerHTML=""; }
     setActive(path);
     bindImages();
+    bindVideos();
     bindContentLinks();
     bindTocLinks();
     renderDiagrams();
@@ -1000,6 +1025,23 @@ JS = r"""
       if(!src||/^([a-z]+:)?\/\//i.test(src)||src.indexOf("data:")===0) return;
       im.setAttribute("src", resolvePath(currentPath, src));
       im.setAttribute("loading","lazy");
+    });
+  }
+  function bindVideos(){
+    content.querySelectorAll(".yt").forEach(function(y){
+      var btn=y.querySelector(".yt-play"); if(!btn) return;
+      btn.addEventListener("click",function(){
+        var id=y.getAttribute("data-id"); if(!id) return;
+        // file:// pages can't host a YouTube iframe (Error 153) -> open on YouTube instead.
+        if(location.protocol==="file:"){window.open("https://www.youtube.com/watch?v="+id,"_blank","noopener");return;}
+        var f=document.createElement("iframe");
+        f.src="https://www.youtube-nocookie.com/embed/"+id+"?autoplay=1&rel=0";
+        f.allow="accelerated-sensors;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture;web-share;fullscreen";
+        f.setAttribute("allowfullscreen","");
+        f.setAttribute("referrerpolicy","strict-origin-when-cross-origin");
+        f.title="YouTube video";
+        btn.replaceWith(f);
+      });
     });
   }
   function bindContentLinks(){

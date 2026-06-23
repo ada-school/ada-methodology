@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>🧠 Critical Thinking · ADA Micro-Credential</title>
+<link rel="icon" href="../../img/Isotipo.png">
+<style>
+:root{
+  --ink:#0A1124; --indigo:#1E2A6E; --turq:#15B5C6; --gold:#E0A53C;
+  --bg:#f6f8fc; --surface:#ffffff; --border:#e2e7f2; --text:#1b2440; --muted:#5b6685;
+  --radius:14px; --shadow:0 6px 24px rgba(20,30,70,.08);
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Arial,sans-serif;
+  background:var(--bg);color:var(--text);line-height:1.65}
+a{color:var(--indigo);text-decoration:none}
+a:hover{text-decoration:underline}
+.app{display:grid;grid-template-columns:300px minmax(0,1fr);min-height:100vh}
+
+/* sidebar */
+.side{position:sticky;top:0;height:100vh;overflow-y:auto;background:var(--ink);color:#dfe5fb;
+  padding:18px 14px;border-right:1px solid #111a36}
+.brand{display:flex;align-items:center;gap:10px;padding:6px 6px 14px}
+.brand img{width:40px;height:40px;animation:spin 9s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.brand b{font-size:15px;color:#fff;line-height:1.2}
+.brand small{display:block;color:var(--turq);font-weight:600;font-size:11px;letter-spacing:.04em}
+.progwrap{margin:8px 6px 16px}
+.progbar{height:8px;border-radius:8px;background:#1b2547;overflow:hidden}
+.progfill{height:100%;width:0;background:linear-gradient(90deg,var(--turq),var(--gold));transition:width .5s}
+.progtext{font-size:11px;color:#9fb0e6;margin-top:6px}
+.nav-group{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:#8fa0d8;
+  margin:14px 8px 4px;font-weight:700}
+.navlink{display:block;padding:8px 10px;border-radius:9px;color:#cdd6f6;font-size:14px;margin:2px 0}
+.navlink:hover{background:#16204180;text-decoration:none;color:#fff}
+.navlink.active{background:linear-gradient(90deg,var(--indigo),#2a3aa0);color:#fff;font-weight:600}
+
+/* main */
+.main{padding:0}
+.topbar{position:sticky;top:0;z-index:5;background:rgba(246,248,252,.85);backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--border);padding:12px 28px;display:flex;align-items:center;gap:14px}
+.topbar .pill{font-size:12px;font-weight:700;color:#fff;background:var(--indigo);padding:4px 12px;border-radius:30px}
+.topbar .sp{flex:1}
+.navbtn{border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:9px;
+  padding:7px 14px;font-size:13px;cursor:pointer;font-weight:600}
+.navbtn:hover{border-color:var(--turq)}
+.navbtn:disabled{opacity:.4;cursor:not-allowed}
+.wrap{max-width:880px;margin:0 auto;padding:30px 28px 90px}
+.page{display:none;animation:fade .35s ease}
+.page.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+h1,h2,h3,h4{color:var(--indigo);line-height:1.25}
+h1{font-size:30px;margin:.2em 0 .5em;border-bottom:3px solid var(--turq);padding-bottom:.3em}
+h2{font-size:22px;margin:1.5em 0 .5em}
+h3{font-size:18px;margin:1.3em 0 .4em}
+h4{font-size:15px;margin:1.1em 0 .3em;color:var(--ink)}
+p{margin:.7em 0}
+hr{border:0;border-top:1px solid var(--border);margin:1.6em 0}
+ul,ol{padding-left:1.4em;margin:.6em 0}
+li{margin:.3em 0}
+li input[type=checkbox]{margin-right:6px}
+img{max-width:100%;border-radius:10px}
+code{background:#eef1f9;padding:.12em .4em;border-radius:6px;font-size:.88em;
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:#27306b}
+pre.code{background:var(--ink);color:#e7ecff;padding:16px 18px;border-radius:var(--radius);
+  overflow:auto;position:relative;box-shadow:var(--shadow)}
+pre.code code{background:none;color:inherit;padding:0;font-size:13.5px;line-height:1.6}
+pre.code .lang{position:absolute;top:8px;right:12px;font-size:10px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--turq);font-family:inherit}
+blockquote{margin:1em 0;padding:.7em 1.1em;border-left:4px solid var(--gold);
+  background:#fff8ec;border-radius:0 10px 10px 0;color:#5a4a23}
+.tablewrap{overflow-x:auto;margin:1em 0;border:1px solid var(--border);border-radius:var(--radius)}
+table{border-collapse:collapse;width:100%;font-size:14px;background:var(--surface)}
+th,td{padding:9px 12px;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+th{background:var(--indigo);color:#fff;font-weight:600}
+tr:nth-child(even) td{background:#f7f9fe}
+
+.donebox{float:right;display:inline-flex;align-items:center;gap:7px;background:var(--surface);
+  border:1px solid var(--border);border-radius:30px;padding:6px 14px;font-size:13px;font-weight:600;
+  color:var(--muted);cursor:pointer;box-shadow:var(--shadow)}
+.donebox input{accent-color:var(--turq)}
+
+/* youtube facade */
+.yt{margin:1.2em 0;border-radius:var(--radius);overflow:hidden;background:var(--ink);box-shadow:var(--shadow)}
+.yt .yt-play{position:relative;display:block;width:100%;aspect-ratio:16/9;border:0;cursor:pointer;
+  background:radial-gradient(circle at 50% 45%,#243069,#0A1124);background-size:cover;background-position:center;color:#fff}
+.yt .yt-play::after{content:"";position:absolute;inset:0;background:rgba(10,17,36,.38)}
+.yt-tri{position:relative;z-index:1;font-size:42px;color:#fff;background:rgba(225,165,60,.92);width:84px;height:58px;
+  border-radius:16px;display:grid;place-items:center;margin:0 auto;box-shadow:0 6px 18px rgba(0,0,0,.4);
+  transition:transform .2s}
+.yt .yt-play:hover .yt-tri{transform:scale(1.08)}
+.yt iframe{display:block;width:100%;aspect-ratio:16/9;border:0}
+.yt-meta{padding:9px 14px;font-size:13px;background:#121c3a}
+.yt-meta a{color:var(--turq);word-break:break-all}
+.yt-cap{color:#aebadf;font-size:12px;margin-top:2px}
+
+/* prompt card */
+.promptcard{margin:1.2em 0;border:1px solid #d9c79a;border-radius:var(--radius);overflow:hidden;
+  background:#fffdf6;box-shadow:var(--shadow)}
+.promptcard-h{display:flex;align-items:center;justify-content:space-between;padding:8px 14px;
+  background:linear-gradient(90deg,#fbf0d6,#fff7e6);font-weight:700;color:#7a5b16;font-size:13px}
+.promptcard pre{margin:0;padding:14px 16px;white-space:pre-wrap;font-size:13px;color:#4a4634;
+  font-family:ui-monospace,Menlo,monospace}
+.copybtn{border:1px solid var(--gold);background:#fff;color:#8a6516;border-radius:7px;
+  padding:3px 12px;font-size:12px;cursor:pointer;font-weight:700}
+.copybtn:hover{background:var(--gold);color:#fff}
+.copybtn.ok{background:var(--turq);border-color:var(--turq);color:#fff}
+
+/* mermaid */
+.mermaid{margin:1.2em 0;text-align:center;background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
+.mermaid.fallback{text-align:left;background:var(--ink)}
+.mermaid.fallback pre{color:#e7ecff;margin:0;white-space:pre-wrap;font-size:12px}
+.mermaid svg .nodeLabel,.mermaid svg .label{font-weight:600}
+.mermaid svg .edgeLabel,.mermaid svg .edgeLabel *{color:#1E2A6E !important;font-weight:600}
+
+@media(max-width:880px){
+  .app{grid-template-columns:1fr}
+  .side{position:fixed;left:-300px;width:300px;z-index:30;transition:left .25s}
+  .side.open{left:0}
+  .menutoggle{display:inline-flex !important}
+}
+.menutoggle{display:none;align-items:center;justify-content:center;width:38px;height:38px;
+  border:1px solid var(--border);background:var(--surface);border-radius:9px;cursor:pointer;font-size:18px}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side" id="side">
+    <div class="brand">
+      <img src="../../img/Isotipo.png" alt="ADA">
+      <div><b>Critical Thinking</b><small>ADA MICRO-CREDENTIAL</small></div>
+    </div>
+    <div class="progwrap">
+      <div class="progbar"><div class="progfill" id="progfill"></div></div>
+      <div class="progtext" id="progtext">0 / 6 atoms complete</div>
+    </div>
+    <nav id="nav"><div class="nav-group">Start</div>
+<a class="navlink" data-target="overview" href="#overview">Course overview</a>
+<a class="navlink" data-target="spec" href="#spec">Micro-credential spec</a>
+<div class="nav-group">🙉 Phase 1 · hear</div>
+<a class="navlink" data-target="atom-1" href="#atom-1">1 · What critical thinking is</a>
+<a class="navlink" data-target="atom-2" href="#atom-2">2 · Fallacies &amp; biases</a>
+<div class="nav-group">🙈 Phase 2 · see</div>
+<a class="navlink" data-target="atom-3" href="#atom-3">3 · Evaluate arguments 🛠️</a>
+<div class="nav-group">🙊 Phase 3 · do</div>
+<a class="navlink" data-target="atom-4" href="#atom-4">4 · Question &amp; verify 🛠️</a>
+<a class="navlink" data-target="atom-5" href="#atom-5">5 · Build &amp; defend 🛠️</a>
+<div class="nav-group">🐵 Phase 4 · share</div>
+<a class="navlink" data-target="atom-6" href="#atom-6">6 · Capstone 🚀</a>
+<div class="nav-group">Assess</div>
+<a class="navlink" data-target="capstone" href="#capstone">Capstone brief</a>
+<a class="navlink" data-target="rubrics" href="#rubrics">Rubrics</a>
+<a class="navlink" data-target="skillsmap" href="#skillsmap">Skills map → job match</a></nav>
+  </aside>
+  <div class="main">
+    <div class="topbar">
+      <button class="menutoggle" id="menutoggle" aria-label="Menu">&#9776;</button>
+      <span class="pill">🧠 Critical Thinking</span>
+      <span class="sp"></span>
+      <button class="navbtn" id="prevbtn">&larr; Prev</button>
+      <button class="navbtn" id="nextbtn">Next &rarr;</button>
+    </div>
+    <div class="wrap"><section class="page" id="page-overview" data-id="overview"><h1>🧠 Worked Example — Critical Thinking Micro-Credential (full course)</h1>
+<p align="center">
+  <img alt="Indigo #1E2A6E" src="https://img.shields.io/badge/Indigo-1E2A6E?style=flat-square&amp;labelColor=1E2A6E&amp;color=1E2A6E">
+  <img alt="Turquoise #15B5C6" src="https://img.shields.io/badge/Turquoise-15B5C6?style=flat-square&amp;labelColor=15B5C6&amp;color=15B5C6">
+  <img alt="Gold #E0A53C" src="https://img.shields.io/badge/Gold-E0A53C?style=flat-square&amp;labelColor=E0A53C&amp;color=E0A53C">
+  <img alt="Ink #0A1124" src="https://img.shields.io/badge/Ink-0A1124?style=flat-square&amp;labelColor=0A1124&amp;color=0A1124">
+</p>
+<p>A <strong>complete, ready-to-run ADA micro-credential</strong> for one of the most valuable — and most-claimed, least-taught — competencies of the AI era: <strong>thinking critically</strong>. It is a <em>fully populated</em> example built end-to-end with the ADA Methodology (KSA + 4 phases + learning-atom topology): every atom has <strong>real reading text</strong>, <strong>curated videos</strong>, <strong>Mermaid diagrams</strong>, <strong>image-generation prompts</strong>, hands-on drills, and rubrics.</p>
+<blockquote>🖥️ <strong>See it live:</strong> open <a href="course.html" target="_blank" rel="noopener"><code>course.html</code></a> in any browser for an interactive, navigable version of this course (sidebar, progress, embedded videos, diagrams, copyable prompts).</blockquote>
+<p>Critical thinking is a <strong>cognitive skill</strong> that spans the full KSA spectrum: a small <strong>Knowledge</strong> base (the anatomy of reasoning; fallacies &amp; biases), three core <strong>Skills</strong> (evaluate arguments &amp; evidence, question &amp; verify, and construct &amp; defend a reasoned argument), and the durable <strong>Abilities</strong> that power them (intellectual humility and a curious, skeptical stance). It pairs naturally with <a href="../../index.html#/examples/problem-solving-micro-credential/README.md" target="_blank" rel="noopener">Problem Solving</a> (where you apply the reasoning) and <a href="../../index.html#/examples/self-learning-micro-credential/README.md" target="_blank" rel="noopener">Self-Learning</a> (where you judge sources and AI output).</p>
+<p>Conforms to <a href="../../index.html#/specs/micro-credential-v2-schema.md" target="_blank" rel="noopener"><code>../../specs/micro-credential-v2-schema.md</code></a> · modalities from <a href="../../index.html#/specs/learning-atom-topology.md" target="_blank" rel="noopener"><code>../../specs/learning-atom-topology.md</code></a> · KSA from <a href="../../index.html#/specs/ksa-taxonomy.md" target="_blank" rel="noopener"><code>../../specs/ksa-taxonomy.md</code></a>.</p>
+<hr>
+<h2>🧭 What this teaches</h2>
+<p>In a world flooded with content, confident AI answers, and persuasive nonsense, the ability to <strong>tell good reasoning from bad</strong> is a superpower. This course makes it concrete and certifiable: learners learn to <strong>deconstruct an argument</strong> (claims, premises, assumptions, inference), <strong>spot fallacies and biases</strong>, <strong>evaluate evidence and sources</strong>, <strong>ask sharp questions</strong>, and <strong>build and defend a well-reasoned position</strong> — finishing by reasoning through a real, contested issue and defending their conclusion.</p>
+<div class='tablewrap'><table><thead><tr><th></th><th></th></tr></thead><tbody>
+<tr><td><strong>Title</strong></td><td>Critical Thinking: Reason, Evaluate &amp; Judge</td></tr>
+<tr><td><strong>Duration</strong></td><td>~12 hours · 2–3 weeks</td></tr>
+<tr><td><strong>Primary KSA</strong></td><td>🛠️ Skill — <em>evaluate arguments &amp; evidence</em> and <em>question &amp; verify</em>, plus the 🌱 Abilities that sustain them</td></tr>
+<tr><td><strong>Target competency</strong></td><td>O*NET process skills: <strong>Critical Thinking</strong> (2.A.2.a), <strong>Active Learning</strong> (2.A.2.a), <strong>Judgment &amp; Decision Making</strong> (2.B.4.e) · ESCO transversal <em>"think critically", "think analytically"</em></td></tr>
+<tr><td><strong>Badge</strong></td><td>🏅 <em>Critical Thinker</em></td></tr>
+<tr><td><strong>Prerequisites</strong></td><td>None. A contested topic or claim you care about helps for practice.</td></tr>
+</tbody></table></div>
+<hr>
+<h2>📚 Course contents</h2>
+<div class='tablewrap'><table><thead><tr><th>#</th><th>File</th><th>What it is</th></tr></thead><tbody>
+<tr><td>—</td><td><a href="#spec"><code>micro-credential.md</code></a></td><td>The full micro-credential spec (YAML schema, objectives, KSA map, phase planner)</td></tr>
+<tr><td>1</td><td><a href="#atom-1"><code>atoms/atom-1-what-is-critical-thinking.md</code></a></td><td>🙉 P1 · 🧠 K — What critical thinking is (claims, arguments, standards)</td></tr>
+<tr><td>2</td><td><a href="#atom-2"><code>atoms/atom-2-fallacies-and-biases.md</code></a></td><td>🙉 P1 · 🧠 K — Logical fallacies &amp; reasoning biases (how thinking fails)</td></tr>
+<tr><td>3</td><td><a href="#atom-3"><code>atoms/atom-3-evaluate-arguments-and-evidence.md</code></a></td><td>🙈 P2 · 🛠️ S — Evaluate arguments &amp; evidence (deconstruct + judge)</td></tr>
+<tr><td>4</td><td><a href="#atom-4"><code>atoms/atom-4-question-and-verify.md</code></a></td><td>🙊 P3 · 🛠️ S — Question &amp; verify (Socratic questions · sources · steelmanning)</td></tr>
+<tr><td>5</td><td><a href="#atom-5"><code>atoms/atom-5-build-and-defend-an-argument.md</code></a></td><td>🙊 P3 · 🛠️ S + 🌱 A — Build &amp; defend a reasoned argument</td></tr>
+<tr><td>6</td><td><a href="#atom-6"><code>atoms/atom-6-capstone-reason-through-a-real-issue.md</code></a></td><td>🐵 P4 · 🛠️ S + 🌱 A — Capstone: reason through a real issue + peer review</td></tr>
+<tr><td>—</td><td><a href="#capstone"><code>capstone.md</code></a></td><td>Capstone brief + how it maps to KSA</td></tr>
+<tr><td>—</td><td><a href="#rubrics"><code>rubrics.md</code></a></td><td>All rubrics (knowledge-mini, skill, behavioral, capstone-5)</td></tr>
+<tr><td>—</td><td><a href="#skillsmap"><code>skills-map.md</code></a></td><td>Badge → skills map and how it boosts almost every role</td></tr>
+</tbody></table></div>
+<blockquote>🤝 <strong>Practiced for real:</strong> the Abilities (intellectual humility, skeptical curiosity) are assessed <strong>behaviorally across ≥3 occasions</strong> (never a quiz), and the capstone ends in a defense + peer review.</blockquote>
+<hr>
+<h2>🔄 Phase journey</h2>
+<div class="mermaid">flowchart LR
+  P1[&quot;🙉 P1 · hear&lt;br/&gt;Reasoning anatomy · fallacies &amp; biases&quot;] --&gt; P2[&quot;🙈 P2 · see&lt;br/&gt;Evaluate arguments &amp; evidence&quot;]
+  P2 --&gt; P3[&quot;🙊 P3 · do&lt;br/&gt;Question &amp; verify · build &amp; defend&quot;]
+  P3 --&gt; P4[&quot;🐵 P4 · share&lt;br/&gt;Reason through a real issue · defend&quot;]
+  P4 --&gt; BADGE[&quot;🏅 Critical Thinker&quot;]</div>
+<hr>
+<h2>🤖 How it was authored (and how to reuse it)</h2>
+<p>This course follows the Gen AI authoring workflow in <a href="../../index.html#/specs/genai-authoring-workflow.md" target="_blank" rel="noopener"><code>../../specs/genai-authoring-workflow.md</code></a>: competency → KSA → atoms → modalities → rubrics → badge. Conventions used throughout:</p>
+<ul>
+<li><strong>🎬 Videos</strong> are written as a <code>youtube</code> block with the real URL + caption (the interactive site</li>
+</ul>
+<p>  embeds them as a click-to-play player).</p>
+<ul>
+<li><strong>🖼️ Diagrams</strong> are provided two ways: a live <strong>Mermaid</strong> diagram <em>and</em> a reusable</li>
+</ul>
+<p>  <strong>image-generation prompt</strong> in a <code>prompt</code> block.</p>
+<ul>
+<li><strong>✅ Activities</strong> include argument-mapping worksheets, source audits, checklists, and rubrics so the</li>
+</ul>
+<p>  course is self-paced and practicable.</p>
+<blockquote>⚠️ <strong>Human-in-the-loop (methodology guardrail):</strong> the links and references below are <strong>curated starting points</strong> — a mentor/instructor should verify each one before delivery. The Abilities here require human/peer observation across occasions. See <a href="../../index.html#/CLAUDE.md" target="_blank" rel="noopener"><code>../../CLAUDE.md</code></a> §5.</blockquote></section>
+<section class="page" id="page-spec" data-id="spec"><h1>🎓 Micro-Credential — Critical Thinking: Reason, Evaluate &amp; Judge</h1>
+<p>The full specification for this micro-credential. It conforms to <a href="../../index.html#/specs/micro-credential-v2-schema.md" target="_blank" rel="noopener"><code>../../specs/micro-credential-v2-schema.md</code></a>.</p>
+<hr>
+<h2>YAML front matter</h2>
+<pre class="code"><span class="lang">yaml</span><code>schema: ada-microcredential/v2
+id: mc-critical-thinking
+title: &quot;Critical Thinking: Reason, Evaluate &amp; Judge&quot;
+language: en
+duration_hours: 12
+level: beginner
+status: published
+license: CC-BY-SA-4.0
+mentors: [&quot;@sancarbar&quot;]
+
+target_roles:
+  - role: &quot;Any role — critical thinking is a transversal, near-universal job requirement (analysts, ICs, leads, researchers, founders)&quot;
+    framework_ref: &gt;
+      O*NET process skills: 2.A.2.a Critical Thinking, 2.A.2.a Active Learning, 2.B.4.e Judgment and Decision Making ·
+      ESCO transversal: &quot;think critically&quot;, &quot;think analytically&quot;, &quot;process information&quot;
+
+ksa:
+  - { id: K-reasoning,            type: knowledge, label: &quot;The anatomy of reasoning: claims, premises, assumptions, inference; validity vs. soundness; standards of good thinking (clarity, accuracy, relevance, logic, fairness)&quot;, target_level: 2, bloom: understand }
+  - { id: K-fallacies-biases,     type: knowledge, label: &quot;Common logical fallacies and reasoning biases that make thinking fail&quot;, target_level: 2, bloom: understand }
+  - { id: S-evaluate-arguments,   type: skill,     label: &quot;Deconstruct and evaluate an argument and its evidence: identify claim/premises/assumptions, assess evidence quality and logical strength&quot;, target_level: 2, bloom: analyze, primary: true }
+  - { id: S-question-verify,      type: skill,     label: &quot;Ask good questions and verify: Socratic questioning, source/credibility evaluation, steelmanning&quot;, target_level: 2, bloom: apply, primary: true }
+  - { id: S-construct-argument,   type: skill,     label: &quot;Construct and defend a well-reasoned argument: claim → reasons → evidence → address counterarguments (argument mapping)&quot;, target_level: 2, bloom: create }
+  - { id: A-intellectual-humility, type: ability,  label: &quot;Intellectual humility &amp; open-mindedness: willingness to be wrong, follow evidence, and revise beliefs&quot;, target_level: 2, affective_stage: value, assessed_occasions: 3 }
+  - { id: A-skepticism-curiosity, type: ability,   label: &quot;Skeptical curiosity: question claims and assumptions rather than accept them at face value&quot;, target_level: 2, affective_stage: respond, assessed_occasions: 3 }
+
+atoms:
+  - { id: atom-1, title: &quot;What critical thinking is&quot;, ksa_refs: [K-reasoning], phase: 1, modalities: [{dimension: read, subtype: Article}, {dimension: watch, subtype: Video Explainer}, {dimension: see, subtype: Mental Model}, {dimension: evaluate, subtype: Pop Quiz}], rubric: knowledge-mini }
+  - { id: atom-2, title: &quot;Logical fallacies &amp; reasoning biases&quot;, ksa_refs: [K-fallacies-biases], phase: 1, modalities: [{dimension: read, subtype: Article}, {dimension: watch, subtype: Video Explainer}, {dimension: see, subtype: Framework}, {dimension: evaluate, subtype: Pop Quiz}], rubric: knowledge-mini }
+  - { id: atom-3, title: &quot;Evaluate arguments &amp; evidence&quot;, ksa_refs: [S-evaluate-arguments], phase: 2, modalities: [{dimension: see, subtype: Diagram}, {dimension: practice, subtype: Worksheet / Exercise}, {dimension: practice, subtype: Case Study}, {dimension: evaluate, subtype: Performance Task}], rubric: skill }
+  - { id: atom-4, title: &quot;Question &amp; verify&quot;, ksa_refs: [S-question-verify], phase: 3, modalities: [{dimension: read, subtype: Technical Article}, {dimension: practice, subtype: Worksheet / Exercise}, {dimension: practice, subtype: AI Prompt Question}, {dimension: evaluate, subtype: Performance Task}], rubric: skill }
+  - { id: atom-5, title: &quot;Build &amp; defend a reasoned argument&quot;, ksa_refs: [S-construct-argument, A-intellectual-humility, A-skepticism-curiosity], phase: 3, modalities: [{dimension: practice, subtype: Essay / Writing}, {dimension: practice, subtype: Simulation}, {dimension: collaborate, subtype: Discussion Forum}, {dimension: evaluate, subtype: Behavioral Assessment}], rubric: behavioral }
+  - { id: atom-6, title: &quot;Capstone: reason through a real issue&quot;, ksa_refs: [S-evaluate-arguments, S-question-verify, S-construct-argument, A-intellectual-humility, A-skepticism-curiosity], phase: 4, modalities: [{dimension: practice, subtype: Project / Quest}, {dimension: collaborate, subtype: Showcase / Demo Day}, {dimension: collaborate, subtype: Async Peer Review}, {dimension: evaluate, subtype: Capstone Project}], rubric: capstone-5 }
+
+capstone:
+  title: &quot;Take a real, contested claim or issue, evaluate the evidence on all sides, and defend a reasoned conclusion&quot;
+  integrates_ksa: [K-reasoning, K-fallacies-biases, S-evaluate-arguments, S-question-verify, S-construct-argument, A-intellectual-humility, A-skepticism-curiosity]
+  rubric: capstone-5
+
+badge:
+  name: &quot;Critical Thinker&quot;
+  evidence_required: [&quot;atom-3&quot;, &quot;atom-4&quot;, &quot;atom-5&quot;, &quot;capstone&quot;]
+  issued_on: verified-evidence</code></pre>
+<hr>
+<h2>🎯 Target job competency</h2>
+<p><strong>Think critically.</strong> Employers want people who can cut through noise: evaluate claims, weigh evidence, spot flawed reasoning, ask the right questions, and reach a defensible conclusion — especially now that AI can produce fluent, confident, sometimes-wrong content at scale. It is one of the most-requested competencies across every function. Mapped to <strong>O*NET</strong> (Critical Thinking, Active Learning, Judgment &amp; Decision Making) and <strong>ESCO</strong> transversal <em>"think critically / analytically."</em></p>
+<h2>🧬 KSA breakdown — a cognitive skill, taught the right way</h2>
+<div class='tablewrap'><table><thead><tr><th>KSA</th><th>Component</th><th>Why this type</th><th>Target</th></tr></thead><tbody>
+<tr><td>🧠 Knowledge</td><td>The anatomy of reasoning</td><td>A mental model: claims, premises, inference, standards</td><td>L2</td></tr>
+<tr><td>🧠 Knowledge</td><td>Fallacies &amp; reasoning biases</td><td>You can't catch flaws you can't name</td><td>L2</td></tr>
+<tr><td>🛠️ Skill</td><td>Evaluate arguments &amp; evidence</td><td>A trainable technique (deconstruct + judge)</td><td><strong>L2</strong></td></tr>
+<tr><td>🛠️ Skill</td><td>Question &amp; verify</td><td>Socratic questioning + source evaluation</td><td><strong>L2</strong></td></tr>
+<tr><td>🛠️ Skill</td><td>Build &amp; defend an argument</td><td>Argument mapping; address counterarguments</td><td>L2</td></tr>
+<tr><td>🌱 Ability</td><td>Intellectual humility</td><td>A disposition: willingness to be wrong &amp; revise</td><td>L2</td></tr>
+<tr><td>🌱 Ability</td><td>Skeptical curiosity</td><td>A habit of questioning before accepting</td><td>L2</td></tr>
+</tbody></table></div>
+<blockquote><strong>Why this shape:</strong> critical thinking is mostly <strong>doing</strong> (Skills: evaluate, question, construct), but it only <em>works</em> when paired with the <strong>Abilities</strong> that drive it — intellectual humility (to follow evidence even against your own view) and skeptical curiosity (to question the obvious). Those Abilities are assessed <strong>behaviorally, across ≥3 occasions</strong>, not with a quiz.</blockquote>
+<h2>📘 Learning objectives (Bloom + KSA)</h2>
+<div class='tablewrap'><table><thead><tr><th>Objective</th><th>Bloom</th><th>KSA</th><th>Component</th><th>Target</th></tr></thead><tbody>
+<tr><td>Explain the parts of an argument and distinguish validity from soundness</td><td>Understand</td><td>🧠 K</td><td>K-reasoning</td><td>L2</td></tr>
+<tr><td>Recognize common logical fallacies and reasoning biases</td><td>Understand</td><td>🧠 K</td><td>K-fallacies-biases</td><td>L2</td></tr>
+<tr><td>Deconstruct an argument and evaluate its evidence and logic</td><td>Analyze</td><td>🛠️ S</td><td>S-evaluate-arguments</td><td>L2</td></tr>
+<tr><td>Ask Socratic questions and evaluate source credibility</td><td>Apply</td><td>🛠️ S</td><td>S-question-verify</td><td>L2</td></tr>
+<tr><td>Construct and defend a reasoned argument addressing counterarguments</td><td>Create</td><td>🛠️ S</td><td>S-construct-argument</td><td>L2</td></tr>
+<tr><td>Stay open to being wrong and revise beliefs with evidence</td><td>Value (affective)</td><td>🌱 A</td><td>A-intellectual-humility</td><td>L2</td></tr>
+<tr><td>Question claims and assumptions across situations</td><td>Respond (affective)</td><td>🌱 A</td><td>A-skepticism-curiosity</td><td>L2</td></tr>
+</tbody></table></div>
+<hr>
+<h2>🔍 Phase planner</h2>
+<div class='tablewrap'><table><thead><tr><th>Phase</th><th>Atom(s)</th><th>KSA focus</th><th>Activity</th><th>Assessment</th></tr></thead><tbody>
+<tr><td>🙉 1 · hear</td><td>Atom 1, 2</td><td>🧠 K</td><td>reading + video on reasoning; fallacy/bias framework</td><td>knowledge-mini (pop quizzes)</td></tr>
+<tr><td>🙈 2 · see</td><td>Atom 3</td><td>🛠️ S</td><td>model argument analysis; deconstruct &amp; judge a real case</td><td>performance task</td></tr>
+<tr><td>🙊 3 · do</td><td>Atom 4, 5</td><td>🛠️ S + 🌱 A</td><td>Socratic questioning + source audit; build &amp; defend an argument</td><td>performance task + behavioral assessment</td></tr>
+<tr><td>🐵 4 · share</td><td>Atom 6 (capstone)</td><td>🛠️ S + 🌱 A</td><td>reason through a real issue; defend + peer review</td><td>capstone-5</td></tr>
+</tbody></table></div>
+<hr>
+<h2>🚀 Capstone &amp; 📊 assessment</h2>
+<p>Full brief in <a href="#capstone"><code>capstone.md</code></a>; all rubrics in <a href="#rubrics"><code>rubrics.md</code></a>. In short: formative pop quizzes for the Knowledge atoms, skill performance tasks for argument evaluation and questioning/verification, a <strong>behavioral assessment</strong> across occasions for the Abilities, and a reasoned analysis of a real issue, defended on the standard 5-criteria capstone rubric. The badge → skills-map mapping is in <a href="#skillsmap"><code>skills-map.md</code></a>.</p>
+<h2>🎓 Outcomes &amp; recognition</h2>
+<ul>
+<li>A working model of reasoning that replaces "I just feel it's true" with <strong>claims + evidence + logic</strong>.</li>
+<li>The ability to <strong>deconstruct and evaluate</strong> any argument and its evidence.</li>
+<li>A toolkit to <strong>question and verify</strong>: Socratic questions, source evaluation, steelmanning.</li>
+<li>The ability to <strong>build and defend</strong> a reasoned position that survives counterarguments.</li>
+<li>The durable <strong>intellectual humility</strong> and <strong>skeptical curiosity</strong> that make it stick — evidenced over time.</li>
+<li>A portfolio artifact: a reasoned analysis of a real, contested issue.</li>
+<li>LinkedIn-compatible digital badge: <strong>🏅 Critical Thinker</strong> — a multiplier on almost any role.</li>
+</ul></section>
+<section class="page" id="page-atom-1" data-id="atom-1"><label class="donebox"><input type="checkbox" class="donechk" data-atom="atom-1"> Mark this atom complete</label><h2>⚛ Learning Atom 1 — <em>What Critical Thinking Is</em></h2>
+<p><strong>Phase:</strong> 🙉 1 · Self-Guided Introduction (<em>hear</em>) · <strong>KSA:</strong> 🧠 Knowledge · <strong>Target level:</strong> L2 · <strong>Component id:</strong> <code>K-reasoning</code></p>
+<h3>🎯 Learning objective</h3>
+<ul>
+<li><strong>Explain</strong> the parts of an argument and <strong>distinguish</strong> validity from soundness, using the standards</li>
+</ul>
+<p>  of good thinking.</p>
+<h3>🧩 Prerequisites</h3>
+<ul>
+<li>None. Bring one belief you hold strongly — we'll examine <em>why</em> you hold it.</li>
+</ul>
+<h3>🧭 Atom description</h3>
+<p>"Critical thinking" gets used to mean "disagreeing" or "being negative." It's neither. It's the disciplined habit of <strong>evaluating reasoning</strong> — yours and others' — against clear standards, so your conclusions track what's actually true and well-supported. This atom gives you the vocabulary and the mental model the whole course builds on.</p>
+<hr>
+<h3>📖 Reading — <em>Reasoning has parts you can inspect</em> (≈ 7 min)</h3>
+<p>Critical thinking is <strong>thinking about thinking in order to improve it.</strong> Instead of accepting a conclusion because it's loud, familiar, or flattering, you examine <em>how it was reached.</em> To do that you need to see the moving parts.</p>
+<p><strong>The anatomy of an argument.</strong> An <em>argument</em> (in this sense) isn't a quarrel — it's a <strong>claim supported by reasons</strong>:</p>
+<ul>
+<li><strong>Claim (conclusion):</strong> what someone wants you to accept. <em>"We should switch tools."</em></li>
+<li><strong>Premises (reasons):</strong> the support offered. <em>"The new tool is cheaper and faster."</em></li>
+<li><strong>Assumptions:</strong> unstated things that must be true for the argument to work. *"Cheaper + faster</li>
+</ul>
+<p>  matters more than the switching cost."* Hidden assumptions are where most bad arguments hide.</p>
+<ul>
+<li><strong>Inference:</strong> the logical step <em>from</em> premises <em>to</em> claim. Is the jump justified?</li>
+<li><strong>Evidence:</strong> the data backing the premises. Is it real, relevant, and sufficient?</li>
+</ul>
+<p><strong>Validity vs. soundness</strong> (a crucial distinction):</p>
+<ul>
+<li>An argument is <strong>valid</strong> if the conclusion <em>follows logically</em> from the premises — *regardless of</li>
+</ul>
+<p>  whether the premises are true.* ("All cats can fly; Felix is a cat; therefore Felix can fly" is   <strong>valid</strong> but false.)</p>
+<ul>
+<li>An argument is <strong>sound</strong> if it is valid <strong>and</strong> its premises are actually <strong>true.</strong> Sound arguments</li>
+</ul>
+<p>  are the goal. So you check two separate things: <em>Is the logic good?</em> and <em>Are the premises true?</em></p>
+<p><strong>Deductive vs. inductive.</strong> <em>Deductive</em> reasoning aims for certainty (if premises true + valid → conclusion guaranteed). <em>Inductive</em> reasoning aims for probability (evidence makes the conclusion <em>likely</em> — most real-world reasoning is inductive, so you weigh <strong>strength</strong>, not proof).</p>
+<p><strong>Standards of good thinking.</strong> When you assess any reasoning, check it against (after Paul &amp; Elder): <strong>clarity</strong> (is it clear?), <strong>accuracy</strong> (is it true?), <strong>relevance</strong> (does it bear on the issue?), <strong>logic</strong> (does it hang together?), <strong>depth &amp; breadth</strong> (does it handle complexity and other views?), and <strong>fairness</strong> (is it free of distortion and self-interest?).</p>
+<blockquote><strong>The mindset:</strong> critical thinking starts with a question, not a conclusion. <em>"What's the claim? What's the evidence? Does the conclusion really follow? What am I assuming?"</em></blockquote>
+<p><strong>Key takeaways</strong></p>
+<ul>
+<li><input type="checkbox" disabled> An argument = <strong>claim + premises + (hidden) assumptions + inference + evidence.</strong></li>
+<li><input type="checkbox" disabled> <strong>Validity</strong> = the logic holds; <strong>soundness</strong> = valid <strong>and</strong> premises are true.</li>
+<li><input type="checkbox" disabled> Most real reasoning is <strong>inductive</strong> — judge <strong>strength</strong>, not proof.</li>
+<li><input type="checkbox" disabled> Assess thinking against <strong>clarity, accuracy, relevance, logic, depth, fairness.</strong></li>
+</ul>
+<hr>
+<h3>🎬 Watch — critical thinking, explained (pick one, ~5–6 min)</h3>
+<div class="yt" data-id="dItUGF8GdTw"><button class="yt-play" type="button" aria-label="Play video" style="background-image:url(https://i.ytimg.com/vi/dItUGF8GdTw/hqdefault.jpg)"><span class="yt-tri">&#9654;</span></button><div class="yt-meta"><a href="https://www.youtube.com/watch?v=dItUGF8GdTw" target="_blank" rel="noopener">https://www.youtube.com/watch?v=dItUGF8GdTw</a><div class="yt-cap">TED-Ed — "5 tips to improve your critical thinking" (Samantha Agoos).</div></div></div>
+<div class="yt" data-id="6OLPL5p0fMg"><button class="yt-play" type="button" aria-label="Play video" style="background-image:url(https://i.ytimg.com/vi/6OLPL5p0fMg/hqdefault.jpg)"><span class="yt-tri">&#9654;</span></button><div class="yt-meta"><a href="https://www.youtube.com/watch?v=6OLPL5p0fMg" target="_blank" rel="noopener">https://www.youtube.com/watch?v=6OLPL5p0fMg</a><div class="yt-cap">"Critical thinking / what it is and isn't" — a short explainer (verify before delivery).</div></div></div>
+<hr>
+<h3>🖼️ See — the anatomy of an argument</h3>
+<div class="mermaid">flowchart TD
+  EV[&quot;📊 Evidence&quot;] --&gt; PREM[&quot;📌 Premises (reasons)&quot;]
+  ASSUM[&quot;🫥 Hidden assumptions&quot;] --&gt; INF
+  PREM --&gt; INF[&quot;➡️ Inference&lt;br/&gt;(does it follow?)&quot;]
+  INF --&gt; CLAIM[&quot;🎯 Claim (conclusion)&quot;]</div>
+<p><img alt="Anatomy of an argument — generated diagram" src="img/atom-1-what-is-critical-thinking.png"></p>
+<blockquote>🖼️ <em>Generated image — produced from the prompt below.</em></blockquote>
+<p>A reusable prompt to generate an on-brand version of this diagram:</p>
+<div class="promptcard"><div class="promptcard-h"><span>🖼️ Image / AI prompt</span><button class="copybtn" type="button">Copy</button></div><pre><code>Create a clean, modern educational infographic titled &quot;Anatomy of an Argument&quot;: Evidence feeds
+Premises; Hidden Assumptions feed the Inference; Premises + Inference lead to the Claim (conclusion).
+Add a caption: &quot;Validity = the logic holds · Soundness = valid AND premises true.&quot; Use ADA brand
+colors (Indigo #1E2A6E, Turquoise #15B5C6, Gold #E0A53C accents) on a light background, flat vector
+style, legible sans-serif, no text errors. 16:9.</code></pre></div>
+<hr>
+<h3>✅ Evaluate — Pop quiz (formative, <code>knowledge-mini</code>)</h3>
+<ol>
+<li>What's the difference between a valid argument and a sound one?</li>
+<li>Why are <em>hidden assumptions</em> so important to find?</li>
+<li>Give two of the standards you'd use to judge a piece of reasoning.</li>
+</ol>
+<details>
+<summary>Answer key</summary>
+<ol>
+<li><strong>Valid</strong> = the conclusion follows logically from the premises (even if premises are false);</li>
+</ol>
+<p>   <strong>sound</strong> = valid <strong>and</strong> the premises are actually true.</p>
+<ol>
+<li>Because an argument can look fine on the surface while resting on an unstated assumption that is</li>
+</ol>
+<p>   false or contested — that's where reasoning quietly breaks.</p>
+<ol>
+<li>Any two of: <strong>clarity, accuracy, relevance, logic, depth, breadth, fairness.</strong></li>
+</ol>
+</details>
+<hr>
+<h3>📦 Deliverable</h3>
+<ul>
+<li>Take your strongly-held belief. Write it as an <strong>argument</strong>: state the <strong>claim</strong>, your <strong>premises</strong>,</li>
+</ul>
+<p>  one <strong>hidden assumption</strong>, and the <strong>evidence</strong>. Note whether it's deductive or inductive.</p>
+<h3>🧠 Final reflection</h3>
+<ul>
+<li>Which standard (clarity/accuracy/relevance/logic/depth/fairness) does your own reasoning most often</li>
+</ul>
+<p>  skip?</p>
+<h3>🔗 Sources to verify (human-in-the-loop)</h3>
+<ul>
+<li>Paul &amp; Elder, <em>The Miniature Guide to Critical Thinking</em> (standards &amp; elements of reasoning).</li>
+<li>Walton, <em>Informal Logic</em> (arguments, premises, inference).</li>
+<li>Stanford Encyclopedia of Philosophy — <em>Critical Thinking</em> entry.</li>
+</ul>
+<h3>🧩 Connections</h3>
+<ul>
+<li><strong>Successors:</strong> Atom 2 (how reasoning fails), Atom 3 (evaluate real arguments).</li>
+</ul></section>
+<section class="page" id="page-atom-2" data-id="atom-2"><label class="donebox"><input type="checkbox" class="donechk" data-atom="atom-2"> Mark this atom complete</label><h2>⚛ Learning Atom 2 — <em>Logical Fallacies &amp; Reasoning Biases</em></h2>
+<p><strong>Phase:</strong> 🙉 1 · Self-Guided Introduction (<em>hear</em>) · <strong>KSA:</strong> 🧠 Knowledge · <strong>Target level:</strong> L2 · <strong>Component id:</strong> <code>K-fallacies-biases</code></p>
+<h3>🎯 Learning objective</h3>
+<ul>
+<li><strong>Recognize</strong> common logical fallacies and reasoning biases and <strong>explain</strong> how each distorts an</li>
+</ul>
+<p>  argument.</p>
+<h3>🧩 Prerequisites</h3>
+<ul>
+<li>Atom 1 (the anatomy of an argument). Fallacies are specific ways the inference or premises go wrong.</li>
+</ul>
+<h3>🧭 Atom description</h3>
+<p>Bad reasoning often <em>sounds</em> convincing — that's exactly why it works. This atom is a field guide to the most common ways arguments fail: <strong>fallacies</strong> (flaws in the logic) and <strong>biases</strong> (flaws in the thinker). Once you can name them, you'll start seeing them everywhere: in ads, headlines, debates, AI output, and your own first drafts.</p>
+<hr>
+<h3>📖 Reading — <em>A field guide to bad arguments</em> (≈ 8 min)</h3>
+<p><strong>Logical fallacies</strong> — flaws in the <em>argument</em>:</p>
+<ul>
+<li><strong>Ad hominem</strong> — attacking the person, not their argument. *"You can't trust her budget analysis,</li>
+</ul>
+<p>  she's young."*</p>
+<ul>
+<li><strong>Straw man</strong> — distorting someone's position into a weaker one and attacking that. (The antidote,</li>
+</ul>
+<p>  <em>steelmanning</em>, comes in Atom 4.)</p>
+<ul>
+<li><strong>False dilemma</strong> — presenting two options as the only ones. *"Either we cut the budget or we go</li>
+</ul>
+<p>  bankrupt."* (Usually there are more.)</p>
+<ul>
+<li><strong>Slippery slope</strong> — claiming one step inevitably leads to an extreme outcome, with no support.</li>
+<li><strong>Appeal to authority (misused)</strong> — "an expert said so" when the person isn't a relevant expert, or</li>
+</ul>
+<p>  experts disagree. (Real expertise <em>is</em> evidence — misuse is citing irrelevant or fake authority.)</p>
+<ul>
+<li><strong>Appeal to emotion / popularity</strong> — using fear, pity, or "everyone's doing it" instead of reasons.</li>
+<li><strong>Hasty generalization</strong> — a sweeping conclusion from too few examples (anecdote ≠ data).</li>
+<li><strong>Circular reasoning (begging the question)</strong> — the conclusion is hidden in the premises. *"It's the</li>
+</ul>
+<p>  best because nothing's better."*</p>
+<ul>
+<li><strong>Post hoc / correlation–causation</strong> — assuming that because B followed A, A caused B.</li>
+<li><strong>Whataboutism / red herring</strong> — dodging by pointing at something irrelevant.</li>
+</ul>
+<p><strong>Reasoning biases</strong> — flaws in the <em>thinker</em> (these attack you before you even build the argument):</p>
+<ul>
+<li><strong>Confirmation bias</strong> — seeking/believing what fits your existing view; ignoring the rest.</li>
+<li><strong>Motivated reasoning</strong> — reasoning toward the conclusion you <em>want</em> to be true.</li>
+<li><strong>Anchoring</strong> — over-relying on the first piece of information.</li>
+<li><strong>Availability</strong> — overweighting vivid or recent examples.</li>
+<li><strong>Dunning–Kruger / overconfidence</strong> — the less you know, the more certain you can feel.</li>
+<li><strong>In-group bias</strong> — trusting claims from "your side" and discounting "the other side."</li>
+</ul>
+<p><strong>Two meta-points:</strong></p>
+<ol>
+<li><strong>It's easiest to spot fallacies in arguments you disagree with — and hardest in your own.</strong> The</li>
+</ol>
+<p>   real skill is turning the lens on <em>yourself</em>. (That's the intellectual-humility Ability, built in    Atoms 5–6.)</p>
+<ol>
+<li><strong>Spotting a fallacy doesn't make the conclusion false.</strong> A badly-argued claim can still be true —</li>
+</ol>
+<p>   it just hasn't been <em>supported</em>. ("Fallacy fallacy": rejecting a conclusion only because one    argument for it was weak.)</p>
+<blockquote><strong>The move:</strong> when something is persuasive, pause and ask <em>"is this a reason, or a trick?"</em> — then name the specific fallacy or bias.</blockquote>
+<p><strong>Key takeaways</strong></p>
+<ul>
+<li><input type="checkbox" disabled> <strong>Fallacies</strong> are flaws in the argument (ad hominem, straw man, false dilemma, slippery slope…).</li>
+<li><input type="checkbox" disabled> <strong>Biases</strong> are flaws in the thinker (confirmation, motivated reasoning, anchoring, overconfidence…).</li>
+<li><input type="checkbox" disabled> You spot flaws fastest in <em>others'</em> arguments — train the lens on <strong>your own.</strong></li>
+<li><input type="checkbox" disabled> A weak argument doesn't prove the conclusion <strong>false</strong> (avoid the "fallacy fallacy").</li>
+</ul>
+<hr>
+<h3>🎬 Watch — how reasoning goes wrong (~5–11 min)</h3>
+<div class="yt" data-id="AmM1qWAjQEk"><button class="yt-play" type="button" aria-label="Play video" style="background-image:url(https://i.ytimg.com/vi/AmM1qWAjQEk/hqdefault.jpg)"><span class="yt-tri">&#9654;</span></button><div class="yt-meta"><a href="https://www.youtube.com/watch?v=AmM1qWAjQEk" target="_blank" rel="noopener">https://www.youtube.com/watch?v=AmM1qWAjQEk</a><div class="yt-cap">"Logical fallacies, explained" — a short explainer (verify before delivery).</div></div></div>
+<hr>
+<h3>🖼️ See — fallacy vs. bias</h3>
+<div class="mermaid">flowchart TD
+  ARG[&quot;🗣️ A persuasive claim&quot;] --&gt; Q{&quot;Is the flaw in the&lt;br/&gt;argument or the thinker?&quot;}
+  Q --&gt;|argument| FAL[&quot;🎭 Fallacy&lt;br/&gt;ad hominem · straw man ·&lt;br/&gt;false dilemma · slippery slope&quot;]
+  Q --&gt;|thinker| BIA[&quot;🧠 Bias&lt;br/&gt;confirmation · motivated reasoning ·&lt;br/&gt;anchoring · overconfidence&quot;]
+  FAL --&gt; NAME[&quot;🏷️ Name it → discount the &#x27;support&#x27;&quot;]
+  BIA --&gt; NAME</div>
+<p><img alt="Fallacy vs. bias — generated diagram" src="img/atom-2-fallacies-and-biases.png"></p>
+<blockquote>🖼️ <em>Generated image — produced from the prompt below.</em></blockquote>
+<p>A reusable prompt to generate an on-brand version:</p>
+<div class="promptcard"><div class="promptcard-h"><span>🖼️ Image / AI prompt</span><button class="copybtn" type="button">Copy</button></div><pre><code>Create a clean, modern infographic titled &quot;Spot the Flaw&quot;: a persuasive claim branches into &quot;Fallacy
+(flaw in the argument)&quot; listing ad hominem, straw man, false dilemma, slippery slope, and &quot;Bias (flaw
+in the thinker)&quot; listing confirmation, motivated reasoning, anchoring, overconfidence; both lead to
+&quot;Name it&quot;. Use ADA brand colors (Indigo #1E2A6E, Turquoise #15B5C6, Gold #E0A53C), light background,
+flat vector, legible sans-serif. 16:9.</code></pre></div>
+<hr>
+<h3>✅ Evaluate — Pop quiz (formative, <code>knowledge-mini</code>)</h3>
+<ol>
+<li>Name the fallacy: <em>"We either ban phones in class or grades will collapse."</em></li>
+<li>What's the difference between a fallacy and a bias?</li>
+<li>What is the "fallacy fallacy"?</li>
+</ol>
+<details>
+<summary>Answer key</summary>
+<ol>
+<li><strong>False dilemma</strong> (false dichotomy) — it presents only two options when others exist.</li>
+<li>A <strong>fallacy</strong> is a flaw in the <em>argument's</em> logic/structure; a <strong>bias</strong> is a systematic flaw in how</li>
+</ol>
+<p>   the <em>thinker</em> processes information.</p>
+<ol>
+<li>Concluding a claim is <strong>false</strong> just because one argument for it was fallacious — a weak argument</li>
+</ol>
+<p>   doesn't disprove the conclusion.</p>
+</details>
+<hr>
+<h3>📦 Deliverable</h3>
+<ul>
+<li>Find <strong>three</strong> real examples (ad, headline, social post, or AI answer) and label the **fallacy or</li>
+</ul>
+<p>  bias** in each, with one sentence explaining why.</p>
+<h3>🧠 Final reflection</h3>
+<ul>
+<li>Which bias most often shapes <em>your</em> conclusions (confirmation? motivated reasoning?)? When did it</li>
+</ul>
+<p>  last cost you?</p>
+<h3>🔗 Sources to verify (human-in-the-loop)</h3>
+<ul>
+<li><em>Your Logical Fallacy Is</em> (yourlogicalfallacyis.com) and <em>Thou Shalt Not Commit Logical Fallacies</em>.</li>
+<li>Kahneman, <em>Thinking, Fast and Slow</em> (reasoning biases).</li>
+<li>Walton, <em>Informal Logic</em> (fallacy theory — note context matters).</li>
+</ul>
+<h3>🧩 Connections</h3>
+<ul>
+<li><strong>Predecessor:</strong> Atom 1. <strong>Successors:</strong> Atom 3 (evaluate real arguments), Atom 4 (steelman instead</li>
+</ul>
+<p>  of straw man).</p></section>
+<section class="page" id="page-atom-3" data-id="atom-3"><label class="donebox"><input type="checkbox" class="donechk" data-atom="atom-3"> Mark this atom complete</label><h2>⚛ Learning Atom 3 — <em>Evaluate Arguments &amp; Evidence</em></h2>
+<p><strong>Phase:</strong> 🙈 2 · Visual Exploration (<em>see</em>) · <strong>KSA:</strong> 🛠️ Skill · <strong>Target level:</strong> L2 · <strong>Component id:</strong> <code>S-evaluate-arguments</code></p>
+<h3>🎯 Learning objective</h3>
+<ul>
+<li><strong>Deconstruct</strong> an argument and <strong>evaluate</strong> its evidence and logical strength.</li>
+</ul>
+<h3>🧩 Prerequisites</h3>
+<ul>
+<li>Atoms 1–2. This is where the vocabulary becomes a repeatable analysis.</li>
+</ul>
+<h3>🧭 Atom description</h3>
+<p>This atom turns the concepts into a procedure: take any argument, break it into its parts, and judge each part. It's in Phase 2 (<em>see</em>) because you learn it by watching it modeled, then doing it on a real piece of writing. By the end you'll have a checklist you can run on any claim.</p>
+<hr>
+<h3>📖 Reading — <em>A procedure for judging any argument</em> (≈ 8 min)</h3>
+<p><strong>Step 1 — Map the argument.</strong> Find and label the parts (Atom 1):</p>
+<ul>
+<li>What's the <strong>main claim</strong> (conclusion)? (Look for "therefore," "so," "we should…")</li>
+<li>What <strong>premises</strong> support it? List them.</li>
+<li>What's <strong>assumed but unstated</strong>? (The make-or-break step — surface the hidden premises.)</li>
+<li>What <strong>evidence</strong> is offered for each premise?</li>
+</ul>
+<p><strong>Step 2 — Evaluate the logic.</strong> Does the conclusion actually <strong>follow</strong>?</p>
+<ul>
+<li>Is the inference <strong>valid/strong</strong>, or is there a gap (a fallacy from Atom 2)?</li>
+<li>Are there <strong>counter-examples</strong> that would break it?</li>
+<li>Does it <strong>overreach</strong> — claiming more than the premises support? (e.g., "some" quietly becomes "all").</li>
+</ul>
+<p><strong>Step 3 — Evaluate the evidence.</strong> Premises are only as good as their support:</p>
+<ul>
+<li><strong>Quality:</strong> Is the source credible and relevant (Atom 4)? Primary or hearsay? Recent enough?</li>
+<li><strong>Quantity/representativeness:</strong> Enough cases, or a hasty generalization? Is the sample biased?</li>
+<li><strong>Relevance:</strong> Does the evidence actually bear on <em>this</em> claim, or is it a red herring?</li>
+<li><strong>Type:</strong> Is it data, expert judgment, anecdote, or assertion? (Anecdote ≠ data.)</li>
+<li><strong>Correlation vs. causation:</strong> If a causal claim is made, is causation actually shown, or just</li>
+</ul>
+<p>  correlation?</p>
+<p><strong>Step 4 — Weigh and judge.</strong> Critical thinking is not "find one flaw, reject everything." Weigh the <strong>overall strength</strong>: How strong is the support? How serious are the flaws? What would change your assessment? Reach a <strong>proportioned</strong> judgment — "well-supported," "partly supported," "unsupported" — rather than a binary.</p>
+<blockquote><strong>Charity first.</strong> Before attacking, restate the argument in its <strong>strongest, fairest</strong> form (you'll formalize this as <em>steelmanning</em> in Atom 4). Evaluating a fair version is the honest — and more useful — move.</blockquote>
+<p><strong>A pocket checklist:</strong> <em>Claim? Premises? Hidden assumptions? Does it follow? Is the evidence good and relevant? What would change my mind?</em></p>
+<p><strong>Key takeaways</strong></p>
+<ul>
+<li><input type="checkbox" disabled> <strong>Map</strong> the argument (claim, premises, assumptions, evidence) before judging.</li>
+<li><input type="checkbox" disabled> Evaluate <strong>logic</strong> (does it follow? any fallacy/gap?) and <strong>evidence</strong> (quality, quantity,</li>
+</ul>
+<p>  relevance, type) separately.</p>
+<ul>
+<li><input type="checkbox" disabled> Beware <strong>overreach</strong> and <strong>correlation≠causation.</strong></li>
+<li><input type="checkbox" disabled> Reach a <strong>proportioned</strong> judgment; evaluate the <strong>strongest</strong> version (charity).</li>
+</ul>
+<hr>
+<h3>🖼️ See — the evaluation flow</h3>
+<div class="mermaid">flowchart LR
+  A[&quot;🗣️ Argument&quot;] --&gt; MAP[&quot;🗺️ Map it&lt;br/&gt;claim · premises · assumptions&quot;]
+  MAP --&gt; LOG[&quot;🧮 Evaluate logic&lt;br/&gt;does it follow?&quot;]
+  MAP --&gt; EVI[&quot;📊 Evaluate evidence&lt;br/&gt;quality · relevance · type&quot;]
+  LOG --&gt; JUDGE[&quot;⚖️ Proportioned judgment&quot;]
+  EVI --&gt; JUDGE</div>
+<p><img alt="Argument evaluation flow — generated diagram" src="img/atom-3-evaluate-arguments-and-evidence.png"></p>
+<blockquote>🖼️ <em>Generated image — produced from the prompt below.</em></blockquote>
+<p>A reusable prompt to generate an on-brand version:</p>
+<div class="promptcard"><div class="promptcard-h"><span>🖼️ Image / AI prompt</span><button class="copybtn" type="button">Copy</button></div><pre><code>Create a clean, modern infographic of an &quot;argument evaluation flow&quot;: Argument → Map it (claim,
+premises, assumptions) → two parallel checks &quot;Evaluate logic (does it follow?)&quot; and &quot;Evaluate evidence
+(quality, relevance, type)&quot; → &quot;Proportioned judgment&quot;. Use ADA brand colors (Indigo #1E2A6E, Turquoise
+#15B5C6, Gold #E0A53C), light background, flat vector, legible sans-serif. 16:9.</code></pre></div>
+<hr>
+<h3>🧪 Practice — <em>Deconstruct a real argument</em> (Worksheet + Case Study)</h3>
+<p>Pick a real <strong>opinion piece, ad, or persuasive post</strong> (200–600 words). Then:</p>
+<ol>
+<li><strong>Map it.</strong> Write the main claim, the premises, and at least one <strong>hidden assumption.</strong></li>
+<li><strong>Logic check.</strong> Does the conclusion follow? Name any <strong>fallacy</strong> or gap (Atom 2).</li>
+<li><strong>Evidence check.</strong> For each premise, rate the evidence (quality / relevance / type) and flag any</li>
+</ol>
+<p>   anecdote-as-data or correlation-as-causation.</p>
+<ol>
+<li><strong>Judgment.</strong> Write a 3–4 sentence <strong>proportioned</strong> verdict: how well-supported is the claim, and</li>
+</ol>
+<p>   what evidence would change your mind?</p>
+<ol>
+<li><strong>Steelman preview.</strong> State the argument's strongest possible version (even if you disagree).</li>
+</ol>
+<hr>
+<h3>✅ Evaluate — Performance task (<code>skill</code>)</h3>
+<p>Submit your deconstruction. Scored on:</p>
+<div class='tablewrap'><table><thead><tr><th>Criterion</th><th>Excellent (3)</th><th>Adequate (2)</th><th>Needs work (1)</th></tr></thead><tbody>
+<tr><td><strong>Mapping</strong></td><td>Accurately identifies claim, premises, hidden assumptions</td><td>Mostly identifies parts</td><td>Misreads the argument</td></tr>
+<tr><td><strong>Logic evaluation</strong></td><td>Correctly assesses inference; names real gaps/fallacies</td><td>Some evaluation</td><td>Misses or invents flaws</td></tr>
+<tr><td><strong>Evidence evaluation</strong></td><td>Judges quality/relevance/type; catches anecdote/causation issues</td><td>Some judging</td><td>Takes evidence at face value</td></tr>
+<tr><td><strong>Proportioned judgment</strong></td><td>Weighed, fair, states what would change view</td><td>Some nuance</td><td>Binary / one-sided</td></tr>
+</tbody></table></div>
+<blockquote>Pass = 2+ each → <strong>L2</strong> evidence for <code>S-evaluate-arguments</code>.</blockquote>
+<h3>📦 Deliverable</h3>
+<ul>
+<li>Your mapped + evaluated argument with the proportioned verdict and the steelman.</li>
+</ul>
+<h3>🧠 Final reflection</h3>
+<ul>
+<li>Was the argument stronger or weaker than it first <em>felt</em>? What drove the gap — logic or evidence?</li>
+</ul>
+<h3>🔗 Sources to verify (human-in-the-loop)</h3>
+<ul>
+<li>Weston, <em>A Rulebook for Arguments</em>.</li>
+<li>Browne &amp; Keeley, <em>Asking the Right Questions</em>.</li>
+<li>Booth, Colomb &amp; Williams, <em>The Craft of Research</em> (evidence quality).</li>
+</ul>
+<h3>🧩 Connections</h3>
+<ul>
+<li><strong>Predecessor:</strong> Atom 2. <strong>Successor:</strong> Atom 4 (question &amp; verify the claims and sources you found).</li>
+</ul></section>
+<section class="page" id="page-atom-4" data-id="atom-4"><label class="donebox"><input type="checkbox" class="donechk" data-atom="atom-4"> Mark this atom complete</label><h2>⚛ Learning Atom 4 — <em>Question &amp; Verify</em></h2>
+<p><strong>Phase:</strong> 🙊 3 · Applied Practice (<em>do</em>) · <strong>KSA:</strong> 🛠️ Skill · <strong>Target level:</strong> L2 · <strong>Component id:</strong> <code>S-question-verify</code></p>
+<h3>🎯 Learning objective</h3>
+<ul>
+<li><strong>Apply</strong> Socratic questioning and source/credibility evaluation to test a claim — and <strong>steelman</strong></li>
+</ul>
+<p>  it before judging.</p>
+<h3>🧭 Atom description</h3>
+<p>Evaluating an argument that's handed to you is half the job. The other half is <strong>actively interrogating</strong> a claim: asking the questions that expose hidden assumptions, checking whether the sources hold up, and fairly representing the opposing view. This is the most practical, repeatable critical-thinking habit — and it's exactly what keeps you from being fooled by confident AI output.</p>
+<hr>
+<h3>📖 Reading — <em>Three tools: question, verify, steelman</em> (≈ 8 min)</h3>
+<p><strong>Tool 1 — Socratic questioning.</strong> A small set of questions does most of the work. Run a claim through:</p>
+<ul>
+<li><strong>Clarify:</strong> <em>What exactly do you mean? Can you give an example?</em></li>
+<li><strong>Probe assumptions:</strong> <em>What are you taking for granted here? What if the opposite were true?</em></li>
+<li><strong>Probe evidence:</strong> <em>How do you know? What's the source? Is there evidence against it?</em></li>
+<li><strong>Probe alternatives:</strong> <em>What's another way to see this? Who would disagree, and why?</em></li>
+<li><strong>Probe implications:</strong> <em>If that's true, what follows? Is that consequence acceptable?</em></li>
+<li><strong>Question the question:</strong> <em>Is this even the right question to be asking?</em></li>
+</ul>
+<p><strong>Tool 2 — Evaluate the source (the "verify" step).</strong> Don't just read <em>vertically</em> (deeper into one page) — read <strong>laterally</strong>: open new tabs and check what <em>other</em> sources say about the claim and the author. Fact-checkers do this. Quick lenses (a riff on the <strong>CRAAP</strong> test):</p>
+<ul>
+<li><strong>Currency</strong> — how recent is it? Does recency matter for this claim?</li>
+<li><strong>Relevance</strong> — does it actually address <em>this</em> question?</li>
+<li><strong>Authority</strong> — who wrote it, and what's their relevant expertise / track record? Who funds them?</li>
+<li><strong>Accuracy</strong> — is it supported by evidence and corroborated elsewhere? Can you trace the original</li>
+</ul>
+<p>  source (or is it "a study says…" with no link)?</p>
+<ul>
+<li><strong>Purpose</strong> — is it informing, selling, or persuading? What's the incentive?</li>
+</ul>
+<p>For AI output specifically: treat it as a <strong>confident first draft, not a source.</strong> Ask it for its sources, then verify those sources actually exist and say what it claims (Atom 2's biases apply to models too).</p>
+<p><strong>Tool 3 — Steelman before you strike.</strong> The opposite of a straw man. Restate the <em>other side's</em> argument in its <strong>strongest, most charitable</strong> form — so strong its supporters would say "yes, exactly." <em>Then</em> engage. Steelmanning does three things: it keeps you honest, it earns trust, and it often reveals that the other side has a point you missed (the intellectual-humility Ability in action).</p>
+<blockquote><strong>The habit:</strong> confident claim → <em>clarify → probe assumptions &amp; evidence → verify laterally → steelman → then judge.</em></blockquote>
+<p><strong>Key takeaways</strong></p>
+<ul>
+<li><input type="checkbox" disabled> A few <strong>Socratic questions</strong> (clarify, assumptions, evidence, alternatives, implications) crack</li>
+</ul>
+<p>  most claims open.</p>
+<ul>
+<li><input type="checkbox" disabled> <strong>Verify laterally</strong> — check other sources about the claim <em>and</em> the author; trace the original.</li>
+<li><input type="checkbox" disabled> Use a source lens (<strong>currency, relevance, authority, accuracy, purpose</strong>).</li>
+<li><input type="checkbox" disabled> <strong>Steelman</strong> the opposing view before you argue against it.</li>
+</ul>
+<hr>
+<h3>🖼️ See — interrogate a claim</h3>
+<div class="mermaid">flowchart TD
+  CLAIM[&quot;🗣️ Confident claim&lt;br/&gt;(human or AI)&quot;] --&gt; SOC[&quot;❓ Socratic questions&lt;br/&gt;clarify · assumptions · evidence&quot;]
+  SOC --&gt; VER[&quot;🔎 Verify laterally&lt;br/&gt;other sources · trace original&quot;]
+  VER --&gt; STEEL[&quot;💪 Steelman the other side&quot;]
+  STEEL --&gt; JUDGE[&quot;⚖️ Now judge&quot;]</div>
+<p><img alt="Interrogate a claim — generated diagram" src="img/atom-4-question-and-verify.png"></p>
+<blockquote>🖼️ <em>Generated image — produced from the prompt below.</em></blockquote>
+<p>A reusable prompt to generate an on-brand version:</p>
+<div class="promptcard"><div class="promptcard-h"><span>🖼️ Image / AI prompt</span><button class="copybtn" type="button">Copy</button></div><pre><code>Create a clean, modern infographic &quot;Interrogate a Claim&quot;: a confident claim (human or AI) flows
+through &quot;Socratic questions (clarify, assumptions, evidence)&quot; → &quot;Verify laterally (other sources, trace
+original)&quot; → &quot;Steelman the other side&quot; → &quot;Now judge&quot;. Use ADA brand colors (Indigo #1E2A6E, Turquoise
+#15B5C6, Gold #E0A53C), light background, flat vector, legible sans-serif. 16:9.</code></pre></div>
+<hr>
+<h3>🧪 Practice A — <em>Socratic + lateral verification</em> (Worksheet)</h3>
+<p>Take a <strong>claim you've seen shared recently</strong> (news, social, or workplace). Then:</p>
+<ol>
+<li>Write <strong>6 Socratic questions</strong> about it (one per category above).</li>
+<li><strong>Read laterally:</strong> find 2–3 <em>independent</em> sources on the claim. What do they agree/disagree on?</li>
+</ol>
+<p>   Can you trace the <strong>original</strong> source?</p>
+<ol>
+<li>Run the source through the <strong>CRAAP</strong> lens (authority, accuracy, purpose at minimum).</li>
+<li><strong>Steelman</strong> the strongest opposing view in 3–4 sentences.</li>
+</ol>
+<h3>🧪 Practice B — <em>Interrogate an AI answer</em> (AI Prompt Question)</h3>
+<p>Ask an AI a debatable question, then verify it:</p>
+<div class="promptcard"><div class="promptcard-h"><span>🖼️ Image / AI prompt</span><button class="copybtn" type="button">Copy</button></div><pre><code>You are my critical-thinking sparring partner. I&#x27;ll give you a claim. Do NOT just agree.
+1) State the single strongest argument FOR it.
+2) State the single strongest argument AGAINST it (steelman).
+3) List the key assumptions both sides depend on.
+4) Tell me exactly what evidence I should check to decide, and where to find it.
+Claim: &quot;&quot;&quot;[paste a debatable claim]&quot;&quot;&quot;</code></pre></div>
+<p>Then <strong>fact-check the AI's response</strong> with lateral reading. Note at least one thing it got wrong, overstated, or couldn't source.</p>
+<hr>
+<h3>✅ Evaluate — Performance task (<code>skill</code>)</h3>
+<p>Submit Practice A + B. Pass = sharp, category-spanning questions; <strong>real</strong> lateral verification (named independent sources, original traced); a fair steelman; and a documented AI fact-check. → <strong>L2</strong> evidence for <code>S-question-verify</code>.</p>
+<h3>📦 Deliverable</h3>
+<ul>
+<li>Your question set, verification notes (with sources), steelman, and AI fact-check.</li>
+</ul>
+<h3>🧠 Final reflection</h3>
+<ul>
+<li>Did verifying change your view of the claim? Did the AI sound <em>more</em> confident than it deserved to be?</li>
+</ul>
+<h3>🔗 Sources to verify (human-in-the-loop)</h3>
+<ul>
+<li>Caulfield, <em>Web Literacy for Student Fact-Checkers</em> (SIFT / lateral reading) — free, open.</li>
+<li>Stanford History Education Group — lateral reading research.</li>
+<li>Paul &amp; Elder, <em>The Art of Socratic Questioning</em>.</li>
+</ul>
+<h3>🧩 Connections</h3>
+<ul>
+<li><strong>Predecessor:</strong> Atom 3. <strong>Successor:</strong> Atom 5 (now build your <em>own</em> defensible argument).</li>
+</ul></section>
+<section class="page" id="page-atom-5" data-id="atom-5"><label class="donebox"><input type="checkbox" class="donechk" data-atom="atom-5"> Mark this atom complete</label><h2>⚛ Learning Atom 5 — <em>Build &amp; Defend a Reasoned Argument</em></h2>
+<p><strong>Phase:</strong> 🙊 3 · Applied Practice (<em>do</em>) · <strong>KSA:</strong> 🛠️ Skill + 🌱 Abilities · <strong>Target level:</strong> L2 · <strong>Component ids:</strong> <code>S-construct-argument</code>, <code>A-intellectual-humility</code>, <code>A-skepticism-curiosity</code></p>
+<h3>🎯 Learning objective</h3>
+<ul>
+<li><strong>Create</strong> a well-reasoned argument (claim → reasons → evidence → counterarguments) — and demonstrate</li>
+</ul>
+<p>  <strong>intellectual humility</strong> and <strong>skeptical curiosity</strong> while defending it.</p>
+<h3>🧭 Atom description</h3>
+<p>Now you flip from critic to builder. Evaluating others is easier than constructing something that <em>survives</em> evaluation. This atom teaches <strong>argument mapping</strong> and the discipline of <strong>engaging counterarguments</strong> — and it's where the two Abilities get assessed, because how you handle being challenged reveals whether the humility and curiosity are real.</p>
+<hr>
+<h3>📖 Reading — <em>Build something that survives scrutiny</em> (≈ 7 min)</h3>
+<p><strong>The structure of a strong argument:</strong></p>
+<ol>
+<li><strong>Claim</strong> — state your position clearly and precisely (avoid vague or overreaching claims).</li>
+<li><strong>Reasons</strong> — 2–4 distinct reasons, each one a complete thought, not a restatement of the claim.</li>
+<li><strong>Evidence</strong> — back each reason with the <em>best available</em> evidence (verified per Atom 4).</li>
+<li><strong>Counterarguments</strong> — name the <strong>strongest</strong> objections (steelman them) and respond honestly.</li>
+</ol>
+<p>   This is what separates a reasoned argument from a rant. You can: rebut it, or <strong>concede</strong> it and    show your claim still holds (or narrow your claim — that's a win, not a loss).</p>
+<ol>
+<li><strong>Qualified conclusion</strong> — state your claim with the <strong>right confidence</strong>: "strongly," "on balance,"</li>
+</ol>
+<p>   "tentatively." Calibration is a sign of good thinking, not weakness.</p>
+<p><strong>Argument mapping</strong> — sketch it before you write: claim at the top, reasons branching below, evidence under each, objections off to the side with your responses. Seeing it as a structure exposes weak branches and missing support.</p>
+<p><strong>The two Abilities, made visible.</strong> This atom is where dispositions show up under pressure:</p>
+<ul>
+<li><strong>🌱 Intellectual humility</strong> — you hold your claim <em>open</em>: you invite the strongest objections,</li>
+</ul>
+<p>  acknowledge uncertainty, give credit to opposing points, and <strong>change your position when the evidence   warrants.</strong> The willingness to say <em>"good point — I was wrong about that part"</em> is the whole game.</p>
+<ul>
+<li><strong>🌱 Skeptical curiosity</strong> — you keep questioning, including your <em>own</em> claim: *"What would prove me</li>
+</ul>
+<p>  wrong? What am I still assuming? What don't I know yet?"*</p>
+<blockquote><strong>The mark of a strong thinker:</strong> not winning every exchange, but holding <strong>calibrated</strong> beliefs — confident where evidence is strong, tentative where it's thin, and willing to update.</blockquote>
+<p><strong>Key takeaways</strong></p>
+<ul>
+<li><input type="checkbox" disabled> Strong argument = <strong>claim → reasons → evidence → counterarguments → qualified conclusion.</strong></li>
+<li><input type="checkbox" disabled> <strong>Engage the strongest objection</strong> honestly (rebut, concede, or narrow your claim).</li>
+<li><input type="checkbox" disabled> <strong>Calibrate</strong> your confidence to your evidence.</li>
+<li><input type="checkbox" disabled> Defend with <strong>humility</strong> (update when warranted) and <strong>curiosity</strong> (keep questioning yourself).</li>
+</ul>
+<hr>
+<h3>🖼️ See — an argument map</h3>
+<div class="mermaid">flowchart TD
+  CLAIM[&quot;🎯 Claim (qualified)&quot;] --&gt; R1[&quot;📌 Reason 1&quot;]
+  CLAIM --&gt; R2[&quot;📌 Reason 2&quot;]
+  R1 --&gt; E1[&quot;📊 Evidence&quot;]
+  R2 --&gt; E2[&quot;📊 Evidence&quot;]
+  OBJ[&quot;⚔️ Strongest objection&quot;] --&gt; RESP[&quot;💬 Honest response&lt;br/&gt;(rebut · concede · narrow)&quot;]
+  RESP --&gt; CLAIM</div>
+<p><img alt="The anatomy of a strong argument — generated diagram" src="img/atom-5-build-and-defend-an-argument.png"></p>
+<blockquote>🖼️ <em>Generated image — produced from the prompt below.</em></blockquote>
+<p>A reusable prompt to generate an on-brand version:</p>
+<div class="promptcard"><div class="promptcard-h"><span>🖼️ Image / AI prompt</span><button class="copybtn" type="button">Copy</button></div><pre><code>Create a clean, modern &quot;argument map&quot; infographic: a qualified Claim at top, two Reasons branching
+below, Evidence under each reason, and a side branch &quot;Strongest objection → Honest response (rebut,
+concede, or narrow)&quot; feeding back into the claim. Use ADA brand colors (Indigo #1E2A6E, Turquoise
+#15B5C6, Gold #E0A53C), light background, flat vector, legible sans-serif. 16:9.</code></pre></div>
+<hr>
+<h3>🧪 Practice — <em>Build it, then defend it</em> (Essay + Simulation + Forum)</h3>
+<ol>
+<li><strong>Map &amp; write.</strong> Pick a position you hold. Build the full structure: claim, 2–4 reasons, evidence</li>
+</ol>
+<p>   (verified), the <strong>strongest</strong> counterargument with your honest response, and a <strong>qualified</strong>    conclusion. ~400–600 words.</p>
+<ol>
+<li><strong>Simulate the defense.</strong> Have a peer (or the AI) attack your argument hard. Respond in real time.</li>
+<li><strong>Post &amp; defend in the forum.</strong> Share your argument; respond to ≥2 peers' challenges and challenge</li>
+</ol>
+<p>   ≥2 others' arguments — using the steelman + Socratic habits from Atom 4.</p>
+<blockquote>🤝 <strong>This is a behavioral-assessment occasion.</strong> Mentors observe <em>how</em> you defend: Do you steelman challengers? Do you concede good points? Do you update your claim when the evidence warrants? Do you keep questioning your own position?</blockquote>
+<hr>
+<h3>✅ Evaluate — Behavioral assessment (<code>behavioral</code>, Abilities)</h3>
+<p>Observed across this atom + the forum + the capstone (≥3 occasions):</p>
+<div class='tablewrap'><table><thead><tr><th>Ability</th><th>Look-for (evidence)</th></tr></thead><tbody>
+<tr><td>🌱 Intellectual humility</td><td>Invites the strongest objections; concedes valid points; <strong>revises</strong> position when warranted; calibrates confidence</td></tr>
+<tr><td>🌱 Skeptical curiosity</td><td>Questions own assumptions; asks "what would prove me wrong?"; pursues the strongest version of every side</td></tr>
+</tbody></table></div>
+<p>Rated <strong>Emerging / Developing / Proficient</strong> on the behavioral rubric in <a href="../../index.html#/examples/critical-thinking-micro-credential/atoms/rubrics.md" target="_blank" rel="noopener"><code>rubrics.md</code></a> (not a quiz — evidenced over time). The <strong>argument quality</strong> (structure, counterargument handling) is scored on the <code>skill</code> rubric.</p>
+<h3>📦 Deliverable</h3>
+<ul>
+<li>Your argument map + written argument, plus a short note: "what I changed after the defense, and why."</li>
+</ul>
+<h3>🧠 Final reflection</h3>
+<ul>
+<li>What objection landed hardest? Did you update, narrow, or hold your claim — and was that the honest call?</li>
+</ul>
+<h3>🔗 Sources to verify (human-in-the-loop)</h3>
+<ul>
+<li>Toulmin, <em>The Uses of Argument</em> (claim/grounds/warrant/rebuttal).</li>
+<li>Graff &amp; Birkenstein, <em>They Say / I Say</em> (engaging counterarguments).</li>
+<li><em>The Scout Mindset</em> (Galef) — calibration &amp; intellectual humility.</li>
+</ul>
+<h3>🧩 Connections</h3>
+<ul>
+<li><strong>Predecessor:</strong> Atom 4. <strong>Successor:</strong> Atom 6 (apply the whole stack to a real, contested issue).</li>
+</ul></section>
+<section class="page" id="page-atom-6" data-id="atom-6"><label class="donebox"><input type="checkbox" class="donechk" data-atom="atom-6"> Mark this atom complete</label><h2>⚛ Learning Atom 6 — <em>Capstone: Reason Through a Real Issue</em></h2>
+<p><strong>Phase:</strong> 🐵 4 · Collaboration &amp; Reflection (<em>share</em>) · <strong>KSA:</strong> 🛠️ Skill + 🌱 Abilities · <strong>Target level:</strong> L2 · <strong>Rubric:</strong> <code>capstone-5</code></p>
+<h3>🎯 Learning objective</h3>
+<ul>
+<li><strong>Integrate</strong> the whole course: take a real, contested issue, evaluate the evidence on all sides,</li>
+</ul>
+<p>  reach a <strong>reasoned, calibrated conclusion</strong>, and <strong>defend</strong> it under peer scrutiny.</p>
+<h3>🧭 Atom description</h3>
+<p>The capstone is a single deliverable that proves every component at once: you analyze a genuinely contested claim/issue, deconstruct the strongest arguments on each side, verify the key evidence, build your own reasoned position, address the strongest counterargument, and present + defend it in a showcase + peer review — demonstrating intellectual humility and skeptical curiosity throughout.</p>
+<hr>
+<h3>🧪 The capstone task</h3>
+<p><strong>Pick a real, contested issue</strong> where reasonable people disagree and evidence exists on multiple sides. It should be something you can research but <em>haven't already firmly decided.</em> Examples:</p>
+<ul>
+<li>"Should our team adopt a 4-day work week?" / "Is remote work better for <em>this</em> role?"</li>
+<li>"Does this popular productivity claim actually hold up?" / "Is [a trending tech] over-hyped?"</li>
+<li>A contested claim in your field, or a real decision your org/community faces.</li>
+</ul>
+<p><strong>Produce a "Reasoned Position Brief" (≈ 800–1,200 words or a short deck) with:</strong></p>
+<ol>
+<li><strong>The question.</strong> State the issue precisely and why it's genuinely contested.</li>
+<li><strong>Steelman both sides.</strong> Present the <strong>strongest</strong> argument for <em>each</em> position — fairly (Atom 4).</li>
+<li><strong>Evaluate the evidence.</strong> For the key claims on each side, assess evidence quality and flag</li>
+</ol>
+<p>   fallacies/biases (Atoms 2–3). Verify the most important evidence laterally (Atom 4) and cite sources.</p>
+<ol>
+<li><strong>Your reasoned position.</strong> Build your argument: claim → reasons → evidence → strongest</li>
+</ol>
+<p>   counterargument + honest response → <strong>qualified</strong> conclusion (Atom 5).</p>
+<ol>
+<li><strong>What would change your mind.</strong> State the evidence that would move you — and your confidence level.</li>
+<li><strong>Reflection.</strong> What did you believe at the start, and did your view shift? Where were you most</li>
+</ol>
+<p>   wrong or most uncertain?</p>
+<p><strong>Then present &amp; defend:</strong> a short showcase where peers/mentors challenge your reasoning, and you do at least one structured <strong>peer review</strong> of someone else's brief.</p>
+<hr>
+<h3>🤝 Collaboration (Phase 4)</h3>
+<ul>
+<li><strong>Showcase / defense:</strong> present your brief; field the strongest objections live.</li>
+<li><strong>Async peer review:</strong> review ≥1 peer's brief — steelman <em>their</em> view, then give one sharp,</li>
+</ul>
+<p>  constructive challenge and one thing they reasoned well.</p>
+<blockquote>🌱 <strong>Behavioral evidence:</strong> the defense + peer review are key occasions for assessing <strong>intellectual humility</strong> (do you concede and update?) and <strong>skeptical curiosity</strong> (do you keep questioning, including yourself?).</blockquote>
+<hr>
+<h3>✅ Evaluate — Capstone rubric (<code>capstone-5</code>)</h3>
+<div class='tablewrap'><table><thead><tr><th>Criterion</th><th>Excellent (100–90%)</th><th>Competent (89–80%)</th><th>Developing (79–70%)</th><th>Beginning (≤69%)</th><th>Weight</th></tr></thead><tbody>
+<tr><td><strong>Issue framing &amp; charity (steelman)</strong></td><td>Frames a genuinely contested issue precisely; steelmans <em>all</em> sides so fairly supporters would agree</td><td>Frames clearly; represents sides fairly</td><td>Frames loosely; one side is weak/strawmanned</td><td>Vague issue; one-sided</td><td><strong>20 pts</strong></td></tr>
+<tr><td><strong>Evidence evaluation &amp; verification</strong></td><td>Rigorously judges evidence quality, names fallacies/biases, verifies key evidence laterally with cited sources</td><td>Solid evaluation; sources mostly verified</td><td>Surface evaluation; little verification</td><td>Takes evidence at face value</td><td><strong>25 pts</strong></td></tr>
+<tr><td><strong>Reasoning &amp; argument construction</strong></td><td>Tight claim→reasons→evidence; engages the strongest counterargument honestly; conclusion is well-supported</td><td>Clear argument; addresses a counterargument</td><td>Loose structure; weak counterargument handling</td><td>Assertion without real support</td><td><strong>25 pts</strong></td></tr>
+<tr><td><strong>Calibration &amp; intellectual humility</strong></td><td>Confidence precisely matched to evidence; states what would change their mind; updates when warranted</td><td>Mostly calibrated; some openness</td><td>Over/under-confident; little openness</td><td>Unqualified certainty; no openness</td><td><strong>15 pts</strong></td></tr>
+<tr><td><strong>Defense, peer review &amp; curiosity</strong></td><td>Defends with poise, concedes valid points, asks sharp questions; peer review is fair and incisive</td><td>Defends and reviews competently</td><td>Minimal/ defensive engagement</td><td>Avoids challenge; no real review</td><td><strong>15 pts</strong></td></tr>
+<tr><td><strong>TOTAL</strong></td><td></td><td></td><td></td><td></td><td><strong>100 pts</strong></td></tr>
+</tbody></table></div>
+<blockquote><strong>Pass = ≥80% overall + no criterion below Developing.</strong> Earns the <strong>🏅 Critical Thinker</strong> badge (with <code>S-evaluate-arguments</code>, <code>S-question-verify</code>, <code>S-construct-argument</code> at L2 and both Abilities at L2 from behavioral evidence).</blockquote>
+<hr>
+<h3>📦 Deliverable</h3>
+<ul>
+<li>The <strong>Reasoned Position Brief</strong> + showcase/defense + one completed peer review.</li>
+</ul>
+<h3>🧠 Final reflection</h3>
+<ul>
+<li>Where did your reasoning improve most across the course — evaluating others, verifying, or building</li>
+</ul>
+<p>  your own argument? What's the one critical-thinking habit you'll keep using weekly?</p>
+<h3>🔗 Sources to verify (human-in-the-loop)</h3>
+<ul>
+<li>See Atoms 1–5. Optionally: Galef, <em>The Scout Mindset</em>; Rapoport's rules for honest disagreement.</li>
+</ul>
+<h3>🧩 Connections</h3>
+<ul>
+<li><strong>Predecessors:</strong> Atoms 1–5 (this integrates all of them).</li>
+<li><strong>Pairs with:</strong> <a href="../../index.html#/examples/problem-solving-micro-credential/README.md" target="_blank" rel="noopener">Problem Solving</a> (apply reasoning</li>
+</ul>
+<p>  to decisions) and <a href="../../index.html#/examples/self-learning-micro-credential/README.md" target="_blank" rel="noopener">Self-Learning</a> (judge sources &amp; AI).</p></section>
+<section class="page" id="page-capstone" data-id="capstone"><h1>🚀 Capstone — Reason Through a Real Issue</h1>
+<p>The capstone integrates every component of the <strong>Critical Thinking</strong> micro-credential into one piece of evidence. Full task and rubric live in <a href="#atom-6"><code>atoms/atom-6-capstone-reason-through-a-real-issue.md</code></a>; this file is the at-a-glance brief and the KSA mapping.</p>
+<hr>
+<h2>🎯 The brief</h2>
+<blockquote><strong>Take a real, contested issue, evaluate the evidence on all sides, reach a reasoned and calibrated conclusion, and defend it under peer scrutiny.</strong></blockquote>
+<p>Deliverable: a <strong>Reasoned Position Brief</strong> (~800–1,200 words or short deck) that:</p>
+<ol>
+<li><strong>Frames</strong> a genuinely contested issue (and why it's contested).</li>
+<li><strong>Steelmans all sides</strong> — strongest argument for each, represented fairly.</li>
+<li><strong>Evaluates the evidence</strong> — quality, fallacies/biases, lateral verification with cited sources.</li>
+<li><strong>Builds a reasoned position</strong> — claim → reasons → evidence → strongest counterargument + honest</li>
+</ol>
+<p>   response → <strong>qualified</strong> conclusion.</p>
+<ol>
+<li><strong>States what would change your mind</strong> + your confidence level.</li>
+<li><strong>Reflects</strong> on whether and how your view shifted.</li>
+</ol>
+<p>Plus a <strong>showcase/defense</strong> and at least one <strong>peer review</strong>.</p>
+<hr>
+<h2>🧬 How the capstone proves each KSA component</h2>
+<div class='tablewrap'><table><thead><tr><th>KSA</th><th>Component</th><th>Where it shows up in the capstone</th></tr></thead><tbody>
+<tr><td>🧠 K</td><td>The anatomy of reasoning</td><td>Correctly maps claims/premises/assumptions across sides</td></tr>
+<tr><td>🧠 K</td><td>Fallacies &amp; biases</td><td>Names fallacies/biases in the evidence and arguments</td></tr>
+<tr><td>🛠️ S</td><td>Evaluate arguments &amp; evidence</td><td>The evidence-evaluation section (quality, relevance, verification)</td></tr>
+<tr><td>🛠️ S</td><td>Question &amp; verify</td><td>Lateral verification of key evidence; Socratic framing; steelmans</td></tr>
+<tr><td>🛠️ S</td><td>Build &amp; defend an argument</td><td>The reasoned-position section + live defense</td></tr>
+<tr><td>🌱 A</td><td>Intellectual humility</td><td>Calibration; "what would change my mind"; conceding/ updating in defense</td></tr>
+<tr><td>🌱 A</td><td>Skeptical curiosity</td><td>Questioning all sides incl. own; sharp peer review</td></tr>
+</tbody></table></div>
+<hr>
+<h2>✅ Pass bar</h2>
+<ul>
+<li><strong>≥ 80%</strong> on the 5-criteria <code>capstone-5</code> rubric <strong>and</strong> no criterion below <em>Developing</em>.</li>
+<li>Abilities confirmed at <strong>L2</strong> via behavioral evidence across <strong>≥ 3 occasions</strong> (Atom 5 + forum +</li>
+</ul>
+<p>  capstone defense).</p>
+<ul>
+<li>Result: <strong>🏅 Critical Thinker</strong> badge issued on verified evidence, writing</li>
+</ul>
+<p>  <code>S-evaluate-arguments</code>, <code>S-question-verify</code>, <code>S-construct-argument</code>, <code>A-intellectual-humility</code>,   <code>A-skepticism-curiosity</code> to the learner's <a href="#skillsmap">skills map</a>.</p></section>
+<section class="page" id="page-rubrics" data-id="rubrics"><h1>📊 Rubrics — Critical Thinking Micro-Credential</h1>
+<p>All assessment instruments for this micro-credential, in one place. They follow the ADA conventions: <strong>formative</strong> knowledge checks, <strong>skill</strong> performance tasks, <strong>behavioral</strong> assessment for Abilities (across ≥3 occasions, never a quiz), and the standardized <strong>5-criteria capstone</strong> rubric.</p>
+<hr>
+<h2>1. <code>knowledge-mini</code> — formative knowledge checks (Atoms 1–2)</h2>
+<p>Used for the pop quizzes. Not heavily weighted; the goal is readiness for the skill atoms.</p>
+<div class='tablewrap'><table><thead><tr><th>Band</th><th>Descriptor</th></tr></thead><tbody>
+<tr><td>✅ Secure</td><td>Distinguishes validity/soundness; names fallacies &amp; biases correctly with examples</td></tr>
+<tr><td>🟡 Developing</td><td>Gets the gist; mixes up some fallacies/biases or the validity/soundness distinction</td></tr>
+<tr><td>🔴 Not yet</td><td>Cannot yet identify the parts of an argument or common fallacies — revisit Atoms 1–2</td></tr>
+</tbody></table></div>
+<hr>
+<h2>2. <code>skill</code> — performance-task rubric (Atoms 3–4)</h2>
+<p>Applied to the argument-deconstruction task (Atom 3) and the question-&amp;-verify task (Atom 4). Pass = <strong>2+ on every row</strong> → records the component at <strong>L2</strong>.</p>
+<div class='tablewrap'><table><thead><tr><th>Criterion</th><th>Excellent (3)</th><th>Adequate (2)</th><th>Needs work (1)</th></tr></thead><tbody>
+<tr><td><strong>Mapping / questioning</strong></td><td>Accurately maps argument parts; asks sharp, category-spanning questions</td><td>Mostly accurate</td><td>Misreads argument / vague questions</td></tr>
+<tr><td><strong>Logic evaluation</strong></td><td>Correctly assesses inference; names real gaps/fallacies</td><td>Some evaluation</td><td>Misses or invents flaws</td></tr>
+<tr><td><strong>Evidence / verification</strong></td><td>Judges evidence quality; verifies laterally with named sources; traces original</td><td>Some judging/verifying</td><td>Takes evidence at face value</td></tr>
+<tr><td><strong>Charity &amp; judgment</strong></td><td>Steelmans before judging; proportioned, fair verdict</td><td>Some nuance</td><td>One-sided / strawmans</td></tr>
+</tbody></table></div>
+<blockquote><code>S-evaluate-arguments</code> (Atom 3) and <code>S-question-verify</code> (Atom 4) each reach <strong>L2</strong> on a pass.</blockquote>
+<hr>
+<h2>3. <code>behavioral</code> — Abilities rubric (Atoms 5–6, ≥ 3 occasions)</h2>
+<p>Abilities are <strong>observed over time</strong>, never quizzed. Evidence is gathered across Atom 5 (build &amp; defend), the discussion forum, and the capstone defense + peer review.</p>
+<h3>🌱 <code>A-intellectual-humility</code> — open-mindedness &amp; willingness to revise</h3>
+<div class='tablewrap'><table><thead><tr><th>Stage</th><th>Observable behavior</th></tr></thead><tbody>
+<tr><td>Proficient (L2+)</td><td>Invites the strongest objections; concedes valid points; <strong>updates</strong> position when warranted; confidence calibrated to evidence</td></tr>
+<tr><td>Developing (L1–L2)</td><td>Acknowledges other views; occasionally updates; some over/under-confidence</td></tr>
+<tr><td>Emerging (L0–L1)</td><td>Defends position regardless of evidence; treats concession as losing</td></tr>
+</tbody></table></div>
+<h3>🌱 <code>A-skepticism-curiosity</code> — questioning stance</h3>
+<div class='tablewrap'><table><thead><tr><th>Stage</th><th>Observable behavior</th></tr></thead><tbody>
+<tr><td>Proficient (L2+)</td><td>Questions own assumptions; asks "what would prove me wrong?"; pursues the strongest version of every side</td></tr>
+<tr><td>Developing (L1–L2)</td><td>Questions others' claims; less consistent at self-questioning</td></tr>
+<tr><td>Emerging (L0–L1)</td><td>Accepts claims at face value; little curiosity about alternatives</td></tr>
+</tbody></table></div>
+<blockquote><strong>≥ 3 occasions</strong> required for the badge. Mentors log short notes per occasion (date, behavior seen).</blockquote>
+<hr>
+<h2>4. <code>capstone-5</code> — capstone rubric (Atom 6)</h2>
+<p>The standardized 5-criteria, weighted, 4-band rubric. <strong>Pass = ≥ 80% overall and no criterion below Developing.</strong></p>
+<div class='tablewrap'><table><thead><tr><th>Criterion</th><th>Excellent (100–90%)</th><th>Competent (89–80%)</th><th>Developing (79–70%)</th><th>Beginning (≤69%)</th><th>Weight</th></tr></thead><tbody>
+<tr><td><strong>Issue framing &amp; charity (steelman)</strong></td><td>Frames a genuinely contested issue precisely; steelmans <em>all</em> sides so fairly supporters would agree</td><td>Frames clearly; represents sides fairly</td><td>Frames loosely; one side is weak/strawmanned</td><td>Vague issue; one-sided</td><td><strong>20 pts</strong></td></tr>
+<tr><td><strong>Evidence evaluation &amp; verification</strong></td><td>Rigorously judges evidence quality, names fallacies/biases, verifies key evidence laterally with cited sources</td><td>Solid evaluation; sources mostly verified</td><td>Surface evaluation; little verification</td><td>Takes evidence at face value</td><td><strong>25 pts</strong></td></tr>
+<tr><td><strong>Reasoning &amp; argument construction</strong></td><td>Tight claim→reasons→evidence; engages the strongest counterargument honestly; conclusion well-supported</td><td>Clear argument; addresses a counterargument</td><td>Loose structure; weak counterargument handling</td><td>Assertion without real support</td><td><strong>25 pts</strong></td></tr>
+<tr><td><strong>Calibration &amp; intellectual humility</strong></td><td>Confidence precisely matched to evidence; states what would change their mind; updates when warranted</td><td>Mostly calibrated; some openness</td><td>Over/under-confident; little openness</td><td>Unqualified certainty; no openness</td><td><strong>15 pts</strong></td></tr>
+<tr><td><strong>Defense, peer review &amp; curiosity</strong></td><td>Defends with poise, concedes valid points, asks sharp questions; peer review fair and incisive</td><td>Defends and reviews competently</td><td>Minimal/defensive engagement</td><td>Avoids challenge; no real review</td><td><strong>15 pts</strong></td></tr>
+<tr><td><strong>TOTAL</strong></td><td></td><td></td><td></td><td></td><td><strong>100 pts</strong></td></tr>
+</tbody></table></div>
+<hr>
+<h2>🏅 Badge issuance</h2>
+<div class='tablewrap'><table><thead><tr><th>Requirement</th><th>Evidence</th></tr></thead><tbody>
+<tr><td><code>S-evaluate-arguments</code> @ L2</td><td>Atom 3 performance task</td></tr>
+<tr><td><code>S-question-verify</code> @ L2</td><td>Atom 4 performance task</td></tr>
+<tr><td><code>S-construct-argument</code> @ L2</td><td>Atom 5 argument + capstone</td></tr>
+<tr><td><code>A-intellectual-humility</code> @ L2</td><td>Behavioral, ≥3 occasions</td></tr>
+<tr><td><code>A-skepticism-curiosity</code> @ L2</td><td>Behavioral, ≥3 occasions</td></tr>
+<tr><td>Capstone ≥ 80%</td><td><code>capstone-5</code> rubric</td></tr>
+</tbody></table></div>
+<p>All six → <strong>🏅 Critical Thinker</strong> badge, written to the learner's <a href="#skillsmap">skills map</a>.</p></section>
+<section class="page" id="page-skillsmap" data-id="skillsmap"><h1>🗺️ Skills Map — Critical Thinking</h1>
+<p>How the <strong>🏅 Critical Thinker</strong> badge writes to a learner's skills map, and why it raises the floor on almost every role. See the methodology in <a href="../../index.html#/specs/skills-map-and-job-matching.md" target="_blank" rel="noopener"><code>../../specs/skills-map-and-job-matching.md</code></a>.</p>
+<hr>
+<h2>🧩 What the badge writes to the map</h2>
+<p>On earning the badge, these KSA components are recorded with verified evidence:</p>
+<div class='tablewrap'><table><thead><tr><th>Component</th><th>Type</th><th>Level</th><th>Evidence</th></tr></thead><tbody>
+<tr><td><code>K-reasoning</code></td><td>🧠 Knowledge</td><td>L2</td><td>Pop quiz + applied in capstone</td></tr>
+<tr><td><code>K-fallacies-biases</code></td><td>🧠 Knowledge</td><td>L2</td><td>Pop quiz + applied in capstone</td></tr>
+<tr><td><code>S-evaluate-arguments</code></td><td>🛠️ Skill</td><td><strong>L2</strong></td><td>Atom 3 performance task</td></tr>
+<tr><td><code>S-question-verify</code></td><td>🛠️ Skill</td><td><strong>L2</strong></td><td>Atom 4 performance task</td></tr>
+<tr><td><code>S-construct-argument</code></td><td>🛠️ Skill</td><td><strong>L2</strong></td><td>Atom 5 + capstone</td></tr>
+<tr><td><code>A-intellectual-humility</code></td><td>🌱 Ability</td><td>L2</td><td>Behavioral, ≥3 occasions</td></tr>
+<tr><td><code>A-skepticism-curiosity</code></td><td>🌱 Ability</td><td>L2</td><td>Behavioral, ≥3 occasions</td></tr>
+</tbody></table></div>
+<div class="mermaid">flowchart LR
+  subgraph BADGE[&quot;🏅 Critical Thinker&quot;]
+    K1[&quot;🧠 K-reasoning · L2&quot;]
+    K2[&quot;🧠 K-fallacies-biases · L2&quot;]
+    S1[&quot;🛠️ S-evaluate-arguments · L2&quot;]
+    S2[&quot;🛠️ S-question-verify · L2&quot;]
+    S3[&quot;🛠️ S-construct-argument · L2&quot;]
+    A1[&quot;🌱 A-intellectual-humility · L2&quot;]
+    A2[&quot;🌱 A-skepticism-curiosity · L2&quot;]
+  end
+  BADGE --&gt; MAP[&quot;🗺️ Learner skills map&quot;]
+  MAP --&gt; MATCH[&quot;🎯 Job matching&quot;]</div>
+<hr>
+<h2>🎯 Why this badge is a near-universal multiplier</h2>
+<p>Critical thinking is a <strong>transversal</strong> competency: O*NET lists it as a core <em>process skill</em> required — at varying levels — by essentially every occupation. It also <strong>amplifies other skills</strong> on the map:</p>
+<div class='tablewrap'><table><thead><tr><th>Pairs with</th><th>Combined effect</th></tr></thead><tbody>
+<tr><td>🧩 <a href="../../index.html#/examples/problem-solving-micro-credential/README.md" target="_blank" rel="noopener">Problem Solving</a></td><td>Reason rigorously about diagnoses and options before deciding</td></tr>
+<tr><td>🧭 <a href="../../index.html#/examples/self-learning-micro-credential/README.md" target="_blank" rel="noopener">Self-Learning</a></td><td>Judge source quality and AI output while learning</td></tr>
+<tr><td>🗣️ <a href="../../index.html#/examples/effective-communication-micro-credential/README.md" target="_blank" rel="noopener">Effective Communication</a></td><td>Build clear, well-reasoned, defensible messages</td></tr>
+<tr><td>🌱 <a href="../../index.html#/examples/growth-mindset-micro-credential/README.md" target="_blank" rel="noopener">Growth Mindset</a></td><td>Treat being wrong as information, not threat</td></tr>
+</tbody></table></div>
+<hr>
+<h2>🧮 Worked matching example</h2>
+<p>A role posting asks for <em>"strong analytical and critical-thinking skills; able to evaluate evidence and make sound, well-reasoned judgments."</em></p>
+<div class='tablewrap'><table><thead><tr><th>Requirement</th><th>Map evidence</th><th>Status</th></tr></thead><tbody>
+<tr><td>Evaluate evidence &amp; arguments</td><td><code>S-evaluate-arguments</code> @ L2</td><td>✅ met</td></tr>
+<tr><td>Question &amp; verify claims/sources</td><td><code>S-question-verify</code> @ L2</td><td>✅ met</td></tr>
+<tr><td>Sound, defensible judgments</td><td><code>S-construct-argument</code> @ L2 + <code>A-intellectual-humility</code> @ L2</td><td>✅ met</td></tr>
+<tr><td>Open-minded, evidence-driven</td><td><code>A-skepticism-curiosity</code> + <code>A-intellectual-humility</code> (behavioral)</td><td>✅ met</td></tr>
+</tbody></table></div>
+<p>→ A learner holding this badge <strong>meets the critical-thinking minimums</strong> for the role, with <em>verifiable evidence</em> (capstone brief + behavioral observations) rather than a self-claimed bullet point.</p>
+<blockquote>⚠️ <strong>Human-in-the-loop:</strong> AI-suggested matches are provisional until a mentor/employer validates the evidence — per <a href="../../index.html#/CLAUDE.md" target="_blank" rel="noopener"><code>../../CLAUDE.md</code></a> §5.</blockquote></section></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var pages=Array.prototype.slice.call(document.querySelectorAll(".page"));
+  var ids=pages.map(function(p){return p.getAttribute("data-id");});
+  var links=Array.prototype.slice.call(document.querySelectorAll(".navlink"));
+  var atomIds=["atom-1","atom-2","atom-3","atom-4","atom-5","atom-6"];
+  var idx=0;
+
+  function show(id){
+    var i=ids.indexOf(id); if(i<0)i=0; idx=i;
+    pages.forEach(function(p){p.classList.toggle("active",p.getAttribute("data-id")===id);});
+    links.forEach(function(a){a.classList.toggle("active",a.getAttribute("data-target")===id);});
+    document.getElementById("prevbtn").disabled=(idx===0);
+    document.getElementById("nextbtn").disabled=(idx===pages.length-1);
+    if(location.hash.slice(1)!==id) history.replaceState(null,"","#"+id);
+    document.getElementById("side").classList.remove("open");
+    window.scrollTo(0,0);
+    renderMermaid();
+  }
+  links.forEach(function(a){a.addEventListener("click",function(e){e.preventDefault();show(a.getAttribute("data-target"));});});
+  document.getElementById("prevbtn").addEventListener("click",function(){if(idx>0)show(ids[idx-1]);});
+  document.getElementById("nextbtn").addEventListener("click",function(){if(idx<ids.length-1)show(ids[idx+1]);});
+  document.getElementById("menutoggle").addEventListener("click",function(){document.getElementById("side").classList.toggle("open");});
+
+  // progress (localStorage)
+  var KEY="critical-thinking-progress";
+  function load(){try{return JSON.parse(localStorage.getItem(KEY)||"{}");}catch(e){return {};}}
+  function save(s){try{localStorage.setItem(KEY,JSON.stringify(s));}catch(e){}}
+  function refresh(){
+    var s=load(),done=0;
+    document.querySelectorAll(".donechk").forEach(function(c){
+      c.checked=!!s[c.getAttribute("data-atom")]; if(c.checked)done++;});
+    var pct=Math.round(done/atomIds.length*100);
+    document.getElementById("progfill").style.width=pct+"%";
+    document.getElementById("progtext").textContent=done+" / "+atomIds.length+" atoms complete";
+  }
+  document.querySelectorAll(".donechk").forEach(function(c){
+    c.addEventListener("change",function(){var s=load();s[c.getAttribute("data-atom")]=c.checked;save(s);refresh();});
+  });
+  refresh();
+
+  // copy buttons
+  document.querySelectorAll(".copybtn").forEach(function(b){
+    b.addEventListener("click",function(){
+      var pre=b.closest(".promptcard").querySelector("pre");
+      var txt=pre.innerText;
+      (navigator.clipboard?navigator.clipboard.writeText(txt):Promise.reject()).then(function(){
+        b.textContent="Copied!";b.classList.add("ok");setTimeout(function(){b.textContent="Copy";b.classList.remove("ok");},1400);
+      }).catch(function(){
+        var r=document.createRange();r.selectNodeContents(pre);var sel=getSelection();sel.removeAllRanges();sel.addRange(r);
+        try{document.execCommand("copy");}catch(e){} sel.removeAllRanges();
+        b.textContent="Copied!";b.classList.add("ok");setTimeout(function(){b.textContent="Copy";b.classList.remove("ok");},1400);
+      });
+    });
+  });
+
+  // youtube click-to-play
+  document.querySelectorAll(".yt").forEach(function(y){
+    var btn=y.querySelector(".yt-play");
+    btn.addEventListener("click",function(){
+      var id=y.getAttribute("data-id"); if(!id)return;
+      // file:// pages can't host a YouTube iframe (Error 153) -> open on YouTube instead.
+      if(location.protocol==="file:"){window.open("https://www.youtube.com/watch?v="+id,"_blank","noopener");return;}
+      var f=document.createElement("iframe");
+      f.src="https://www.youtube-nocookie.com/embed/"+id+"?autoplay=1&rel=0";
+      f.allow="accelerated-sensors;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture;web-share;fullscreen";
+      f.setAttribute("allowfullscreen","");
+      f.setAttribute("referrerpolicy","strict-origin-when-cross-origin");
+      f.title="YouTube video";
+      btn.replaceWith(f);
+    });
+  });
+
+  // mermaid (CDN, brand theme, root emphasis, graceful fallback)
+  var mmReady=null;
+  function ensureMermaid(){
+    if(mmReady)return mmReady;
+    mmReady=new Promise(function(res,rej){
+      if(window.mermaid)return res(window.mermaid);
+      var s=document.createElement("script");
+      s.src="https://cdn.jsdelivr.net/npm/mermaid@11.15.0/dist/mermaid.min.js";
+      s.onload=function(){res(window.mermaid);};
+      s.onerror=function(){
+        var s2=document.createElement("script");
+        s2.src="https://unpkg.com/mermaid@11.15.0/dist/mermaid.min.js";
+        s2.onload=function(){res(window.mermaid);}; s2.onerror=rej;
+        document.head.appendChild(s2);
+      };
+      document.head.appendChild(s);
+    });
+    return mmReady;
+  }
+  function src(n){var s=n.getAttribute("data-src");if(s===null){s=n.textContent;n.setAttribute("data-src",s);}return s;}
+  function fallback(n){n.classList.add("fallback");n.innerHTML="<pre>"+src(n).replace(/[&<>]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;"}[c];})+"</pre>";}
+  function detectRoots(s){
+    try{var L=s.split(/\r?\n/);if(!/^\s*(flowchart|graph)\b/i.test(L[0]||""))return [];
+      var all={},tg={};
+      for(var i=1;i<L.length;i++){var t=(L[i]||"").trim();
+        if(!t||/^%%/.test(t))continue;
+        if(/^(classdef|class|style|linkstyle|click|direction|subgraph|end)\b/i.test(t))continue;
+        var x=L[i];for(var k=0;k<8;k++){x=x.replace(/\(\([^()]*\)\)/g," ").replace(/\[[^\[\]]*\]/g," ").replace(/\{[^{}]*\}/g," ").replace(/\([^()]*\)/g," ");}
+        x=x.replace(/\|[^|]*\|/g," ");if(x.indexOf("--")<0&&x.indexOf("==")<0)continue;
+        var ids=x.split(/\s*(?:-{2,}>?|={2,}>?|-\.->?)\s*/).map(function(z){return (z.trim().match(/^[A-Za-z0-9_]+/)||[""])[0];}).filter(Boolean);
+        for(var j=0;j<ids.length;j++){all[ids[j]]=1;if(j>0)tg[ids[j]]=1;}}
+      var r=Object.keys(all).filter(function(id){return !tg[id];});
+      return r.length&&r.length<=4?r:[];
+    }catch(e){return [];}
+  }
+  function emphasize(s){var r=detectRoots(s);if(!r.length)return s;
+    return s+"\nclassDef adaRootNode fill:#1E2A6E,stroke:#E0A53C,stroke-width:3px,color:#ffffff,font-weight:bold,font-size:21px;\nclass "+r.join(",")+" adaRootNode;";}
+  var seq=0;
+  function renderMermaid(){
+    var nodes=Array.prototype.slice.call(document.querySelectorAll(".page.active .mermaid:not([data-done])"));
+    if(!nodes.length)return;
+    nodes.forEach(src);
+    ensureMermaid().then(function(m){
+      m.initialize({startOnLoad:false,securityLevel:"loose",theme:"base",fontFamily:"inherit",fontSize:"16px",
+        flowchart:{htmlLabels:true,useMaxWidth:true,curve:"basis",padding:14,nodeSpacing:52,rankSpacing:58},
+        themeVariables:{fontSize:"16px",primaryColor:"#1E2A6E",primaryTextColor:"#ffffff",primaryBorderColor:"#15B5C6",
+          mainBkg:"#1E2A6E",nodeBorder:"#15B5C6",nodeTextColor:"#ffffff",lineColor:"#1E2A6E",
+          clusterBkg:"#eef2fb",clusterBorder:"#15B5C6",titleColor:"#1E2A6E",
+          background:"#ffffff",textColor:"#1E2A6E",edgeLabelBackground:"#ffffff",
+          cScale0:"#1E2A6E",cScale1:"#15B5C6",cScale2:"#E0A53C",cScale3:"#2a3aa0",
+          cScaleLabel0:"#ffffff",cScaleLabel1:"#0A1124",cScaleLabel2:"#0A1124",cScaleLabel3:"#ffffff"}});
+      nodes.forEach(function(n){
+        n.setAttribute("data-done","1");
+        var id="mm-"+(Date.now())+"-"+(seq++);
+        try{m.render(id,emphasize(src(n))).then(function(o){n.innerHTML=o.svg;}).catch(function(){fallback(n);});}
+        catch(e){fallback(n);}
+      });
+    }).catch(function(){nodes.forEach(fallback);});
+  }
+
+  window.addEventListener("hashchange",function(){show(location.hash.slice(1)||ids[0]);});
+  show(location.hash.slice(1)||ids[0]);
+})();
+</script>
+</body>
+</html>

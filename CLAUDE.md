@@ -51,7 +51,9 @@ ada-methodology/
 │   ├── ada-methodology-designer-micro-credential/  # train-the-designer course (packaged LEARN.md)
 │   ├── effective-communication-micro-credential/   # full human-skill course (S + A, role-plays)
 │   ├── self-learning-micro-credential/             # full meta-skill course (learn online + with AI)
-│   └── problem-solving-micro-credential/           # full cognitive-skill course (define/diagnose/decide)
+│   ├── problem-solving-micro-credential/           # full cognitive-skill course (define/diagnose/decide)
+│   ├── critical-thinking-micro-credential/         # full cognitive-skill course (reason/evaluate/defend)
+│   └── innovation-creativity-micro-credential/     # full creative-skill course (reframe/ideate/prototype)
 ├── specs/               # v2 specifications (KSA, skills map, Gen AI authoring)
 └── img/                 # Images used in docs
 ```

@@ -86,8 +86,9 @@ tr:nth-child(even) td{background:#f7f9fe}
 /* youtube facade */
 .yt{margin:1.2em 0;border-radius:var(--radius);overflow:hidden;background:var(--ink);box-shadow:var(--shadow)}
 .yt .yt-play{position:relative;display:block;width:100%;aspect-ratio:16/9;border:0;cursor:pointer;
-  background:radial-gradient(circle at 50% 45%,#243069,#0A1124);color:#fff}
-.yt-tri{font-size:42px;color:#fff;background:rgba(225,165,60,.92);width:84px;height:58px;
+  background:radial-gradient(circle at 50% 45%,#243069,#0A1124);background-size:cover;background-position:center;color:#fff}
+.yt .yt-play::after{content:"";position:absolute;inset:0;background:rgba(10,17,36,.38)}
+.yt-tri{position:relative;z-index:1;font-size:42px;color:#fff;background:rgba(225,165,60,.92);width:84px;height:58px;
   border-radius:16px;display:grid;place-items:center;margin:0 auto;box-shadow:0 6px 18px rgba(0,0,0,.4);
   transition:transform .2s}
 .yt .yt-play:hover .yt-tri{transform:scale(1.08)}
@@ -362,8 +363,8 @@ badge:
 </ul>
 <hr>
 <h3>🎬 Watch — how we think &amp; solve (pick one, ~5–12 min)</h3>
-<div class="yt" data-id="UBVV8pch1dM"><button class="yt-play" type="button" aria-label="Play video"><span class="yt-tri">&#9654;</span></button><div class="yt-meta"><a href="https://www.youtube.com/watch?v=UBVV8pch1dM" target="_blank" rel="noopener">https://www.youtube.com/watch?v=UBVV8pch1dM</a><div class="yt-cap">Veritasium — "The Science of Thinking" (fast vs. slow thinking; why we jump to answers).</div></div></div>
-<div class="yt" data-id="9gM8j-mtL0"><button class="yt-play" type="button" aria-label="Play video"><span class="yt-tri">&#9654;</span></button><div class="yt-meta"><a href="https://www.youtube.com/watch?v=9gM8j-mtL0" target="_blank" rel="noopener">https://www.youtube.com/watch?v=9gM8j-mtL0</a><div class="yt-cap">A short explainer on a structured problem-solving process (verify before delivery).</div></div></div>
+<div class="yt" data-id="UBVV8pch1dM"><button class="yt-play" type="button" aria-label="Play video" style="background-image:url(https://i.ytimg.com/vi/UBVV8pch1dM/hqdefault.jpg)"><span class="yt-tri">&#9654;</span></button><div class="yt-meta"><a href="https://www.youtube.com/watch?v=UBVV8pch1dM" target="_blank" rel="noopener">https://www.youtube.com/watch?v=UBVV8pch1dM</a><div class="yt-cap">Veritasium — "The Science of Thinking" (fast vs. slow thinking; why we jump to answers).</div></div></div>
+<div class="yt" data-id="9gM8j-mtL0"><button class="yt-play" type="button" aria-label="Play video" style="background-image:url(https://i.ytimg.com/vi/9gM8j-mtL0/hqdefault.jpg)"><span class="yt-tri">&#9654;</span></button><div class="yt-meta"><a href="https://www.youtube.com/watch?v=9gM8j-mtL0" target="_blank" rel="noopener">https://www.youtube.com/watch?v=9gM8j-mtL0</a><div class="yt-cap">A short explainer on a structured problem-solving process (verify before delivery).</div></div></div>
 <hr>
 <h3>🖼️ See — the problem-solving loop</h3>
 <div class="mermaid">flowchart LR
@@ -373,6 +374,8 @@ badge:
   DEC --&gt; IMP[&quot;🛠️ Implement&lt;br/&gt;(test small)&quot;]
   IMP --&gt; REV[&quot;🔁 Review&lt;br/&gt;did it work?&quot;]
   REV -.loop if not.-&gt; DEF</div>
+<p><img alt="The six-step problem-solving loop — generated diagram" src="img/atom-1-how-problem-solving-works.png"></p>
+<blockquote>🖼️ <em>Generated image — produced from the prompt below.</em></blockquote>
 <p>A reusable prompt to generate an on-brand version of this diagram:</p>
 <div class="promptcard"><div class="promptcard-h"><span>🖼️ Image / AI prompt</span><button class="copybtn" type="button">Copy</button></div><pre><code>Create a clean, modern educational infographic of a six-step problem-solving loop: Define → Diagnose →
 Generate → Decide → Implement → Review, with a dotted arrow looping Review back to Define. Add small
@@ -476,7 +479,7 @@ legible sans-serif, no text errors. 16:9.</code></pre></div>
 </ul>
 <hr>
 <h3>🎬 Watch — thinking about thinking (~5–11 min)</h3>
-<div class="yt" data-id="JiTz2i4VHFw"><button class="yt-play" type="button" aria-label="Play video"><span class="yt-tri">&#9654;</span></button><div class="yt-meta"><a href="https://www.youtube.com/watch?v=JiTz2i4VHFw" target="_blank" rel="noopener">https://www.youtube.com/watch?v=JiTz2i4VHFw</a><div class="yt-cap">"Cognitive biases / how to think, not what to think" — a short explainer (verify before delivery).</div></div></div>
+<div class="yt" data-id="JiTz2i4VHFw"><button class="yt-play" type="button" aria-label="Play video" style="background-image:url(https://i.ytimg.com/vi/JiTz2i4VHFw/hqdefault.jpg)"><span class="yt-tri">&#9654;</span></button><div class="yt-meta"><a href="https://www.youtube.com/watch?v=JiTz2i4VHFw" target="_blank" rel="noopener">https://www.youtube.com/watch?v=JiTz2i4VHFw</a><div class="yt-cap">"Cognitive biases / how to think, not what to think" — a short explainer (verify before delivery).</div></div></div>
 <hr>
 <h3>🖼️ See — bias → antidote</h3>
 <div class="mermaid">flowchart LR
@@ -484,6 +487,8 @@ legible sans-serif, no text errors. 16:9.</code></pre></div>
   B2[&quot;⚓ Anchoring&quot;] --&gt;|estimate first, then compare| A1
   B3[&quot;💡 First-idea bias&quot;] --&gt;|force more options| A1
   B4[&quot;💸 Sunk cost&quot;] --&gt;|judge future value| A1</div>
+<p><img alt="Catch your biases — generated diagram" src="img/atom-2-decisions-and-biases.png"></p>
+<blockquote>🖼️ <em>Generated image — produced from the prompt below.</em></blockquote>
 <p>A reusable prompt to generate an on-brand version:</p>
 <div class="promptcard"><div class="promptcard-h"><span>🖼️ Image / AI prompt</span><button class="copybtn" type="button">Copy</button></div><pre><code>Create a clean, modern infographic titled &quot;Catch Your Biases&quot;: a left column of cognitive biases
 (Confirmation, Anchoring, First-idea, Sunk cost, Availability) each with an arrow to its antidote
@@ -596,6 +601,8 @@ light background, flat vector, legible sans-serif. 16:9.</code></pre></div>
   R --&gt; R2[&quot;lower price/order&quot;]
   C --&gt; C1[&quot;fixed costs&quot;]
   C --&gt; C2[&quot;variable costs&quot;]</div>
+<p><img alt="Issue tree / MECE decomposition — generated diagram" src="img/atom-3-define-and-decompose.png"></p>
+<blockquote>🖼️ <em>Generated image — produced from the prompt below.</em></blockquote>
 <p>A reusable prompt to generate an on-brand version:</p>
 <div class="promptcard"><div class="promptcard-h"><span>🖼️ Image / AI prompt</span><button class="copybtn" type="button">Copy</button></div><pre><code>Create a clean, modern &quot;issue tree / MECE decomposition&quot; infographic: a top box &quot;Problem: profit too
 low&quot; branching into &quot;Revenue too low&quot; and &quot;Costs too high&quot;, each branching into two sub-causes.
@@ -689,6 +696,8 @@ sans-serif. 16:9.</code></pre></div>
   TOOLS[&quot;🛠️ Tools&quot;] --&gt; PROB
   MEAS[&quot;📏 Measurement&quot;] --&gt; PROB
   ENV[&quot;🌍 Environment&quot;] --&gt; PROB</div>
+<p><img alt="Ishikawa (fishbone) diagram — generated diagram" src="img/atom-4-root-cause-analysis.png"></p>
+<blockquote>🖼️ <em>Generated image — produced from the prompt below.</em></blockquote>
 <p>A reusable prompt to generate an on-brand version:</p>
 <div class="promptcard"><div class="promptcard-h"><span>🖼️ Image / AI prompt</span><button class="copybtn" type="button">Copy</button></div><pre><code>Create a clean, modern fishbone (Ishikawa) diagram infographic: a central spine pointing to a fish
 head labeled &quot;Problem&quot;, with angled bones labeled People, Process, Tools/Technology, Materials,
@@ -818,6 +827,8 @@ legible sans-serif. 16:9.</code></pre></div>
   CRIT --&gt; MATRIX[&quot;🧮 Decision matrix&lt;br/&gt;(trade-offs visible)&quot;]
   MATRIX --&gt; PICK[&quot;🎯 Choose + state trade-off&quot;]
   PICK --&gt; PILOT[&quot;🧪 Pilot small &amp; review&quot;]</div>
+<p><img alt="Diverge then converge — generated diagram" src="img/atom-5-generate-and-choose-solutions.png"></p>
+<blockquote>🖼️ <em>Generated image — produced from the prompt below.</em></blockquote>
 <p>A reusable prompt to generate an on-brand version:</p>
 <div class="promptcard"><div class="promptcard-h"><span>🖼️ Image / AI prompt</span><button class="copybtn" type="button">Copy</button></div><pre><code>Create a clean, modern infographic showing a &quot;diverge then converge&quot; double-diamond: from a confirmed
 root cause, widen to &quot;generate many options&quot;, then narrow through &quot;weighted criteria → decision matrix
@@ -1138,10 +1149,14 @@ Gold #E0A53C), light background, flat vector, legible sans-serif. 16:9.</code></
     var btn=y.querySelector(".yt-play");
     btn.addEventListener("click",function(){
       var id=y.getAttribute("data-id"); if(!id)return;
+      // file:// pages can't host a YouTube iframe (Error 153) -> open on YouTube instead.
+      if(location.protocol==="file:"){window.open("https://www.youtube.com/watch?v="+id,"_blank","noopener");return;}
       var f=document.createElement("iframe");
       f.src="https://www.youtube-nocookie.com/embed/"+id+"?autoplay=1&rel=0";
-      f.allow="accelerated-sensors;autoplay;encrypted-media;picture-in-picture";
+      f.allow="accelerated-sensors;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture;web-share;fullscreen";
       f.setAttribute("allowfullscreen","");
+      f.setAttribute("referrerpolicy","strict-origin-when-cross-origin");
+      f.title="YouTube video";
       btn.replaceWith(f);
     });
   });

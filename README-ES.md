@@ -257,6 +257,8 @@ OFERTA LABORAL → [IA Generativa + validación humana] → PERFIL KSA OBJETIVO
 * 🗣️ [**Curso completo** — microcredencial de Comunicación Efectiva](examples/effective-communication-micro-credential/README.md) · 🖥️ [abrir el `course.html` interactivo](examples/effective-communication-micro-credential/course.html) *(contenido en inglés)*
 * 🧭 [**Curso completo** — microcredencial de Autoaprendizaje (en línea + IA)](examples/self-learning-micro-credential/README.md) · 🖥️ [abrir el `course.html` interactivo](examples/self-learning-micro-credential/course.html) *(contenido en inglés)*
 * 🧩 [**Curso completo** — microcredencial de Resolución de Problemas](examples/problem-solving-micro-credential/README.md) · 🖥️ [abrir el `course.html` interactivo](examples/problem-solving-micro-credential/course.html) *(contenido en inglés)*
+* 🧠 [**Curso completo** — microcredencial de Pensamiento Crítico](examples/critical-thinking-micro-credential/README.md) · 🖥️ [abrir el `course.html` interactivo](examples/critical-thinking-micro-credential/course.html) *(contenido en inglés)*
+* 💡 [**Curso completo** — microcredencial de Innovación y Creatividad](examples/innovation-creativity-micro-credential/README.md) · 🖥️ [abrir el `course.html` interactivo](examples/innovation-creativity-micro-credential/course.html) *(contenido en inglés)*
 
 ---
 
@@ -335,6 +337,8 @@ a continuación.
 * 🗣️ [Curso completo: microcredencial de Comunicación Efectiva](examples/effective-communication-micro-credential/README.md) — una habilidad humana casi universal (con [`course.html`](examples/effective-communication-micro-credential/course.html) interactivo).
 * 🧭 [Curso completo: microcredencial de Autoaprendizaje](examples/self-learning-micro-credential/README.md) — aprende cualquier cosa en línea y con IA, la meta-habilidad (con [`course.html`](examples/self-learning-micro-credential/course.html) interactivo).
 * 🧩 [Curso completo: microcredencial de Resolución de Problemas](examples/problem-solving-micro-credential/README.md) — definir, diagnosticar y decidir (con [`course.html`](examples/problem-solving-micro-credential/course.html) interactivo).
+* 🧠 [Curso completo: microcredencial de Pensamiento Crítico](examples/critical-thinking-micro-credential/README.md) — razonar, evaluar evidencia y defender una postura (con [`course.html`](examples/critical-thinking-micro-credential/course.html) interactivo).
+* 💡 [Curso completo: microcredencial de Innovación y Creatividad](examples/innovation-creativity-micro-credential/README.md) — reformular, generar ideas, prototipar y presentar (con [`course.html`](examples/innovation-creativity-micro-credential/course.html) interactivo).
 
 ---
 

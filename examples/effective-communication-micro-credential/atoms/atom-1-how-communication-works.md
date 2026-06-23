@@ -82,6 +82,10 @@ flowchart LR
   N["🔊 Noise<br/>jargon · stress · bias · bad channel"] -.distorts.-> C
 ```
 
+![How communication works — generated diagram](../img/atom-1-how-communication-works.png)
+
+> 🖼️ *Generated image — produced from the prompt below.*
+
 A reusable prompt to generate an on-brand version of this diagram:
 
 ```prompt

@@ -86,8 +86,9 @@ tr:nth-child(even) td{background:#f7f9fe}
 /* youtube facade */
 .yt{margin:1.2em 0;border-radius:var(--radius);overflow:hidden;background:var(--ink);box-shadow:var(--shadow)}
 .yt .yt-play{position:relative;display:block;width:100%;aspect-ratio:16/9;border:0;cursor:pointer;
-  background:radial-gradient(circle at 50% 45%,#243069,#0A1124);color:#fff}
-.yt-tri{font-size:42px;color:#fff;background:rgba(225,165,60,.92);width:84px;height:58px;
+  background:radial-gradient(circle at 50% 45%,#243069,#0A1124);background-size:cover;background-position:center;color:#fff}
+.yt .yt-play::after{content:"";position:absolute;inset:0;background:rgba(10,17,36,.38)}
+.yt-tri{position:relative;z-index:1;font-size:42px;color:#fff;background:rgba(225,165,60,.92);width:84px;height:58px;
   border-radius:16px;display:grid;place-items:center;margin:0 auto;box-shadow:0 6px 18px rgba(0,0,0,.4);
   transition:transform .2s}
 .yt .yt-play:hover .yt-tri{transform:scale(1.08)}
@@ -367,8 +368,8 @@ badge:
 </ul>
 <hr>
 <h3>🎬 Watch — learning how to learn (pick one, ~10–17 min)</h3>
-<div class="yt" data-id="O96fE1E-rf8"><button class="yt-play" type="button" aria-label="Play video"><span class="yt-tri">&#9654;</span></button><div class="yt-meta"><a href="https://www.youtube.com/watch?v=O96fE1E-rf8" target="_blank" rel="noopener">https://www.youtube.com/watch?v=O96fE1E-rf8</a><div class="yt-cap">Barbara Oakley — "Learning how to learn" (TEDxOaklandUniversity).</div></div></div>
-<div class="yt" data-id="5eW6Eagr9XA"><button class="yt-play" type="button" aria-label="Play video"><span class="yt-tri">&#9654;</span></button><div class="yt-meta"><a href="https://www.youtube.com/watch?v=5eW6Eagr9XA" target="_blank" rel="noopener">https://www.youtube.com/watch?v=5eW6Eagr9XA</a><div class="yt-cap">Veritasium — "The 4 things it takes to be an expert" (deliberate practice &amp; feedback).</div></div></div>
+<div class="yt" data-id="O96fE1E-rf8"><button class="yt-play" type="button" aria-label="Play video" style="background-image:url(https://i.ytimg.com/vi/O96fE1E-rf8/hqdefault.jpg)"><span class="yt-tri">&#9654;</span></button><div class="yt-meta"><a href="https://www.youtube.com/watch?v=O96fE1E-rf8" target="_blank" rel="noopener">https://www.youtube.com/watch?v=O96fE1E-rf8</a><div class="yt-cap">Barbara Oakley — "Learning how to learn" (TEDxOaklandUniversity).</div></div></div>
+<div class="yt" data-id="5eW6Eagr9XA"><button class="yt-play" type="button" aria-label="Play video" style="background-image:url(https://i.ytimg.com/vi/5eW6Eagr9XA/hqdefault.jpg)"><span class="yt-tri">&#9654;</span></button><div class="yt-meta"><a href="https://www.youtube.com/watch?v=5eW6Eagr9XA" target="_blank" rel="noopener">https://www.youtube.com/watch?v=5eW6Eagr9XA</a><div class="yt-cap">Veritasium — "The 4 things it takes to be an expert" (deliberate practice &amp; feedback).</div></div></div>
 <hr>
 <h3>🖼️ See — the learn-by-failing loop</h3>
 <div class="mermaid">flowchart LR
@@ -377,6 +378,8 @@ badge:
   GAP --&gt; LOOK[&quot;📖 Look it up / ask&lt;br/&gt;(check &amp; unblock)&quot;]
   LOOK --&gt; RETRY[&quot;🔁 Retry from memory&quot;]
   RETRY -.deeper understanding.-&gt; TRY</div>
+<p><img alt="How learning works — generated diagram" src="img/atom-1-how-learning-works.png"></p>
+<blockquote>🖼️ <em>Generated image — produced from the prompt below.</em></blockquote>
 <p>A reusable prompt to generate an on-brand version of this diagram:</p>
 <div class="promptcard"><div class="promptcard-h"><span>🖼️ Image / AI prompt</span><button class="copybtn" type="button">Copy</button></div><pre><code>Create a clean, modern educational infographic of a &quot;learn by failing forward&quot; loop: Attempt → Get
 stuck/wrong → Notice the gap → Look it up to unblock → Retry from memory → (loop back) deeper
@@ -505,6 +508,8 @@ sans-serif, no text errors. 16:9.</code></pre></div>
   VERIFY --&gt; AGREE{&quot;Reputable sources&lt;br/&gt;agree?&quot;}
   AGREE --&gt;|yes| TRUST[&quot;✅ Trust &amp; use&quot;]
   AGREE --&gt;|no| REJECT[&quot;🚫 Discard / dig deeper&quot;]</div>
+<p><img alt="Should I trust this AI answer? — generated diagram" src="img/atom-2-trust-sources-and-how-ai-works.png"></p>
+<blockquote>🖼️ <em>Generated image — produced from the prompt below.</em></blockquote>
 <p>A reusable prompt to generate an on-brand version:</p>
 <div class="promptcard"><div class="promptcard-h"><span>🖼️ Image / AI prompt</span><button class="copybtn" type="button">Copy</button></div><pre><code>Create a clean, modern decision-tree infographic titled &quot;Should I Trust This AI Answer?&quot;. Branch:
 &quot;Does it matter if it&#x27;s wrong?&quot; → No: &quot;Use as a starting point&quot; / Yes: &quot;Verify against a trustworthy
@@ -587,7 +592,7 @@ Gold #E0A53C), light background, flat vector, legible sans-serif. 16:9.</code></
 <p>Search is the most-used learning tool on earth, and almost everyone uses it at 20% of its power. This atom turns "typing a question and clicking the first link" into a deliberate research skill: ask a sharp query, use a few operators to cut noise, scan results critically, and triangulate across sources. It's in Phase 2 (<em>see</em>) because you learn it by watching it modeled, then doing a hunt.</p>
 <hr>
 <h3>🎬 Watch — searching like a pro (~5–10 min)</h3>
-<div class="yt" data-id="Fzd07K-bScw"><button class="yt-play" type="button" aria-label="Play video"><span class="yt-tri">&#9654;</span></button><div class="yt-meta"><a href="https://www.youtube.com/watch?v=Fzd07K-bScw" target="_blank" rel="noopener">https://www.youtube.com/watch?v=Fzd07K-bScw</a><div class="yt-cap">"Google search tips &amp; operators" — a practical explainer (verify before delivery).</div></div></div>
+<div class="yt" data-id="Fzd07K-bScw"><button class="yt-play" type="button" aria-label="Play video" style="background-image:url(https://i.ytimg.com/vi/Fzd07K-bScw/hqdefault.jpg)"><span class="yt-tri">&#9654;</span></button><div class="yt-meta"><a href="https://www.youtube.com/watch?v=Fzd07K-bScw" target="_blank" rel="noopener">https://www.youtube.com/watch?v=Fzd07K-bScw</a><div class="yt-cap">"Google search tips &amp; operators" — a practical explainer (verify before delivery).</div></div></div>
 <hr>
 <h3>📖 Reading — <em>Ask a better question, get a better answer</em> (≈ 7 min)</h3>
 <p><strong>1) Craft the query.</strong> The search box rewards precision:</p>
@@ -635,6 +640,8 @@ Gold #E0A53C), light background, flat vector, legible sans-serif. 16:9.</code></
   EVAL --&gt;|no| QUERY
   EVAL --&gt;|yes| TRI[&quot;🔺 Triangulate&lt;br/&gt;2–3 sources&quot;]
   TRI --&gt; ANS[&quot;✅ Verified answer&quot;]</div>
+<p><img alt="Search research loop — generated diagram" src="img/atom-3-research-with-search.png"></p>
+<blockquote>🖼️ <em>Generated image — produced from the prompt below.</em></blockquote>
 <p>A reusable prompt to generate an on-brand version:</p>
 <div class="promptcard"><div class="promptcard-h"><span>🖼️ Image / AI prompt</span><button class="copybtn" type="button">Copy</button></div><pre><code>Create a clean, modern infographic of a &quot;search research loop&quot;: Sharp question → Keyword query +
 operators → Scan results critically → Trustworthy? (CRAAP) → (loop back if no) → Triangulate 2–3
@@ -757,6 +764,8 @@ light background, flat vector, legible sans-serif. 16:9.</code></pre></div>
   VER --&gt; OK{&quot;Holds up?&quot;}
   OK --&gt;|yes| LEARNED[&quot;✅ Learned (for now)&quot;]
   OK --&gt;|no| AI</div>
+<p><img alt="Learn with AI, safely — generated diagram" src="img/atom-4-learn-with-ai.png"></p>
+<blockquote>🖼️ <em>Generated image — produced from the prompt below.</em></blockquote>
 <p>A reusable prompt to generate an on-brand version:</p>
 <div class="promptcard"><div class="promptcard-h"><span>🖼️ Image / AI prompt</span><button class="copybtn" type="button">Copy</button></div><pre><code>Create a clean, modern infographic titled &quot;Learn With AI, Safely&quot;: What I want to learn → AI explains
 / quizzes me → Redo from memory → Verify with search (open real sources) → Holds up? → Yes: Learned /
@@ -1185,10 +1194,14 @@ No: back to AI. Caption: &quot;AI explains, search verifies, you learn.&quot; Us
     var btn=y.querySelector(".yt-play");
     btn.addEventListener("click",function(){
       var id=y.getAttribute("data-id"); if(!id)return;
+      // file:// pages can't host a YouTube iframe (Error 153) -> open on YouTube instead.
+      if(location.protocol==="file:"){window.open("https://www.youtube.com/watch?v="+id,"_blank","noopener");return;}
       var f=document.createElement("iframe");
       f.src="https://www.youtube-nocookie.com/embed/"+id+"?autoplay=1&rel=0";
-      f.allow="accelerated-sensors;autoplay;encrypted-media;picture-in-picture";
+      f.allow="accelerated-sensors;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture;web-share;fullscreen";
       f.setAttribute("allowfullscreen","");
+      f.setAttribute("referrerpolicy","strict-origin-when-cross-origin");
+      f.title="YouTube video";
       btn.replaceWith(f);
     });
   });

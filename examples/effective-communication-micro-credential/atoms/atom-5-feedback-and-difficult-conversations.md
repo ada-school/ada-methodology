@@ -69,6 +69,10 @@ flowchart LR
   SBI["SBI + 'I' statements<br/>+ active listening"] --> ASSERT
 ```
 
+![The assertiveness middle path — generated diagram](../img/atom-5-feedback-and-difficult-conversations.png)
+
+> 🖼️ *Generated image — produced from the prompt below.*
+
 A reusable prompt to generate an on-brand version:
 
 ```prompt

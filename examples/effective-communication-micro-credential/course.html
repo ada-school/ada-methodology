@@ -86,8 +86,9 @@ tr:nth-child(even) td{background:#f7f9fe}
 /* youtube facade */
 .yt{margin:1.2em 0;border-radius:var(--radius);overflow:hidden;background:var(--ink);box-shadow:var(--shadow)}
 .yt .yt-play{position:relative;display:block;width:100%;aspect-ratio:16/9;border:0;cursor:pointer;
-  background:radial-gradient(circle at 50% 45%,#243069,#0A1124);color:#fff}
-.yt-tri{font-size:42px;color:#fff;background:rgba(225,165,60,.92);width:84px;height:58px;
+  background:radial-gradient(circle at 50% 45%,#243069,#0A1124);background-size:cover;background-position:center;color:#fff}
+.yt .yt-play::after{content:"";position:absolute;inset:0;background:rgba(10,17,36,.38)}
+.yt-tri{position:relative;z-index:1;font-size:42px;color:#fff;background:rgba(225,165,60,.92);width:84px;height:58px;
   border-radius:16px;display:grid;place-items:center;margin:0 auto;box-shadow:0 6px 18px rgba(0,0,0,.4);
   transition:transform .2s}
 .yt .yt-play:hover .yt-tri{transform:scale(1.08)}
@@ -361,8 +362,8 @@ badge:
 </ul>
 <hr>
 <h3>🎬 Watch — Communication, clearly explained (pick one, ~5–12 min)</h3>
-<div class="yt" data-id="eIho2S0ZahI"><button class="yt-play" type="button" aria-label="Play video"><span class="yt-tri">&#9654;</span></button><div class="yt-meta"><a href="https://www.youtube.com/watch?v=eIho2S0ZahI" target="_blank" rel="noopener">https://www.youtube.com/watch?v=eIho2S0ZahI</a><div class="yt-cap">Julian Treasure — "How to speak so that people want to listen" (TED).</div></div></div>
-<div class="yt" data-id="R1vskiVDwl4"><button class="yt-play" type="button" aria-label="Play video"><span class="yt-tri">&#9654;</span></button><div class="yt-meta"><a href="https://www.youtube.com/watch?v=R1vskiVDwl4" target="_blank" rel="noopener">https://www.youtube.com/watch?v=R1vskiVDwl4</a><div class="yt-cap">Celeste Headlee — "10 ways to have a better conversation" (TED).</div></div></div>
+<div class="yt" data-id="eIho2S0ZahI"><button class="yt-play" type="button" aria-label="Play video" style="background-image:url(https://i.ytimg.com/vi/eIho2S0ZahI/hqdefault.jpg)"><span class="yt-tri">&#9654;</span></button><div class="yt-meta"><a href="https://www.youtube.com/watch?v=eIho2S0ZahI" target="_blank" rel="noopener">https://www.youtube.com/watch?v=eIho2S0ZahI</a><div class="yt-cap">Julian Treasure — "How to speak so that people want to listen" (TED).</div></div></div>
+<div class="yt" data-id="R1vskiVDwl4"><button class="yt-play" type="button" aria-label="Play video" style="background-image:url(https://i.ytimg.com/vi/R1vskiVDwl4/hqdefault.jpg)"><span class="yt-tri">&#9654;</span></button><div class="yt-meta"><a href="https://www.youtube.com/watch?v=R1vskiVDwl4" target="_blank" rel="noopener">https://www.youtube.com/watch?v=R1vskiVDwl4</a><div class="yt-cap">Celeste Headlee — "10 ways to have a better conversation" (TED).</div></div></div>
 <hr>
 <h3>🖼️ See — the communication model with noise</h3>
 <div class="mermaid">flowchart LR
@@ -370,6 +371,8 @@ badge:
   C --&gt;|message| R[&quot;🧑 Receiver&lt;br/&gt;decodes idea&quot;]
   R --&gt;|feedback| S
   N[&quot;🔊 Noise&lt;br/&gt;jargon · stress · bias · bad channel&quot;] -.distorts.-&gt; C</div>
+<p><img alt="How communication works — generated diagram" src="img/atom-1-how-communication-works.png"></p>
+<blockquote>🖼️ <em>Generated image — produced from the prompt below.</em></blockquote>
 <p>A reusable prompt to generate an on-brand version of this diagram:</p>
 <div class="promptcard"><div class="promptcard-h"><span>🖼️ Image / AI prompt</span><button class="copybtn" type="button">Copy</button></div><pre><code>Create a clean, modern educational infographic titled &quot;How Communication Works&quot;. Show a Sender
 encoding an idea (lightbulb), an arrow labeled &quot;message&quot; passing through a Channel, into a Receiver
@@ -475,6 +478,8 @@ distraction) distorting the channel. Use ADA brand colors (Indigo #1E2A6E, Turqu
   Q3 --&gt;|yes| CHAT[&quot;🟡 Chat / DM&quot;]
   Q3 --&gt;|no| RICH
   RICH -.recap.-&gt; LEAN</div>
+<p><img alt="Which channel should I use? — generated decision tree" src="img/atom-2-audience-and-channel.png"></p>
+<blockquote>🖼️ <em>Generated image — produced from the prompt below.</em></blockquote>
 <p>A reusable prompt to generate an on-brand version:</p>
 <div class="promptcard"><div class="promptcard-h"><span>🖼️ Image / AI prompt</span><button class="copybtn" type="button">Copy</button></div><pre><code>Create a clean, modern decision-tree infographic titled &quot;Which Channel Should I Use?&quot;. Branch from
 &quot;Is it emotional/ambiguous?&quot; to &quot;Talk (video/in-person)&quot;, from &quot;Need a record / many people?&quot; to
@@ -552,8 +557,8 @@ light background, flat vector, legible sans-serif. 16:9.</code></pre></div>
 <p>Most people think communication is about <em>talking</em>. The highest-leverage skill is the opposite: listening so well the other person feels understood. This atom is in Phase 2 (<em>see</em>) because you learn listening best by <strong>watching it modeled</strong> and then <strong>doing it</strong> in a low-stakes pair. It builds a Skill (a technique) <em>and</em> an Ability (empathy) at once.</p>
 <hr>
 <h3>🎬 Watch — what great listening looks like (~5–10 min)</h3>
-<div class="yt" data-id="R1vskiVDwl4"><button class="yt-play" type="button" aria-label="Play video"><span class="yt-tri">&#9654;</span></button><div class="yt-meta"><a href="https://www.youtube.com/watch?v=R1vskiVDwl4" target="_blank" rel="noopener">https://www.youtube.com/watch?v=R1vskiVDwl4</a><div class="yt-cap">Celeste Headlee — "10 ways to have a better conversation" (TED).</div></div></div>
-<div class="yt" data-id="saXfavo1OQo"><button class="yt-play" type="button" aria-label="Play video"><span class="yt-tri">&#9654;</span></button><div class="yt-meta"><a href="https://www.youtube.com/watch?v=saXfavo1OQo" target="_blank" rel="noopener">https://www.youtube.com/watch?v=saXfavo1OQo</a><div class="yt-cap">"Active Listening" — a short skills explainer (verify before delivery).</div></div></div>
+<div class="yt" data-id="R1vskiVDwl4"><button class="yt-play" type="button" aria-label="Play video" style="background-image:url(https://i.ytimg.com/vi/R1vskiVDwl4/hqdefault.jpg)"><span class="yt-tri">&#9654;</span></button><div class="yt-meta"><a href="https://www.youtube.com/watch?v=R1vskiVDwl4" target="_blank" rel="noopener">https://www.youtube.com/watch?v=R1vskiVDwl4</a><div class="yt-cap">Celeste Headlee — "10 ways to have a better conversation" (TED).</div></div></div>
+<div class="yt" data-id="saXfavo1OQo"><button class="yt-play" type="button" aria-label="Play video" style="background-image:url(https://i.ytimg.com/vi/saXfavo1OQo/hqdefault.jpg)"><span class="yt-tri">&#9654;</span></button><div class="yt-meta"><a href="https://www.youtube.com/watch?v=saXfavo1OQo" target="_blank" rel="noopener">https://www.youtube.com/watch?v=saXfavo1OQo</a><div class="yt-cap">"Active Listening" — a short skills explainer (verify before delivery).</div></div></div>
 <hr>
 <h3>📖 Reading — <em>Listening is a skill you perform</em> (≈ 6 min)</h3>
 <p>There are levels of listening: <strong>ignoring → pretending → selective → attentive → empathetic</strong>. Most workplace listening stalls at "selective" (waiting to talk, half-listening). Active listening is a deliberate performance with observable moves:</p>
@@ -691,6 +696,8 @@ light background, flat vector, legible sans-serif. 16:9.</code></pre></div>
   R1 --&gt; E1[&quot;evidence&quot;]
   R2 --&gt; E2[&quot;evidence&quot;]
   R3 --&gt; E3[&quot;evidence&quot;]</div>
+<p><img alt="The Pyramid Principle — generated diagram" src="img/atom-4-structure-your-message.png"></p>
+<blockquote>🖼️ <em>Generated image — produced from the prompt below.</em></blockquote>
 <p>A reusable prompt to generate an on-brand version:</p>
 <div class="promptcard"><div class="promptcard-h"><span>🖼️ Image / AI prompt</span><button class="copybtn" type="button">Copy</button></div><pre><code>Create a clean, modern infographic of the &quot;Pyramid Principle&quot; for communication: a top box &quot;Main
 point / ask (BLUF)&quot; connected down to three &quot;Reason&quot; boxes, each connected to an &quot;Evidence&quot; box.
@@ -794,6 +801,8 @@ Turquoise #15B5C6, Gold #E0A53C), light background, flat vector, legible sans-se
   AGG[&quot;😤 Aggressive&lt;br/&gt;wins point, loses person&quot;] --- ASSERT[&quot;💪💙 Assertive + respectful&lt;br/&gt;honest AND kind&quot;]
   ASSERT --- AVOID[&quot;🙈 Avoidant&lt;br/&gt;keeps peace, loses truth&quot;]
   SBI[&quot;SBI + &#x27;I&#x27; statements&lt;br/&gt;+ active listening&quot;] --&gt; ASSERT</div>
+<p><img alt="The assertiveness middle path — generated diagram" src="img/atom-5-feedback-and-difficult-conversations.png"></p>
+<blockquote>🖼️ <em>Generated image — produced from the prompt below.</em></blockquote>
 <p>A reusable prompt to generate an on-brand version:</p>
 <div class="promptcard"><div class="promptcard-h"><span>🖼️ Image / AI prompt</span><button class="copybtn" type="button">Copy</button></div><pre><code>Create a clean, modern infographic showing a spectrum with three points: &quot;Aggressive&quot; (left),
 &quot;Assertive + Respectful&quot; (center, highlighted), &quot;Avoidant/Passive&quot; (right). Below the center, list
@@ -1108,10 +1117,14 @@ sans-serif. 16:9.</code></pre></div>
     var btn=y.querySelector(".yt-play");
     btn.addEventListener("click",function(){
       var id=y.getAttribute("data-id"); if(!id)return;
+      // file:// pages can't host a YouTube iframe (Error 153) -> open on YouTube instead.
+      if(location.protocol==="file:"){window.open("https://www.youtube.com/watch?v="+id,"_blank","noopener");return;}
       var f=document.createElement("iframe");
       f.src="https://www.youtube-nocookie.com/embed/"+id+"?autoplay=1&rel=0";
-      f.allow="accelerated-sensors;autoplay;encrypted-media;picture-in-picture";
+      f.allow="accelerated-sensors;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture;web-share;fullscreen";
       f.setAttribute("allowfullscreen","");
+      f.setAttribute("referrerpolicy","strict-origin-when-cross-origin");
+      f.title="YouTube video";
       btn.replaceWith(f);
     });
   });

@@ -74,6 +74,10 @@ flowchart TD
   RICH -.recap.-> LEAN
 ```
 
+![Which channel should I use? — generated decision tree](../img/atom-2-audience-and-channel.png)
+
+> 🖼️ *Generated image — produced from the prompt below.*
+
 A reusable prompt to generate an on-brand version:
 
 ```prompt

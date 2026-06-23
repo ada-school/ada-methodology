@@ -82,6 +82,10 @@ flowchart TD
   Q3 -->|yes| A["🌱 ABILITY"]
 ```
 
+![Is it Knowledge, Skill, or Ability? — generated decision tree](../img/atom-2-ksa-in-depth.png)
+
+> 🖼️ *Generated image — produced from the prompt below.*
+
 A reusable prompt to generate an on-brand version of this diagram:
 
 ```prompt

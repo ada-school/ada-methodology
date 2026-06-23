@@ -85,6 +85,10 @@ flowchart LR
   PICK --> PILOT["🧪 Pilot small & review"]
 ```
 
+![Diverge then converge — generated diagram](../img/atom-5-generate-and-choose-solutions.png)
+
+> 🖼️ *Generated image — produced from the prompt below.*
+
 A reusable prompt to generate an on-brand version:
 
 ```prompt

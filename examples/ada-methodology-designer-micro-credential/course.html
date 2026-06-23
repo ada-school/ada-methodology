@@ -86,8 +86,9 @@ tr:nth-child(even) td{background:#f7f9fe}
 /* youtube facade */
 .yt{margin:1.2em 0;border-radius:var(--radius);overflow:hidden;background:var(--ink);box-shadow:var(--shadow)}
 .yt .yt-play{position:relative;display:block;width:100%;aspect-ratio:16/9;border:0;cursor:pointer;
-  background:radial-gradient(circle at 50% 45%,#243069,#0A1124);color:#fff}
-.yt-tri{font-size:42px;color:#fff;background:rgba(225,165,60,.92);width:84px;height:58px;
+  background:radial-gradient(circle at 50% 45%,#243069,#0A1124);background-size:cover;background-position:center;color:#fff}
+.yt .yt-play::after{content:"";position:absolute;inset:0;background:rgba(10,17,36,.38)}
+.yt-tri{position:relative;z-index:1;font-size:42px;color:#fff;background:rgba(225,165,60,.92);width:84px;height:58px;
   border-radius:16px;display:grid;place-items:center;margin:0 auto;box-shadow:0 6px 18px rgba(0,0,0,.4);
   transition:transform .2s}
 .yt .yt-play:hover .yt-tri{transform:scale(1.08)}
@@ -464,6 +465,8 @@ badge:
   Q2 --&gt;|yes| S[&quot;🛠️ SKILL&quot;]
   Q2 --&gt;|no| Q3{&quot;A disposition shown&lt;br/&gt;consistently across situations?&quot;}
   Q3 --&gt;|yes| A[&quot;🌱 ABILITY&quot;]</div>
+<p><img alt="Is it Knowledge, Skill, or Ability? — generated decision tree" src="img/atom-2-ksa-in-depth.png"></p>
+<blockquote>🖼️ <em>Generated image — produced from the prompt below.</em></blockquote>
 <p>A reusable prompt to generate an on-brand version of this diagram:</p>
 <div class="promptcard"><div class="promptcard-h"><span>🖼️ Image / AI prompt</span><button class="copybtn" type="button">Copy</button></div><pre><code>Create a clean, modern educational decision-tree infographic titled &quot;Is it Knowledge, Skill, or
 Ability?&quot;. Three diamond decision nodes leading to three labeled outcomes: 🧠 Knowledge (a brain /
@@ -637,43 +640,23 @@ style, generous white space, legible sans-serif. 16:9.</code></pre></div>
 </ul>
 <hr>
 <h3>🖼️ See — the full topology (mind map)</h3>
-<div class="mermaid">mindmap
-  root((⚛ Learning Atom))
-    📖 Read
-      Article
-      Technical Article
-      Case Study
-      Documentation
-    🎧 Listen
-      Podcast
-      Narration
-      Guided Reflection
-    🎬 Watch
-      Explainer
-      Tutorial / Screencast
-      Documentary
-    🖼️ See
-      Diagram
-      Mental Model
-      Framework
-      Infographic
-    🧪 Practice
-      Lab
-      Codelab
-      Simulation
-      Role-Play
-      AI Prompt Question
-    ✅ Evaluate
-      Pop Quiz
-      Mini-Rubric
-      Performance Task
-      Behavioral Assessment
-      Capstone
-    🤝 Collaborate
-      Pair Programming
-      Workshop
-      Mentorship
-      Showcase</div>
+<div class="mermaid">flowchart TD
+  ROOT([&quot;⚛ Learning Atom&quot;])
+  ROOT --&gt; READ[&quot;📖 Read&quot;]
+  ROOT --&gt; LISTEN[&quot;🎧 Listen&quot;]
+  ROOT --&gt; WATCH[&quot;🎬 Watch&quot;]
+  ROOT --&gt; SEE[&quot;🖼️ See&quot;]
+  ROOT --&gt; PRACTICE[&quot;🧪 Practice&quot;]
+  ROOT --&gt; EVAL[&quot;✅ Evaluate&quot;]
+  ROOT --&gt; COLLAB[&quot;🤝 Collaborate&quot;]
+
+  READ --&gt; R1[&quot;Article&quot;] &amp; R2[&quot;Technical Article&quot;] &amp; R3[&quot;Case Study&quot;] &amp; R4[&quot;Documentation&quot;]
+  LISTEN --&gt; L1[&quot;Podcast&quot;] &amp; L2[&quot;Narration&quot;] &amp; L3[&quot;Guided Reflection&quot;]
+  WATCH --&gt; W1[&quot;Explainer&quot;] &amp; W2[&quot;Tutorial / Screencast&quot;] &amp; W3[&quot;Documentary&quot;]
+  SEE --&gt; S1[&quot;Diagram&quot;] &amp; S2[&quot;Mental Model&quot;] &amp; S3[&quot;Framework&quot;] &amp; S4[&quot;Infographic&quot;]
+  PRACTICE --&gt; P1[&quot;Lab&quot;] &amp; P2[&quot;Codelab&quot;] &amp; P3[&quot;Simulation&quot;] &amp; P4[&quot;Role-Play&quot;] &amp; P5[&quot;AI Prompt Question&quot;]
+  EVAL --&gt; E1[&quot;Pop Quiz&quot;] &amp; E2[&quot;Mini-Rubric&quot;] &amp; E3[&quot;Performance Task&quot;] &amp; E4[&quot;Behavioral Assessment&quot;] &amp; E5[&quot;Capstone&quot;]
+  COLLAB --&gt; C1[&quot;Pair Programming&quot;] &amp; C2[&quot;Workshop&quot;] &amp; C3[&quot;Mentorship&quot;] &amp; C4[&quot;Showcase&quot;]</div>
 <p><strong>Choosing modalities by KSA type</strong> (the rule that matters most):</p>
 <div class='tablewrap'><table><thead><tr><th>KSA target</th><th>Lead modalities</th><th>Evaluation</th></tr></thead><tbody>
 <tr><td>🧠 Knowledge</td><td>Read · Listen · Watch · See (offer ≥2 for accessibility)</td><td>Pop Quiz / AI Q&amp;A</td></tr>
@@ -1183,10 +1166,14 @@ components:
     var btn=y.querySelector(".yt-play");
     btn.addEventListener("click",function(){
       var id=y.getAttribute("data-id"); if(!id)return;
+      // file:// pages can't host a YouTube iframe (Error 153) -> open on YouTube instead.
+      if(location.protocol==="file:"){window.open("https://www.youtube.com/watch?v="+id,"_blank","noopener");return;}
       var f=document.createElement("iframe");
       f.src="https://www.youtube-nocookie.com/embed/"+id+"?autoplay=1&rel=0";
-      f.allow="accelerated-sensors;autoplay;encrypted-media;picture-in-picture";
+      f.allow="accelerated-sensors;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture;web-share;fullscreen";
       f.setAttribute("allowfullscreen","");
+      f.setAttribute("referrerpolicy","strict-origin-when-cross-origin");
+      f.title="YouTube video";
       btn.replaceWith(f);
     });
   });

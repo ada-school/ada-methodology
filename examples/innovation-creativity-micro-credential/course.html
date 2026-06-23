@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>💡 Innovation & Creativity · ADA Micro-Credential</title>
+<link rel="icon" href="../../img/Isotipo.png">
+<style>
+:root{
+  --ink:#0A1124; --indigo:#1E2A6E; --turq:#15B5C6; --gold:#E0A53C;
+  --bg:#f6f8fc; --surface:#ffffff; --border:#e2e7f2; --text:#1b2440; --muted:#5b6685;
+  --radius:14px; --shadow:0 6px 24px rgba(20,30,70,.08);
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Arial,sans-serif;
+  background:var(--bg);color:var(--text);line-height:1.65}
+a{color:var(--indigo);text-decoration:none}
+a:hover{text-decoration:underline}
+.app{display:grid;grid-template-columns:300px minmax(0,1fr);min-height:100vh}
+
+/* sidebar */
+.side{position:sticky;top:0;height:100vh;overflow-y:auto;background:var(--ink);color:#dfe5fb;
+  padding:18px 14px;border-right:1px solid #111a36}
+.brand{display:flex;align-items:center;gap:10px;padding:6px 6px 14px}
+.brand img{width:40px;height:40px;animation:spin 9s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.brand b{font-size:15px;color:#fff;line-height:1.2}
+.brand small{display:block;color:var(--turq);font-weight:600;font-size:11px;letter-spacing:.04em}
+.progwrap{margin:8px 6px 16px}
+.progbar{height:8px;border-radius:8px;background:#1b2547;overflow:hidden}
+.progfill{height:100%;width:0;background:linear-gradient(90deg,var(--turq),var(--gold));transition:width .5s}
+.progtext{font-size:11px;color:#9fb0e6;margin-top:6px}
+.nav-group{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:#8fa0d8;
+  margin:14px 8px 4px;font-weight:700}
+.navlink{display:block;padding:8px 10px;border-radius:9px;color:#cdd6f6;font-size:14px;margin:2px 0}
+.navlink:hover{background:#16204180;text-decoration:none;color:#fff}
+.navlink.active{background:linear-gradient(90deg,var(--indigo),#2a3aa0);color:#fff;font-weight:600}
+
+/* main */
+.main{padding:0}
+.topbar{position:sticky;top:0;z-index:5;background:rgba(246,248,252,.85);backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--border);padding:12px 28px;display:flex;align-items:center;gap:14px}
+.topbar .pill{font-size:12px;font-weight:700;color:#fff;background:var(--indigo);padding:4px 12px;border-radius:30px}
+.topbar .sp{flex:1}
+.navbtn{border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:9px;
+  padding:7px 14px;font-size:13px;cursor:pointer;font-weight:600}
+.navbtn:hover{border-color:var(--turq)}
+.navbtn:disabled{opacity:.4;cursor:not-allowed}
+.wrap{max-width:880px;margin:0 auto;padding:30px 28px 90px}
+.page{display:none;animation:fade .35s ease}
+.page.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+h1,h2,h3,h4{color:var(--indigo);line-height:1.25}
+h1{font-size:30px;margin:.2em 0 .5em;border-bottom:3px solid var(--turq);padding-bottom:.3em}
+h2{font-size:22px;margin:1.5em 0 .5em}
+h3{font-size:18px;margin:1.3em 0 .4em}
+h4{font-size:15px;margin:1.1em 0 .3em;color:var(--ink)}
+p{margin:.7em 0}
+hr{border:0;border-top:1px solid var(--border);margin:1.6em 0}
+ul,ol{padding-left:1.4em;margin:.6em 0}
+li{margin:.3em 0}
+li input[type=checkbox]{margin-right:6px}
+img{max-width:100%;border-radius:10px}
+code{background:#eef1f9;padding:.12em .4em;border-radius:6px;font-size:.88em;
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:#27306b}
+pre.code{background:var(--ink);color:#e7ecff;padding:16px 18px;border-radius:var(--radius);
+  overflow:auto;position:relative;box-shadow:var(--shadow)}
+pre.code code{background:none;color:inherit;padding:0;font-size:13.5px;line-height:1.6}
+pre.code .lang{position:absolute;top:8px;right:12px;font-size:10px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--turq);font-family:inherit}
+blockquote{margin:1em 0;padding:.7em 1.1em;border-left:4px solid var(--gold);
+  background:#fff8ec;border-radius:0 10px 10px 0;color:#5a4a23}
+.tablewrap{overflow-x:auto;margin:1em 0;border:1px solid var(--border);border-radius:var(--radius)}
+table{border-collapse:collapse;width:100%;font-size:14px;background:var(--surface)}
+th,td{padding:9px 12px;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+th{background:var(--indigo);color:#fff;font-weight:600}
+tr:nth-child(even) td{background:#f7f9fe}
+
+.donebox{float:right;display:inline-flex;align-items:center;gap:7px;background:var(--surface);
+  border:1px solid var(--border);border-radius:30px;padding:6px 14px;font-size:13px;font-weight:600;
+  color:var(--muted);cursor:pointer;box-shadow:var(--shadow)}
+.donebox input{accent-color:var(--turq)}
+
+/* youtube facade */
+.yt{margin:1.2em 0;border-radius:var(--radius);overflow:hidden;background:var(--ink);box-shadow:var(--shadow)}
+.yt .yt-play{position:relative;display:block;width:100%;aspect-ratio:16/9;border:0;cursor:pointer;
+  background:radial-gradient(circle at 50% 45%,#243069,#0A1124);background-size:cover;background-position:center;color:#fff}
+.yt .yt-play::after{content:"";position:absolute;inset:0;background:rgba(10,17,36,.38)}
+.yt-tri{position:relative;z-index:1;font-size:42px;color:#fff;background:rgba(225,165,60,.92);width:84px;height:58px;
+  border-radius:16px;display:grid;place-items:center;margin:0 auto;box-shadow:0 6px 18px rgba(0,0,0,.4);
+  transition:transform .2s}
+.yt .yt-play:hover .yt-tri{transform:scale(1.08)}
+.yt iframe{display:block;width:100%;aspect-ratio:16/9;border:0}
+.yt-meta{padding:9px 14px;font-size:13px;background:#121c3a}
+.yt-meta a{color:var(--turq);word-break:break-all}
+.yt-cap{color:#aebadf;font-size:12px;margin-top:2px}
+
+/* prompt card */
+.promptcard{margin:1.2em 0;border:1px solid #d9c79a;border-radius:var(--radius);overflow:hidden;
+  background:#fffdf6;box-shadow:var(--shadow)}
+.promptcard-h{display:flex;align-items:center;justify-content:space-between;padding:8px 14px;
+  background:linear-gradient(90deg,#fbf0d6,#fff7e6);font-weight:700;color:#7a5b16;font-size:13px}
+.promptcard pre{margin:0;padding:14px 16px;white-space:pre-wrap;font-size:13px;color:#4a4634;
+  font-family:ui-monospace,Menlo,monospace}
+.copybtn{border:1px solid var(--gold);background:#fff;color:#8a6516;border-radius:7px;
+  padding:3px 12px;font-size:12px;cursor:pointer;font-weight:700}
+.copybtn:hover{background:var(--gold);color:#fff}
+.copybtn.ok{background:var(--turq);border-color:var(--turq);color:#fff}
+
+/* mermaid */
+.mermaid{margin:1.2em 0;text-align:center;background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
+.mermaid.fallback{text-align:left;background:var(--ink)}
+.mermaid.fallback pre{color:#e7ecff;margin:0;white-space:pre-wrap;font-size:12px}
+.mermaid svg .nodeLabel,.mermaid svg .label{font-weight:600}
+.mermaid svg .edgeLabel,.mermaid svg .edgeLabel *{color:#1E2A6E !important;font-weight:600}
+
+@media(max-width:880px){
+  .app{grid-template-columns:1fr}
+  .side{position:fixed;left:-300px;width:300px;z-index:30;transition:left .25s}
+  .side.open{left:0}
+  .menutoggle{display:inline-flex !important}
+}
+.menutoggle{display:none;align-items:center;justify-content:center;width:38px;height:38px;
+  border:1px solid var(--border);background:var(--surface);border-radius:9px;cursor:pointer;font-size:18px}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side" id="side">
+    <div class="brand">
+      <img src="../../img/Isotipo.png" alt="ADA">
+      <div><b>Innovation & Creativity</b><small>ADA MICRO-CREDENTIAL</small></div>
+    </div>
+    <div class="progwrap">
+      <div class="progbar"><div class="progfill" id="progfill"></div></div>
+      <div class="progtext" id="progtext">0 / 6 atoms complete</div>
+    </div>
+    <nav id="nav"><div class="nav-group">Start</div>
+<a class="navlink" data-target="overview" href="#overview">Course overview</a>
+<a class="navlink" data-target="spec" href="#spec">Micro-credential spec</a>
+<div class="nav-group">🙉 Phase 1 · hear</div>
+<a class="navlink" data-target="atom-1" href="#atom-1">1 · What it is</a>
+<a class="navlink" data-target="atom-2" href="#atom-2">2 · Ideation frameworks</a>
+<div class="nav-group">🙈 Phase 2 · see</div>
+<a class="navlink" data-target="atom-3" href="#atom-3">3 · Reframe &amp; spot 🛠️</a>
+<div class="nav-group">🙊 Phase 3 · do</div>
+<a class="navlink" data-target="atom-4" href="#atom-4">4 · Generate ideas 🛠️</a>
+<a class="navlink" data-target="atom-5" href="#atom-5">5 · Develop &amp; prototype 🛠️</a>
+<div class="nav-group">🐵 Phase 4 · share</div>
+<a class="navlink" data-target="atom-6" href="#atom-6">6 · Capstone 🚀</a>
+<div class="nav-group">Assess</div>
+<a class="navlink" data-target="capstone" href="#capstone">Capstone brief</a>
+<a class="navlink" data-target="rubrics" href="#rubrics">Rubrics</a>
+<a class="navlink" data-target="skillsmap" href="#skillsmap">Skills map → job match</a></nav>
+  </aside>
+  <div class="main">
+    <div class="topbar">
+      <button class="menutoggle" id="menutoggle" aria-label="Menu">&#9776;</button>
+      <span class="pill">💡 Innovation & Creativity</span>
+      <span class="sp"></span>
+      <button class="navbtn" id="prevbtn">&larr; Prev</button>
+      <button class="navbtn" id="nextbtn">Next &rarr;</button>
+    </div>
+    <div class="wrap"><section class="page" id="page-overview" data-id="overview"><h1>💡 Worked Example — Innovation &amp; Creativity Micro-Credential (full course)</h1>
+<p align="center">
+  <img alt="Indigo #1E2A6E" src="https://img.shields.io/badge/Indigo-1E2A6E?style=flat-square&amp;labelColor=1E2A6E&amp;color=1E2A6E">
+  <img alt="Turquoise #15B5C6" src="https://img.shields.io/badge/Turquoise-15B5C6?style=flat-square&amp;labelColor=15B5C6&amp;color=15B5C6">
+  <img alt="Gold #E0A53C" src="https://img.shields.io/badge/Gold-E0A53C?style=flat-square&amp;labelColor=E0A53C&amp;color=E0A53C">
+  <img alt="Ink #0A1124" src="https://img.shields.io/badge/Ink-0A1124?style=flat-square&amp;labelColor=0A1124&amp;color=0A1124">
+</p>
+<p>A <strong>complete, ready-to-run ADA micro-credential</strong> for the skill every organization says it wants and few teach systematically: <strong>turning fresh ideas into real value</strong>. It is a <em>fully populated</em> example built end-to-end with the ADA Methodology (KSA + 4 phases + learning-atom topology): every atom has <strong>real reading text</strong>, <strong>curated videos</strong>, <strong>Mermaid diagrams</strong>, <strong>image-generation prompts</strong>, hands-on drills, and rubrics.</p>
+<blockquote>🖥️ <strong>See it live:</strong> open <a href="course.html" target="_blank" rel="noopener"><code>course.html</code></a> in any browser for an interactive, navigable version of this course (sidebar, progress, embedded videos, diagrams, copyable prompts).</blockquote>
+<p>Creativity and innovation make a perfect <strong>cognitive + dispositional skill</strong> for the KSA model: a small <strong>Knowledge</strong> base (what creativity/innovation actually are; ideation frameworks), three core <strong>Skills</strong> (reframe problems &amp; spot opportunities, generate ideas, and develop/prototype/evaluate them), and the durable <strong>Abilities</strong> that power them (creative confidence and curious openness). It pairs naturally with <a href="../../index.html#/examples/critical-thinking-micro-credential/README.md" target="_blank" rel="noopener">Critical Thinking</a> (to judge which ideas hold up) and <a href="../../index.html#/examples/problem-solving-micro-credential/README.md" target="_blank" rel="noopener">Problem Solving</a> (to ship the chosen one).</p>
+<p>Conforms to <a href="../../index.html#/specs/micro-credential-v2-schema.md" target="_blank" rel="noopener"><code>../../specs/micro-credential-v2-schema.md</code></a> · modalities from <a href="../../index.html#/specs/learning-atom-topology.md" target="_blank" rel="noopener"><code>../../specs/learning-atom-topology.md</code></a> · KSA from <a href="../../index.html#/specs/ksa-taxonomy.md" target="_blank" rel="noopener"><code>../../specs/ksa-taxonomy.md</code></a>.</p>
+<hr>
+<h2>🧭 What this teaches</h2>
+<p>"Be more creative" is useless advice. This course makes creativity <strong>a trainable, repeatable practice</strong>: learners learn to <strong>reframe a problem</strong> into opportunities, <strong>generate many ideas</strong> on demand (divergent thinking), <strong>develop and prototype</strong> the best ones, and <strong>evaluate</strong> them against real criteria (convergent thinking) — finishing by running a full innovation challenge from blank page to pitched, prototyped concept.</p>
+<div class='tablewrap'><table><thead><tr><th></th><th></th></tr></thead><tbody>
+<tr><td><strong>Title</strong></td><td>Innovation &amp; Creativity: From Idea to Value</td></tr>
+<tr><td><strong>Duration</strong></td><td>~12 hours · 2–3 weeks</td></tr>
+<tr><td><strong>Primary KSA</strong></td><td>🛠️ Skill — <em>reframe &amp; spot opportunities</em> and <em>generate ideas</em>, plus the 🌱 Abilities that sustain them</td></tr>
+<tr><td><strong>Target competency</strong></td><td>O*NET abilities/work-styles: <strong>Fluency of Ideas</strong> (1.A.1.b.1), <strong>Originality</strong> (1.A.1.b.2), <strong>Thinking Creatively</strong> (4.A.2.b.1), <strong>Innovation</strong> (work style) · ESCO transversal <em>"think creatively", "use creativity"</em></td></tr>
+<tr><td><strong>Badge</strong></td><td>🏅 <em>Creative Innovator</em></td></tr>
+<tr><td><strong>Prerequisites</strong></td><td>None. A real problem, product, or process you'd like to improve helps for practice.</td></tr>
+</tbody></table></div>
+<hr>
+<h2>📚 Course contents</h2>
+<div class='tablewrap'><table><thead><tr><th>#</th><th>File</th><th>What it is</th></tr></thead><tbody>
+<tr><td>—</td><td><a href="#spec"><code>micro-credential.md</code></a></td><td>The full micro-credential spec (YAML schema, objectives, KSA map, phase planner)</td></tr>
+<tr><td>1</td><td><a href="#atom-1"><code>atoms/atom-1-what-is-creativity-and-innovation.md</code></a></td><td>🙉 P1 · 🧠 K — What creativity &amp; innovation are (divergent/convergent; idea → value)</td></tr>
+<tr><td>2</td><td><a href="#atom-2"><code>atoms/atom-2-ideation-frameworks.md</code></a></td><td>🙉 P1 · 🧠 K — Ideation frameworks (design thinking, SCAMPER, lateral, analogies, constraints)</td></tr>
+<tr><td>3</td><td><a href="#atom-3"><code>atoms/atom-3-reframe-problems-and-spot-opportunities.md</code></a></td><td>🙈 P2 · 🛠️ S — Reframe problems &amp; spot opportunities ("How Might We")</td></tr>
+<tr><td>4</td><td><a href="#atom-4"><code>atoms/atom-4-generate-ideas.md</code></a></td><td>🙊 P3 · 🛠️ S — Generate ideas (fluency · flexibility · originality)</td></tr>
+<tr><td>5</td><td><a href="#atom-5"><code>atoms/atom-5-develop-prototype-and-evaluate.md</code></a></td><td>🙊 P3 · 🛠️ S + 🌱 A — Develop, prototype &amp; evaluate ideas</td></tr>
+<tr><td>6</td><td><a href="#atom-6"><code>atoms/atom-6-capstone-innovation-challenge.md</code></a></td><td>🐵 P4 · 🛠️ S + 🌱 A — Capstone: run an innovation challenge + peer review</td></tr>
+<tr><td>—</td><td><a href="#capstone"><code>capstone.md</code></a></td><td>Capstone brief + how it maps to KSA</td></tr>
+<tr><td>—</td><td><a href="#rubrics"><code>rubrics.md</code></a></td><td>All rubrics (knowledge-mini, skill, behavioral, capstone-5)</td></tr>
+<tr><td>—</td><td><a href="#skillsmap"><code>skills-map.md</code></a></td><td>Badge → skills map and how it boosts product, design &amp; strategy roles</td></tr>
+</tbody></table></div>
+<blockquote>🤝 <strong>Practiced for real:</strong> the Abilities (creative confidence, curious openness) are assessed <strong>behaviorally across ≥3 occasions</strong> (never a quiz), and the capstone ends in a pitch + peer review.</blockquote>
+<hr>
+<h2>🔄 Phase journey</h2>
+<div class="mermaid">flowchart LR
+  P1[&quot;🙉 P1 · hear&lt;br/&gt;What it is · ideation frameworks&quot;] --&gt; P2[&quot;🙈 P2 · see&lt;br/&gt;Reframe &amp; spot opportunities&quot;]
+  P2 --&gt; P3[&quot;🙊 P3 · do&lt;br/&gt;Generate · develop · prototype&quot;]
+  P3 --&gt; P4[&quot;🐵 P4 · share&lt;br/&gt;Innovation challenge · pitch&quot;]
+  P4 --&gt; BADGE[&quot;🏅 Creative Innovator&quot;]</div>
+<hr>
+<h2>🤖 How it was authored (and how to reuse it)</h2>
+<p>This course follows the Gen AI authoring workflow in <a href="../../index.html#/specs/genai-authoring-workflow.md" target="_blank" rel="noopener"><code>../../specs/genai-authoring-workflow.md</code></a>: competency → KSA → atoms → modalities → rubrics → badge. Conventions used throughout:</p>
+<ul>
+<li><strong>🎬 Videos</strong> are written as a <code>youtube</code> block with the real URL + caption (the interactive site</li>
+</ul>
+<p>  embeds them as a click-to-play player).</p>
+<ul>
+<li><strong>🖼️ Diagrams</strong> are provided two ways: a live <strong>Mermaid</strong> diagram <em>and</em> a reusable</li>
+</ul>
+<p>  <strong>image-generation prompt</strong> in a <code>prompt</code> block.</p>
+<ul>
+<li><strong>✅ Activities</strong> include ideation worksheets, prototyping drills, selection matrices, and rubrics so</li>
+</ul>
+<p>  the course is self-paced and practicable.</p>
+<blockquote>⚠️ <strong>Human-in-the-loop (methodology guardrail):</strong> the links and references below are <strong>curated starting points</strong> — a mentor/instructor should verify each one before delivery. The Abilities here require human/peer observation across occasions. See <a href="../../index.html#/CLAUDE.md" target="_blank" rel="noopener"><code>../../CLAUDE.md</code></a> §5.</blockquote></section>
+<section class="page" id="page-spec" data-id="spec"><h1>🎓 Micro-Credential — Innovation &amp; Creativity: From Idea to Value</h1>
+<p>The full specification for this micro-credential. It conforms to <a href="../../index.html#/specs/micro-credential-v2-schema.md" target="_blank" rel="noopener"><code>../../specs/micro-credential-v2-schema.md</code></a>.</p>
+<hr>
+<h2>YAML front matter</h2>
+<pre class="code"><span class="lang">yaml</span><code>schema: ada-microcredential/v2
+id: mc-innovation-creativity
+title: &quot;Innovation &amp; Creativity: From Idea to Value&quot;
+language: en
+duration_hours: 12
+level: beginner
+status: published
+license: CC-BY-SA-4.0
+mentors: [&quot;@sancarbar&quot;]
+
+target_roles:
+  - role: &quot;Any role that must improve products, services, or processes — PMs, designers, founders, marketers, engineers, operations, strategy&quot;
+    framework_ref: &gt;
+      O*NET abilities: 1.A.1.b.1 Fluency of Ideas, 1.A.1.b.2 Originality; work activities 4.A.2.b.1 Thinking Creatively;
+      work styles: Innovation · ESCO transversal: &quot;think creatively&quot;, &quot;use creativity&quot;, &quot;develop creative ideas&quot;
+
+ksa:
+  - { id: K-creativity-innovation, type: knowledge, label: &quot;What creativity and innovation are: divergent vs. convergent thinking; innovation = creativity + execution that creates value; common idea myths&quot;, target_level: 2, bloom: understand }
+  - { id: K-ideation-frameworks,   type: knowledge, label: &quot;Ideation frameworks and where they fit: design thinking, SCAMPER, lateral thinking, analogies, constraints, brainwriting&quot;, target_level: 2, bloom: understand }
+  - { id: S-reframe-opportunities, type: skill,     label: &quot;Reframe a problem and spot opportunities: observe users, find insights, write sharp &#x27;How Might We&#x27; questions&quot;, target_level: 2, bloom: analyze, primary: true }
+  - { id: S-generate-ideas,        type: skill,     label: &quot;Generate many varied ideas on demand (fluency, flexibility, originality) using divergent techniques&quot;, target_level: 2, bloom: create, primary: true }
+  - { id: S-develop-prototype,     type: skill,     label: &quot;Develop, prototype and evaluate ideas: converge with criteria, build a rough prototype, test and iterate&quot;, target_level: 2, bloom: create }
+  - { id: A-creative-confidence,   type: ability,   label: &quot;Creative confidence &amp; productive risk-taking: share half-formed ideas, embrace failure as iteration, defer judgment&quot;, target_level: 2, affective_stage: value, assessed_occasions: 3 }
+  - { id: A-curiosity-openness,    type: ability,   label: &quot;Curiosity &amp; openness: seek novelty, ask &#x27;what if&#x27;, and connect ideas across domains&quot;, target_level: 2, affective_stage: respond, assessed_occasions: 3 }
+
+atoms:
+  - { id: atom-1, title: &quot;What creativity &amp; innovation are&quot;, ksa_refs: [K-creativity-innovation], phase: 1, modalities: [{dimension: read, subtype: Article}, {dimension: watch, subtype: Video Explainer}, {dimension: see, subtype: Mental Model}, {dimension: evaluate, subtype: Pop Quiz}], rubric: knowledge-mini }
+  - { id: atom-2, title: &quot;Ideation frameworks&quot;, ksa_refs: [K-ideation-frameworks], phase: 1, modalities: [{dimension: read, subtype: Article}, {dimension: watch, subtype: Video Explainer}, {dimension: see, subtype: Framework}, {dimension: evaluate, subtype: Pop Quiz}], rubric: knowledge-mini }
+  - { id: atom-3, title: &quot;Reframe problems &amp; spot opportunities&quot;, ksa_refs: [S-reframe-opportunities], phase: 2, modalities: [{dimension: see, subtype: Diagram}, {dimension: practice, subtype: Worksheet / Exercise}, {dimension: practice, subtype: Case Study}, {dimension: evaluate, subtype: Performance Task}], rubric: skill }
+  - { id: atom-4, title: &quot;Generate ideas&quot;, ksa_refs: [S-generate-ideas], phase: 3, modalities: [{dimension: read, subtype: Technical Article}, {dimension: practice, subtype: Worksheet / Exercise}, {dimension: practice, subtype: AI Prompt Question}, {dimension: evaluate, subtype: Performance Task}], rubric: skill }
+  - { id: atom-5, title: &quot;Develop, prototype &amp; evaluate&quot;, ksa_refs: [S-develop-prototype, A-creative-confidence, A-curiosity-openness], phase: 3, modalities: [{dimension: practice, subtype: Lab / Build}, {dimension: practice, subtype: Simulation}, {dimension: collaborate, subtype: Discussion Forum}, {dimension: evaluate, subtype: Behavioral Assessment}], rubric: behavioral }
+  - { id: atom-6, title: &quot;Capstone: innovation challenge&quot;, ksa_refs: [S-reframe-opportunities, S-generate-ideas, S-develop-prototype, A-creative-confidence, A-curiosity-openness], phase: 4, modalities: [{dimension: practice, subtype: Project / Quest}, {dimension: collaborate, subtype: Showcase / Demo Day}, {dimension: collaborate, subtype: Async Peer Review}, {dimension: evaluate, subtype: Capstone Project}], rubric: capstone-5 }
+
+capstone:
+  title: &quot;Run a full innovation challenge: reframe a real problem, generate options, prototype the best, and pitch it&quot;
+  integrates_ksa: [K-creativity-innovation, K-ideation-frameworks, S-reframe-opportunities, S-generate-ideas, S-develop-prototype, A-creative-confidence, A-curiosity-openness]
+  rubric: capstone-5
+
+badge:
+  name: &quot;Creative Innovator&quot;
+  evidence_required: [&quot;atom-3&quot;, &quot;atom-4&quot;, &quot;atom-5&quot;, &quot;capstone&quot;]
+  issued_on: verified-evidence</code></pre>
+<hr>
+<h2>🎯 Target job competency</h2>
+<p><strong>Think creatively and innovate.</strong> Organizations don't just want novel ideas — they want people who can <strong>reframe problems, generate options, and turn the best into something real and valuable.</strong> As routine work is automated, the premium shifts to originality, idea fluency, and the judgment to develop ideas into impact. Mapped to <strong>O*NET</strong> (Fluency of Ideas, Originality, Thinking Creatively, Innovation) and <strong>ESCO</strong> transversal <em>"think creatively / use creativity."</em></p>
+<h2>🧬 KSA breakdown — a creative skill, taught the right way</h2>
+<div class='tablewrap'><table><thead><tr><th>KSA</th><th>Component</th><th>Why this type</th><th>Target</th></tr></thead><tbody>
+<tr><td>🧠 Knowledge</td><td>What creativity &amp; innovation are</td><td>A mental model: divergent/convergent; idea → value</td><td>L2</td></tr>
+<tr><td>🧠 Knowledge</td><td>Ideation frameworks</td><td>You can't apply tools you don't know</td><td>L2</td></tr>
+<tr><td>🛠️ Skill</td><td>Reframe &amp; spot opportunities</td><td>A trainable technique (observe → insight → HMW)</td><td><strong>L2</strong></td></tr>
+<tr><td>🛠️ Skill</td><td>Generate ideas</td><td>Divergent thinking on demand (fluency/flexibility/originality)</td><td><strong>L2</strong></td></tr>
+<tr><td>🛠️ Skill</td><td>Develop, prototype &amp; evaluate</td><td>Converge, prototype, test, iterate</td><td>L2</td></tr>
+<tr><td>🌱 Ability</td><td>Creative confidence</td><td>A disposition: share rough ideas, embrace failure</td><td>L2</td></tr>
+<tr><td>🌱 Ability</td><td>Curious openness</td><td>A habit: seek novelty, connect across domains</td><td>L2</td></tr>
+</tbody></table></div>
+<blockquote><strong>Why this shape:</strong> creativity is mostly <strong>doing</strong> (Skills: reframe, generate, develop), but it only <em>flows</em> when paired with the <strong>Abilities</strong> that unlock it — <strong>creative confidence</strong> (the belief and willingness to share imperfect ideas and treat failure as iteration) and <strong>curious openness</strong> (the habit of seeking novelty and connecting distant ideas). Those Abilities are assessed <strong>behaviorally, across ≥3 occasions</strong>, not with a quiz.</blockquote>
+<h2>📘 Learning objectives (Bloom + KSA)</h2>
+<div class='tablewrap'><table><thead><tr><th>Objective</th><th>Bloom</th><th>KSA</th><th>Component</th><th>Target</th></tr></thead><tbody>
+<tr><td>Explain divergent vs. convergent thinking and how creativity becomes innovation</td><td>Understand</td><td>🧠 K</td><td>K-creativity-innovation</td><td>L2</td></tr>
+<tr><td>Describe major ideation frameworks and when to use each</td><td>Understand</td><td>🧠 K</td><td>K-ideation-frameworks</td><td>L2</td></tr>
+<tr><td>Reframe a problem and write sharp opportunity ("How Might We") questions</td><td>Analyze</td><td>🛠️ S</td><td>S-reframe-opportunities</td><td>L2</td></tr>
+<tr><td>Generate many varied, original ideas on demand</td><td>Create</td><td>🛠️ S</td><td>S-generate-ideas</td><td>L2</td></tr>
+<tr><td>Develop, prototype, and evaluate ideas against criteria</td><td>Create</td><td>🛠️ S</td><td>S-develop-prototype</td><td>L2</td></tr>
+<tr><td>Share rough ideas and treat failure as iteration</td><td>Value (affective)</td><td>🌱 A</td><td>A-creative-confidence</td><td>L2</td></tr>
+<tr><td>Seek novelty and connect ideas across domains</td><td>Respond (affective)</td><td>🌱 A</td><td>A-curiosity-openness</td><td>L2</td></tr>
+</tbody></table></div>
+<hr>
+<h2>🔍 Phase planner</h2>
+<div class='tablewrap'><table><thead><tr><th>Phase</th><th>Atom(s)</th><th>KSA focus</th><th>Activity</th><th>Assessment</th></tr></thead><tbody>
+<tr><td>🙉 1 · hear</td><td>Atom 1, 2</td><td>🧠 K</td><td>reading + video on creativity/innovation; ideation frameworks</td><td>knowledge-mini (pop quizzes)</td></tr>
+<tr><td>🙈 2 · see</td><td>Atom 3</td><td>🛠️ S</td><td>model a reframe; observe → insight → "How Might We"</td><td>performance task</td></tr>
+<tr><td>🙊 3 · do</td><td>Atom 4, 5</td><td>🛠️ S + 🌱 A</td><td>divergent idea sprints; prototype + evaluate the best</td><td>performance task + behavioral assessment</td></tr>
+<tr><td>🐵 4 · share</td><td>Atom 6 (capstone)</td><td>🛠️ S + 🌱 A</td><td>full innovation challenge; pitch + peer review</td><td>capstone-5</td></tr>
+</tbody></table></div>
+<hr>
+<h2>🚀 Capstone &amp; 📊 assessment</h2>
+<p>Full brief in <a href="#capstone"><code>capstone.md</code></a>; all rubrics in <a href="#rubrics"><code>rubrics.md</code></a>. In short: formative pop quizzes for the Knowledge atoms, skill performance tasks for reframing and idea generation, a <strong>behavioral assessment</strong> across occasions for the Abilities, and a full reframe→ideate→prototype→pitch challenge scored on the standard 5-criteria capstone rubric. The badge → skills-map mapping is in <a href="#skillsmap"><code>skills-map.md</code></a>.</p>
+<h2>🎓 Outcomes &amp; recognition</h2>
+<ul>
+<li>A working model of creativity that replaces "I'm just not creative" with <strong>a repeatable process</strong>.</li>
+<li>The ability to <strong>reframe</strong> a problem into sharp opportunity questions.</li>
+<li>On-demand <strong>idea fluency</strong> — generate many varied, original options without freezing.</li>
+<li>The ability to <strong>develop, prototype, and evaluate</strong> ideas down to one you can pitch.</li>
+<li>The durable <strong>creative confidence</strong> and <strong>curious openness</strong> that make it stick — evidenced over time.</li>
+<li>A portfolio artifact: a documented innovation challenge with a prototype and pitch.</li>
+<li>LinkedIn-compatible digital badge: <strong>🏅 Creative Innovator</strong> — a signal for product, design &amp; strategy roles.</li>
+</ul></section>
+<section class="page" id="page-atom-1" data-id="atom-1"><label class="donebox"><input type="checkbox" class="donechk" data-atom="atom-1"> Mark this atom complete</label><h2>⚛ Learning Atom 1 — <em>What Creativity &amp; Innovation Are</em></h2>
+<p><strong>Phase:</strong> 🙉 1 · Self-Guided Introduction (<em>hear</em>) · <strong>KSA:</strong> 🧠 Knowledge · <strong>Target level:</strong> L2 · <strong>Component id:</strong> <code>K-creativity-innovation</code></p>
+<h3>🎯 Learning objective</h3>
+<ul>
+<li><strong>Explain</strong> divergent vs. convergent thinking and <strong>how creativity becomes innovation</strong> — and bust</li>
+</ul>
+<p>  the common myths about who gets to be creative.</p>
+<h3>🧩 Prerequisites</h3>
+<ul>
+<li>None. Bring one thing you wish worked better (a product, a process, a chore) — your raw material.</li>
+</ul>
+<h3>🧭 Atom description</h3>
+<p>Most people think creativity is a personality trait you're born with or without. It isn't. Creativity is a <strong>process</strong> anyone can learn, and innovation is what happens when you carry that process all the way to <strong>real value.</strong> This atom installs the core vocabulary the rest of the course builds on.</p>
+<hr>
+<h3>📖 Reading — <em>Creativity is a process, not a gift</em> (≈ 7 min)</h3>
+<p><strong>Two definitions, one relationship:</strong></p>
+<ul>
+<li><strong>Creativity</strong> = generating ideas that are both <strong>novel</strong> <em>and</em> <strong>useful/relevant</strong> in context. (Just</li>
+</ul>
+<p>  novel = random; just useful = ordinary. Creativity needs both.)</p>
+<ul>
+<li><strong>Innovation</strong> = <strong>creativity + execution that creates value.</strong> An idea in your head isn't an</li>
+</ul>
+<p>  innovation. A creative idea that's built, adopted, and makes something better — <em>that's</em> innovation.</p>
+<blockquote>A useful shorthand: <strong>Innovation = Idea × Execution × Value.</strong> A brilliant idea with no execution is worth ~zero; flawless execution of a worthless idea is also ~zero.</blockquote>
+<p><strong>The two modes of thinking (you need both):</strong></p>
+<ul>
+<li><strong>Divergent thinking</strong> — open up: generate <em>many</em> options, defer judgment, chase quantity and</li>
+</ul>
+<p>  variety. This is where ideas are <em>born.</em> Measured by <strong>fluency</strong> (how many), <strong>flexibility</strong> (how   many <em>kinds</em>), and <strong>originality</strong> (how rare).</p>
+<ul>
+<li><strong>Convergent thinking</strong> — narrow down: evaluate, combine, and choose using criteria. This is where</li>
+</ul>
+<p>  ideas get <em>better and real.</em></p>
+<p>The classic failure mode is mixing them: judging ideas the moment they appear kills divergence. The discipline is to <strong>separate</strong> the modes — diverge fully, <em>then</em> converge.</p>
+<p><strong>The creative process (a simple, repeatable loop):</strong></p>
+<ol>
+<li><strong>Understand &amp; reframe</strong> the problem (Atom 3).</li>
+<li><strong>Diverge</strong> — generate lots of ideas (Atom 4).</li>
+<li><strong>Converge</strong> — select and develop the best (Atom 5).</li>
+<li><strong>Prototype &amp; test</strong> — make it real enough to learn (Atom 5).</li>
+<li><strong>Iterate</strong> — repeat with what you learned.</li>
+</ol>
+<p><strong>Three myths to drop now:</strong></p>
+<ul>
+<li><em>"Creativity is a talent you have or don't."</em> → It's a <strong>skill</strong>; practice and method raise everyone's output.</li>
+<li><em>"Great ideas arrive as flashes of genius."</em> → They usually <strong>combine existing ideas</strong> in new ways</li>
+</ul>
+<p>  (often across domains) and emerge from <em>volume</em> + iteration.</p>
+<ul>
+<li><em>"Constraints kill creativity."</em> → Constraints <strong>focus</strong> it. A blank page is paralyzing; a sharp</li>
+</ul>
+<p>  constraint ("design it for a 5-year-old / for $5 / in one tap") sparks ideas.</p>
+<p><strong>Key takeaways</strong></p>
+<ul>
+<li><input type="checkbox" disabled> <strong>Creativity</strong> = novel <strong>and</strong> useful; <strong>innovation</strong> = creativity <strong>+ execution + value.</strong></li>
+<li><input type="checkbox" disabled> <strong>Diverge</strong> (generate, defer judgment) then <strong>converge</strong> (evaluate, choose) — never at once.</li>
+<li><input type="checkbox" disabled> Creativity is a <strong>process/skill</strong>, not a fixed gift.</li>
+<li><input type="checkbox" disabled> <strong>Constraints fuel</strong> creativity; ideas usually <strong>combine</strong> existing things.</li>
+</ul>
+<hr>
+<h3>🎬 Watch — creativity &amp; innovation, explained (pick one, ~6–12 min)</h3>
+<div class="yt" data-id="16p9YRF0l-g"><button class="yt-play" type="button" aria-label="Play video" style="background-image:url(https://i.ytimg.com/vi/16p9YRF0l-g/hqdefault.jpg)"><span class="yt-tri">&#9654;</span></button><div class="yt-meta"><a href="https://www.youtube.com/watch?v=16p9YRF0l-g" target="_blank" rel="noopener">https://www.youtube.com/watch?v=16p9YRF0l-g</a><div class="yt-cap">TED — David Kelley (IDEO): "How to build your creative confidence" (verify before delivery).</div></div></div>
+<div class="yt" data-id="UAinLaT42xY"><button class="yt-play" type="button" aria-label="Play video" style="background-image:url(https://i.ytimg.com/vi/UAinLaT42xY/hqdefault.jpg)"><span class="yt-tri">&#9654;</span></button><div class="yt-meta"><a href="https://www.youtube.com/watch?v=UAinLaT42xY" target="_blank" rel="noopener">https://www.youtube.com/watch?v=UAinLaT42xY</a><div class="yt-cap">TED — Tim Brown: "Tales of creativity and play" / design thinking overview (verify before delivery).</div></div></div>
+<hr>
+<h3>🖼️ See — diverge then converge</h3>
+<div class="mermaid">flowchart LR
+  P[&quot;🎯 Reframed problem&quot;] --&gt; DIV[&quot;🔀 Diverge&lt;br/&gt;many ideas · defer judgment&quot;]
+  DIV --&gt; CONV[&quot;🎯 Converge&lt;br/&gt;evaluate · choose&quot;]
+  CONV --&gt; PROTO[&quot;🛠️ Prototype &amp; test&quot;]
+  PROTO --&gt; VALUE[&quot;💎 Innovation = value&quot;]</div>
+<p><img alt="The creative process — generated diagram" src="img/atom-1-what-is-creativity-and-innovation.png"></p>
+<blockquote>🖼️ <em>Generated image — produced from the prompt below.</em></blockquote>
+<p>A reusable prompt to generate an on-brand version of this diagram:</p>
+<div class="promptcard"><div class="promptcard-h"><span>🖼️ Image / AI prompt</span><button class="copybtn" type="button">Copy</button></div><pre><code>Create a clean, modern educational infographic of the &quot;double diamond&quot;-style creative process:
+Reframed problem → Diverge (many ideas, defer judgment) → Converge (evaluate, choose) → Prototype &amp;
+test → Innovation (value). Add a caption: &quot;Innovation = Idea x Execution x Value.&quot; Use ADA brand
+colors (Indigo #1E2A6E, Turquoise #15B5C6, Gold #E0A53C accents) on a light background, flat vector
+style, legible sans-serif, no text errors. 16:9.</code></pre></div>
+<hr>
+<h3>✅ Evaluate — Pop quiz (formative, <code>knowledge-mini</code>)</h3>
+<ol>
+<li>What's the difference between creativity and innovation?</li>
+<li>Why must divergent and convergent thinking be kept separate?</li>
+<li>True or false: constraints reduce creativity. Explain.</li>
+</ol>
+<details>
+<summary>Answer key</summary>
+<ol>
+<li><strong>Creativity</strong> = generating novel <em>and</em> useful ideas; <strong>innovation</strong> = taking a creative idea</li>
+</ol>
+<p>   through <strong>execution</strong> so it creates real <strong>value.</strong></p>
+<ol>
+<li>Because judging ideas while generating them (convergent during divergent) shuts down idea flow — you</li>
+</ol>
+<p>   self-censor before options exist. Diverge fully first, <em>then</em> evaluate.</p>
+<ol>
+<li><strong>False.</strong> Well-chosen <strong>constraints focus</strong> creativity and spark ideas; a totally blank page is</li>
+</ol>
+<p>   often paralyzing.</p>
+</details>
+<hr>
+<h3>📦 Deliverable</h3>
+<ul>
+<li>Take the thing you wish worked better. Write (a) the <strong>idea</strong> of a better version, (b) what</li>
+</ul>
+<p>  <strong>execution</strong> would take, and (c) the <strong>value</strong> it would create — your first Idea × Execution × Value.</p>
+<h3>🧠 Final reflection</h3>
+<ul>
+<li>Do you default to diverging or converging? Which one do you cut short?</li>
+</ul>
+<h3>🔗 Sources to verify (human-in-the-loop)</h3>
+<ul>
+<li>Guilford / Torrance — divergent thinking (fluency, flexibility, originality).</li>
+<li>IDEO / d.school — design thinking and the diverge–converge model.</li>
+<li>Amabile, <em>The Componential Theory of Creativity</em> (creativity = domain skills + creative thinking + motivation).</li>
+</ul>
+<h3>🧩 Connections</h3>
+<ul>
+<li><strong>Successors:</strong> Atom 2 (the frameworks), Atom 3 (reframe the problem).</li>
+</ul></section>
+<section class="page" id="page-atom-2" data-id="atom-2"><label class="donebox"><input type="checkbox" class="donechk" data-atom="atom-2"> Mark this atom complete</label><h2>⚛ Learning Atom 2 — <em>Ideation Frameworks</em></h2>
+<p><strong>Phase:</strong> 🙉 1 · Self-Guided Introduction (<em>hear</em>) · <strong>KSA:</strong> 🧠 Knowledge · <strong>Target level:</strong> L2 · <strong>Component id:</strong> <code>K-ideation-frameworks</code></p>
+<h3>🎯 Learning objective</h3>
+<ul>
+<li><strong>Describe</strong> the major ideation frameworks and <strong>explain when to use each</strong> stage of the creative</li>
+</ul>
+<p>  process.</p>
+<h3>🧩 Prerequisites</h3>
+<ul>
+<li>Atom 1 (diverge/converge, idea → value). Frameworks are tools that plug into that loop.</li>
+</ul>
+<h3>🧭 Atom description</h3>
+<p>You don't have to wait for inspiration — you can <em>trigger</em> it with structured tools. This atom is a field guide to the most useful ideation frameworks, mapped to <em>when</em> in the process each one helps. Knowing the menu means you'll never stare at a blank page again.</p>
+<hr>
+<h3>📖 Reading — <em>A toolkit for triggering ideas</em> (≈ 8 min)</h3>
+<p><strong>Big-picture process framework:</strong></p>
+<ul>
+<li><strong>Design thinking</strong> (Empathize → Define → Ideate → Prototype → Test). A human-centered loop that</li>
+</ul>
+<p>  keeps ideas anchored to <em>real user needs.</em> Most other tools live inside its "Ideate" and "Prototype"   stages. (This whole micro-credential roughly follows it.)</p>
+<p><strong>Divergent (idea-generation) tools:</strong></p>
+<ul>
+<li><strong>Brainstorming — done right.</strong> The original rules (Osborn) still hold: **defer judgment, go for</li>
+</ul>
+<p>  quantity, welcome wild ideas, build on others' ideas ("yes, and").** Most "brainstorms" fail because   they break rule one.</p>
+<ul>
+<li><strong>Brainwriting / 6-3-5.</strong> Everyone writes ideas silently, then passes them on to build upon. Beats</li>
+</ul>
+<p>  group brainstorming for quantity and fairness (no loud voices dominating, no anchoring).</p>
+<ul>
+<li><strong>SCAMPER.</strong> A checklist to twist an existing thing: <strong>S</strong>ubstitute, <strong>C</strong>ombine, <strong>A</strong>dapt,</li>
+</ul>
+<p>  <strong>M</strong>odify/Magnify, <strong>P</strong>ut to other use, <strong>E</strong>liminate, <strong>R</strong>everse. Great for improving products/processes.</p>
+<ul>
+<li><strong>Lateral thinking (de Bono).</strong> Deliberately break patterns: random-word association, provocations</li>
+</ul>
+<p>  ("Po: cars have square wheels"), challenging assumptions.</p>
+<ul>
+<li><strong>Analogies &amp; cross-domain transfer.</strong> "How does nature/another industry solve this?" (Velcro from</li>
+</ul>
+<p>  burrs; bullet trains from kingfisher beaks.) Most breakthroughs are <strong>borrowed</strong> from elsewhere.</p>
+<ul>
+<li><strong>Constraints &amp; "what if."</strong> Add an extreme constraint ("for $1," "no screen," "in 10 seconds") or</li>
+</ul>
+<p>  remove one ("infinite budget") to jolt new directions.</p>
+<ul>
+<li><strong>SCAMPER + AI.</strong> Modern twist: use an LLM as an idea <em>multiplier</em> — but you steer, select, and judge</li>
+</ul>
+<p>  (the convergence and taste are yours; Atom 4 covers this).</p>
+<p><strong>Convergent (selection) tools:</strong></p>
+<ul>
+<li><strong>Affinity mapping</strong> — cluster many ideas into themes to see patterns.</li>
+<li><strong>Dot voting</strong> — quick, democratic shortlisting.</li>
+<li><strong>Criteria / impact–effort matrix</strong> — score ideas on desirability, feasibility, viability (or</li>
+</ul>
+<p>  impact vs. effort) to choose what to prototype (Atom 5).</p>
+<ul>
+<li><strong>Six Thinking Hats</strong> — examine a chosen idea from multiple angles (facts, feelings, risks, benefits).</li>
+</ul>
+<blockquote><strong>The meta-skill:</strong> match the <strong>tool to the stage.</strong> Diverging? Reach for brainwriting, SCAMPER, analogies. Converging? Reach for affinity maps and an impact–effort matrix. Using a convergent tool while you should be diverging (or vice-versa) is the most common mistake.</blockquote>
+<p><strong>Key takeaways</strong></p>
+<ul>
+<li><input type="checkbox" disabled> <strong>Design thinking</strong> is the wrapping loop; most tools live in its Ideate/Prototype stages.</li>
+<li><input type="checkbox" disabled> Divergent tools: **brainstorming (defer judgment), brainwriting, SCAMPER, lateral thinking,</li>
+</ul>
+<p>  analogies, constraints.**</p>
+<ul>
+<li><input type="checkbox" disabled> Convergent tools: <strong>affinity mapping, dot voting, impact–effort matrix, Six Hats.</strong></li>
+<li><input type="checkbox" disabled> <strong>Match the tool to the stage</strong> — diverge with some, converge with others.</li>
+</ul>
+<hr>
+<h3>🎬 Watch — frameworks in action (~5–18 min)</h3>
+<div class="yt" data-id="H0_yKBitO8M"><button class="yt-play" type="button" aria-label="Play video" style="background-image:url(https://i.ytimg.com/vi/H0_yKBitO8M/hqdefault.jpg)"><span class="yt-tri">&#9654;</span></button><div class="yt-meta"><a href="https://www.youtube.com/watch?v=H0_yKBitO8M" target="_blank" rel="noopener">https://www.youtube.com/watch?v=H0_yKBitO8M</a><div class="yt-cap">TED — Tom Wujec: "Build a tower, build a team" (the Marshmallow Challenge — prototyping &amp; iteration) (verify before delivery).</div></div></div>
+<hr>
+<h3>🖼️ See — match the tool to the stage</h3>
+<div class="mermaid">flowchart TD
+  STAGE{&quot;Where am I in&lt;br/&gt;the process?&quot;} --&gt;|generating| DIV[&quot;🔀 Divergent tools&lt;br/&gt;brainstorm · brainwriting · SCAMPER ·&lt;br/&gt;lateral · analogies · constraints&quot;]
+  STAGE --&gt;|choosing| CONV[&quot;🎯 Convergent tools&lt;br/&gt;affinity map · dot vote ·&lt;br/&gt;impact–effort · Six Hats&quot;]
+  DIV --&gt; NEXT[&quot;💡 Many options&quot;]
+  CONV --&gt; NEXT2[&quot;✅ A few to prototype&quot;]</div>
+<p><img alt="Match the tool to the stage — generated diagram" src="img/atom-2-ideation-frameworks.png"></p>
+<blockquote>🖼️ <em>Generated image — produced from the prompt below.</em></blockquote>
+<p>A reusable prompt to generate an on-brand version:</p>
+<div class="promptcard"><div class="promptcard-h"><span>🖼️ Image / AI prompt</span><button class="copybtn" type="button">Copy</button></div><pre><code>Create a clean, modern infographic &quot;Match the tool to the stage&quot;: a decision splits into &quot;Divergent
+tools (brainstorm, brainwriting, SCAMPER, lateral thinking, analogies, constraints)&quot; and &quot;Convergent
+tools (affinity map, dot vote, impact-effort matrix, Six Hats)&quot;. Use ADA brand colors (Indigo #1E2A6E,
+Turquoise #15B5C6, Gold #E0A53C), light background, flat vector, legible sans-serif. 16:9.</code></pre></div>
+<hr>
+<h3>✅ Evaluate — Pop quiz (formative, <code>knowledge-mini</code>)</h3>
+<ol>
+<li>What does the "S" and "R" in SCAMPER stand for?</li>
+<li>Why is brainwriting often better than group brainstorming for idea quantity?</li>
+<li>Name one divergent and one convergent tool, and when you'd use each.</li>
+</ol>
+<details>
+<summary>Answer key</summary>
+<ol>
+<li><strong>S</strong> = Substitute; <strong>R</strong> = Reverse (or Rearrange). (Full set: Substitute, Combine, Adapt,</li>
+</ol>
+<p>   Modify/Magnify, Put to other use, Eliminate, Reverse.)</p>
+<ol>
+<li>It removes <strong>anchoring</strong> and <strong>dominant voices</strong> — everyone generates silently in parallel, so you</li>
+</ol>
+<p>   get more diverse ideas without social pressure or groupthink.</p>
+<ol>
+<li>e.g. <strong>SCAMPER (divergent)</strong> to generate variations of a product; **impact–effort matrix</li>
+</ol>
+<p>   (convergent)** to pick which idea to prototype.</p>
+</details>
+<hr>
+<h3>📦 Deliverable</h3>
+<ul>
+<li>Pick the thing you want to improve (Atom 1). Run <strong>SCAMPER</strong> on it: write at least one idea per letter</li>
+</ul>
+<p>  (7 ideas minimum).</p>
+<h3>🧠 Final reflection</h3>
+<ul>
+<li>Which framework feels most natural to you, and which feels uncomfortable (often the most useful one)?</li>
+</ul>
+<h3>🔗 Sources to verify (human-in-the-loop)</h3>
+<ul>
+<li>IDEO/d.school — <em>Design Thinking</em> bootleg &amp; method cards.</li>
+<li>Osborn, <em>Applied Imagination</em> (brainstorming rules); Eberle (SCAMPER).</li>
+<li>de Bono, <em>Lateral Thinking</em> and <em>Six Thinking Hats</em>.</li>
+</ul>
+<h3>🧩 Connections</h3>
+<ul>
+<li><strong>Predecessor:</strong> Atom 1. <strong>Successors:</strong> Atom 3 (reframe first), Atom 4 (apply the divergent tools).</li>
+</ul></section>
+<section class="page" id="page-atom-3" data-id="atom-3"><label class="donebox"><input type="checkbox" class="donechk" data-atom="atom-3"> Mark this atom complete</label><h2>⚛ Learning Atom 3 — <em>Reframe Problems &amp; Spot Opportunities</em></h2>
+<p><strong>Phase:</strong> 🙈 2 · Visual Exploration (<em>see</em>) · <strong>KSA:</strong> 🛠️ Skill · <strong>Target level:</strong> L2 · <strong>Component id:</strong> <code>S-reframe-opportunities</code></p>
+<h3>🎯 Learning objective</h3>
+<ul>
+<li><strong>Reframe</strong> a problem and <strong>spot opportunities</strong> by observing, finding insights, and writing sharp</li>
+</ul>
+<p>  "How Might We" questions.</p>
+<h3>🧩 Prerequisites</h3>
+<ul>
+<li>Atoms 1–2. The best ideas come from the best <em>questions</em> — so we start before ideation.</li>
+</ul>
+<h3>🧭 Atom description</h3>
+<p>Most weak ideas come from solving the wrong problem. This atom teaches the highest-leverage creative move: <strong>reframing.</strong> Before generating a single idea, you sharpen <em>what</em> you're solving and <em>for whom</em>, turning a vague complaint into a focused, generative opportunity question. It's in Phase 2 (<em>see</em>) because you learn it by watching it modeled, then doing it on a real situation.</p>
+<hr>
+<h3>📖 Reading — <em>Solve the right problem</em> (≈ 8 min)</h3>
+<p><strong>Why reframing matters.</strong> "Make a faster elevator" produces engineering ideas. Reframed to "make the <em>wait</em> feel shorter," it produces <em>mirrors in the lobby</em> — cheaper, and it worked. Same situation, a far better problem. The reframe is often worth more than the idea.</p>
+<p><strong>Step 1 — Observe like an anthropologist (empathize).</strong> Don't ask people what they want; watch what they <em>do.</em> Look for:</p>
+<ul>
+<li><strong>Pain points</strong> — where do people struggle, wait, complain, or improvise?</li>
+<li><strong>Workarounds</strong> — homemade fixes reveal unmet needs (a sticky note on a screen = a missing feature).</li>
+<li><strong>Surprises</strong> — anything that doesn't match what you expected is a clue.</li>
+<li><strong>Context</strong> — when/where/with whom does this happen? (Jobs-to-be-done: *what is the user really</li>
+</ul>
+<p>  trying to accomplish?*)</p>
+<p><strong>Step 2 — Find the insight.</strong> An insight is a <em>non-obvious truth</em> about the user that, once seen, opens new solutions. It's deeper than an observation:</p>
+<ul>
+<li>Observation: <em>"People skip the onboarding tutorial."</em></li>
+<li>Insight: <em>"People want to feel competent immediately; a tutorial signals 'this is hard.'"</em></li>
+</ul>
+<p><strong>Step 3 — Reframe with "How Might We" (HMW).</strong> Turn the insight into an opportunity question that is:</p>
+<ul>
+<li><strong>Not too broad</strong> ("HMW improve education?" — paralyzing) and <strong>not too narrow</strong> ("HMW add a blue</li>
+</ul>
+<p>  button?" — that's a solution in disguise).</p>
+<ul>
+<li><strong>Solution-neutral</strong> — it invites many answers, not one.</li>
+<li><strong>Human-centered</strong> — it names <em>who</em> and <em>what outcome.</em></li>
+<li>Example: <em>"How might we help new users feel competent in the first 60 seconds?"</em></li>
+</ul>
+<p><strong>Step 4 — Generate alternative frames.</strong> A great practice: write the problem <strong>5 different ways</strong> (broaden it, narrow it, flip it, change the user, change the goal). Pick the frame that feels most generative — <em>then</em> ideate (Atom 4).</p>
+<blockquote><strong>The move:</strong> observe → insight → <strong>HMW</strong> question → pick the most generative frame. A sharp question makes ideation almost easy.</blockquote>
+<p><strong>Key takeaways</strong></p>
+<ul>
+<li><input type="checkbox" disabled> The <strong>reframe</strong> is often worth more than the idea — solve the <em>right</em> problem.</li>
+<li><input type="checkbox" disabled> <strong>Observe behavior</strong> (pains, workarounds, surprises), don't just ask.</li>
+<li><input type="checkbox" disabled> Turn an <strong>insight</strong> (non-obvious truth) into a <strong>"How Might We"</strong> question.</li>
+<li><input type="checkbox" disabled> HMW questions are <strong>solution-neutral, human-centered, and right-sized.</strong></li>
+</ul>
+<hr>
+<h3>🖼️ See — observe → insight → reframe</h3>
+<div class="mermaid">flowchart LR
+  OBS[&quot;👀 Observe&lt;br/&gt;pains · workarounds · surprises&quot;] --&gt; INS[&quot;💡 Insight&lt;br/&gt;non-obvious truth&quot;]
+  INS --&gt; HMW[&quot;❓ How Might We…?&lt;br/&gt;solution-neutral question&quot;]
+  HMW --&gt; FRAMES[&quot;🔄 5 alternative frames&quot;]
+  FRAMES --&gt; PICK[&quot;🎯 Pick the most generative&quot;]</div>
+<p><img alt="Reframe the problem — generated diagram" src="img/atom-3-reframe-problems-and-spot-opportunities.png"></p>
+<blockquote>🖼️ <em>Generated image — produced from the prompt below.</em></blockquote>
+<p>A reusable prompt to generate an on-brand version:</p>
+<div class="promptcard"><div class="promptcard-h"><span>🖼️ Image / AI prompt</span><button class="copybtn" type="button">Copy</button></div><pre><code>Create a clean, modern infographic &quot;Reframe the problem&quot;: Observe (pains, workarounds, surprises) →
+Insight (non-obvious truth) → &quot;How Might We…?&quot; question → 5 alternative frames → Pick the most
+generative. Use ADA brand colors (Indigo #1E2A6E, Turquoise #15B5C6, Gold #E0A53C), light background,
+flat vector, legible sans-serif. 16:9.</code></pre></div>
+<hr>
+<h3>🧪 Practice — <em>Reframe a real problem</em> (Worksheet + Case Study)</h3>
+<p>Pick a real situation you can observe (a tool your team uses, a daily friction, a service you find frustrating). Then:</p>
+<ol>
+<li><strong>Observe.</strong> Write 5+ concrete observations — focus on pains, workarounds, surprises (watch real</li>
+</ol>
+<p>   behavior, not opinions).</p>
+<ol>
+<li><strong>Insight.</strong> Distil <strong>one</strong> non-obvious insight about what the user is really trying to do.</li>
+<li><strong>HMW.</strong> Write a sharp, solution-neutral "How Might We" question from that insight.</li>
+<li><strong>Reframe ×5.</strong> Write the problem 5 different ways (broaden, narrow, flip, change user, change goal).</li>
+<li><strong>Pick.</strong> Choose the most generative frame and say why.</li>
+</ol>
+<hr>
+<h3>✅ Evaluate — Performance task (<code>skill</code>)</h3>
+<p>Submit your reframe. Scored on:</p>
+<div class='tablewrap'><table><thead><tr><th>Criterion</th><th>Excellent (3)</th><th>Adequate (2)</th><th>Needs work (1)</th></tr></thead><tbody>
+<tr><td><strong>Observation</strong></td><td>Concrete, behavior-based; captures real pains/workarounds</td><td>Some real observations</td><td>Opinions/assumptions, not observation</td></tr>
+<tr><td><strong>Insight</strong></td><td>Genuine non-obvious truth about the user</td><td>A reasonable observation restated</td><td>Surface-level or missing</td></tr>
+<tr><td><strong>HMW quality</strong></td><td>Solution-neutral, human-centered, right-sized</td><td>Usable but broad/narrow</td><td>A solution in disguise / vague</td></tr>
+<tr><td><strong>Alternative frames</strong></td><td>5 genuinely different, generative frames</td><td>A few real alternatives</td><td>Restatements of the same frame</td></tr>
+</tbody></table></div>
+<blockquote>Pass = 2+ each → <strong>L2</strong> evidence for <code>S-reframe-opportunities</code>.</blockquote>
+<h3>📦 Deliverable</h3>
+<ul>
+<li>Your observations, insight, HMW question, 5 frames, and chosen frame.</li>
+</ul>
+<h3>🧠 Final reflection</h3>
+<ul>
+<li>Did the reframe change what kinds of solutions feel possible? How?</li>
+</ul>
+<h3>🔗 Sources to verify (human-in-the-loop)</h3>
+<ul>
+<li>IDEO, <em>The Field Guide to Human-Centered Design</em> (observe, insight, HMW).</li>
+<li>Wedell-Wedellsborg, <em>What's Your Problem?</em> (reframing).</li>
+<li>Christensen, <em>Jobs to Be Done</em> (what the user is really trying to accomplish).</li>
+</ul>
+<h3>🧩 Connections</h3>
+<ul>
+<li><strong>Predecessor:</strong> Atom 2. <strong>Successor:</strong> Atom 4 (generate ideas against your chosen frame).</li>
+</ul></section>
+<section class="page" id="page-atom-4" data-id="atom-4"><label class="donebox"><input type="checkbox" class="donechk" data-atom="atom-4"> Mark this atom complete</label><h2>⚛ Learning Atom 4 — <em>Generate Ideas</em></h2>
+<p><strong>Phase:</strong> 🙊 3 · Applied Practice (<em>do</em>) · <strong>KSA:</strong> 🛠️ Skill · <strong>Target level:</strong> L2 · <strong>Component id:</strong> <code>S-generate-ideas</code></p>
+<h3>🎯 Learning objective</h3>
+<ul>
+<li><strong>Generate</strong> many varied, original ideas on demand using divergent techniques — measured by fluency,</li>
+</ul>
+<p>  flexibility, and originality.</p>
+<h3>🧭 Atom description</h3>
+<p>This is the engine room: producing ideas on purpose, in volume, without freezing or self-censoring. You'll run structured idea sprints, push past the obvious "first ten," and use AI as an idea multiplier. The goal isn't one perfect idea — it's a <em>rich, varied pile</em> to choose from in Atom 5.</p>
+<hr>
+<h3>📖 Reading — <em>Quantity is the path to quality</em> (≈ 8 min)</h3>
+<p><strong>The counter-intuitive truth:</strong> to get <em>good</em> ideas, generate <em>many</em> ideas. Research and practice both show that the <strong>best idea is rarely the first</strong> — the obvious ones come out first, and originality lives deeper in the list. So you chase <strong>quantity</strong> on purpose.</p>
+<p><strong>The three measures of divergent output</strong> (aim to improve all three):</p>
+<ul>
+<li><strong>Fluency</strong> — <em>how many</em> ideas. (Set targets: "30 ideas in 10 minutes.")</li>
+<li><strong>Flexibility</strong> — <em>how many different kinds.</em> (Don't list 20 variations of the same idea — jump</li>
+</ul>
+<p>  categories: cheaper, fun, social, automated, physical, AI…)</p>
+<ul>
+<li><strong>Originality</strong> — <em>how rare/novel.</em> (Push past the clichés everyone lists.)</li>
+</ul>
+<p><strong>Rules that keep the ideas flowing:</strong></p>
+<ol>
+<li><strong>Defer judgment.</strong> No "that won't work" during generation. Evaluation is a <em>separate</em> mode (Atom 5).</li>
+<li><strong>Go for volume.</strong> Set a quota; quotas beat "good ideas."</li>
+<li><strong>Encourage wild ideas.</strong> Easier to tame a wild idea than to spice up a safe one.</li>
+<li><strong>Build, don't block — "yes, and."</strong> Combine and stack on others' ideas.</li>
+<li><strong>Stay visual &amp; fast.</strong> One idea per sticky note/line; speed over polish.</li>
+</ol>
+<p><strong>Techniques to break out of ruts</strong> (from Atom 2, now applied):</p>
+<ul>
+<li><strong>SCAMPER</strong> the existing solution — force one idea per letter.</li>
+<li><strong>Analogies</strong> — "how would [Disney / a hospital / nature / a 5-year-old] solve this?"</li>
+<li><strong>Provocation / "what if"</strong> — "what if it were free? illegal? instant? invisible?"</li>
+<li><strong>Worst possible idea</strong> — generate <em>terrible</em> ideas, then invert them (removes the fear of bad ideas</li>
+</ul>
+<p>  and often reveals a good one in reverse).</p>
+<ul>
+<li><strong>Brainwriting</strong> — generate silently first, then share, to avoid anchoring.</li>
+</ul>
+<p><strong>Using AI as an idea multiplier (you stay the creative director):</strong> an LLM is great at <em>fluency</em> and <em>flexibility</em> on demand — but it regresses to the average, so <strong>you</strong> provide the reframe, push for weirder branches, and judge. Diverge with the AI; <em>converge with your taste.</em></p>
+<blockquote><strong>The habit:</strong> set a quota → defer judgment → diverge with a technique → push past the first ten → only <em>then</em> evaluate.</blockquote>
+<p><strong>Key takeaways</strong></p>
+<ul>
+<li><input type="checkbox" disabled> The best idea is rarely the first — chase <strong>quantity</strong> to reach <strong>quality.</strong></li>
+<li><input type="checkbox" disabled> Improve <strong>fluency</strong> (how many), <strong>flexibility</strong> (how varied), <strong>originality</strong> (how rare).</li>
+<li><input type="checkbox" disabled> <strong>Defer judgment</strong>, set quotas, welcome wild ideas, build with "yes, and."</li>
+<li><input type="checkbox" disabled> Use SCAMPER, analogies, "what if," worst-idea — and AI as a multiplier you steer.</li>
+</ul>
+<hr>
+<h3>🖼️ See — push past the obvious</h3>
+<div class="mermaid">flowchart TD
+  Q[&quot;🎯 HMW question + quota&quot;] --&gt; FIRST[&quot;😐 First 10 ideas&lt;br/&gt;(the obvious)&quot;]
+  FIRST --&gt; TECH[&quot;🧰 Apply a technique&lt;br/&gt;SCAMPER · analogy · what-if · worst-idea&quot;]
+  TECH --&gt; DEEP[&quot;🌟 Ideas 11–40&lt;br/&gt;(varied &amp; original)&quot;]
+  DEEP --&gt; PILE[&quot;🗂️ A rich pile to choose from&quot;]</div>
+<p><img alt="Push past the obvious — generated diagram" src="img/atom-4-generate-ideas.png"></p>
+<blockquote>🖼️ <em>Generated image — produced from the prompt below.</em></blockquote>
+<p>A reusable prompt to generate an on-brand version:</p>
+<div class="promptcard"><div class="promptcard-h"><span>🖼️ Image / AI prompt</span><button class="copybtn" type="button">Copy</button></div><pre><code>Create a clean, modern infographic &quot;Push past the obvious&quot;: HMW question + quota → first 10 ideas (the
+obvious) → apply a technique (SCAMPER, analogy, what-if, worst-idea) → ideas 11-40 (varied &amp; original)
+→ a rich pile to choose from. Use ADA brand colors (Indigo #1E2A6E, Turquoise #15B5C6, Gold #E0A53C),
+light background, flat vector, legible sans-serif. 16:9.</code></pre></div>
+<hr>
+<h3>🧪 Practice A — <em>The idea sprint</em> (Worksheet)</h3>
+<p>Using your chosen "How Might We" frame from Atom 3:</p>
+<ol>
+<li><strong>Quota run.</strong> Set a timer (10 min) and generate <strong>at least 30 ideas.</strong> One line each. No editing.</li>
+<li><strong>Technique boost.</strong> When you stall, apply <strong>two</strong> techniques (e.g., SCAMPER + analogy + worst-idea)</li>
+</ol>
+<p>   to push to <strong>40+.</strong></p>
+<ol>
+<li><strong>Tag for flexibility.</strong> Group your ideas into categories — aim for <strong>6+ different kinds.</strong> If most</li>
+</ol>
+<p>   land in one category, generate more in the empty ones.</p>
+<ol>
+<li><strong>Star the originals.</strong> Mark the 5 most <em>original</em> ideas (the ones you've never seen before).</li>
+</ol>
+<h3>🧪 Practice B — <em>AI as idea multiplier</em> (AI Prompt Question)</h3>
+<div class="promptcard"><div class="promptcard-h"><span>🖼️ Image / AI prompt</span><button class="copybtn" type="button">Copy</button></div><pre><code>You are my divergent-thinking partner. Generate ideas only — do NOT evaluate or rank.
+Give me 25 varied ideas for this &quot;How Might We&quot; question, deliberately spanning these angles:
+cheap, premium, playful, social, automated/AI, physical, low-tech, and &quot;wild/borderline impossible&quot;.
+Then give me 5 &quot;worst possible ideas&quot; I can invert.
+How Might We: &quot;&quot;&quot;[paste your HMW question]&quot;&quot;&quot;</code></pre></div>
+<p>Then <strong>you</strong> curate: keep the 5 ideas with the most potential, and note one human idea of yours that the AI didn't reach.</p>
+<hr>
+<h3>✅ Evaluate — Performance task (<code>skill</code>)</h3>
+<p>Submit Practice A + B. Pass = real <strong>volume</strong> (30+), genuine <strong>flexibility</strong> (6+ categories), identifiable <strong>originality</strong> (non-cliché ideas), and evidence you <strong>deferred judgment</strong> and used techniques to break ruts. → <strong>L2</strong> evidence for <code>S-generate-ideas</code>.</p>
+<h3>📦 Deliverable</h3>
+<ul>
+<li>Your idea list (tagged by category, originals starred) + the curated AI output with your additions.</li>
+</ul>
+<h3>🧠 Final reflection</h3>
+<ul>
+<li>Where did your best ideas appear — early or after idea 20? What does that tell you?</li>
+</ul>
+<h3>🔗 Sources to verify (human-in-the-loop)</h3>
+<ul>
+<li>Guilford / Torrance — fluency, flexibility, originality (divergent thinking measures).</li>
+<li>IDEO brainstorming rules; <em>Creative Confidence</em> (Kelley &amp; Kelley).</li>
+<li>Research on idea quantity → quality (e.g., "the best ideas come later in the list").</li>
+</ul>
+<h3>🧩 Connections</h3>
+<ul>
+<li><strong>Predecessor:</strong> Atom 3. <strong>Successor:</strong> Atom 5 (now converge, prototype, and evaluate).</li>
+</ul></section>
+<section class="page" id="page-atom-5" data-id="atom-5"><label class="donebox"><input type="checkbox" class="donechk" data-atom="atom-5"> Mark this atom complete</label><h2>⚛ Learning Atom 5 — <em>Develop, Prototype &amp; Evaluate</em></h2>
+<p><strong>Phase:</strong> 🙊 3 · Applied Practice (<em>do</em>) · <strong>KSA:</strong> 🛠️ Skill + 🌱 Abilities · <strong>Target level:</strong> L2 · <strong>Component ids:</strong> <code>S-develop-prototype</code>, <code>A-creative-confidence</code>, <code>A-curiosity-openness</code></p>
+<h3>🎯 Learning objective</h3>
+<ul>
+<li><strong>Converge</strong> on the best ideas with criteria, <strong>build a rough prototype</strong>, and <strong>test</strong> it — while</li>
+</ul>
+<p>  demonstrating <strong>creative confidence</strong> and <strong>curious openness</strong>.</p>
+<h3>🧭 Atom description</h3>
+<p>A pile of ideas isn't innovation. This atom is where ideas become <em>real enough to learn from</em>: you select with criteria, make something tangible quickly, and test it to improve it. It's also where the two <strong>Abilities</strong> get assessed — because sharing rough work and treating failed tests as data is exactly creative confidence in action.</p>
+<hr>
+<h3>📖 Reading — <em>Make it real to make it better</em> (≈ 7 min)</h3>
+<p><strong>Step 1 — Converge with criteria (don't just pick your favorite).</strong> Score your shortlisted ideas on:</p>
+<ul>
+<li><strong>Desirability</strong> — do people actually want it? (ties back to your insight, Atom 3)</li>
+<li><strong>Feasibility</strong> — can it realistically be built/done?</li>
+<li><strong>Viability</strong> — is it worth it (value vs. cost)?</li>
+</ul>
+<p>A quick <strong>impact–effort matrix</strong> (or dot voting to shortlist, then criteria to choose) turns "I like this one" into a defensible choice. Pick 1–2 to prototype.</p>
+<p><strong>Step 2 — Prototype: lowest-fidelity thing that answers your biggest question.</strong> A prototype isn't a finished product — it's a <strong>question made tangible.</strong> Match fidelity to the question:</p>
+<ul>
+<li>Paper sketch / storyboard — <em>does the flow make sense?</em></li>
+<li>Clickable mock / slides — <em>is it understandable?</em></li>
+<li>Role-play / "Wizard of Oz" (you fake the backend) — <em>do people behave as hoped?</em></li>
+<li>Landing page / concept poster — <em>do people want it?</em></li>
+</ul>
+<p>The marshmallow-challenge lesson: teams that <strong>build early and often</strong> beat teams that plan then build once. <strong>Fail cheap, fail early.</strong></p>
+<p><strong>Step 3 — Test &amp; learn.</strong> Put the prototype in front of real people. Ask them to <em>use</em> it, not rate it. Watch for what confuses or delights them. Capture: <em>what worked, what didn't, what surprised me, what's next.</em> Then <strong>iterate</strong> — a "failed" test isn't failure, it's the data that makes the next version better.</p>
+<p><strong>The two Abilities, made visible.</strong> This atom surfaces dispositions under pressure:</p>
+<ul>
+<li><strong>🌱 Creative confidence</strong> — you <strong>share rough, unfinished work</strong> without apologizing it to death;</li>
+</ul>
+<p>  you treat a test that flops as <strong>iteration, not verdict</strong>; you defer judgment so ideas survive long   enough to develop.</p>
+<ul>
+<li><strong>🌱 Curious openness</strong> — you <strong>seek out</strong> disconfirming feedback, ask "what if we tried…", and pull</li>
+</ul>
+<p>  ideas from unexpected places rather than defending your first concept.</p>
+<blockquote><strong>The mark of an innovator:</strong> not falling in love with the first idea, but <strong>building the cheapest thing that teaches you the most — and changing your mind when it does.</strong></blockquote>
+<p><strong>Key takeaways</strong></p>
+<ul>
+<li><input type="checkbox" disabled> <strong>Converge with criteria</strong> (desirability, feasibility, viability), not just preference.</li>
+<li><input type="checkbox" disabled> A <strong>prototype is a question made tangible</strong> — match fidelity to the question; build early.</li>
+<li><input type="checkbox" disabled> <strong>Test by watching people use it</strong>; capture learnings and <strong>iterate.</strong></li>
+<li><input type="checkbox" disabled> <strong>Fail cheap, fail early</strong> — failed tests are data, not verdicts.</li>
+</ul>
+<hr>
+<h3>🖼️ See — converge → prototype → test → iterate</h3>
+<div class="mermaid">flowchart LR
+  IDEAS[&quot;🗂️ Idea pile&quot;] --&gt; CRIT[&quot;⚖️ Converge with criteria&lt;br/&gt;desirable · feasible · viable&quot;]
+  CRIT --&gt; PROTO[&quot;🧪 Rough prototype&lt;br/&gt;(question made tangible)&quot;]
+  PROTO --&gt; TEST[&quot;👥 Test with real people&quot;]
+  TEST --&gt;|&quot;learnings&quot;| ITER[&quot;🔁 Iterate&quot;]
+  ITER --&gt; PROTO</div>
+<p><img alt="Converge, prototype, test, iterate — generated diagram" src="img/atom-5-develop-prototype-and-evaluate.png"></p>
+<blockquote>🖼️ <em>Generated image — produced from the prompt below.</em></blockquote>
+<p>A reusable prompt to generate an on-brand version:</p>
+<div class="promptcard"><div class="promptcard-h"><span>🖼️ Image / AI prompt</span><button class="copybtn" type="button">Copy</button></div><pre><code>Create a clean, modern infographic of an iterative loop: Idea pile → Converge with criteria (desirable,
+feasible, viable) → Rough prototype (a question made tangible) → Test with real people → Iterate (loop
+back to prototype). Use ADA brand colors (Indigo #1E2A6E, Turquoise #15B5C6, Gold #E0A53C), light
+background, flat vector, legible sans-serif. 16:9.</code></pre></div>
+<hr>
+<h3>🧪 Practice — <em>Choose, build, test</em> (Lab + Simulation + Forum)</h3>
+<ol>
+<li><strong>Converge.</strong> Take your starred ideas from Atom 4. Score the top 5 on desirability/feasibility/</li>
+</ol>
+<p>   viability (or an impact–effort matrix). Pick <strong>one</strong> to prototype, and justify the choice.</p>
+<ol>
+<li><strong>Prototype.</strong> Build the <strong>lowest-fidelity</strong> prototype that answers your biggest open question</li>
+</ol>
+<p>   (sketch, slides, paper flow, role-play, or landing page). Timebox it — rough is the point.</p>
+<ol>
+<li><strong>Test.</strong> Show it to <strong>at least 2 people.</strong> Have them <em>use</em> it; note what worked, what confused them,</li>
+</ol>
+<p>   what surprised you. Write your <strong>next iteration.</strong></p>
+<ol>
+<li><strong>Share in the forum.</strong> Post your prototype + learnings; give "I like / I wish / what if" feedback to</li>
+</ol>
+<p>   ≥2 peers and respond to feedback on yours.</p>
+<blockquote>🤝 <strong>This is a behavioral-assessment occasion.</strong> Mentors observe <em>how</em> you work: Do you share rough work without over-polishing? Do you treat a flop as iteration? Do you seek and build on others' feedback rather than defend?</blockquote>
+<hr>
+<h3>✅ Evaluate — Behavioral assessment (<code>behavioral</code>, Abilities)</h3>
+<p>Observed across this atom + the forum + the capstone (≥3 occasions):</p>
+<div class='tablewrap'><table><thead><tr><th>Ability</th><th>Look-for (evidence)</th></tr></thead><tbody>
+<tr><td>🌱 Creative confidence</td><td>Shares unfinished work; treats failed tests as iteration; defers judgment; takes a productive risk</td></tr>
+<tr><td>🌱 Curious openness</td><td>Seeks disconfirming feedback; asks "what if"; borrows ideas across domains; changes course on evidence</td></tr>
+</tbody></table></div>
+<p>Rated <strong>Emerging / Developing / Proficient</strong> on the behavioral rubric in <a href="../../index.html#/examples/innovation-creativity-micro-credential/atoms/rubrics.md" target="_blank" rel="noopener"><code>rubrics.md</code></a> (not a quiz — evidenced over time). The <strong>prototype/test quality</strong> (criteria use, fidelity-to-question, real learnings) is scored on the <code>skill</code> rubric.</p>
+<h3>📦 Deliverable</h3>
+<ul>
+<li>Your selection matrix, the prototype (photo/file/link), test notes, and your next iteration — plus a</li>
+</ul>
+<p>  note: "what the test changed about my idea."</p>
+<h3>🧠 Final reflection</h3>
+<ul>
+<li>What surprised you in testing? Was sharing rough work uncomfortable — and did it get easier?</li>
+</ul>
+<h3>🔗 Sources to verify (human-in-the-loop)</h3>
+<ul>
+<li>Kelley &amp; Kelley, <em>Creative Confidence</em>; IDEO prototyping methods.</li>
+<li>Tom Wujec, <em>The Marshmallow Challenge</em> (build early, iterate).</li>
+<li>"Desirability / Feasibility / Viability" (IDEO innovation lens).</li>
+</ul>
+<h3>🧩 Connections</h3>
+<ul>
+<li><strong>Predecessor:</strong> Atom 4. <strong>Successor:</strong> Atom 6 (run the whole loop on a real challenge).</li>
+</ul></section>
+<section class="page" id="page-atom-6" data-id="atom-6"><label class="donebox"><input type="checkbox" class="donechk" data-atom="atom-6"> Mark this atom complete</label><h2>⚛ Learning Atom 6 — <em>Capstone: Innovation Challenge</em></h2>
+<p><strong>Phase:</strong> 🐵 4 · Collaboration &amp; Reflection (<em>share</em>) · <strong>KSA:</strong> 🛠️ Skill + 🌱 Abilities · <strong>Target level:</strong> L2 · <strong>Rubric:</strong> <code>capstone-5</code></p>
+<h3>🎯 Learning objective</h3>
+<ul>
+<li><strong>Integrate</strong> the whole course: take a real problem, <strong>reframe</strong> it, <strong>generate</strong> options,</li>
+</ul>
+<p>  <strong>prototype</strong> the best, and <strong>pitch</strong> it — demonstrating creative confidence and curious openness   throughout.</p>
+<h3>🧭 Atom description</h3>
+<p>The capstone is a single deliverable that proves every component at once: you run a complete innovation sprint from blank page to pitched, prototyped concept, then present it and review a peer's — showing the Skills and Abilities in one continuous piece of evidence.</p>
+<hr>
+<h3>🧪 The capstone task</h3>
+<p><strong>Pick a real problem or opportunity</strong> worth improving — a product, service, process, or experience you care about (at work, in your community, or a public problem). Then run the full loop:</p>
+<ol>
+<li><strong>Reframe (Atom 3).</strong> Observe, find an insight, and write a sharp <strong>"How Might We"</strong> question.</li>
+</ol>
+<p>   Include 2–3 alternative frames and why you chose yours.</p>
+<ol>
+<li><strong>Diverge (Atom 4).</strong> Generate <strong>30+ varied ideas</strong> (show your raw list); use ≥2 techniques and AI</li>
+</ol>
+<p>   as a multiplier. Mark the most original ones.</p>
+<ol>
+<li><strong>Converge (Atom 5).</strong> Score a shortlist on desirability/feasibility/viability; choose **one</li>
+</ol>
+<p>   concept** and justify it.</p>
+<ol>
+<li><strong>Prototype (Atom 5).</strong> Build a <strong>rough prototype</strong> that answers your biggest question (sketch, mock,</li>
+</ol>
+<p>   storyboard, role-play, or landing page).</p>
+<ol>
+<li><strong>Test &amp; iterate.</strong> Get feedback from ≥2 people; document what you learned and what you changed.</li>
+<li><strong>Pitch.</strong> A short (2–3 min or 1-page) pitch: the problem/insight, the concept, why it's valuable</li>
+</ol>
+<p>   (desirability/feasibility/viability), and what you'd do next.</p>
+<p><strong>Deliverable:</strong> an <strong>Innovation Brief</strong> (the artifacts above, ~800–1,200 words or a short deck) + the prototype + the pitch.</p>
+<hr>
+<h3>🤝 Collaboration (Phase 4)</h3>
+<ul>
+<li><strong>Showcase / demo day:</strong> present your pitch; field questions on your reframe and concept.</li>
+<li><strong>Async peer review:</strong> review ≥1 peer's brief — give "I like / I wish / what if" feedback, one</li>
+</ul>
+<p>  strength, and one bold suggestion to push the idea further.</p>
+<blockquote>🌱 <strong>Behavioral evidence:</strong> the showcase + peer review are key occasions for assessing <strong>creative confidence</strong> (do you share boldly, handle critique as fuel?) and <strong>curious openness</strong> (do you build on others' ideas, ask "what if"?).</blockquote>
+<hr>
+<h3>✅ Evaluate — Capstone rubric (<code>capstone-5</code>)</h3>
+<div class='tablewrap'><table><thead><tr><th>Criterion</th><th>Excellent (100–90%)</th><th>Competent (89–80%)</th><th>Developing (79–70%)</th><th>Beginning (≤69%)</th><th>Weight</th></tr></thead><tbody>
+<tr><td><strong>Reframe &amp; insight</strong></td><td>Sharp, human-centered insight and HMW; alternative frames show real reframing</td><td>Clear insight and usable HMW</td><td>Generic problem; weak insight</td><td>Solves the obvious/wrong problem</td><td><strong>20 pts</strong></td></tr>
+<tr><td><strong>Idea generation</strong></td><td>High volume, strong variety and genuine originality; techniques + AI used well</td><td>Good quantity and some variety</td><td>Few ideas; mostly obvious</td><td>Minimal/derivative ideas</td><td><strong>20 pts</strong></td></tr>
+<tr><td><strong>Convergence &amp; prototype</strong></td><td>Criteria-based choice; prototype precisely answers the key question</td><td>Reasonable choice + working prototype</td><td>Weak rationale; superficial prototype</td><td>No real criteria or prototype</td><td><strong>25 pts</strong></td></tr>
+<tr><td><strong>Testing, iteration &amp; value</strong></td><td>Real user testing; clear learnings drive iteration; value is well-argued</td><td>Tested; some iteration and value case</td><td>Little testing/iteration</td><td>No testing; value unclear</td><td><strong>20 pts</strong></td></tr>
+<tr><td><strong>Pitch, collaboration &amp; confidence</strong></td><td>Compelling, clear pitch; bold sharing; incisive, generative peer review</td><td>Solid pitch and review</td><td>Minimal/unclear pitch or review</td><td>Avoids sharing; no real review</td><td><strong>15 pts</strong></td></tr>
+<tr><td><strong>TOTAL</strong></td><td></td><td></td><td></td><td></td><td><strong>100 pts</strong></td></tr>
+</tbody></table></div>
+<blockquote><strong>Pass = ≥80% overall + no criterion below Developing.</strong> Earns the <strong>🏅 Creative Innovator</strong> badge (with <code>S-reframe-opportunities</code>, <code>S-generate-ideas</code>, <code>S-develop-prototype</code> at L2 and both Abilities at L2 from behavioral evidence).</blockquote>
+<hr>
+<h3>📦 Deliverable</h3>
+<ul>
+<li>The <strong>Innovation Brief</strong> + prototype + pitch + one completed peer review.</li>
+</ul>
+<h3>🧠 Final reflection</h3>
+<ul>
+<li>Where did your concept improve most — the reframe, the divergence, or the testing? What creative habit</li>
+</ul>
+<p>  will you keep using weekly?</p>
+<h3>🔗 Sources to verify (human-in-the-loop)</h3>
+<ul>
+<li>See Atoms 1–5. Optionally: IDEO <em>Design Kit</em>; Kelley &amp; Kelley, <em>Creative Confidence</em>.</li>
+</ul>
+<h3>🧩 Connections</h3>
+<ul>
+<li><strong>Predecessors:</strong> Atoms 1–5 (this integrates all of them).</li>
+<li><strong>Pairs with:</strong> <a href="../../index.html#/examples/critical-thinking-micro-credential/README.md" target="_blank" rel="noopener">Critical Thinking</a> (judge which</li>
+</ul>
+<p>  ideas hold up) and <a href="../../index.html#/examples/problem-solving-micro-credential/README.md" target="_blank" rel="noopener">Problem Solving</a> (ship the chosen one).</p></section>
+<section class="page" id="page-capstone" data-id="capstone"><h1>🚀 Capstone — Innovation Challenge</h1>
+<p>The capstone integrates every component of the <strong>Innovation &amp; Creativity</strong> micro-credential into one piece of evidence. Full task and rubric live in <a href="#atom-6"><code>atoms/atom-6-capstone-innovation-challenge.md</code></a>; this file is the at-a-glance brief and the KSA mapping.</p>
+<hr>
+<h2>🎯 The brief</h2>
+<blockquote><strong>Run a full innovation challenge: reframe a real problem, generate options, prototype the best, and pitch it.</strong></blockquote>
+<p>Deliverable: an <strong>Innovation Brief</strong> (~800–1,200 words or short deck) + prototype + pitch that:</p>
+<ol>
+<li><strong>Reframes</strong> a real problem (observe → insight → "How Might We" + alternative frames).</li>
+<li><strong>Diverges</strong> — 30+ varied ideas, ≥2 techniques + AI, originals marked.</li>
+<li><strong>Converges</strong> — criteria-based shortlist (desirability/feasibility/viability) → one concept.</li>
+<li><strong>Prototypes</strong> — a rough prototype that answers the biggest question.</li>
+<li><strong>Tests &amp; iterates</strong> — feedback from ≥2 people, documented learnings and changes.</li>
+<li><strong>Pitches</strong> — problem/insight, concept, value, and next steps.</li>
+</ol>
+<p>Plus a <strong>showcase/demo</strong> and at least one <strong>peer review</strong>.</p>
+<hr>
+<h2>🧬 How the capstone proves each KSA component</h2>
+<div class='tablewrap'><table><thead><tr><th>KSA</th><th>Component</th><th>Where it shows up in the capstone</th></tr></thead><tbody>
+<tr><td>🧠 K</td><td>What creativity &amp; innovation are</td><td>Diverge/converge discipline; value argument (idea → value)</td></tr>
+<tr><td>🧠 K</td><td>Ideation frameworks</td><td>Named techniques used in divergence and convergence</td></tr>
+<tr><td>🛠️ S</td><td>Reframe &amp; spot opportunities</td><td>The reframe section (insight + HMW + frames)</td></tr>
+<tr><td>🛠️ S</td><td>Generate ideas</td><td>The 30+ idea list (fluency, flexibility, originality)</td></tr>
+<tr><td>🛠️ S</td><td>Develop, prototype &amp; evaluate</td><td>Criteria choice + prototype + test/iterate</td></tr>
+<tr><td>🌱 A</td><td>Creative confidence</td><td>Bold sharing; failed tests as iteration; productive risk</td></tr>
+<tr><td>🌱 A</td><td>Curious openness</td><td>"What if" questions; building on feedback; cross-domain ideas</td></tr>
+</tbody></table></div>
+<hr>
+<h2>✅ Pass bar</h2>
+<ul>
+<li><strong>≥ 80%</strong> on the 5-criteria <code>capstone-5</code> rubric <strong>and</strong> no criterion below <em>Developing</em>.</li>
+<li>Abilities confirmed at <strong>L2</strong> via behavioral evidence across <strong>≥ 3 occasions</strong> (Atom 5 + forum +</li>
+</ul>
+<p>  capstone showcase).</p>
+<ul>
+<li>Result: <strong>🏅 Creative Innovator</strong> badge issued on verified evidence, writing</li>
+</ul>
+<p>  <code>S-reframe-opportunities</code>, <code>S-generate-ideas</code>, <code>S-develop-prototype</code>, <code>A-creative-confidence</code>,   <code>A-curiosity-openness</code> to the learner's <a href="#skillsmap">skills map</a>.</p></section>
+<section class="page" id="page-rubrics" data-id="rubrics"><h1>📊 Rubrics — Innovation &amp; Creativity Micro-Credential</h1>
+<p>All assessment instruments for this micro-credential, in one place. They follow the ADA conventions: <strong>formative</strong> knowledge checks, <strong>skill</strong> performance tasks, <strong>behavioral</strong> assessment for Abilities (across ≥3 occasions, never a quiz), and the standardized <strong>5-criteria capstone</strong> rubric.</p>
+<hr>
+<h2>1. <code>knowledge-mini</code> — formative knowledge checks (Atoms 1–2)</h2>
+<p>Used for the pop quizzes. Not heavily weighted; the goal is readiness for the skill atoms.</p>
+<div class='tablewrap'><table><thead><tr><th>Band</th><th>Descriptor</th></tr></thead><tbody>
+<tr><td>✅ Secure</td><td>Distinguishes creativity/innovation and diverge/converge; names frameworks and when to use them</td></tr>
+<tr><td>🟡 Developing</td><td>Gets the gist; mixes up some frameworks or the diverge/converge distinction</td></tr>
+<tr><td>🔴 Not yet</td><td>Cannot yet explain the creative process or name ideation tools — revisit Atoms 1–2</td></tr>
+</tbody></table></div>
+<hr>
+<h2>2. <code>skill</code> — performance-task rubric (Atoms 3–4)</h2>
+<p>Applied to the reframe task (Atom 3) and the idea-generation task (Atom 4). Pass = <strong>2+ on every row</strong> → records the component at <strong>L2</strong>.</p>
+<div class='tablewrap'><table><thead><tr><th>Criterion</th><th>Excellent (3)</th><th>Adequate (2)</th><th>Needs work (1)</th></tr></thead><tbody>
+<tr><td><strong>Reframe / observation</strong></td><td>Behavior-based observation; genuine insight; sharp solution-neutral HMW</td><td>Some real insight / usable HMW</td><td>Opinions not observation; HMW is a solution in disguise</td></tr>
+<tr><td><strong>Idea volume &amp; variety</strong></td><td>High fluency (30+) and flexibility (6+ categories)</td><td>Decent quantity, some variety</td><td>Few, same-category ideas</td></tr>
+<tr><td><strong>Originality</strong></td><td>Clearly non-obvious, novel ideas surfaced</td><td>A few original ideas</td><td>All clichés / first-ten</td></tr>
+<tr><td><strong>Process discipline</strong></td><td>Defers judgment; uses techniques to break ruts</td><td>Some technique use</td><td>Stalls; judges while generating</td></tr>
+</tbody></table></div>
+<blockquote><code>S-reframe-opportunities</code> (Atom 3) and <code>S-generate-ideas</code> (Atom 4) each reach <strong>L2</strong> on a pass.</blockquote>
+<hr>
+<h2>3. <code>behavioral</code> — Abilities rubric (Atoms 5–6, ≥ 3 occasions)</h2>
+<p>Abilities are <strong>observed over time</strong>, never quizzed. Evidence is gathered across Atom 5 (prototype &amp; test), the discussion forum, and the capstone showcase + peer review.</p>
+<h3>🌱 <code>A-creative-confidence</code> — share rough work &amp; treat failure as iteration</h3>
+<div class='tablewrap'><table><thead><tr><th>Stage</th><th>Observable behavior</th></tr></thead><tbody>
+<tr><td>Proficient (L2+)</td><td>Shares unfinished work without over-polishing; treats failed tests as iteration; takes productive creative risks; defers judgment</td></tr>
+<tr><td>Developing (L1–L2)</td><td>Shares with prompting; some risk-taking; occasionally defensive about flops</td></tr>
+<tr><td>Emerging (L0–L1)</td><td>Withholds ideas until "perfect"; treats failure as verdict; avoids risk</td></tr>
+</tbody></table></div>
+<h3>🌱 <code>A-curiosity-openness</code> — seek novelty &amp; connect across domains</h3>
+<div class='tablewrap'><table><thead><tr><th>Stage</th><th>Observable behavior</th></tr></thead><tbody>
+<tr><td>Proficient (L2+)</td><td>Seeks disconfirming feedback; asks "what if"; borrows ideas across domains; changes course on evidence</td></tr>
+<tr><td>Developing (L1–L2)</td><td>Curious in familiar areas; some openness to feedback</td></tr>
+<tr><td>Emerging (L0–L1)</td><td>Defends first idea; little novelty-seeking; closed to other domains</td></tr>
+</tbody></table></div>
+<blockquote><strong>≥ 3 occasions</strong> required for the badge. Mentors log short notes per occasion (date, behavior seen).</blockquote>
+<hr>
+<h2>4. <code>capstone-5</code> — capstone rubric (Atom 6)</h2>
+<p>The standardized 5-criteria, weighted, 4-band rubric. <strong>Pass = ≥ 80% overall and no criterion below Developing.</strong></p>
+<div class='tablewrap'><table><thead><tr><th>Criterion</th><th>Excellent (100–90%)</th><th>Competent (89–80%)</th><th>Developing (79–70%)</th><th>Beginning (≤69%)</th><th>Weight</th></tr></thead><tbody>
+<tr><td><strong>Reframe &amp; insight</strong></td><td>Sharp, human-centered insight and HMW; alternative frames show real reframing</td><td>Clear insight and usable HMW</td><td>Generic problem; weak insight</td><td>Solves the obvious/wrong problem</td><td><strong>20 pts</strong></td></tr>
+<tr><td><strong>Idea generation</strong></td><td>High volume, strong variety and genuine originality; techniques + AI used well</td><td>Good quantity and some variety</td><td>Few ideas; mostly obvious</td><td>Minimal/derivative ideas</td><td><strong>20 pts</strong></td></tr>
+<tr><td><strong>Convergence &amp; prototype</strong></td><td>Criteria-based choice; prototype precisely answers the key question</td><td>Reasonable choice + working prototype</td><td>Weak rationale; superficial prototype</td><td>No real criteria or prototype</td><td><strong>25 pts</strong></td></tr>
+<tr><td><strong>Testing, iteration &amp; value</strong></td><td>Real user testing; clear learnings drive iteration; value is well-argued</td><td>Tested; some iteration and value case</td><td>Little testing/iteration</td><td>No testing; value unclear</td><td><strong>20 pts</strong></td></tr>
+<tr><td><strong>Pitch, collaboration &amp; confidence</strong></td><td>Compelling, clear pitch; bold sharing; incisive, generative peer review</td><td>Solid pitch and review</td><td>Minimal/unclear pitch or review</td><td>Avoids sharing; no real review</td><td><strong>15 pts</strong></td></tr>
+<tr><td><strong>TOTAL</strong></td><td></td><td></td><td></td><td></td><td><strong>100 pts</strong></td></tr>
+</tbody></table></div>
+<hr>
+<h2>🏅 Badge issuance</h2>
+<div class='tablewrap'><table><thead><tr><th>Requirement</th><th>Evidence</th></tr></thead><tbody>
+<tr><td><code>S-reframe-opportunities</code> @ L2</td><td>Atom 3 performance task</td></tr>
+<tr><td><code>S-generate-ideas</code> @ L2</td><td>Atom 4 performance task</td></tr>
+<tr><td><code>S-develop-prototype</code> @ L2</td><td>Atom 5 + capstone</td></tr>
+<tr><td><code>A-creative-confidence</code> @ L2</td><td>Behavioral, ≥3 occasions</td></tr>
+<tr><td><code>A-curiosity-openness</code> @ L2</td><td>Behavioral, ≥3 occasions</td></tr>
+<tr><td>Capstone ≥ 80%</td><td><code>capstone-5</code> rubric</td></tr>
+</tbody></table></div>
+<p>All six → <strong>🏅 Creative Innovator</strong> badge, written to the learner's <a href="#skillsmap">skills map</a>.</p></section>
+<section class="page" id="page-skillsmap" data-id="skillsmap"><h1>🗺️ Skills Map — Innovation &amp; Creativity</h1>
+<p>How the <strong>🏅 Creative Innovator</strong> badge writes to a learner's skills map, and why it strengthens product, design, and strategy roles. See the methodology in <a href="../../index.html#/specs/skills-map-and-job-matching.md" target="_blank" rel="noopener"><code>../../specs/skills-map-and-job-matching.md</code></a>.</p>
+<hr>
+<h2>🧩 What the badge writes to the map</h2>
+<p>On earning the badge, these KSA components are recorded with verified evidence:</p>
+<div class='tablewrap'><table><thead><tr><th>Component</th><th>Type</th><th>Level</th><th>Evidence</th></tr></thead><tbody>
+<tr><td><code>K-creativity-innovation</code></td><td>🧠 Knowledge</td><td>L2</td><td>Pop quiz + applied in capstone</td></tr>
+<tr><td><code>K-ideation-frameworks</code></td><td>🧠 Knowledge</td><td>L2</td><td>Pop quiz + applied in capstone</td></tr>
+<tr><td><code>S-reframe-opportunities</code></td><td>🛠️ Skill</td><td><strong>L2</strong></td><td>Atom 3 performance task</td></tr>
+<tr><td><code>S-generate-ideas</code></td><td>🛠️ Skill</td><td><strong>L2</strong></td><td>Atom 4 performance task</td></tr>
+<tr><td><code>S-develop-prototype</code></td><td>🛠️ Skill</td><td><strong>L2</strong></td><td>Atom 5 + capstone</td></tr>
+<tr><td><code>A-creative-confidence</code></td><td>🌱 Ability</td><td>L2</td><td>Behavioral, ≥3 occasions</td></tr>
+<tr><td><code>A-curiosity-openness</code></td><td>🌱 Ability</td><td>L2</td><td>Behavioral, ≥3 occasions</td></tr>
+</tbody></table></div>
+<div class="mermaid">flowchart LR
+  subgraph BADGE[&quot;🏅 Creative Innovator&quot;]
+    K1[&quot;🧠 K-creativity-innovation · L2&quot;]
+    K2[&quot;🧠 K-ideation-frameworks · L2&quot;]
+    S1[&quot;🛠️ S-reframe-opportunities · L2&quot;]
+    S2[&quot;🛠️ S-generate-ideas · L2&quot;]
+    S3[&quot;🛠️ S-develop-prototype · L2&quot;]
+    A1[&quot;🌱 A-creative-confidence · L2&quot;]
+    A2[&quot;🌱 A-curiosity-openness · L2&quot;]
+  end
+  BADGE --&gt; MAP[&quot;🗺️ Learner skills map&quot;]
+  MAP --&gt; MATCH[&quot;🎯 Job matching&quot;]</div>
+<hr>
+<h2>🎯 Why this badge strengthens many roles</h2>
+<p>Creativity and innovation are <strong>transversal</strong> competencies that O*NET lists as core abilities (Originality, Fluency of Ideas) and a key work style (Innovation). The badge also <strong>amplifies</strong> other skills on the map:</p>
+<div class='tablewrap'><table><thead><tr><th>Pairs with</th><th>Combined effect</th></tr></thead><tbody>
+<tr><td>🧠 <a href="../../index.html#/examples/critical-thinking-micro-credential/README.md" target="_blank" rel="noopener">Critical Thinking</a></td><td>Judge which novel ideas actually hold up</td></tr>
+<tr><td>🧩 <a href="../../index.html#/examples/problem-solving-micro-credential/README.md" target="_blank" rel="noopener">Problem Solving</a></td><td>Turn the chosen idea into a shipped solution</td></tr>
+<tr><td>🗣️ <a href="../../index.html#/examples/effective-communication-micro-credential/README.md" target="_blank" rel="noopener">Effective Communication</a></td><td>Pitch ideas so they get adopted</td></tr>
+<tr><td>🌱 <a href="../../index.html#/examples/growth-mindset-micro-credential/README.md" target="_blank" rel="noopener">Growth Mindset</a></td><td>Treat failed experiments as learning</td></tr>
+</tbody></table></div>
+<hr>
+<h2>🧮 Worked matching example</h2>
+<p>A role posting asks for <em>"a creative, innovative thinker who can generate fresh ideas and turn them into prototypes and tested concepts."</em></p>
+<div class='tablewrap'><table><thead><tr><th>Requirement</th><th>Map evidence</th><th>Status</th></tr></thead><tbody>
+<tr><td>Generate fresh ideas</td><td><code>S-generate-ideas</code> @ L2</td><td>✅ met</td></tr>
+<tr><td>Reframe / find opportunities</td><td><code>S-reframe-opportunities</code> @ L2</td><td>✅ met</td></tr>
+<tr><td>Prototype &amp; test concepts</td><td><code>S-develop-prototype</code> @ L2</td><td>✅ met</td></tr>
+<tr><td>Innovative, open mindset</td><td><code>A-creative-confidence</code> + <code>A-curiosity-openness</code> (behavioral)</td><td>✅ met</td></tr>
+</tbody></table></div>
+<p>→ A learner holding this badge <strong>meets the innovation minimums</strong> for the role, with <em>verifiable evidence</em> (an Innovation Brief, prototype, and behavioral observations) rather than a self-claimed "creative" bullet point.</p>
+<blockquote>⚠️ <strong>Human-in-the-loop:</strong> AI-suggested matches are provisional until a mentor/employer validates the evidence — per <a href="../../index.html#/CLAUDE.md" target="_blank" rel="noopener"><code>../../CLAUDE.md</code></a> §5.</blockquote></section></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var pages=Array.prototype.slice.call(document.querySelectorAll(".page"));
+  var ids=pages.map(function(p){return p.getAttribute("data-id");});
+  var links=Array.prototype.slice.call(document.querySelectorAll(".navlink"));
+  var atomIds=["atom-1","atom-2","atom-3","atom-4","atom-5","atom-6"];
+  var idx=0;
+
+  function show(id){
+    var i=ids.indexOf(id); if(i<0)i=0; idx=i;
+    pages.forEach(function(p){p.classList.toggle("active",p.getAttribute("data-id")===id);});
+    links.forEach(function(a){a.classList.toggle("active",a.getAttribute("data-target")===id);});
+    document.getElementById("prevbtn").disabled=(idx===0);
+    document.getElementById("nextbtn").disabled=(idx===pages.length-1);
+    if(location.hash.slice(1)!==id) history.replaceState(null,"","#"+id);
+    document.getElementById("side").classList.remove("open");
+    window.scrollTo(0,0);
+    renderMermaid();
+  }
+  links.forEach(function(a){a.addEventListener("click",function(e){e.preventDefault();show(a.getAttribute("data-target"));});});
+  document.getElementById("prevbtn").addEventListener("click",function(){if(idx>0)show(ids[idx-1]);});
+  document.getElementById("nextbtn").addEventListener("click",function(){if(idx<ids.length-1)show(ids[idx+1]);});
+  document.getElementById("menutoggle").addEventListener("click",function(){document.getElementById("side").classList.toggle("open");});
+
+  // progress (localStorage)
+  var KEY="innovation-creativity-progress";
+  function load(){try{return JSON.parse(localStorage.getItem(KEY)||"{}");}catch(e){return {};}}
+  function save(s){try{localStorage.setItem(KEY,JSON.stringify(s));}catch(e){}}
+  function refresh(){
+    var s=load(),done=0;
+    document.querySelectorAll(".donechk").forEach(function(c){
+      c.checked=!!s[c.getAttribute("data-atom")]; if(c.checked)done++;});
+    var pct=Math.round(done/atomIds.length*100);
+    document.getElementById("progfill").style.width=pct+"%";
+    document.getElementById("progtext").textContent=done+" / "+atomIds.length+" atoms complete";
+  }
+  document.querySelectorAll(".donechk").forEach(function(c){
+    c.addEventListener("change",function(){var s=load();s[c.getAttribute("data-atom")]=c.checked;save(s);refresh();});
+  });
+  refresh();
+
+  // copy buttons
+  document.querySelectorAll(".copybtn").forEach(function(b){
+    b.addEventListener("click",function(){
+      var pre=b.closest(".promptcard").querySelector("pre");
+      var txt=pre.innerText;
+      (navigator.clipboard?navigator.clipboard.writeText(txt):Promise.reject()).then(function(){
+        b.textContent="Copied!";b.classList.add("ok");setTimeout(function(){b.textContent="Copy";b.classList.remove("ok");},1400);
+      }).catch(function(){
+        var r=document.createRange();r.selectNodeContents(pre);var sel=getSelection();sel.removeAllRanges();sel.addRange(r);
+        try{document.execCommand("copy");}catch(e){} sel.removeAllRanges();
+        b.textContent="Copied!";b.classList.add("ok");setTimeout(function(){b.textContent="Copy";b.classList.remove("ok");},1400);
+      });
+    });
+  });
+
+  // youtube click-to-play
+  document.querySelectorAll(".yt").forEach(function(y){
+    var btn=y.querySelector(".yt-play");
+    btn.addEventListener("click",function(){
+      var id=y.getAttribute("data-id"); if(!id)return;
+      // file:// pages can't host a YouTube iframe (Error 153) -> open on YouTube instead.
+      if(location.protocol==="file:"){window.open("https://www.youtube.com/watch?v="+id,"_blank","noopener");return;}
+      var f=document.createElement("iframe");
+      f.src="https://www.youtube-nocookie.com/embed/"+id+"?autoplay=1&rel=0";
+      f.allow="accelerated-sensors;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture;web-share;fullscreen";
+      f.setAttribute("allowfullscreen","");
+      f.setAttribute("referrerpolicy","strict-origin-when-cross-origin");
+      f.title="YouTube video";
+      btn.replaceWith(f);
+    });
+  });
+
+  // mermaid (CDN, brand theme, root emphasis, graceful fallback)
+  var mmReady=null;
+  function ensureMermaid(){
+    if(mmReady)return mmReady;
+    mmReady=new Promise(function(res,rej){
+      if(window.mermaid)return res(window.mermaid);
+      var s=document.createElement("script");
+      s.src="https://cdn.jsdelivr.net/npm/mermaid@11.15.0/dist/mermaid.min.js";
+      s.onload=function(){res(window.mermaid);};
+      s.onerror=function(){
+        var s2=document.createElement("script");
+        s2.src="https://unpkg.com/mermaid@11.15.0/dist/mermaid.min.js";
+        s2.onload=function(){res(window.mermaid);}; s2.onerror=rej;
+        document.head.appendChild(s2);
+      };
+      document.head.appendChild(s);
+    });
+    return mmReady;
+  }
+  function src(n){var s=n.getAttribute("data-src");if(s===null){s=n.textContent;n.setAttribute("data-src",s);}return s;}
+  function fallback(n){n.classList.add("fallback");n.innerHTML="<pre>"+src(n).replace(/[&<>]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;"}[c];})+"</pre>";}
+  function detectRoots(s){
+    try{var L=s.split(/\r?\n/);if(!/^\s*(flowchart|graph)\b/i.test(L[0]||""))return [];
+      var all={},tg={};
+      for(var i=1;i<L.length;i++){var t=(L[i]||"").trim();
+        if(!t||/^%%/.test(t))continue;
+        if(/^(classdef|class|style|linkstyle|click|direction|subgraph|end)\b/i.test(t))continue;
+        var x=L[i];for(var k=0;k<8;k++){x=x.replace(/\(\([^()]*\)\)/g," ").replace(/\[[^\[\]]*\]/g," ").replace(/\{[^{}]*\}/g," ").replace(/\([^()]*\)/g," ");}
+        x=x.replace(/\|[^|]*\|/g," ");if(x.indexOf("--")<0&&x.indexOf("==")<0)continue;
+        var ids=x.split(/\s*(?:-{2,}>?|={2,}>?|-\.->?)\s*/).map(function(z){return (z.trim().match(/^[A-Za-z0-9_]+/)||[""])[0];}).filter(Boolean);
+        for(var j=0;j<ids.length;j++){all[ids[j]]=1;if(j>0)tg[ids[j]]=1;}}
+      var r=Object.keys(all).filter(function(id){return !tg[id];});
+      return r.length&&r.length<=4?r:[];
+    }catch(e){return [];}
+  }
+  function emphasize(s){var r=detectRoots(s);if(!r.length)return s;
+    return s+"\nclassDef adaRootNode fill:#1E2A6E,stroke:#E0A53C,stroke-width:3px,color:#ffffff,font-weight:bold,font-size:21px;\nclass "+r.join(",")+" adaRootNode;";}
+  var seq=0;
+  function renderMermaid(){
+    var nodes=Array.prototype.slice.call(document.querySelectorAll(".page.active .mermaid:not([data-done])"));
+    if(!nodes.length)return;
+    nodes.forEach(src);
+    ensureMermaid().then(function(m){
+      m.initialize({startOnLoad:false,securityLevel:"loose",theme:"base",fontFamily:"inherit",fontSize:"16px",
+        flowchart:{htmlLabels:true,useMaxWidth:true,curve:"basis",padding:14,nodeSpacing:52,rankSpacing:58},
+        themeVariables:{fontSize:"16px",primaryColor:"#1E2A6E",primaryTextColor:"#ffffff",primaryBorderColor:"#15B5C6",
+          mainBkg:"#1E2A6E",nodeBorder:"#15B5C6",nodeTextColor:"#ffffff",lineColor:"#1E2A6E",
+          clusterBkg:"#eef2fb",clusterBorder:"#15B5C6",titleColor:"#1E2A6E",
+          background:"#ffffff",textColor:"#1E2A6E",edgeLabelBackground:"#ffffff",
+          cScale0:"#1E2A6E",cScale1:"#15B5C6",cScale2:"#E0A53C",cScale3:"#2a3aa0",
+          cScaleLabel0:"#ffffff",cScaleLabel1:"#0A1124",cScaleLabel2:"#0A1124",cScaleLabel3:"#ffffff"}});
+      nodes.forEach(function(n){
+        n.setAttribute("data-done","1");
+        var id="mm-"+(Date.now())+"-"+(seq++);
+        try{m.render(id,emphasize(src(n))).then(function(o){n.innerHTML=o.svg;}).catch(function(){fallback(n);});}
+        catch(e){fallback(n);}
+      });
+    }).catch(function(){nodes.forEach(fallback);});
+  }
+
+  window.addEventListener("hashchange",function(){show(location.hash.slice(1)||ids[0]);});
+  show(location.hash.slice(1)||ids[0]);
+})();
+</script>
+</body>
+</html>

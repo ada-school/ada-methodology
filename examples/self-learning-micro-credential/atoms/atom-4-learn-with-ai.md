@@ -81,6 +81,10 @@ flowchart LR
   OK -->|no| AI
 ```
 
+![Learn with AI, safely — generated diagram](../img/atom-4-learn-with-ai.png)
+
+> 🖼️ *Generated image — produced from the prompt below.*
+
 A reusable prompt to generate an on-brand version:
 
 ```prompt

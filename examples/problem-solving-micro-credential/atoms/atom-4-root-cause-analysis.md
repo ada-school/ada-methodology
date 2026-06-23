@@ -78,6 +78,10 @@ flowchart LR
   ENV["🌍 Environment"] --> PROB
 ```
 
+![Ishikawa (fishbone) diagram — generated diagram](../img/atom-4-root-cause-analysis.png)
+
+> 🖼️ *Generated image — produced from the prompt below.*
+
 A reusable prompt to generate an on-brand version:
 
 ```prompt

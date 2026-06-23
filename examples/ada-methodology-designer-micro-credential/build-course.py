@@ -138,13 +138,14 @@ def md_to_html(md):
                 url = parts[0].strip()
                 cap = parts[1].strip() if len(parts) > 1 else ""
                 vid = yt_id(url)
+                thumb = (' style="background-image:url(https://i.ytimg.com/vi/%s/hqdefault.jpg)"' % html.escape(vid)) if vid else ""
                 out.append(
                     '<div class="yt" data-id="%s">'
-                    '<button class="yt-play" type="button" aria-label="Play video">'
+                    '<button class="yt-play" type="button" aria-label="Play video"%s>'
                     '<span class="yt-tri">&#9654;</span></button>'
                     '<div class="yt-meta"><a href="%s" target="_blank" rel="noopener">%s</a>'
                     '<div class="yt-cap">%s</div></div></div>'
-                    % (html.escape(vid), html.escape(url), html.escape(url), inline(cap))
+                    % (html.escape(vid), thumb, html.escape(url), html.escape(url), inline(cap))
                 )
             elif lang == "prompt":
                 out.append(
@@ -362,8 +363,9 @@ tr:nth-child(even) td{background:#f7f9fe}
 /* youtube facade */
 .yt{margin:1.2em 0;border-radius:var(--radius);overflow:hidden;background:var(--ink);box-shadow:var(--shadow)}
 .yt .yt-play{position:relative;display:block;width:100%;aspect-ratio:16/9;border:0;cursor:pointer;
-  background:radial-gradient(circle at 50% 45%,#243069,#0A1124);color:#fff}
-.yt-tri{font-size:42px;color:#fff;background:rgba(225,165,60,.92);width:84px;height:58px;
+  background:radial-gradient(circle at 50% 45%,#243069,#0A1124);background-size:cover;background-position:center;color:#fff}
+.yt .yt-play::after{content:"";position:absolute;inset:0;background:rgba(10,17,36,.38)}
+.yt-tri{position:relative;z-index:1;font-size:42px;color:#fff;background:rgba(225,165,60,.92);width:84px;height:58px;
   border-radius:16px;display:grid;place-items:center;margin:0 auto;box-shadow:0 6px 18px rgba(0,0,0,.4);
   transition:transform .2s}
 .yt .yt-play:hover .yt-tri{transform:scale(1.08)}
@@ -488,10 +490,14 @@ tr:nth-child(even) td{background:#f7f9fe}
     var btn=y.querySelector(".yt-play");
     btn.addEventListener("click",function(){
       var id=y.getAttribute("data-id"); if(!id)return;
+      // file:// pages can't host a YouTube iframe (Error 153) -> open on YouTube instead.
+      if(location.protocol==="file:"){window.open("https://www.youtube.com/watch?v="+id,"_blank","noopener");return;}
       var f=document.createElement("iframe");
       f.src="https://www.youtube-nocookie.com/embed/"+id+"?autoplay=1&rel=0";
-      f.allow="accelerated-sensors;autoplay;encrypted-media;picture-in-picture";
+      f.allow="accelerated-sensors;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture;web-share;fullscreen";
       f.setAttribute("allowfullscreen","");
+      f.setAttribute("referrerpolicy","strict-origin-when-cross-origin");
+      f.title="YouTube video";
       btn.replaceWith(f);
     });
   });

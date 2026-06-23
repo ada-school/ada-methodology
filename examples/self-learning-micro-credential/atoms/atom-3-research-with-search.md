@@ -87,6 +87,10 @@ flowchart LR
   TRI --> ANS["✅ Verified answer"]
 ```
 
+![Search research loop — generated diagram](../img/atom-3-research-with-search.png)
+
+> 🖼️ *Generated image — produced from the prompt below.*
+
 A reusable prompt to generate an on-brand version:
 
 ```prompt

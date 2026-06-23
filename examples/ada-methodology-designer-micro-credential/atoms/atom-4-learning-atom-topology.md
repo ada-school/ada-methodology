@@ -59,43 +59,23 @@ Showcase, Retrospective*.
 ### 🖼️ See — the full topology (mind map)
 
 ```mermaid
-mindmap
-  root((⚛ Learning Atom))
-    📖 Read
-      Article
-      Technical Article
-      Case Study
-      Documentation
-    🎧 Listen
-      Podcast
-      Narration
-      Guided Reflection
-    🎬 Watch
-      Explainer
-      Tutorial / Screencast
-      Documentary
-    🖼️ See
-      Diagram
-      Mental Model
-      Framework
-      Infographic
-    🧪 Practice
-      Lab
-      Codelab
-      Simulation
-      Role-Play
-      AI Prompt Question
-    ✅ Evaluate
-      Pop Quiz
-      Mini-Rubric
-      Performance Task
-      Behavioral Assessment
-      Capstone
-    🤝 Collaborate
-      Pair Programming
-      Workshop
-      Mentorship
-      Showcase
+flowchart TD
+  ROOT(["⚛ Learning Atom"])
+  ROOT --> READ["📖 Read"]
+  ROOT --> LISTEN["🎧 Listen"]
+  ROOT --> WATCH["🎬 Watch"]
+  ROOT --> SEE["🖼️ See"]
+  ROOT --> PRACTICE["🧪 Practice"]
+  ROOT --> EVAL["✅ Evaluate"]
+  ROOT --> COLLAB["🤝 Collaborate"]
+
+  READ --> R1["Article"] & R2["Technical Article"] & R3["Case Study"] & R4["Documentation"]
+  LISTEN --> L1["Podcast"] & L2["Narration"] & L3["Guided Reflection"]
+  WATCH --> W1["Explainer"] & W2["Tutorial / Screencast"] & W3["Documentary"]
+  SEE --> S1["Diagram"] & S2["Mental Model"] & S3["Framework"] & S4["Infographic"]
+  PRACTICE --> P1["Lab"] & P2["Codelab"] & P3["Simulation"] & P4["Role-Play"] & P5["AI Prompt Question"]
+  EVAL --> E1["Pop Quiz"] & E2["Mini-Rubric"] & E3["Performance Task"] & E4["Behavioral Assessment"] & E5["Capstone"]
+  COLLAB --> C1["Pair Programming"] & C2["Workshop"] & C3["Mentorship"] & C4["Showcase"]
 ```
 
 **Choosing modalities by KSA type** (the rule that matters most):

@@ -87,6 +87,10 @@ flowchart LR
   REV -.loop if not.-> DEF
 ```
 
+![The six-step problem-solving loop — generated diagram](../img/atom-1-how-problem-solving-works.png)
+
+> 🖼️ *Generated image — produced from the prompt below.*
+
 A reusable prompt to generate an on-brand version of this diagram:
 
 ```prompt

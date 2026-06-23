@@ -80,6 +80,10 @@ flowchart LR
   B4["💸 Sunk cost"] -->|judge future value| A1
 ```
 
+![Catch your biases — generated diagram](../img/atom-2-decisions-and-biases.png)
+
+> 🖼️ *Generated image — produced from the prompt below.*
+
 A reusable prompt to generate an on-brand version:
 
 ```prompt

@@ -71,6 +71,10 @@ flowchart TD
   R3 --> E3["evidence"]
 ```
 
+![The Pyramid Principle — generated diagram](../img/atom-4-structure-your-message.png)
+
+> 🖼️ *Generated image — produced from the prompt below.*
+
 A reusable prompt to generate an on-brand version:
 
 ```prompt

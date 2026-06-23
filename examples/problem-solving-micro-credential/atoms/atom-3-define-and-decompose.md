@@ -82,6 +82,10 @@ flowchart TD
   C --> C2["variable costs"]
 ```
 
+![Issue tree / MECE decomposition — generated diagram](../img/atom-3-define-and-decompose.png)
+
+> 🖼️ *Generated image — produced from the prompt below.*
+
 A reusable prompt to generate an on-brand version:
 
 ```prompt

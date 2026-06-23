@@ -90,6 +90,10 @@ flowchart LR
   RETRY -.deeper understanding.-> TRY
 ```
 
+![How learning works — generated diagram](../img/atom-1-how-learning-works.png)
+
+> 🖼️ *Generated image — produced from the prompt below.*
+
 A reusable prompt to generate an on-brand version of this diagram:
 
 ```prompt

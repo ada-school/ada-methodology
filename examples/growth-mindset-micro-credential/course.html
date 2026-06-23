@@ -86,8 +86,9 @@ tr:nth-child(even) td{background:#f7f9fe}
 /* youtube facade */
 .yt{margin:1.2em 0;border-radius:var(--radius);overflow:hidden;background:var(--ink);box-shadow:var(--shadow)}
 .yt .yt-play{position:relative;display:block;width:100%;aspect-ratio:16/9;border:0;cursor:pointer;
-  background:radial-gradient(circle at 50% 45%,#243069,#0A1124);color:#fff}
-.yt-tri{font-size:42px;color:#fff;background:rgba(225,165,60,.92);width:84px;height:58px;
+  background:radial-gradient(circle at 50% 45%,#243069,#0A1124);background-size:cover;background-position:center;color:#fff}
+.yt .yt-play::after{content:"";position:absolute;inset:0;background:rgba(10,17,36,.38)}
+.yt-tri{position:relative;z-index:1;font-size:42px;color:#fff;background:rgba(225,165,60,.92);width:84px;height:58px;
   border-radius:16px;display:grid;place-items:center;margin:0 auto;box-shadow:0 6px 18px rgba(0,0,0,.4);
   transition:transform .2s}
 .yt .yt-play:hover .yt-tri{transform:scale(1.08)}
@@ -339,10 +340,10 @@ badge:
 </ul>
 <hr>
 <h3>🎬 Watch — Carol Dweck, "The power of believing that you can improve" (TED, ~10 min)</h3>
-<div class="yt" data-id="_X0mgOOSpLU"><button class="yt-play" type="button" aria-label="Play video"><span class="yt-tri">&#9654;</span></button><div class="yt-meta"><a href="https://www.youtube.com/watch?v=_X0mgOOSpLU" target="_blank" rel="noopener">https://www.youtube.com/watch?v=_X0mgOOSpLU</a><div class="yt-cap">Carol Dweck (Stanford) — the origin of "the power of yet" and the research behind it.</div></div></div>
+<div class="yt" data-id="_X0mgOOSpLU"><button class="yt-play" type="button" aria-label="Play video" style="background-image:url(https://i.ytimg.com/vi/_X0mgOOSpLU/hqdefault.jpg)"><span class="yt-tri">&#9654;</span></button><div class="yt-meta"><a href="https://www.youtube.com/watch?v=_X0mgOOSpLU" target="_blank" rel="noopener">https://www.youtube.com/watch?v=_X0mgOOSpLU</a><div class="yt-cap">Carol Dweck (Stanford) — the origin of "the power of yet" and the research behind it.</div></div></div>
 <p><strong>Optional shorts (pick one):</strong></p>
-<div class="yt" data-id="KUWn_TJTrnU"><button class="yt-play" type="button" aria-label="Play video"><span class="yt-tri">&#9654;</span></button><div class="yt-meta"><a href="https://www.youtube.com/watch?v=KUWn_TJTrnU" target="_blank" rel="noopener">https://www.youtube.com/watch?v=KUWn_TJTrnU</a><div class="yt-cap">Sprouts — "Growth Mindset vs Fixed Mindset" (animated 4-min overview).</div></div></div>
-<div class="yt" data-id="JC82Il2cjqA"><button class="yt-play" type="button" aria-label="Play video"><span class="yt-tri">&#9654;</span></button><div class="yt-meta"><a href="https://www.youtube.com/watch?v=JC82Il2cjqA" target="_blank" rel="noopener">https://www.youtube.com/watch?v=JC82Il2cjqA</a><div class="yt-cap">Khan Academy — "You Can Learn Anything" (90s; neuroplasticity framing).</div></div></div>
+<div class="yt" data-id="KUWn_TJTrnU"><button class="yt-play" type="button" aria-label="Play video" style="background-image:url(https://i.ytimg.com/vi/KUWn_TJTrnU/hqdefault.jpg)"><span class="yt-tri">&#9654;</span></button><div class="yt-meta"><a href="https://www.youtube.com/watch?v=KUWn_TJTrnU" target="_blank" rel="noopener">https://www.youtube.com/watch?v=KUWn_TJTrnU</a><div class="yt-cap">Sprouts — "Growth Mindset vs Fixed Mindset" (animated 4-min overview).</div></div></div>
+<div class="yt" data-id="JC82Il2cjqA"><button class="yt-play" type="button" aria-label="Play video" style="background-image:url(https://i.ytimg.com/vi/JC82Il2cjqA/hqdefault.jpg)"><span class="yt-tri">&#9654;</span></button><div class="yt-meta"><a href="https://www.youtube.com/watch?v=JC82Il2cjqA" target="_blank" rel="noopener">https://www.youtube.com/watch?v=JC82Il2cjqA</a><div class="yt-cap">Khan Academy — "You Can Learn Anything" (90s; neuroplasticity framing).</div></div></div>
 <hr>
 <h3>🖼️ See — Infographic: <em>The two mindsets at the moment of difficulty</em></h3>
 <p><img alt="Two mindsets at the moment of difficulty — generated infographic" src="img/atom-1-science-of-mindset.png"></p>
@@ -463,7 +464,7 @@ space, high contrast, legible sans-serif, no photoreal faces. 16:9.</code></pre>
 <blockquote>⚠️ Verify each link, edition, and license before delivery (human-in-the-loop).</blockquote>
 <hr>
 <h3>🎬 Watch — Eduardo Briceño, "How to get better at the things you care about" (TED, ~11 min)</h3>
-<div class="yt" data-id="U9FBpJVwsps"><button class="yt-play" type="button" aria-label="Play video"><span class="yt-tri">&#9654;</span></button><div class="yt-meta"><a href="https://www.youtube.com/watch?v=U9FBpJVwsps" target="_blank" rel="noopener">https://www.youtube.com/watch?v=U9FBpJVwsps</a><div class="yt-cap">The "Learning Zone vs. Performance Zone" — why always performing blocks improvement.</div></div></div>
+<div class="yt" data-id="U9FBpJVwsps"><button class="yt-play" type="button" aria-label="Play video" style="background-image:url(https://i.ytimg.com/vi/U9FBpJVwsps/hqdefault.jpg)"><span class="yt-tri">&#9654;</span></button><div class="yt-meta"><a href="https://www.youtube.com/watch?v=U9FBpJVwsps" target="_blank" rel="noopener">https://www.youtube.com/watch?v=U9FBpJVwsps</a><div class="yt-cap">The "Learning Zone vs. Performance Zone" — why always performing blocks improvement.</div></div></div>
 <hr>
 <h3>🖼️ See — Diagram: <em>Real vs. false growth mindset</em></h3>
 <p><img alt="Real vs. false growth mindset — generated diagram" src="img/atom-2-myths-and-nuance.png"></p>
@@ -554,7 +555,7 @@ word &#x27;yet&#x27;&quot; (icon: small gold key), 3) &quot;CHOOSE one strategy 
 <p>   spiral.</p>
 <hr>
 <h3>🎬 Watch — Demo screencast: running the YET Loop live (~5 min)</h3>
-<div class="yt" data-id="pN34FNbOKXc"><button class="yt-play" type="button" aria-label="Play video"><span class="yt-tri">&#9654;</span></button><div class="yt-meta"><a href="https://www.youtube.com/watch?v=pN34FNbOKXc" target="_blank" rel="noopener">https://www.youtube.com/watch?v=pN34FNbOKXc</a><div class="yt-cap">Eduardo Briceño / Mindset Works — "The Power of belief: mindset and success" (model the reframe).</div></div></div>
+<div class="yt" data-id="pN34FNbOKXc"><button class="yt-play" type="button" aria-label="Play video" style="background-image:url(https://i.ytimg.com/vi/pN34FNbOKXc/hqdefault.jpg)"><span class="yt-tri">&#9654;</span></button><div class="yt-meta"><a href="https://www.youtube.com/watch?v=pN34FNbOKXc" target="_blank" rel="noopener">https://www.youtube.com/watch?v=pN34FNbOKXc</a><div class="yt-cap">Eduardo Briceño / Mindset Works — "The Power of belief: mindset and success" (model the reframe).</div></div></div>
 <blockquote>Facilitator option: record your <em>own</em> 3-minute screencast walking through the YET Loop on a real example from your team — modeling beats explaining.</blockquote>
 <hr>
 <h3>🧪 Practice — The Reframe Worksheet (Worksheet / Exercise)</h3>
@@ -640,7 +641,7 @@ strategies (&quot;study more&quot;) and push for specifics. Then have me run it 
 </ul>
 <hr>
 <h3>🎬 Watch — Trevor Ragan (The Learner Lab) on the practice that actually works</h3>
-<div class="yt" data-id="5eW6Eagr9XA"><button class="yt-play" type="button" aria-label="Play video"><span class="yt-tri">&#9654;</span></button><div class="yt-meta"><a href="https://www.youtube.com/watch?v=5eW6Eagr9XA" target="_blank" rel="noopener">https://www.youtube.com/watch?v=5eW6Eagr9XA</a><div class="yt-cap">"The Struggle Switch" / learning how to learn — embracing productive struggle in practice.</div></div></div>
+<div class="yt" data-id="5eW6Eagr9XA"><button class="yt-play" type="button" aria-label="Play video" style="background-image:url(https://i.ytimg.com/vi/5eW6Eagr9XA/hqdefault.jpg)"><span class="yt-tri">&#9654;</span></button><div class="yt-meta"><a href="https://www.youtube.com/watch?v=5eW6Eagr9XA" target="_blank" rel="noopener">https://www.youtube.com/watch?v=5eW6Eagr9XA</a><div class="yt-cap">"The Struggle Switch" / learning how to learn — embracing productive struggle in practice.</div></div></div>
 <hr>
 <h3>🖼️ See — Diagram: the deliberate-practice loop vs. the plateau</h3>
 <p><img alt="Deliberate practice loop vs. the plateau — generated diagram" src="img/atom-4-deliberate-practice-lab.png"></p>
@@ -741,8 +742,8 @@ flag &quot;New ceiling&quot;. Use ADA brand colors (Indigo #1E2A6E, Turquoise #1
 </ul>
 <hr>
 <h3>🎬 Watch — Failure &amp; feedback as fuel</h3>
-<div class="yt" data-id="H14bBuluwB8"><button class="yt-play" type="button" aria-label="Play video"><span class="yt-tri">&#9654;</span></button><div class="yt-meta"><a href="https://www.youtube.com/watch?v=H14bBuluwB8" target="_blank" rel="noopener">https://www.youtube.com/watch?v=H14bBuluwB8</a><div class="yt-cap">Angela Duckworth — "Grit: the power of passion and perseverance" (TED) — persistence + learning.</div></div></div>
-<div class="yt" data-id="FWTNMzK9vG4"><button class="yt-play" type="button" aria-label="Play video"><span class="yt-tri">&#9654;</span></button><div class="yt-meta"><a href="https://www.youtube.com/watch?v=FWTNMzK9vG4" target="_blank" rel="noopener">https://www.youtube.com/watch?v=FWTNMzK9vG4</a><div class="yt-cap">Sheila Heen — "How to use others' feedback to learn and grow" (receiving feedback well).</div></div></div>
+<div class="yt" data-id="H14bBuluwB8"><button class="yt-play" type="button" aria-label="Play video" style="background-image:url(https://i.ytimg.com/vi/H14bBuluwB8/hqdefault.jpg)"><span class="yt-tri">&#9654;</span></button><div class="yt-meta"><a href="https://www.youtube.com/watch?v=H14bBuluwB8" target="_blank" rel="noopener">https://www.youtube.com/watch?v=H14bBuluwB8</a><div class="yt-cap">Angela Duckworth — "Grit: the power of passion and perseverance" (TED) — persistence + learning.</div></div></div>
+<div class="yt" data-id="FWTNMzK9vG4"><button class="yt-play" type="button" aria-label="Play video" style="background-image:url(https://i.ytimg.com/vi/FWTNMzK9vG4/hqdefault.jpg)"><span class="yt-tri">&#9654;</span></button><div class="yt-meta"><a href="https://www.youtube.com/watch?v=FWTNMzK9vG4" target="_blank" rel="noopener">https://www.youtube.com/watch?v=FWTNMzK9vG4</a><div class="yt-cap">Sheila Heen — "How to use others' feedback to learn and grow" (receiving feedback well).</div></div></div>
 <hr>
 <h3>🖼️ See — Template: the Failure Résumé</h3>
 <p><img alt="Failure résumé template — generated graphic" src="img/atom-5-failure-resume-feedback.png"></p>
@@ -1106,10 +1107,14 @@ components:
     var btn=y.querySelector(".yt-play");
     btn.addEventListener("click",function(){
       var id=y.getAttribute("data-id"); if(!id)return;
+      // file:// pages can't host a YouTube iframe (Error 153) -> open on YouTube instead.
+      if(location.protocol==="file:"){window.open("https://www.youtube.com/watch?v="+id,"_blank","noopener");return;}
       var f=document.createElement("iframe");
       f.src="https://www.youtube-nocookie.com/embed/"+id+"?autoplay=1&rel=0";
-      f.allow="accelerated-sensors;autoplay;encrypted-media;picture-in-picture";
+      f.allow="accelerated-sensors;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture;web-share;fullscreen";
       f.setAttribute("allowfullscreen","");
+      f.setAttribute("referrerpolicy","strict-origin-when-cross-origin");
+      f.title="YouTube video";
       btn.replaceWith(f);
     });
   });

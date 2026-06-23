@@ -87,6 +87,10 @@ flowchart TD
   AGREE -->|no| REJECT["🚫 Discard / dig deeper"]
 ```
 
+![Should I trust this AI answer? — generated diagram](../img/atom-2-trust-sources-and-how-ai-works.png)
+
+> 🖼️ *Generated image — produced from the prompt below.*
+
 A reusable prompt to generate an on-brand version:
 
 ```prompt
