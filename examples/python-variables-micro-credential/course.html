@@ -1,0 +1,1438 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>🐍 Python Variables · ADA Micro-Credential</title>
+<link rel="icon" href="../../img/Isotipo.png">
+<style>
+:root{
+  --ink:#0A1124; --indigo:#1E2A6E; --turq:#15B5C6; --gold:#E0A53C;
+  --bg:#f6f8fc; --surface:#ffffff; --border:#e2e7f2; --text:#1b2440; --muted:#5b6685;
+  --radius:14px; --shadow:0 6px 24px rgba(20,30,70,.08);
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Arial,sans-serif;
+  background:var(--bg);color:var(--text);line-height:1.65}
+a{color:var(--indigo);text-decoration:none}
+a:hover{text-decoration:underline}
+.app{display:grid;grid-template-columns:300px minmax(0,1fr);min-height:100vh}
+
+/* sidebar */
+.side{position:sticky;top:0;height:100vh;overflow-y:auto;background:var(--ink);color:#dfe5fb;
+  padding:18px 14px;border-right:1px solid #111a36}
+.brand{display:flex;align-items:center;gap:10px;padding:6px 6px 14px}
+.brand img{width:40px;height:40px;animation:spin 9s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.brand b{font-size:15px;color:#fff;line-height:1.2}
+.brand small{display:block;color:var(--turq);font-weight:600;font-size:11px;letter-spacing:.04em}
+.progwrap{margin:8px 6px 16px}
+.progbar{height:8px;border-radius:8px;background:#1b2547;overflow:hidden}
+.progfill{height:100%;width:0;background:linear-gradient(90deg,var(--turq),var(--gold));transition:width .5s}
+.progtext{font-size:11px;color:#9fb0e6;margin-top:6px}
+.nav-group{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:#8fa0d8;
+  margin:14px 8px 4px;font-weight:700}
+.navlink{display:block;padding:8px 10px;border-radius:9px;color:#cdd6f6;font-size:14px;margin:2px 0}
+.navlink:hover{background:#16204180;text-decoration:none;color:#fff}
+.navlink.active{background:linear-gradient(90deg,var(--indigo),#2a3aa0);color:#fff;font-weight:600}
+
+/* main */
+.main{padding:0}
+.topbar{position:sticky;top:0;z-index:5;background:rgba(246,248,252,.85);backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--border);padding:12px 28px;display:flex;align-items:center;gap:14px}
+.topbar .pill{font-size:12px;font-weight:700;color:#fff;background:var(--indigo);padding:4px 12px;border-radius:30px}
+.topbar .sp{flex:1}
+.navbtn{border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:9px;
+  padding:7px 14px;font-size:13px;cursor:pointer;font-weight:600}
+.navbtn:hover{border-color:var(--turq)}
+.navbtn:disabled{opacity:.4;cursor:not-allowed}
+.wrap{max-width:880px;margin:0 auto;padding:30px 28px 90px}
+.page{display:none;animation:fade .35s ease}
+.page.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+h1,h2,h3,h4{color:var(--indigo);line-height:1.25}
+h1{font-size:30px;margin:.2em 0 .5em;border-bottom:3px solid var(--turq);padding-bottom:.3em}
+h2{font-size:22px;margin:1.5em 0 .5em}
+h3{font-size:18px;margin:1.3em 0 .4em}
+h4{font-size:15px;margin:1.1em 0 .3em;color:var(--ink)}
+p{margin:.7em 0}
+hr{border:0;border-top:1px solid var(--border);margin:1.6em 0}
+ul,ol{padding-left:1.4em;margin:.6em 0}
+li{margin:.3em 0}
+li input[type=checkbox]{margin-right:6px}
+img{max-width:100%;border-radius:10px}
+code{background:#eef1f9;padding:.12em .4em;border-radius:6px;font-size:.88em;
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:#27306b}
+pre.code{background:var(--ink);color:#e7ecff;padding:16px 18px;border-radius:var(--radius);
+  overflow:auto;position:relative;box-shadow:var(--shadow)}
+pre.code code{background:none;color:inherit;padding:0;font-size:13.5px;line-height:1.6}
+pre.code .lang{position:absolute;top:8px;right:12px;font-size:10px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--turq);font-family:inherit}
+blockquote{margin:1em 0;padding:.7em 1.1em;border-left:4px solid var(--gold);
+  background:#fff8ec;border-radius:0 10px 10px 0;color:#5a4a23}
+.tablewrap{overflow-x:auto;margin:1em 0;border:1px solid var(--border);border-radius:var(--radius)}
+table{border-collapse:collapse;width:100%;font-size:14px;background:var(--surface)}
+th,td{padding:9px 12px;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+th{background:var(--indigo);color:#fff;font-weight:600}
+tr:nth-child(even) td{background:#f7f9fe}
+
+.donebox{float:right;display:inline-flex;align-items:center;gap:7px;background:var(--surface);
+  border:1px solid var(--border);border-radius:30px;padding:6px 14px;font-size:13px;font-weight:600;
+  color:var(--muted);cursor:pointer;box-shadow:var(--shadow)}
+.donebox input{accent-color:var(--turq)}
+
+/* youtube facade */
+.yt{margin:1.2em 0;border-radius:var(--radius);overflow:hidden;background:var(--ink);box-shadow:var(--shadow)}
+.yt .yt-play{position:relative;display:block;width:100%;aspect-ratio:16/9;border:0;cursor:pointer;
+  background:radial-gradient(circle at 50% 45%,#243069,#0A1124);color:#fff}
+.yt-tri{font-size:42px;color:#fff;background:rgba(225,165,60,.92);width:84px;height:58px;
+  border-radius:16px;display:grid;place-items:center;margin:0 auto;box-shadow:0 6px 18px rgba(0,0,0,.4);
+  transition:transform .2s}
+.yt .yt-play:hover .yt-tri{transform:scale(1.08)}
+.yt iframe{display:block;width:100%;aspect-ratio:16/9;border:0}
+.yt-meta{padding:9px 14px;font-size:13px;background:#121c3a}
+.yt-meta a{color:var(--turq);word-break:break-all}
+.yt-cap{color:#aebadf;font-size:12px;margin-top:2px}
+
+/* prompt card */
+.promptcard{margin:1.2em 0;border:1px solid #d9c79a;border-radius:var(--radius);overflow:hidden;
+  background:#fffdf6;box-shadow:var(--shadow)}
+.promptcard-h{display:flex;align-items:center;justify-content:space-between;padding:8px 14px;
+  background:linear-gradient(90deg,#fbf0d6,#fff7e6);font-weight:700;color:#7a5b16;font-size:13px}
+.promptcard pre{margin:0;padding:14px 16px;white-space:pre-wrap;font-size:13px;color:#4a4634;
+  font-family:ui-monospace,Menlo,monospace}
+.copybtn{border:1px solid var(--gold);background:#fff;color:#8a6516;border-radius:7px;
+  padding:3px 12px;font-size:12px;cursor:pointer;font-weight:700}
+.copybtn:hover{background:var(--gold);color:#fff}
+.copybtn.ok{background:var(--turq);border-color:var(--turq);color:#fff}
+
+/* mermaid */
+.mermaid{margin:1.2em 0;text-align:center;background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
+.mermaid.fallback{text-align:left;background:var(--ink)}
+.mermaid.fallback pre{color:#e7ecff;margin:0;white-space:pre-wrap;font-size:12px}
+.mermaid svg .nodeLabel,.mermaid svg .label{font-weight:600}
+.mermaid svg .edgeLabel,.mermaid svg .edgeLabel *{color:#1E2A6E !important;font-weight:600}
+
+@media(max-width:880px){
+  .app{grid-template-columns:1fr}
+  .side{position:fixed;left:-300px;width:300px;z-index:30;transition:left .25s}
+  .side.open{left:0}
+  .menutoggle{display:inline-flex !important}
+}
+.menutoggle{display:none;align-items:center;justify-content:center;width:38px;height:38px;
+  border:1px solid var(--border);background:var(--surface);border-radius:9px;cursor:pointer;font-size:18px}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side" id="side">
+    <div class="brand">
+      <img src="../../img/Isotipo.png" alt="ADA">
+      <div><b>Python Variables</b><small>ADA MICRO-CREDENTIAL</small></div>
+    </div>
+    <div class="progwrap">
+      <div class="progbar"><div class="progfill" id="progfill"></div></div>
+      <div class="progtext" id="progtext">0 / 5 atoms complete</div>
+    </div>
+    <nav id="nav"><div class="nav-group">Start</div>
+<a class="navlink" data-target="overview" href="#overview">Course overview</a>
+<a class="navlink" data-target="spec" href="#spec">Micro-credential spec</a>
+<div class="nav-group">🙉 Phase 1 · hear</div>
+<a class="navlink" data-target="atom-1" href="#atom-1">1 · What is a variable?</a>
+<div class="nav-group">🙈 Phase 2 · see</div>
+<a class="navlink" data-target="atom-2" href="#atom-2">2 · Data types &amp; typing</a>
+<div class="nav-group">🙊 Phase 3 · do</div>
+<a class="navlink" data-target="atom-3" href="#atom-3">3 · Naming &amp; assignment 💻</a>
+<a class="navlink" data-target="atom-4" href="#atom-4">4 · Expressions &amp; f-strings 💻</a>
+<div class="nav-group">🐵 Phase 4 · share</div>
+<a class="navlink" data-target="atom-5" href="#atom-5">5 · Mini-project 🚀</a>
+<div class="nav-group">💻 Code &amp; tests</div>
+<a class="navlink" data-target="labs" href="#labs">Labs &amp; tests 🧪</a>
+<div class="nav-group">Assess</div>
+<a class="navlink" data-target="capstone" href="#capstone">Capstone brief</a>
+<a class="navlink" data-target="rubrics" href="#rubrics">Rubrics</a>
+<a class="navlink" data-target="skillsmap" href="#skillsmap">Skills map → job match</a></nav>
+  </aside>
+  <div class="main">
+    <div class="topbar">
+      <button class="menutoggle" id="menutoggle" aria-label="Menu">&#9776;</button>
+      <span class="pill">🐍 Python Variables Foundations</span>
+      <span class="sp"></span>
+      <button class="navbtn" id="prevbtn">&larr; Prev</button>
+      <button class="navbtn" id="nextbtn">Next &rarr;</button>
+    </div>
+    <div class="wrap"><section class="page" id="page-overview" data-id="overview"><h1>🐍 Worked Example — Python Variables Micro-Credential (full course)</h1>
+<p align="center">
+  <img alt="Indigo #1E2A6E" src="https://img.shields.io/badge/Indigo-1E2A6E?style=flat-square&amp;labelColor=1E2A6E&amp;color=1E2A6E">
+  <img alt="Turquoise #15B5C6" src="https://img.shields.io/badge/Turquoise-15B5C6?style=flat-square&amp;labelColor=15B5C6&amp;color=15B5C6">
+  <img alt="Gold #E0A53C" src="https://img.shields.io/badge/Gold-E0A53C?style=flat-square&amp;labelColor=E0A53C&amp;color=E0A53C">
+  <img alt="Ink #0A1124" src="https://img.shields.io/badge/Ink-0A1124?style=flat-square&amp;labelColor=0A1124&amp;color=0A1124">
+</p>
+<p>A <strong>complete, ready-to-run ADA micro-credential</strong> for an absolute-beginner technical skill: <strong>using variables in Python</strong>. It is a <em>fully populated</em> example built end-to-end with the ADA Methodology (KSA + 4 phases + learning-atom topology): every atom has <strong>real reading text</strong>, <strong>curated video links</strong>, <strong>runnable code</strong>, <strong>Mermaid diagrams</strong>, <strong>image-generation prompts</strong>, practice codelabs, and rubrics.</p>
+<blockquote>🖥️ <strong>See it live:</strong> open <a href="course.html" target="_blank" rel="noopener"><code>course.html</code></a> in any browser for an interactive, navigable version of this course (sidebar, progress, embedded videos, diagrams, copyable code).</blockquote>
+<p>This is the <strong>basic/technical counterpart</strong> to the <a href="../../index.html#/examples/growth-mindset-micro-credential/README.md" target="_blank" rel="noopener">Growth Mindset micro-credential</a> (a durable <em>Ability</em>). Together they show ADA covering the full KSA spectrum — a small <em>Knowledge</em> base, two hands-on <em>Skills</em>, and a supporting <em>Ability</em> (attention to detail / a debugging mindset).</p>
+<p>Conforms to <a href="../../index.html#/specs/micro-credential-v2-schema.md" target="_blank" rel="noopener"><code>../../specs/micro-credential-v2-schema.md</code></a> · modalities from <a href="../../index.html#/specs/learning-atom-topology.md" target="_blank" rel="noopener"><code>../../specs/learning-atom-topology.md</code></a> · KSA from <a href="../../index.html#/specs/ksa-taxonomy.md" target="_blank" rel="noopener"><code>../../specs/ksa-taxonomy.md</code></a>.</p>
+<hr>
+<h2>🧭 What this teaches</h2>
+<p>A <strong>variable</strong> is the first thing anyone writes in any programming language — and the first place beginners get stuck (naming, types, <code>=</code> vs <code>==</code>, "why is my number a string?"). This course makes that foundational skill <strong>trainable and certifiable</strong>: learners build an accurate mental model of what a variable <em>is</em>, learn Python's core data types and dynamic typing, then <strong>write real code</strong> to declare, name, reassign, combine, and convert values — finishing with a small program they ship and peer-review.</p>
+<div class='tablewrap'><table><thead><tr><th></th><th></th></tr></thead><tbody>
+<tr><td><strong>Title</strong></td><td>Python Variables: Store, Name &amp; Use Data</td></tr>
+<tr><td><strong>Duration</strong></td><td>~6 hours · 1–2 weeks (beginner)</td></tr>
+<tr><td><strong>Primary KSA</strong></td><td>🛠️ Skill — <em>declare, name, and use variables</em> in real Python</td></tr>
+<tr><td><strong>Target competency</strong></td><td>SFIA <strong>PROG</strong> (programming/software development, level 1–2) · O*NET 15-1251/15-1252 (Programmers / Software Developers) · ESCO <em>"use a programming language / Python"</em></td></tr>
+<tr><td><strong>Badge</strong></td><td>🏅 <em>Python Variables Foundations</em></td></tr>
+<tr><td><strong>Prerequisites</strong></td><td>None. Just Python 3 (or a free online runner like replit.com / Google Colab).</td></tr>
+</tbody></table></div>
+<hr>
+<h2>📚 Course contents</h2>
+<div class='tablewrap'><table><thead><tr><th>#</th><th>File</th><th>What it is</th></tr></thead><tbody>
+<tr><td>—</td><td><a href="#spec"><code>micro-credential.md</code></a></td><td>The full micro-credential spec (YAML schema, objectives, KSA map, phase planner)</td></tr>
+<tr><td>1</td><td><a href="#atom-1"><code>atoms/atom-1-what-is-a-variable.md</code></a></td><td>🙉 P1 · 🧠 K — What is a variable? (name → value, the label mental model)</td></tr>
+<tr><td>2</td><td><a href="#atom-2"><code>atoms/atom-2-data-types.md</code></a></td><td>🙈 P2 · 🧠 K — Core data types &amp; dynamic typing (<code>int</code>, <code>float</code>, <code>str</code>, <code>bool</code>)</td></tr>
+<tr><td>3</td><td><a href="#atom-3"><code>atoms/atom-3-naming-and-assignment-codelab.md</code></a></td><td>🙊 P3 · 🛠️ S — Naming &amp; assignment codelab (PEP 8, reassign, swap)</td></tr>
+<tr><td>4</td><td><a href="#atom-4"><code>atoms/atom-4-expressions-conversion-fstrings-codelab.md</code></a></td><td>🙊 P3 · 🛠️ S — Expressions, type conversion &amp; f-strings codelab</td></tr>
+<tr><td>5</td><td><a href="#atom-5"><code>atoms/atom-5-mini-project-capstone.md</code></a></td><td>🐵 P4 · 🛠️ S + 🌱 A — Mini-project: a receipt/profile program + peer review</td></tr>
+<tr><td>—</td><td><a href="#labs"><code>labs.md</code></a></td><td>🧪 Runnable code + <strong>unit tests</strong> + <code>main()</code> runners for every codelab</td></tr>
+<tr><td>—</td><td><a href="labs" target="_blank" rel="noopener"><code>labs/</code></a></td><td>The actual <code>.py</code> files: <code>profile_card.py</code>, <code>tip_calculator.py</code>, <code>receipt.py</code> (+ <code>test_*.py</code>)</td></tr>
+<tr><td>—</td><td><a href="#capstone"><code>capstone.md</code></a></td><td>Capstone brief + how it maps to KSA</td></tr>
+<tr><td>—</td><td><a href="#rubrics"><code>rubrics.md</code></a></td><td>All rubrics (knowledge-mini, skill, code-quality, capstone-5)</td></tr>
+<tr><td>—</td><td><a href="#skillsmap"><code>skills-map.md</code></a></td><td>Badge → skills map and how it starts a developer pathway</td></tr>
+</tbody></table></div>
+<blockquote>🧪 <strong>Runnable &amp; verified:</strong> every codelab is backed by a real <code>.py</code> module with a <code>main()</code> and a <code>unittest</code> file. Run them all with <code>cd labs &amp;&amp; python3 -m unittest discover -v</code>.</blockquote>
+<hr>
+<h2>🔄 Phase journey</h2>
+<div class="mermaid">flowchart LR
+  P1[&quot;🙉 P1 · hear&lt;br/&gt;What is a variable?&quot;] --&gt; P2[&quot;🙈 P2 · see&lt;br/&gt;Data types &amp; typing&quot;]
+  P2 --&gt; P3[&quot;🙊 P3 · do&lt;br/&gt;Naming · expressions · f-strings&quot;]
+  P3 --&gt; P4[&quot;🐵 P4 · share&lt;br/&gt;Mini-project + peer review&quot;]
+  P4 --&gt; BADGE[&quot;🏅 Python Variables Foundations&quot;]</div>
+<hr>
+<h2>🤖 How it was authored (and how to reuse it)</h2>
+<p>This course follows the Gen AI authoring workflow in <a href="../../index.html#/specs/genai-authoring-workflow.md" target="_blank" rel="noopener"><code>../../specs/genai-authoring-workflow.md</code></a>: job competency → KSA → atoms → modalities → rubrics → badge. Conventions used throughout:</p>
+<ul>
+<li><strong>🎬 Videos</strong> are written as a <code>youtube</code> block with the real URL + a caption (the interactive</li>
+</ul>
+<p>  site embeds them as a click-to-play player).</p>
+<ul>
+<li><strong>🖼️ Diagrams</strong> are provided two ways: a live <strong>Mermaid</strong> diagram <em>and</em> a reusable</li>
+</ul>
+<p>  <strong>image-generation prompt</strong> in a <code>prompt</code> block — feed it to any image model for an on-brand asset.</p>
+<ul>
+<li><strong>💻 Code</strong> is shown in fenced <code>python</code> blocks so it renders (and copies) cleanly.</li>
+</ul>
+<blockquote>⚠️ <strong>Human-in-the-loop (methodology guardrail):</strong> the external links and references below are <strong>curated starting points</strong>. A mentor/instructor should verify each link, licensing, and currency before delivery — AI-suggested sources are never authoritative on their own. See <a href="../../index.html#/CLAUDE.md" target="_blank" rel="noopener"><code>../../CLAUDE.md</code></a> §5.</blockquote></section>
+<section class="page" id="page-spec" data-id="spec"><h1>🎓 Micro-Credential — Python Variables: Store, Name &amp; Use Data</h1>
+<p>The full specification for this micro-credential. It conforms to <a href="../../index.html#/specs/micro-credential-v2-schema.md" target="_blank" rel="noopener"><code>../../specs/micro-credential-v2-schema.md</code></a>.</p>
+<hr>
+<h2>YAML front matter</h2>
+<pre class="code"><span class="lang">yaml</span><code>schema: ada-microcredential/v2
+id: mc-python-variables-basics
+title: &quot;Python Variables: Store, Name &amp; Use Data&quot;
+language: en
+duration_hours: 6
+level: beginner
+status: published
+license: CC-BY-SA-4.0
+mentors: [&quot;@sancarbar&quot;]
+
+target_roles:
+  - role: &quot;Entry-level Software Developer / Programmer / Data Analyst (first Python skill)&quot;
+    framework_ref: &gt;
+      SFIA: PROG (programming/software development) level 1-2 ·
+      O*NET 15-1251.00 Computer Programmers, 15-1252.00 Software Developers ·
+      ESCO: &quot;use a programming language&quot;, &quot;Python (computer programming)&quot;
+
+ksa:
+  - { id: K-var-concept,   type: knowledge, label: &quot;What a variable is: a name bound to a value; the label/box mental model; dynamic typing&quot;, target_level: 1, bloom: understand }
+  - { id: K-data-types,    type: knowledge, label: &quot;Core built-in types (int, float, str, bool), type(), and how/why values convert&quot;, target_level: 2, bloom: understand }
+  - { id: S-declare-assign, type: skill,    label: &quot;Declare, assign, and reassign variables with valid, readable PEP 8 names&quot;, target_level: 2, bloom: apply, primary: true }
+  - { id: S-use-values,    type: skill,     label: &quot;Use variables in expressions, convert types, and format output with f-strings&quot;, target_level: 2, bloom: apply, primary: true }
+  - { id: A-attention-detail, type: ability, label: &quot;Read errors and fix naming/type bugs; write clean, readable code (a debugging mindset)&quot;, target_level: 2, affective_stage: value, assessed_occasions: 3 }
+
+atoms:
+  - { id: atom-1, title: &quot;What is a variable?&quot;, ksa_refs: [K-var-concept], phase: 1, modalities: [{dimension: read, subtype: Article}, {dimension: watch, subtype: Video Explainer}, {dimension: see, subtype: Mental Model}, {dimension: evaluate, subtype: Pop Quiz}], rubric: knowledge-mini }
+  - { id: atom-2, title: &quot;Data types &amp; dynamic typing&quot;, ksa_refs: [K-data-types, K-var-concept], phase: 2, modalities: [{dimension: read, subtype: Article}, {dimension: see, subtype: Diagram}, {dimension: watch, subtype: Short}, {dimension: evaluate, subtype: Pop Quiz}], rubric: knowledge-mini }
+  - { id: atom-3, title: &quot;Naming &amp; assignment codelab&quot;, ksa_refs: [S-declare-assign, A-attention-detail], phase: 3, modalities: [{dimension: read, subtype: Technical Article}, {dimension: practice, subtype: Codelab}, {dimension: evaluate, subtype: Mini-Rubric}], rubric: skill }
+  - { id: atom-4, title: &quot;Expressions, conversion &amp; f-strings codelab&quot;, ksa_refs: [S-use-values, A-attention-detail], phase: 3, modalities: [{dimension: watch, subtype: Tutorial / Screencast}, {dimension: practice, subtype: Codelab}, {dimension: practice, subtype: AI Prompt Question}, {dimension: evaluate, subtype: Performance Task}], rubric: skill }
+  - { id: atom-5, title: &quot;Mini-project (capstone) + peer review&quot;, ksa_refs: [S-declare-assign, S-use-values, A-attention-detail], phase: 4, modalities: [{dimension: practice, subtype: Project Task}, {dimension: collaborate, subtype: Pair Programming}, {dimension: collaborate, subtype: Showcase / Demo Day}, {dimension: evaluate, subtype: Performance Task}], rubric: capstone-5 }
+
+capstone:
+  title: &quot;Build a small program that stores, converts, and prints data with variables&quot;
+  integrates_ksa: [K-var-concept, K-data-types, S-declare-assign, S-use-values, A-attention-detail]
+  rubric: capstone-5
+
+badge:
+  name: &quot;Python Variables Foundations&quot;
+  evidence_required: [&quot;atom-3&quot;, &quot;atom-4&quot;, &quot;capstone&quot;]
+  issued_on: verified-evidence</code></pre>
+<hr>
+<h2>🎯 Target job competency</h2>
+<p>Write basic Python that <strong>stores and manipulates data using variables</strong> — the foundation of every script, notebook, and app. Appears in postings as <em>"Python (basic)", "scripting", "able to write simple programs", "data manipulation".</em> Mapped to <strong>SFIA PROG</strong> (level 1–2), <strong>O*NET</strong> Programmer / Software Developer tasks, and <strong>ESCO</strong> <em>"use a programming language / Python"</em>.</p>
+<h2>🧬 KSA breakdown — a first skill, taught the right way</h2>
+<div class='tablewrap'><table><thead><tr><th>KSA</th><th>Component</th><th>Why this type</th><th>Target</th></tr></thead><tbody>
+<tr><td>🧠 Knowledge</td><td>What a variable is (name → value; the label model; dynamic typing)</td><td>A small mental model you must <em>understand</em> before coding</td><td>L1</td></tr>
+<tr><td>🧠 Knowledge</td><td>Core data types &amp; conversion (<code>int</code>, <code>float</code>, <code>str</code>, <code>bool</code>)</td><td>Prevents the #1 beginner bug ("number is a string")</td><td>L2</td></tr>
+<tr><td>🛠️ Skill</td><td>Declare / name / reassign variables (PEP 8)</td><td>A concrete move practiced in a codelab</td><td><strong>L2</strong></td></tr>
+<tr><td>🛠️ Skill</td><td>Use variables in expressions, convert types, f-strings</td><td>The <em>useful</em> payoff — make the data do something</td><td><strong>L2</strong></td></tr>
+<tr><td>🌱 Ability</td><td>Attention to detail / debugging mindset</td><td>Reading errors &amp; fixing typos is a habit, shown across reps</td><td>L2</td></tr>
+</tbody></table></div>
+<blockquote><strong>Why this shape:</strong> a coding skill is mostly <strong>doing</strong>, with just enough <strong>Knowledge</strong> to avoid classic traps, plus the budding <strong>Ability</strong> to slow down, read an error, and fix it — the habit that separates someone who "did a tutorial" from someone who can actually program.</blockquote>
+<h2>📘 Learning objectives (Bloom + KSA)</h2>
+<div class='tablewrap'><table><thead><tr><th>Objective</th><th>Bloom</th><th>KSA</th><th>Component</th><th>Target</th></tr></thead><tbody>
+<tr><td>Explain what a variable is and how a name is bound to a value</td><td>Understand</td><td>🧠 K</td><td>K-var-concept</td><td>L1</td></tr>
+<tr><td>Identify Python's core data types and predict <code>type()</code> results</td><td>Understand</td><td>🧠 K</td><td>K-data-types</td><td>L2</td></tr>
+<tr><td>Declare, assign, and reassign variables with readable PEP 8 names</td><td>Apply</td><td>🛠️ S</td><td>S-declare-assign</td><td>L2</td></tr>
+<tr><td>Use variables in expressions, convert types, and format with f-strings</td><td>Apply</td><td>🛠️ S</td><td>S-use-values</td><td>L2</td></tr>
+<tr><td>Organize logic into functions with a <code>main()</code> runner</td><td>Apply</td><td>🛠️ S</td><td>S-use-values</td><td>L2</td></tr>
+<tr><td>Write and run a basic unit test (<code>unittest</code>) to verify a function</td><td>Apply</td><td>🌱 A</td><td>A-attention-detail</td><td>L2</td></tr>
+<tr><td>Read an error message and fix a naming/type bug</td><td>Apply</td><td>🌱 A</td><td>A-attention-detail</td><td>L2</td></tr>
+</tbody></table></div>
+<hr>
+<h2>🔍 Phase planner</h2>
+<div class='tablewrap'><table><thead><tr><th>Phase</th><th>Atom(s)</th><th>KSA focus</th><th>Activity</th><th>Assessment</th></tr></thead><tbody>
+<tr><td>🙉 1 · hear</td><td>Atom 1</td><td>🧠 K</td><td>reading + video + the "label" mental model</td><td>knowledge-mini (pop quiz)</td></tr>
+<tr><td>🙈 2 · see</td><td>Atom 2</td><td>🧠 K</td><td>data-types diagram + short + <code>type()</code> exploration</td><td>knowledge-mini (pop quiz)</td></tr>
+<tr><td>🙊 3 · do</td><td>Atom 3, Atom 4</td><td>🛠️ S + 🌱 A</td><td>naming/assignment codelab; expressions, conversion &amp; f-strings</td><td>skill mini-rubric + performance task</td></tr>
+<tr><td>🐵 4 · share</td><td>Atom 5 (capstone)</td><td>🛠️ S + 🌱 A</td><td>ship a small program; pair + showcase + peer review</td><td>capstone-5</td></tr>
+</tbody></table></div>
+<hr>
+<h2>🚀 Capstone &amp; 📊 assessment</h2>
+<p>Full brief in <a href="#capstone"><code>capstone.md</code></a>; all rubrics in <a href="#rubrics"><code>rubrics.md</code></a>. In short: formative pop quizzes for the Knowledge atoms, a skill mini-rubric + performance task for the codelabs, and a small shippable program graded on the standard 5-criteria capstone rubric. The badge → skills-map mapping is in <a href="#skillsmap"><code>skills-map.md</code></a>.</p>
+<h2>🎓 Outcomes &amp; recognition</h2>
+<ul>
+<li>An accurate mental model of variables, types, and dynamic typing (no magic).</li>
+<li>Two job-ready moves: declaring/naming variables well, and using/converting/formatting values.</li>
+<li>The habit of structuring code into functions with a <code>main()</code> and <strong>verifying it with unit tests</strong>.</li>
+<li>A portfolio artifact: a small, working, <strong>tested</strong> Python program you wrote and explained.</li>
+<li>LinkedIn-compatible digital badge: <strong>🏅 Python Variables Foundations</strong> — the first step on a</li>
+</ul>
+<p>  developer or data pathway.</p></section>
+<section class="page" id="page-atom-1" data-id="atom-1"><label class="donebox"><input type="checkbox" class="donechk" data-atom="atom-1"> Mark this atom complete</label><h2>⚛ Learning Atom 1 — <em>What Is a Variable?</em></h2>
+<p><strong>Phase:</strong> 🙉 1 · Self-Guided Introduction (<em>hear</em>) · <strong>KSA:</strong> 🧠 Knowledge · <strong>Target level:</strong> L1 · <strong>Component id:</strong> <code>K-var-concept</code></p>
+<h3>🎯 Learning objective</h3>
+<ul>
+<li><strong>Explain</strong> what a variable is in Python — a <em>name</em> bound to a <em>value</em> — and describe the</li>
+</ul>
+<p>  "label on a box" mental model, including what dynamic typing means.</p>
+<h3>🧩 Prerequisites</h3>
+<ul>
+<li>None. If you can open <a href="https://replit.com" target="_blank" rel="noopener">replit.com</a> or Google Colab and run one line of</li>
+</ul>
+<p>  Python, you're ready.</p>
+<h3>🧭 Atom description</h3>
+<p>Every program is just data plus the steps that transform it. A <strong>variable</strong> is how you give a piece of data a <em>name</em> so you can refer to it later. Get this mental model right and the rest of programming gets dramatically easier; get it fuzzy and you'll fight your code for weeks. This atom builds the model on purpose, before you write much code.</p>
+<hr>
+<h3>📖 Reading — <em>A name for a value</em> (≈ 5 min)</h3>
+<blockquote>Author: ADA Methodology · aligned with the official Python tutorial.</blockquote>
+<p>A <strong>variable</strong> is a <strong>name that refers to a value</strong>. In Python you create one with a single <code>=</code>, the <em>assignment</em> operator:</p>
+<pre class="code"><span class="lang">python</span><code>age = 27
+name = &quot;Ada&quot;
+price = 19.99
+is_open = True</code></pre>
+<p>Read <code>age = 27</code> as <em>"let the name <code>age</code> refer to the value <code>27</code>"</em> — <strong>not</strong> "age equals 27" like in math. The <code>=</code> does something: it points a label at a value. A useful mental model is a <strong>label stuck on a box</strong>: the value <code>27</code> lives in memory (the box), and <code>age</code> is a label you put on it. To get the value back, you just use the name:</p>
+<pre class="code"><span class="lang">python</span><code>print(age)          # 27
+print(name)         # Ada
+print(age + 3)      # 30</code></pre>
+<p>You can <strong>reassign</strong> a variable any time — move the label to a different box:</p>
+<pre class="code"><span class="lang">python</span><code>age = 27
+age = 28            # the name &#x27;age&#x27; now refers to 28; the old 27 is forgotten</code></pre>
+<p>Two ideas that trip up beginners:</p>
+<ul>
+<li><strong><code>=</code> is not <code>==</code>.</strong> A single <code>=</code> <em>assigns</em> (puts a label on a value). A double <code>==</code> <em>compares</em></li>
+</ul>
+<p>  (asks "are these equal?", giving <code>True</code>/<code>False</code>). Using one for the other is the classic first bug.</p>
+<ul>
+<li><strong>Python is dynamically typed.</strong> You never declare a type; Python figures out the type from the</li>
+</ul>
+<p>  value, and a name can later point to a value of a different type. (More in Atom 2.)</p>
+<pre class="code"><span class="lang">python</span><code>x = 5        # x refers to an integer
+x = &quot;five&quot;   # totally legal — x now refers to a string</code></pre>
+<p>Finally, a name on its own — before you assign anything — does <strong>not</strong> exist. Using it raises a <code>NameError</code>. A variable must be <em>assigned before it is used</em>:</p>
+<pre class="code"><span class="lang">python</span><code>print(score)   # NameError: name &#x27;score&#x27; is not defined
+score = 0      # fix: define it first</code></pre>
+<p><strong>Key takeaways</strong></p>
+<ul>
+<li><input type="checkbox" disabled> A variable is a <strong>name bound to a value</strong> (a label on a box).</li>
+<li><input type="checkbox" disabled> <code>=</code> <strong>assigns</strong>; <code>==</code> <strong>compares</strong> — they are different.</li>
+<li><input type="checkbox" disabled> You can <strong>reassign</strong> a name at any time.</li>
+<li><input type="checkbox" disabled> Python is <strong>dynamically typed</strong> — the value decides the type, not a declaration.</li>
+<li><input type="checkbox" disabled> Use a name only <strong>after</strong> assigning it, or you get a <code>NameError</code>.</li>
+</ul>
+<hr>
+<h3>🎬 Watch — Variables in Python (pick one, ~6–10 min)</h3>
+<div class="yt" data-id="cQT33yu9pY8"><button class="yt-play" type="button" aria-label="Play video"><span class="yt-tri">&#9654;</span></button><div class="yt-meta"><a href="https://www.youtube.com/watch?v=cQT33yu9pY8" target="_blank" rel="noopener">https://www.youtube.com/watch?v=cQT33yu9pY8</a><div class="yt-cap">Programming with Mosh — "Python Variables" (clear beginner walkthrough).</div></div></div>
+<div class="yt" data-id="Z1Yd7upQsXY"><button class="yt-play" type="button" aria-label="Play video"><span class="yt-tri">&#9654;</span></button><div class="yt-meta"><a href="https://www.youtube.com/watch?v=Z1Yd7upQsXY" target="_blank" rel="noopener">https://www.youtube.com/watch?v=Z1Yd7upQsXY</a><div class="yt-cap">BroCode — "Python variables for beginners" (short, hands-on).</div></div></div>
+<hr>
+<h3>🖼️ See — Mental model: <em>a label pointing at a value</em></h3>
+<div class="mermaid">flowchart LR
+  NAME[&quot;🏷️ name&lt;br/&gt;age&quot;] --&gt;|refers to| VAL[&quot;📦 value in memory&lt;br/&gt;27 (int)&quot;]
+  CODE[&quot;age = 27&quot;] --&gt; NAME
+  REASSIGN[&quot;age = 28&quot;] -.moves label.-&gt; VAL2[&quot;📦 28 (int)&quot;]
+  NAME -.after reassign.-&gt; VAL2</div>
+<p>A reusable prompt to generate an on-brand version of this diagram:</p>
+<div class="promptcard"><div class="promptcard-h"><span>🖼️ Image / AI prompt</span><button class="copybtn" type="button">Copy</button></div><pre><code>Create a clean, modern educational infographic titled &quot;A Variable = a Label on a Value&quot;.
+Show a hand sticking a luggage-style tag labeled &quot;age&quot; onto a cardboard box that contains the
+number &quot;27&quot;. Add a small caption &quot;age = 27  →  the name &#x27;age&#x27; refers to the value 27&quot;. To the
+right, show the same tag being moved onto a second box containing &quot;28&quot; with caption
+&quot;age = 28  →  reassigned&quot;. Use ADA brand colors (Indigo #1E2A6E, Turquoise #15B5C6, Gold #E0A53C
+accents) on a light background, flat vector style, generous white space, legible sans-serif,
+no photoreal faces. 16:9.</code></pre></div>
+<hr>
+<h3>✅ Evaluate — Pop quiz (formative, <code>knowledge-mini</code>)</h3>
+<p>Answer, then check yourself against the key.</p>
+<ol>
+<li>In <code>total = 100</code>, what exactly does the <code>=</code> do?</li>
+<li>What is the difference between <code>=</code> and <code>==</code>?</li>
+<li>After <code>x = 5</code> then <code>x = &quot;hi&quot;</code>, what does <code>x</code> refer to — and is that allowed in Python?</li>
+<li>What error do you get if you <code>print(count)</code> before assigning <code>count</code>?</li>
+</ol>
+<details>
+<summary>Answer key</summary>
+<ol>
+<li>It <strong>assigns</strong>: it binds the name <code>total</code> to the value <code>100</code> (points the label at the box).</li>
+<li><code>=</code> assigns a value to a name; <code>==</code> compares two values and returns <code>True</code>/<code>False</code>.</li>
+<li><code>x</code> refers to the string <code>&quot;hi&quot;</code>. Yes — Python is dynamically typed, so a name can point to a</li>
+</ol>
+<p>   value of a different type later.</p>
+<ol>
+<li>A <code>NameError</code> ("name 'count' is not defined") — a variable must be assigned before use.</li>
+</ol>
+</details>
+<hr>
+<h3>📦 Deliverable</h3>
+<ul>
+<li>In an online runner, create three variables about <em>yourself</em> (e.g. <code>name</code>, <code>age</code>,</li>
+</ul>
+<p>  <code>favorite_language</code>), <code>print</code> them, then reassign one and print again. Paste the code + output.</p>
+<h3>🧠 Final reflection</h3>
+<ul>
+<li>The "label on a box" model is one way to picture variables. Where might that picture mislead</li>
+</ul>
+<p>  you later (hint: what happens with two names pointing at the <em>same</em> list)? Jot a guess to revisit.</p>
+<h3>🔗 Sources to verify (human-in-the-loop)</h3>
+<ul>
+<li>Python official tutorial — <em>An Informal Introduction to Python</em> (docs.python.org/3/tutorial).</li>
+<li>Python docs — <em>Execution model / naming and binding</em>.</li>
+<li>Al Sweigart, <em>Automate the Boring Stuff with Python</em>, Ch. 1 (free online).</li>
+</ul>
+<h3>🧩 Connections</h3>
+<ul>
+<li><strong>Successors:</strong> Atom 2 (data types), Atom 3 (start declaring &amp; naming for real).</li>
+</ul></section>
+<section class="page" id="page-atom-2" data-id="atom-2"><label class="donebox"><input type="checkbox" class="donechk" data-atom="atom-2"> Mark this atom complete</label><h2>⚛ Learning Atom 2 — <em>Data Types &amp; Dynamic Typing</em></h2>
+<p><strong>Phase:</strong> 🙈 2 · Visual Exploration (<em>see</em>) · <strong>KSA:</strong> 🧠 Knowledge · <strong>Target level:</strong> L2 · <strong>Component id:</strong> <code>K-data-types</code></p>
+<h3>🎯 Learning objective</h3>
+<ul>
+<li><strong>Identify</strong> Python's core built-in data types (<code>int</code>, <code>float</code>, <code>str</code>, <code>bool</code>), predict what</li>
+</ul>
+<p>  <code>type()</code> returns, and explain how and why values get converted.</p>
+<h3>🧩 Prerequisites</h3>
+<ul>
+<li>Atom 1 (you know a variable is a name bound to a value).</li>
+</ul>
+<h3>🧭 Atom description</h3>
+<p>A value isn't just "data" — it has a <strong>type</strong>, and the type decides what you can <em>do</em> with it. <code>3 + 4</code> is <code>7</code>, but <code>&quot;3&quot; + &quot;4&quot;</code> is <code>&quot;34&quot;</code>. Most beginner bugs are really <em>type</em> bugs in disguise. This atom gives you the four types you'll use constantly and the rules for moving between them.</p>
+<hr>
+<h3>📖 Reading — <em>The four types you'll use every day</em> (≈ 6 min)</h3>
+<blockquote>Author: ADA Methodology · aligned with the official Python tutorial.</blockquote>
+<p>Every value in Python has a <strong>type</strong>. You can always ask with the built-in <code>type()</code>:</p>
+<pre class="code"><span class="lang">python</span><code>type(27)        # &lt;class &#x27;int&#x27;&gt;
+type(19.99)     # &lt;class &#x27;float&#x27;&gt;
+type(&quot;Ada&quot;)     # &lt;class &#x27;str&#x27;&gt;
+type(True)      # &lt;class &#x27;bool&#x27;&gt;</code></pre>
+<p>The four core built-in types for beginners:</p>
+<div class='tablewrap'><table><thead><tr><th>Type</th><th>Means</th><th>Examples</th><th>Note</th></tr></thead><tbody>
+<tr><td><code>int</code></td><td>whole number</td><td><code>0</code>, <code>27</code>, <code>-4</code></td><td>no decimal point</td></tr>
+<tr><td><code>float</code></td><td>decimal number</td><td><code>19.99</code>, <code>3.0</code>, <code>-0.5</code></td><td>the <code>.</code> makes it a float</td></tr>
+<tr><td><code>str</code></td><td>text ("string")</td><td><code>&quot;Ada&quot;</code>, <code>&#x27;hi&#x27;</code>, <code>&quot;27&quot;</code></td><td>quotes — single or double</td></tr>
+<tr><td><code>bool</code></td><td>truth value</td><td><code>True</code>, <code>False</code></td><td>capital T/F; a kind of int under the hood</td></tr>
+</tbody></table></div>
+<p><strong>Why type matters:</strong> the same operator behaves differently by type.</p>
+<pre class="code"><span class="lang">python</span><code>3 + 4            # 7      (int + int = arithmetic)
+&quot;3&quot; + &quot;4&quot;        # &quot;34&quot;   (str + str = joining, called concatenation)
+&quot;ha&quot; * 3         # &quot;hahaha&quot; (str * int = repeat)
+3 + &quot;4&quot;          # TypeError: unsupported operand type(s) — can&#x27;t add int and str</code></pre>
+<p>That last error is the most common beginner surprise, and it usually comes from <strong>input</strong>: anything a user types with <code>input()</code> arrives as a <strong>string</strong>, even if it looks like a number.</p>
+<pre class="code"><span class="lang">python</span><code>age = input(&quot;Age? &quot;)   # user types 27 → age is the STRING &quot;27&quot;
+age + 1                 # 💥 TypeError: can only concatenate str to str</code></pre>
+<p>The fix is <strong>type conversion</strong> (also called <em>casting</em>) — turn a value into another type with the type's name as a function:</p>
+<pre class="code"><span class="lang">python</span><code>int(&quot;27&quot;)        # 27      (str → int)
+float(&quot;19.99&quot;)   # 19.99   (str → float)
+str(27)          # &quot;27&quot;    (int → str)
+int(19.99)       # 19      (float → int, truncates — it does NOT round)
+bool(0)          # False   (0, &quot;&quot;, and empty things are &quot;falsy&quot;)
+bool(42)         # True</code></pre>
+<p>So the input fix is to convert first:</p>
+<pre class="code"><span class="lang">python</span><code>age = int(input(&quot;Age? &quot;))   # now age is the number 27
+print(age + 1)              # 28 ✅</code></pre>
+<p>Two nuances worth holding onto:</p>
+<ul>
+<li><strong><code>int()</code> on a float truncates</strong>, it does not round: <code>int(19.99)</code> is <code>19</code>. Use <code>round(19.99)</code></li>
+</ul>
+<p>  for <code>20</code>.</p>
+<ul>
+<li>A conversion can <strong>fail</strong>: <code>int(&quot;hello&quot;)</code> raises a <code>ValueError</code>. The value must actually look</li>
+</ul>
+<p>  like the target type.</p>
+<p><strong>Key takeaways</strong></p>
+<ul>
+<li><input type="checkbox" disabled> Four core types: <code>int</code>, <code>float</code>, <code>str</code>, <code>bool</code>; check any value with <code>type()</code>.</li>
+<li><input type="checkbox" disabled> <code>+</code> adds numbers but <strong>joins</strong> strings — type changes the behavior.</li>
+<li><input type="checkbox" disabled> <code>input()</code> always returns a <strong>string</strong> — convert before doing math.</li>
+<li><input type="checkbox" disabled> Convert with <code>int()</code>, <code>float()</code>, <code>str()</code>, <code>bool()</code>; <code>int()</code> <strong>truncates</strong> floats.</li>
+<li><input type="checkbox" disabled> A bad conversion raises a <code>ValueError</code>.</li>
+</ul>
+<hr>
+<h3>🎬 Watch — Data types &amp; type conversion (short)</h3>
+<div class="yt" data-id="khKv-8q7YmY"><button class="yt-play" type="button" aria-label="Play video"><span class="yt-tri">&#9654;</span></button><div class="yt-meta"><a href="https://www.youtube.com/watch?v=khKv-8q7YmY" target="_blank" rel="noopener">https://www.youtube.com/watch?v=khKv-8q7YmY</a><div class="yt-cap">Telusko — "Python data types" (quick tour of int/float/str/bool).</div></div></div>
+<hr>
+<h3>🖼️ See — Diagram: <em>types and how they convert</em></h3>
+<div class="mermaid">flowchart TD
+  V[&quot;A value&quot;] --&gt; INT[&quot;🔢 int&lt;br/&gt;27&quot;]
+  V --&gt; FLT[&quot;🔣 float&lt;br/&gt;19.99&quot;]
+  V --&gt; STR[&quot;🔤 str&lt;br/&gt;&#x27;Ada&#x27; · &#x27;27&#x27;&quot;]
+  V --&gt; BOOL[&quot;✅ bool&lt;br/&gt;True / False&quot;]
+  STR --&gt;|&quot;int()&quot;| INT
+  STR --&gt;|&quot;float()&quot;| FLT
+  INT --&gt;|&quot;str()&quot;| STR
+  FLT --&gt;|&quot;int() truncates!&quot;| INT
+  INT --&gt;|&quot;bool(): 0=False&quot;| BOOL</div>
+<p>A reusable prompt to generate an on-brand version of this diagram:</p>
+<div class="promptcard"><div class="promptcard-h"><span>🖼️ Image / AI prompt</span><button class="copybtn" type="button">Copy</button></div><pre><code>Create a clean, modern educational infographic titled &quot;Python&#x27;s Core Types &amp; Conversions&quot;.
+Show four labeled tiles: &quot;int 27&quot;, &quot;float 19.99&quot;, &quot;str &#x27;Ada&#x27;&quot;, &quot;bool True/False&quot;, each with a
+small icon (hash for int, decimal for float, quotation marks for str, checkmark for bool). Draw
+arrows between them labeled with the conversion functions int(), float(), str(), and note
+&quot;int() truncates&quot; on the float→int arrow and &quot;input() always returns str&quot; as a caption. Use ADA
+brand colors (Indigo #1E2A6E, Turquoise #15B5C6, Gold #E0A53C accents) on a light background,
+flat vector style, high contrast, legible monospace for code, no photoreal elements. 16:9.</code></pre></div>
+<hr>
+<h3>✅ Evaluate — Pop quiz (formative, <code>knowledge-mini</code>)</h3>
+<ol>
+<li>What is <code>type(19.99)</code>? What is <code>type(&quot;19.99&quot;)</code>?</li>
+<li>What does <code>&quot;3&quot; + &quot;4&quot;</code> produce, and why?</li>
+<li>A user runs <code>n = input(&quot;Number? &quot;)</code> and types <code>5</code>. What type is <code>n</code>, and how do you safely</li>
+</ol>
+<p>   compute <code>n * 2</code> as a number?</p>
+<ol>
+<li>What is <code>int(19.99)</code> — and how is that different from <code>round(19.99)</code>?</li>
+</ol>
+<details>
+<summary>Answer key</summary>
+<ol>
+<li><code>type(19.99)</code> → <code>float</code>; <code>type(&quot;19.99&quot;)</code> → <code>str</code> (quotes make it text).</li>
+<li><code>&quot;34&quot;</code> — <code>+</code> between two strings <strong>concatenates</strong> (joins) them; it does not add.</li>
+<li><code>n</code> is a <strong>string</strong> <code>&quot;5&quot;</code>. Convert first: <code>int(n) * 2</code> → <code>10</code>.</li>
+<li><code>int(19.99)</code> is <code>19</code> — it <strong>truncates</strong> (drops the decimals). <code>round(19.99)</code> is <code>20</code>.</li>
+</ol>
+</details>
+<hr>
+<h3>📦 Deliverable</h3>
+<ul>
+<li>Write a 5-line script that takes two numbers via <code>input()</code>, converts them, and prints their sum</li>
+</ul>
+<p>  <em>and</em> their concatenation-as-strings — so you can see the difference. Paste code + output.</p>
+<h3>🧠 Final reflection</h3>
+<ul>
+<li>Which conversion surprised you most? Predict one real bug this knowledge will save you from.</li>
+</ul>
+<h3>🔗 Sources to verify (human-in-the-loop)</h3>
+<ul>
+<li>Python docs — <em>Built-in Types</em> and <em>Built-in Functions</em> (<code>int</code>, <code>float</code>, <code>str</code>, <code>bool</code>, <code>round</code>).</li>
+<li>Python official tutorial §3 — <em>Numbers, Strings</em>.</li>
+<li>Real Python — "Basic Data Types in Python" (verify currency).</li>
+</ul>
+<h3>🧩 Connections</h3>
+<ul>
+<li><strong>Predecessors:</strong> Atom 1. <strong>Successors:</strong> Atom 3 (naming &amp; assignment), Atom 4 (use &amp; convert).</li>
+</ul></section>
+<section class="page" id="page-atom-3" data-id="atom-3"><label class="donebox"><input type="checkbox" class="donechk" data-atom="atom-3"> Mark this atom complete</label><h2>⚛ Learning Atom 3 — <em>Naming &amp; Assignment (Codelab)</em></h2>
+<p><strong>Phase:</strong> 🙊 3 · Applied Practice (<em>do</em>) · <strong>KSA:</strong> 🛠️ Skill (+ 🌱 Ability) · <strong>Target level:</strong> L2 · <strong>Component ids:</strong> <code>S-declare-assign</code>, <code>A-attention-detail</code></p>
+<h3>🎯 Learning objective</h3>
+<ul>
+<li><strong>Declare, assign, and reassign</strong> variables using <strong>valid, readable PEP 8 names</strong>, and fix the</li>
+</ul>
+<p>  common naming/assignment errors by reading the error message.</p>
+<h3>🧩 Prerequisites</h3>
+<ul>
+<li>Atoms 1–2. A Python runner open (<a href="https://replit.com" target="_blank" rel="noopener">replit.com</a>, Colab, or local <code>python3</code>).</li>
+</ul>
+<h3>🧭 Atom description</h3>
+<p>Now you write code. Good variable <em>names</em> are not cosmetic — they are how code stays understandable (to your teammates and to future-you). This codelab drills the mechanics of assignment and the naming rules until they're automatic, and trains the habit of reading errors instead of guessing.</p>
+<hr>
+<h3>📖 Read — <em>Naming rules &amp; conventions</em> (≈ 4 min)</h3>
+<p><strong>Hard rules (break these and Python errors):</strong></p>
+<ul>
+<li>A name may contain letters, digits, and underscores <code>_</code>, and <strong>cannot start with a digit</strong>.</li>
+<li>No spaces and no operators in a name (<code>my var</code>, <code>my-var</code> are invalid).</li>
+<li>Names are <strong>case-sensitive</strong>: <code>age</code>, <code>Age</code>, and <code>AGE</code> are three different variables.</li>
+<li>You can't use Python <strong>keywords</strong> as names (<code>if</code>, <code>for</code>, <code>class</code>, <code>True</code>, <code>def</code>, <code>list</code>…).</li>
+</ul>
+<p><strong>Conventions (PEP 8 — the style that makes you look professional):</strong></p>
+<ul>
+<li>Use <strong><code>snake_case</code></strong>: lowercase words joined by underscores → <code>first_name</code>, <code>total_price</code>.</li>
+<li>Make names <strong>descriptive</strong>: <code>n</code> &lt; <code>num</code> &lt; <code>num_students</code>. Future-you will thank you.</li>
+<li>Constants you won't change go in <strong><code>UPPER_CASE</code></strong> → <code>TAX_RATE = 0.19</code>.</li>
+<li>Avoid shadowing built-ins: don't name a variable <code>list</code>, <code>str</code>, <code>sum</code>, <code>type</code>, or <code>input</code>.</li>
+</ul>
+<pre class="code"><span class="lang">python</span><code># 👎 hard to read / risky
+x = 19.99
+l = 3
+str = &quot;hi&quot;          # shadows the built-in str() — now str(5) breaks!
+
+# 👍 clear and safe
+unit_price = 19.99
+quantity = 3
+greeting = &quot;hi&quot;
+TAX_RATE = 0.19</code></pre>
+<p><strong>Multiple &amp; swap assignment</strong> (handy Python shortcuts):</p>
+<pre class="code"><span class="lang">python</span><code>a, b = 1, 2          # assign several at once
+a, b = b, a          # swap! a is now 2, b is now 1 — no temp variable needed
+x = y = 0            # both x and y refer to 0</code></pre>
+<hr>
+<h3>💻 Codelab — <em>step by step</em></h3>
+<p>Type each step yourself (don't copy-paste) — the muscle memory is the point.</p>
+<p><strong>Step 1 — declare &amp; print</strong></p>
+<pre class="code"><span class="lang">python</span><code>first_name = &quot;Ada&quot;
+birth_year = 1815
+print(first_name, &quot;was born in&quot;, birth_year)</code></pre>
+<p><strong>Step 2 — reassign &amp; compute an age</strong></p>
+<pre class="code"><span class="lang">python</span><code>current_year = 2026
+age = current_year - birth_year
+print(first_name, &quot;would be&quot;, age, &quot;years old.&quot;)
+birth_year = 1820          # reassign
+age = current_year - birth_year
+print(&quot;Corrected age:&quot;, age)</code></pre>
+<p><strong>Step 3 — multiple assignment &amp; swap</strong></p>
+<pre class="code"><span class="lang">python</span><code>left, right = &quot;🍎&quot;, &quot;🍊&quot;
+print(&quot;Before:&quot;, left, right)
+left, right = right, left
+print(&quot;After: &quot;, left, right)</code></pre>
+<p><strong>Step 4 — fix the broken code (read the error!)</strong> Each line below has one bug. Run it, read the error, and fix it.</p>
+<pre class="code"><span class="lang">python</span><code>2nd_place = &quot;silver&quot;        # SyntaxError — why? (rename it)
+first name = &quot;Grace&quot;        # SyntaxError — why?
+print(First_name)           # NameError — why? (look at the capital F)
+TAX RATE = 0.19             # SyntaxError — fix the name</code></pre>
+<details>
+<summary>Fixes</summary>
+<pre class="code"><span class="lang">python</span><code>second_place = &quot;silver&quot;     # names can&#x27;t start with a digit
+first_name = &quot;Grace&quot;        # no spaces in names → use snake_case
+print(first_name)           # case-sensitive: First_name ≠ first_name
+TAX_RATE = 0.19             # no spaces; constants in UPPER_CASE</code></pre>
+</details>
+<hr>
+<h3>💻🧪 Lab with tests — <em>put the logic in a function and prove it works</em></h3>
+<p>Real code is organized into <strong>functions</strong> and verified with <strong>unit tests</strong>. Move your age logic into a well-named function, add a <code>main()</code> to run it, and let a test confirm it's correct.</p>
+<blockquote>📁 Runnable files: <a href="labs/profile_card.py" target="_blank" rel="noopener"><code>../labs/profile_card.py</code></a> and <a href="labs/test_profile_card.py" target="_blank" rel="noopener"><code>../labs/test_profile_card.py</code></a>.</blockquote>
+<pre class="code"><span class="lang">python</span><code># profile_card.py — logic in functions, I/O in main()
+def calculate_age(birth_year, current_year):
+    return current_year - birth_year
+
+def make_profile_card(name, birth_year, favorite_language, current_year):
+    age = calculate_age(birth_year, current_year)
+    return (
+        &quot;----- PROFILE -----\n&quot;
+        f&quot;Name:     {name}\n&quot;
+        f&quot;Age:      {age}\n&quot;
+        f&quot;Codes in: {favorite_language}&quot;
+    )
+
+def main():
+    name = input(&quot;Name? &quot;)
+    birth_year = int(input(&quot;Birth year? &quot;))
+    favorite_language = input(&quot;Favorite language? &quot;)
+    print(make_profile_card(name, birth_year, favorite_language, 2026))
+
+if __name__ == &quot;__main__&quot;:   # only runs when you execute the file directly
+    main()</code></pre>
+<p>The test file checks the functions <em>without</em> asking for input (that's why the logic is separate from <code>main()</code>):</p>
+<pre class="code"><span class="lang">python</span><code># test_profile_card.py
+import unittest
+from profile_card import calculate_age, make_profile_card
+
+class TestProfileCard(unittest.TestCase):
+    def test_calculate_age(self):
+        self.assertEqual(calculate_age(1990, 2026), 36)
+
+    def test_card_contains_all_fields(self):
+        card = make_profile_card(&quot;Ada&quot;, 2000, &quot;Python&quot;, 2026)
+        self.assertIn(&quot;Ada&quot;, card)
+        self.assertIn(&quot;26&quot;, card)
+        self.assertIn(&quot;Python&quot;, card)
+
+if __name__ == &quot;__main__&quot;:
+    unittest.main()</code></pre>
+<p>Run them from the <code>labs/</code> folder:</p>
+<pre class="code"><span class="lang">bash</span><code>python3 profile_card.py                     # run the program
+python3 -m unittest test_profile_card.py    # run the tests  → &quot;OK&quot;</code></pre>
+<blockquote>🧠 <strong>Why test?</strong> <code>assertEqual(calculate_age(1990, 2026), 36)</code> says <em>"I expect this answer."</em> If a later edit breaks it, the test fails immediately — that's the <strong>attention-to-detail / debugging habit</strong> (<code>A-attention-detail</code>) made automatic.</blockquote>
+<hr>
+<h3>✅ Evaluate — Skill mini-rubric (<code>skill</code>)</h3>
+<p>Which of these are <strong>valid</strong> Python variable names? For invalid ones, say why and rename.</p>
+<p><code>total_2</code>, <code>2total</code>, <code>total-price</code>, <code>totalPrice</code>, <code>class</code>, <code>_hidden</code>, <code>Total Price</code></p>
+<details>
+<summary>Answer key</summary>
+<ul>
+<li><code>total_2</code> ✅ valid.</li>
+<li><code>2total</code> ❌ can't start with a digit → <code>total_2</code> or <code>second_total</code>.</li>
+<li><code>total-price</code> ❌ <code>-</code> is an operator → <code>total_price</code>.</li>
+<li><code>totalPrice</code> ✅ valid, but ⚠️ not PEP 8 → prefer <code>total_price</code>.</li>
+<li><code>class</code> ❌ reserved keyword → <code>class_name</code> / <code>course_class</code>.</li>
+<li><code>_hidden</code> ✅ valid (leading underscore is allowed).</li>
+<li><code>Total Price</code> ❌ spaces not allowed → <code>total_price</code>.</li>
+</ul>
+</details>
+<hr>
+<h3>📦 Deliverable</h3>
+<ul>
+<li>A short script that: declares 4 well-named variables (mix of types), reassigns at least one,</li>
+</ul>
+<p>  performs one swap, and prints clear output. Names must follow PEP 8 <code>snake_case</code>.</p>
+<h3>🧬 Skill check (what "L2" looks like)</h3>
+<ul>
+<li><input type="checkbox" disabled> Every name is valid <strong>and</strong> descriptive <code>snake_case</code>.</li>
+<li><input type="checkbox" disabled> Reassignment and a swap both work and are explained in a comment.</li>
+<li><input type="checkbox" disabled> You fixed the Step 4 bugs by <strong>reading the error type</strong> (Syntax/Name), not by guessing.</li>
+</ul>
+<h3>🧠 Final reflection</h3>
+<ul>
+<li>Rename one variable in your code to something better. What did the new name make obvious that</li>
+</ul>
+<p>  the old one hid?</p>
+<h3>🔗 Sources to verify (human-in-the-loop)</h3>
+<ul>
+<li><strong>PEP 8</strong> — <em>Style Guide for Python Code</em> (naming conventions).</li>
+<li>Python docs — <em>Lexical analysis / Keywords</em> (the reserved words list).</li>
+</ul>
+<h3>🧩 Connections</h3>
+<ul>
+<li><strong>Predecessors:</strong> Atoms 1–2. <strong>Successors:</strong> Atom 4 (now <em>use</em> these variables).</li>
+</ul></section>
+<section class="page" id="page-atom-4" data-id="atom-4"><label class="donebox"><input type="checkbox" class="donechk" data-atom="atom-4"> Mark this atom complete</label><h2>⚛ Learning Atom 4 — <em>Expressions, Conversion &amp; f-strings (Codelab)</em></h2>
+<p><strong>Phase:</strong> 🙊 3 · Applied Practice (<em>do</em>) · <strong>KSA:</strong> 🛠️ Skill (+ 🌱 Ability) · <strong>Target level:</strong> L2 · <strong>Component ids:</strong> <code>S-use-values</code>, <code>A-attention-detail</code></p>
+<h3>🎯 Learning objective</h3>
+<ul>
+<li><strong>Use</strong> variables in expressions, <strong>convert</strong> types safely, and <strong>format</strong> output with</li>
+</ul>
+<p>  f-strings to build a small interactive script.</p>
+<h3>🧩 Prerequisites</h3>
+<ul>
+<li>Atoms 1–3. A Python runner open.</li>
+</ul>
+<h3>🧭 Atom description</h3>
+<p>Storing data is only useful if you <em>do</em> something with it. This codelab is where variables pay off: you combine them in expressions, take user input, convert it to the right type, and print clean, readable results with <strong>f-strings</strong> — the modern, professional way to format output.</p>
+<hr>
+<h3>🎬 Watch — f-strings in Python (short)</h3>
+<div class="yt" data-id="Mfmr_Puhtwc"><button class="yt-play" type="button" aria-label="Play video"><span class="yt-tri">&#9654;</span></button><div class="yt-meta"><a href="https://www.youtube.com/watch?v=Mfmr_Puhtwc" target="_blank" rel="noopener">https://www.youtube.com/watch?v=Mfmr_Puhtwc</a><div class="yt-cap">"Python f-strings" — formatting values into text the modern way (~7 min).</div></div></div>
+<h3>📖 Read — <em>Expressions, conversion &amp; f-strings</em> (≈ 5 min)</h3>
+<p><strong>Arithmetic operators</strong> you'll use with number variables:</p>
+<div class='tablewrap'><table><thead><tr><th>Op</th><th>Means</th><th>Example</th><th>Result</th></tr></thead><tbody>
+<tr><td><code>+ - *</code></td><td>add, subtract, multiply</td><td><code>3 * 4</code></td><td><code>12</code></td></tr>
+<tr><td><code>/</code></td><td>divide (always a float)</td><td><code>7 / 2</code></td><td><code>3.5</code></td></tr>
+<tr><td><code>//</code></td><td>floor divide</td><td><code>7 // 2</code></td><td><code>3</code></td></tr>
+<tr><td><code>%</code></td><td>remainder (modulo)</td><td><code>7 % 2</code></td><td><code>1</code></td></tr>
+<tr><td><code>**</code></td><td>power</td><td><code>2 ** 3</code></td><td><code>8</code></td></tr>
+</tbody></table></div>
+<p>You can update a variable using itself with <strong>augmented assignment</strong>:</p>
+<pre class="code"><span class="lang">python</span><code>total = 100
+total += 20      # same as total = total + 20  → 120
+total *= 2       # → 240</code></pre>
+<p><strong>f-strings</strong> put variables straight into text. Prefix the string with <code>f</code> and wrap names in <code>{}</code>:</p>
+<pre class="code"><span class="lang">python</span><code>name = &quot;Ada&quot;
+score = 92.5
+print(f&quot;{name} scored {score} points.&quot;)          # Ada scored 92.5 points.
+print(f&quot;{name} scored {score:.1f} points.&quot;)      # 92.5  (.1f = 1 decimal place)
+print(f&quot;Next year bonus: {score * 1.1:.2f}&quot;)     # expressions work inside {}</code></pre>
+<p>Remember the <strong>input → convert → use</strong> pattern from Atom 2:</p>
+<pre class="code"><span class="lang">python</span><code>price = float(input(&quot;Price? &quot;))      # &quot;19.99&quot; → 19.99
+qty   = int(input(&quot;Quantity? &quot;))     # &quot;3&quot; → 3
+total = price * qty
+print(f&quot;Total for {qty} items: ${total:.2f}&quot;)</code></pre>
+<hr>
+<h3>💻 Codelab — build a tip calculator</h3>
+<p>Build it step by step; run after each step.</p>
+<pre class="code"><span class="lang">python</span><code># Step 1 — gather inputs (convert as you read)
+bill = float(input(&quot;Bill amount? &quot;))
+tip_percent = int(input(&quot;Tip %? &quot;))
+people = int(input(&quot;Split between how many? &quot;))
+
+# Step 2 — compute with expressions
+tip = bill * tip_percent / 100
+grand_total = bill + tip
+per_person = grand_total / people
+
+# Step 3 — format the output with f-strings
+print(f&quot;Bill:        ${bill:.2f}&quot;)
+print(f&quot;Tip ({tip_percent}%):    ${tip:.2f}&quot;)
+print(f&quot;Grand total: ${grand_total:.2f}&quot;)
+print(f&quot;Each person pays: ${per_person:.2f}&quot;)</code></pre>
+<p><strong>Extend it (choose at least one):</strong></p>
+<ul>
+<li>Add a <code>tax_percent</code> and include tax before the tip.</li>
+<li>Use <code>//</code> and <code>%</code> to show the result as whole dollars and remaining cents.</li>
+<li>Print a one-line summary using a single f-string.</li>
+</ul>
+<hr>
+<h3>🧪 AI Prompt Question (practice with AI, then verify)</h3>
+<p>Ask an AI assistant:</p>
+<div class="promptcard"><div class="promptcard-h"><span>🖼️ Image / AI prompt</span><button class="copybtn" type="button">Copy</button></div><pre><code>&quot;Explain step by step why this Python code raises a TypeError, and give the corrected version:
+
+    age = input(&#x27;Age? &#x27;)
+    print(&#x27;Next year you will be &#x27; + age + 1)
+
+Then explain the rule about input() and type conversion in one sentence.&quot;</code></pre></div>
+<blockquote>🤖 <strong>Human-in-the-loop:</strong> don't just paste the answer — <em>run</em> the corrected code and confirm it. The bug is that <code>input()</code> returns a string and you can't <code>+ 1</code> to a string (and can't <code>+</code> a string and int). Fix: <code>age = int(input(&#x27;Age? &#x27;))</code> then use an f-string.</blockquote>
+<hr>
+<h3>💻🧪 Lab with tests — <em>refactor into functions, add a <code>main()</code>, verify</em></h3>
+<p>The version above mixes math and input. Refactor the math into <strong>pure functions</strong> (no <code>input</code>, no <code>print</code> — just take values, return values), keep the I/O in <code>main()</code>, and write <strong>unit tests</strong> so you can prove the calculator is correct.</p>
+<blockquote>📁 Runnable files: <a href="labs/tip_calculator.py" target="_blank" rel="noopener"><code>../labs/tip_calculator.py</code></a> and <a href="labs/test_tip_calculator.py" target="_blank" rel="noopener"><code>../labs/test_tip_calculator.py</code></a>.</blockquote>
+<pre class="code"><span class="lang">python</span><code># tip_calculator.py
+def calculate_tip(bill, tip_percent):
+    return bill * tip_percent / 100
+
+def grand_total(bill, tip_percent):
+    return bill + calculate_tip(bill, tip_percent)
+
+def per_person(total, people):
+    if people &lt;= 0:
+        raise ValueError(&quot;people must be greater than 0&quot;)
+    return total / people
+
+def main():
+    bill = float(input(&quot;Bill amount? &quot;))
+    tip_percent = int(input(&quot;Tip %? &quot;))
+    people = int(input(&quot;Split between how many? &quot;))
+    total = grand_total(bill, tip_percent)
+    print(f&quot;Grand total: ${total:.2f}&quot;)
+    print(f&quot;Each person pays: ${per_person(total, people):.2f}&quot;)
+
+if __name__ == &quot;__main__&quot;:
+    main()</code></pre>
+<pre class="code"><span class="lang">python</span><code># test_tip_calculator.py
+import unittest
+from tip_calculator import calculate_tip, grand_total, per_person
+
+class TestTipCalculator(unittest.TestCase):
+    def test_calculate_tip(self):
+        self.assertAlmostEqual(calculate_tip(100, 15), 15.0)
+
+    def test_grand_total(self):
+        self.assertAlmostEqual(grand_total(100, 15), 115.0)
+
+    def test_per_person_splits_evenly(self):
+        self.assertAlmostEqual(per_person(120, 4), 30.0)
+
+    def test_per_person_rejects_zero_people(self):
+        with self.assertRaises(ValueError):    # bad input should error, not divide by zero
+            per_person(100, 0)
+
+if __name__ == &quot;__main__&quot;:
+    unittest.main()</code></pre>
+<pre class="code"><span class="lang">bash</span><code>python3 tip_calculator.py                      # run it
+python3 -m unittest test_tip_calculator.py     # run the tests → &quot;OK&quot;</code></pre>
+<blockquote>💡 Use <code>assertAlmostEqual</code> for <code>float</code> math (decimals can carry tiny rounding error, so <code>==</code> is unreliable). Notice the test for <em>bad input</em> — robust code expects mistakes.</blockquote>
+<hr>
+<h3>✅ Evaluate — Performance task (<code>skill</code>)</h3>
+<p>Predict the output <strong>before</strong> running, then verify:</p>
+<pre class="code"><span class="lang">python</span><code>a = 7
+b = 2
+print(a / b, a // b, a % b, a ** b)
+
+label = &quot;ada&quot;
+print(f&quot;{label.upper()} x3 = {label * 3}&quot;)
+
+x = &quot;10&quot;
+print(int(x) + 5)</code></pre>
+<details>
+<summary>Answer key</summary>
+<ul>
+<li><code>3.5 3 1 49</code> — true divide, floor divide, remainder, power.</li>
+<li><code>ADA x3 = adaadaada</code>.</li>
+<li><code>15</code> — <code>x</code> is the string <code>&quot;10&quot;</code>, converted with <code>int()</code> then <code>+ 5</code>.</li>
+</ul>
+</details>
+<hr>
+<h3>📦 Deliverable</h3>
+<ul>
+<li>Your working <strong>tip calculator</strong> (with at least one extension), pasted with a sample run. Output</li>
+</ul>
+<p>  must use f-strings and show money to 2 decimals.</p>
+<h3>🧬 Skill check (what "L2" looks like)</h3>
+<ul>
+<li><input type="checkbox" disabled> Reads input and <strong>converts</strong> it to the right type before computing.</li>
+<li><input type="checkbox" disabled> Uses at least three different operators correctly.</li>
+<li><input type="checkbox" disabled> Output is formatted with f-strings (<code>:.2f</code> for money).</li>
+<li><input type="checkbox" disabled> You diagnosed the AI Prompt Question bug as an <code>input()</code>/type issue.</li>
+</ul>
+<h3>🧠 Final reflection</h3>
+<ul>
+<li>Where did a type conversion (or a missing one) bite you? How will you spot it faster next time?</li>
+</ul>
+<h3>🔗 Sources to verify (human-in-the-loop)</h3>
+<ul>
+<li>Python docs — <em>Formatted string literals (f-strings)</em> and <em>Format Specification Mini-Language</em>.</li>
+<li>Python tutorial §3 — <em>Numbers</em> (operators, <code>/</code> vs <code>//</code> vs <code>%</code>).</li>
+</ul>
+<h3>🧩 Connections</h3>
+<ul>
+<li><strong>Predecessors:</strong> Atoms 1–3. <strong>Successors:</strong> Atom 5 (ship a small program of your own).</li>
+</ul></section>
+<section class="page" id="page-atom-5" data-id="atom-5"><label class="donebox"><input type="checkbox" class="donechk" data-atom="atom-5"> Mark this atom complete</label><h2>⚛ Learning Atom 5 — <em>Mini-Project: Ship a Program (Capstone)</em></h2>
+<p><strong>Phase:</strong> 🐵 4 · Collaboration &amp; Reflection (<em>share</em>) · <strong>KSA:</strong> 🛠️ Skill + 🌱 Ability · <strong>Target level:</strong> L2 · <strong>Component ids:</strong> <code>S-declare-assign</code>, <code>S-use-values</code>, <code>A-attention-detail</code></p>
+<h3>🎯 Learning objective</h3>
+<ul>
+<li><strong>Create</strong> a small, working Python program that stores, converts, and prints data using</li>
+</ul>
+<p>  variables — then <strong>explain and peer-review</strong> it.</p>
+<h3>🧩 Prerequisites</h3>
+<ul>
+<li>Atoms 1–4.</li>
+</ul>
+<h3>🧭 Atom description</h3>
+<p>This is the capstone, delivered as a learning atom. You'll integrate everything — naming, assignment, types, conversion, expressions, and f-strings — into one small program you actually <em>ship</em>, then trade code with a peer for review. Shipping something tiny and correct, and being able to talk through it, is exactly what an entry-level task looks like.</p>
+<hr>
+<h3>🚀 The brief</h3>
+<blockquote>Build a short program (<strong>~15–30 lines</strong>) that collects some inputs, computes something useful with variables, and prints a clean, formatted summary with f-strings.</blockquote>
+<p>Pick one (or invent your own at the same scope):</p>
+<ul>
+<li><strong>Receipt maker</strong> — items, unit prices, quantities → subtotal, tax, total.</li>
+<li><strong>Profile card</strong> — name, birth year, city, favorite language → a formatted "ID card".</li>
+<li><strong>Trip cost splitter</strong> — total cost, nights, number of people → cost per person per night.</li>
+<li><strong>Unit converter</strong> — e.g. km↔miles or °C↔°F using a formula and a constant.</li>
+</ul>
+<h3>📦 What to submit</h3>
+<ul>
+<li><input type="checkbox" disabled> <strong>The program</strong> — logic in well-named functions (PEP 8), a <code>main()</code> runner, at least 3</li>
+</ul>
+<p>  different types, at least one type conversion, and f-string output.</p>
+<ul>
+<li><input type="checkbox" disabled> <strong>A unit test file</strong> — at least <strong>3 passing tests</strong> (<code>python3 -m unittest</code> shows <code>OK</code>).</li>
+<li><input type="checkbox" disabled> <strong>A sample run</strong> — the input you gave and the printed output.</li>
+<li><input type="checkbox" disabled> <strong>A 4–6 line README</strong> — what it does, how to run it + how to run the tests, one improvement.</li>
+<li><input type="checkbox" disabled> <strong>A peer review you gave</strong> — using the checklist below, on a classmate's program.</li>
+</ul>
+<h3>🧱 Starter scaffold — <em>functions + <code>main()</code> + tests</em></h3>
+<p>Structure the program so the logic is in <strong>testable functions</strong> and <code>main()</code> only handles I/O. This is the shape professionals ship — and the only way you can write tests for it.</p>
+<blockquote>📁 Full runnable reference: <a href="labs/receipt.py" target="_blank" rel="noopener"><code>../labs/receipt.py</code></a> + <a href="labs/test_receipt.py" target="_blank" rel="noopener"><code>../labs/test_receipt.py</code></a>.</blockquote>
+<pre class="code"><span class="lang">python</span><code># receipt.py
+TAX_RATE = 0.19                      # constant in UPPER_CASE
+
+def subtotal(unit_price, quantity):
+    return unit_price * quantity
+
+def build_receipt(item_name, unit_price, quantity, rate=TAX_RATE):
+    sub = subtotal(unit_price, quantity)
+    tax = sub * rate
+    total = sub + tax
+    return (
+        &quot;----- RECEIPT -----\n&quot;
+        f&quot;{item_name} x{quantity} @ ${unit_price:.2f}\n&quot;
+        f&quot;Subtotal: ${sub:.2f}\n&quot;
+        f&quot;Tax ({rate*100:.0f}%): ${tax:.2f}\n&quot;
+        f&quot;TOTAL:    ${total:.2f}&quot;
+    )
+
+def main():
+    item_name = input(&quot;Item name? &quot;)
+    unit_price = float(input(&quot;Unit price? &quot;))
+    quantity = int(input(&quot;Quantity? &quot;))
+    print(build_receipt(item_name, unit_price, quantity))
+
+if __name__ == &quot;__main__&quot;:
+    main()</code></pre>
+<pre class="code"><span class="lang">python</span><code># test_receipt.py
+import unittest
+from receipt import subtotal, build_receipt
+
+class TestReceipt(unittest.TestCase):
+    def test_subtotal(self):
+        self.assertAlmostEqual(subtotal(2.5, 4), 10.0)
+
+    def test_build_receipt_has_item_and_total(self):
+        r = build_receipt(&quot;Coffee&quot;, 3.0, 2, rate=0.0)
+        self.assertIn(&quot;Coffee x2&quot;, r)
+        self.assertIn(&quot;TOTAL:    $6.00&quot;, r)
+
+if __name__ == &quot;__main__&quot;:
+    unittest.main()</code></pre>
+<pre class="code"><span class="lang">bash</span><code>python3 receipt.py                      # run the program
+python3 -m unittest test_receipt.py     # prove it works → &quot;OK&quot;</code></pre>
+<hr>
+<h3>🤝 Collaborate — pair review</h3>
+<div class="mermaid">flowchart LR
+  BUILD[&quot;💻 Build your program&quot;] --&gt; SWAP[&quot;🤝 Swap with a peer&quot;]
+  SWAP --&gt; REVIEW[&quot;🔎 Review with the checklist&quot;]
+  REVIEW --&gt; FIX[&quot;🛠️ Apply 1-2 fixes&quot;]
+  FIX --&gt; SHOW[&quot;🎤 30-sec showcase&quot;]
+  SHOW --&gt; BADGE[&quot;🏅 Python Variables Foundations&quot;]</div>
+<p><strong>Peer-review checklist</strong> (use it on your partner's code):</p>
+<ul>
+<li><input type="checkbox" disabled> Are all variable names valid, descriptive <code>snake_case</code>?</li>
+<li><input type="checkbox" disabled> Are there at least 3 different data types, and at least one conversion?</li>
+<li><input type="checkbox" disabled> Does it run without errors on a normal input?</li>
+<li><input type="checkbox" disabled> Is the output formatted clearly with f-strings?</li>
+<li><input type="checkbox" disabled> One concrete suggestion to make it better.</li>
+</ul>
+<hr>
+<h3>🎤 Showcase (30–60 seconds)</h3>
+<ol>
+<li><strong>What it does</strong> (10s) — one sentence.</li>
+<li><strong>One variable choice</strong> (20s) — a name/type decision you made and why.</li>
+<li><strong>One bug you hit</strong> (20s) — what the error said and how you fixed it.</li>
+<li><strong>One improvement</strong> (10s) — what you'd add next.</li>
+</ol>
+<hr>
+<h3>✅ Evaluate — Capstone rubric (<code>capstone-5</code>)</h3>
+<p>Graded on the standard 5-criteria ADA capstone rubric in <a href="#rubrics"><code>../rubrics.md</code></a>: relevance, application of skills, problem-solving, clarity/communication, and collaboration/reflection.</p>
+<blockquote><strong>Badge pass:</strong> program runs and meets the brief, capstone-5 weighted ≥ 60%, and the peer review + showcase are completed — <strong>instructor-verified</strong> (human-in-the-loop).</blockquote>
+<hr>
+<h3>📦 Deliverable</h3>
+<ul>
+<li>The program + sample run + mini-README + the peer review you gave. This is your portfolio piece.</li>
+</ul>
+<h3>🧠 Final reflection</h3>
+<ul>
+<li>You started not knowing what <code>=</code> did. Write 3 sentences to a beginner explaining variables in</li>
+</ul>
+<p>  your own words — teaching it is how you prove you learned it.</p>
+<h3>🔗 Sources to verify (human-in-the-loop)</h3>
+<ul>
+<li>Python docs — <em>Input and Output</em> (f-strings, <code>print</code>).</li>
+<li>Al Sweigart, <em>Automate the Boring Stuff with Python</em> — first project chapters.</li>
+</ul>
+<h3>🧩 Connections</h3>
+<ul>
+<li><strong>Predecessors:</strong> Atoms 1–4. <strong>Next pathway:</strong> strings &amp; lists → conditionals → loops (see</li>
+</ul>
+<p>  <a href="#skillsmap"><code>../skills-map.md</code></a> for where this badge leads).</p></section>
+<section class="page" id="page-labs" data-id="labs"><h1>🧪 Labs &amp; Tests — runnable code for the codelabs</h1>
+<p>Every codelab in this micro-credential ships as <strong>real, runnable Python</strong> with a <code>main()</code> to run it and a <strong>unit-test file</strong> to prove it works. The files live in <a href="labs" target="_blank" rel="noopener"><code>labs/</code></a> and are the source of truth — the snippets inside the atoms are excerpts of these.</p>
+<blockquote>🧠 <strong>Why this matters (the method):</strong> putting logic in small <strong>functions</strong> and verifying them with <strong>unit tests</strong> is exactly the <em>attention-to-detail / debugging</em> Ability (<code>A-attention-detail</code>) this course builds. Tests turn "I think it works" into "I can prove it works."</blockquote>
+<hr>
+<h2>▶️ How to run everything</h2>
+<pre class="code"><span class="lang">bash</span><code># from the course folder
+cd labs
+
+# run any program (it asks for input):
+python3 profile_card.py
+python3 tip_calculator.py
+python3 receipt.py
+
+# run a single test file:
+python3 -m unittest test_tip_calculator.py
+
+# run ALL tests at once (auto-discovers test_*.py):
+python3 -m unittest discover -v</code></pre>
+<p>A green run looks like this:</p>
+<pre class="code"><span class="lang">text</span><code>Ran 13 tests in 0.001s
+
+OK</code></pre>
+<hr>
+<h2>🔁 The test-driven loop (how to use the tests while you build)</h2>
+<div class="mermaid">flowchart LR
+  WRITE[&quot;✍️ Write / change a function&quot;] --&gt; RUN[&quot;🏃 Run the tests&quot;]
+  RUN --&gt; PASS{&quot;All green?&quot;}
+  PASS --&gt;|❌ no| READ[&quot;🔎 Read the failure&lt;br/&gt;(expected vs actual)&quot;]
+  READ --&gt; FIX[&quot;🛠️ Fix the code&quot;]
+  FIX --&gt; RUN
+  PASS --&gt;|✅ yes| SHIP[&quot;🚀 Ship / next feature&quot;]</div>
+<blockquote>🖼️ <em>Need a polished version of this diagram for slides? Use the prompt below in any image-generation model, then drop the result into a <code>labs/img/</code> folder and link it here.</em></blockquote>
+<div class="promptcard"><div class="promptcard-h"><span>🖼️ Image / AI prompt</span><button class="copybtn" type="button">Copy</button></div><pre><code>Create a clean, modern flat-vector infographic of a &quot;test-driven development loop&quot; as a circular
+arrow cycle with four labeled stations: 1) &quot;Write a function&quot; (pencil icon), 2) &quot;Run the tests&quot;
+(play/terminal icon), 3) &quot;Red — read the failure&quot; (red dot, magnifier), 4) &quot;Green — ship it&quot;
+(green check, rocket). Center label: &quot;RED → GREEN → REFACTOR&quot;. Use ADA brand colors (Indigo
+#1E2A6E, Turquoise #15B5C6, Gold #E0A53C accents) on a light background, legible sans-serif and a
+monospace accent, high contrast, generous white space. 16:9.</code></pre></div>
+<hr>
+<h2>📂 The files</h2>
+<div class='tablewrap'><table><thead><tr><th>Atom</th><th>Program (<code>main()</code>)</th><th>Tests</th></tr></thead><tbody>
+<tr><td>3 · Naming &amp; assignment</td><td><a href="labs/profile_card.py" target="_blank" rel="noopener"><code>labs/profile_card.py</code></a></td><td><a href="labs/test_profile_card.py" target="_blank" rel="noopener"><code>labs/test_profile_card.py</code></a></td></tr>
+<tr><td>4 · Expressions &amp; f-strings</td><td><a href="labs/tip_calculator.py" target="_blank" rel="noopener"><code>labs/tip_calculator.py</code></a></td><td><a href="labs/test_tip_calculator.py" target="_blank" rel="noopener"><code>labs/test_tip_calculator.py</code></a></td></tr>
+<tr><td>5 · Capstone</td><td><a href="labs/receipt.py" target="_blank" rel="noopener"><code>labs/receipt.py</code></a></td><td><a href="labs/test_receipt.py" target="_blank" rel="noopener"><code>labs/test_receipt.py</code></a></td></tr>
+</tbody></table></div>
+<h3><code>profile_card.py</code> (Atom 3)</h3>
+<pre class="code"><span class="lang">python</span><code>def calculate_age(birth_year, current_year):
+    return current_year - birth_year
+
+def make_profile_card(name, birth_year, favorite_language, current_year):
+    age = calculate_age(birth_year, current_year)
+    return (
+        &quot;----- PROFILE -----\n&quot;
+        f&quot;Name:     {name}\n&quot;
+        f&quot;Age:      {age}\n&quot;
+        f&quot;Codes in: {favorite_language}&quot;
+    )
+
+def main():
+    name = input(&quot;Name? &quot;)
+    birth_year = int(input(&quot;Birth year? &quot;))
+    favorite_language = input(&quot;Favorite language? &quot;)
+    print(make_profile_card(name, birth_year, favorite_language, 2026))
+
+if __name__ == &quot;__main__&quot;:
+    main()</code></pre>
+<h3><code>tip_calculator.py</code> (Atom 4)</h3>
+<pre class="code"><span class="lang">python</span><code>def calculate_tip(bill, tip_percent):
+    return bill * tip_percent / 100
+
+def grand_total(bill, tip_percent):
+    return bill + calculate_tip(bill, tip_percent)
+
+def per_person(total, people):
+    if people &lt;= 0:
+        raise ValueError(&quot;people must be greater than 0&quot;)
+    return total / people
+
+def main():
+    bill = float(input(&quot;Bill amount? &quot;))
+    tip_percent = int(input(&quot;Tip %? &quot;))
+    people = int(input(&quot;Split between how many? &quot;))
+    total = grand_total(bill, tip_percent)
+    print(f&quot;Grand total: ${total:.2f}&quot;)
+    print(f&quot;Each person pays: ${per_person(total, people):.2f}&quot;)
+
+if __name__ == &quot;__main__&quot;:
+    main()</code></pre>
+<h3><code>receipt.py</code> (Atom 5 capstone)</h3>
+<pre class="code"><span class="lang">python</span><code>TAX_RATE = 0.19
+
+def subtotal(unit_price, quantity):
+    return unit_price * quantity
+
+def apply_tax(amount, rate=TAX_RATE):
+    return amount * (1 + rate)
+
+def build_receipt(item_name, unit_price, quantity, rate=TAX_RATE):
+    sub = subtotal(unit_price, quantity)
+    tax = sub * rate
+    total = sub + tax
+    return (
+        &quot;----- RECEIPT -----\n&quot;
+        f&quot;{item_name} x{quantity} @ ${unit_price:.2f}\n&quot;
+        f&quot;Subtotal: ${sub:.2f}\n&quot;
+        f&quot;Tax ({rate*100:.0f}%): ${tax:.2f}\n&quot;
+        f&quot;TOTAL:    ${total:.2f}&quot;
+    )
+
+def main():
+    item_name = input(&quot;Item name? &quot;)
+    unit_price = float(input(&quot;Unit price? &quot;))
+    quantity = int(input(&quot;Quantity? &quot;))
+    print(build_receipt(item_name, unit_price, quantity))
+
+if __name__ == &quot;__main__&quot;:
+    main()</code></pre>
+<h3>Example test file — <code>test_tip_calculator.py</code></h3>
+<pre class="code"><span class="lang">python</span><code>import unittest
+from tip_calculator import calculate_tip, grand_total, per_person
+
+class TestTipCalculator(unittest.TestCase):
+    def test_calculate_tip(self):
+        self.assertAlmostEqual(calculate_tip(100, 15), 15.0)
+
+    def test_grand_total(self):
+        self.assertAlmostEqual(grand_total(100, 15), 115.0)
+
+    def test_per_person_splits_evenly(self):
+        self.assertAlmostEqual(per_person(120, 4), 30.0)
+
+    def test_per_person_rejects_zero_people(self):
+        with self.assertRaises(ValueError):
+            per_person(100, 0)
+
+if __name__ == &quot;__main__&quot;:
+    unittest.main()</code></pre>
+<hr>
+<h2>✅ Common assertions you'll use</h2>
+<div class='tablewrap'><table><thead><tr><th>Assertion</th><th>Checks</th><th>Use for</th></tr></thead><tbody>
+<tr><td><code>assertEqual(a, b)</code></td><td><code>a == b</code></td><td>ints, strings, exact values</td></tr>
+<tr><td><code>assertAlmostEqual(a, b)</code></td><td><code>a ≈ b</code></td><td><code>float</code> math (avoids rounding traps)</td></tr>
+<tr><td><code>assertIn(x, text)</code></td><td><code>x in text</code></td><td>a substring is present in output</td></tr>
+<tr><td><code>assertTrue(x)</code> / <code>assertFalse(x)</code></td><td>truthiness</td><td>booleans / conditions</td></tr>
+<tr><td><code>assertRaises(Error)</code></td><td>code raises</td><td>bad input is rejected safely</td></tr>
+</tbody></table></div>
+<blockquote>⚠️ <strong>Human-in-the-loop:</strong> tests prove the code does what <em>you specified</em>. A mentor still checks that you specified the <em>right</em> behavior — green tests are necessary, not sufficient.</blockquote></section>
+<section class="page" id="page-capstone" data-id="capstone"><h1>🚀 Capstone — <em>Ship a Small Program with Variables</em></h1>
+<p>The capstone is delivered as <a href="#atom-5">Atom 5</a>. This file is the <strong>grading brief</strong>: what learners submit, how it maps to KSA, and the showcase format.</p>
+<hr>
+<h2>🎯 The brief</h2>
+<blockquote>Build a short Python program (<strong>~15–30 lines</strong>) that collects inputs, computes something useful using variables, and prints a clean, formatted summary with f-strings — then peer-review a classmate's program and do a 30–60s showcase.</blockquote>
+<p>The point is a <strong>small, correct, readable</strong> program you can explain — not a big one. An entry-level task is exactly this: take some data, transform it correctly, present it clearly, and talk through your choices.</p>
+<hr>
+<h2>📦 What to submit</h2>
+<ul>
+<li><input type="checkbox" disabled> <strong>The program</strong> — valid PEP 8 <code>snake_case</code> names; at least <strong>3 different data types</strong>; at</li>
+</ul>
+<p>  least <strong>one type conversion</strong>; output formatted with <strong>f-strings</strong>.</p>
+<ul>
+<li><input type="checkbox" disabled> <strong>A sample run</strong> — the inputs you gave and the printed output.</li>
+<li><input type="checkbox" disabled> <strong>A mini-README</strong> (4–6 lines) — what it does, how to run it, one thing you'd improve.</li>
+<li><input type="checkbox" disabled> <strong>A peer review you gave</strong> — the Atom 5 checklist applied to a classmate's program.</li>
+</ul>
+<hr>
+<h2>🎤 Showcase structure (30–60 seconds)</h2>
+<ol>
+<li><strong>What it does</strong> (10s) — one sentence.</li>
+<li><strong>A variable choice</strong> (20s) — a naming/type decision and why.</li>
+<li><strong>A bug you hit</strong> (20s) — what the error message said and how you fixed it.</li>
+<li><strong>One improvement</strong> (10s) — what you'd add next.</li>
+</ol>
+<hr>
+<h2>🧬 How the capstone maps to KSA</h2>
+<div class='tablewrap'><table><thead><tr><th>Capstone element</th><th>Evidences</th><th>Component</th></tr></thead><tbody>
+<tr><td>Correct use of types and a conversion</td><td>Understands types &amp; casting</td><td>🧠 K-var-concept, K-data-types</td></tr>
+<tr><td>Valid, readable PEP 8 variable names</td><td>Declaring &amp; naming variables</td><td>🛠️ S-declare-assign (L2)</td></tr>
+<tr><td>Expressions + f-string output that runs</td><td>Using/converting/formatting values</td><td>🛠️ S-use-values (L2)</td></tr>
+<tr><td>Diagnosing the bug you describe in the showcase</td><td>Reading errors, fixing details</td><td>🌱 A-attention-detail (L2)</td></tr>
+<tr><td>Peer review given + improvement applied</td><td>Collaboration &amp; reflection</td><td>(capstone-5 collaboration)</td></tr>
+</tbody></table></div>
+<hr>
+<h2>✅ Grading</h2>
+<p>Atom-level checks (<code>knowledge-mini</code>, <code>skill</code>) gate entry to the capstone, which is then scored on the standard 5-criteria <strong>Assessment Rubric</strong> below (also in <a href="#rubrics"><code>rubrics.md</code></a>).</p>
+<h2>📋 Assessment Rubric</h2>
+<p>Five criteria across four proficiency bands, weighted to <strong>100 points</strong>.</p>
+<div class='tablewrap'><table><thead><tr><th>Criteria</th><th>Excellent (100–90%)</th><th>Competent (89–80%)</th><th>Developing (79–70%)</th><th>Initial (69% or less)</th><th>Weight</th></tr></thead><tbody>
+<tr><td><strong>Relevance (competency alignment)</strong></td><td>Program clearly meets the brief and uses variables meaningfully and purposefully.</td><td>Program meets the brief; variable use mostly purposeful.</td><td>Program loosely meets the brief; trivial or forced variable use.</td><td>Off-target or trivial; brief not met.</td><td><strong>20 pts</strong></td></tr>
+<tr><td><strong>Application of skills</strong></td><td>Names, types, conversion, expressions, f-strings, functions + unit tests all used correctly.</td><td>Most used correctly, with minor errors.</td><td>Several gaps (e.g. missing conversion, weak names, no tests).</td><td>Minimal or incorrect application.</td><td><strong>25 pts</strong></td></tr>
+<tr><td><strong>Problem-solving</strong></td><td>Handles inputs sensibly; bugs found via tests/errors, fixed and explained.</td><td>Works on normal input; fixes most issues.</td><td>Works partially; some bugs unresolved.</td><td>Frequently broken; errors unresolved.</td><td><strong>20 pts</strong></td></tr>
+<tr><td><strong>Clarity &amp; communication</strong></td><td>Clean output + clear mini-README + crisp showcase.</td><td>Generally clear output and docs.</td><td>Uneven; missing README or unclear output.</td><td>Unclear or missing.</td><td><strong>15 pts</strong></td></tr>
+<tr><td><strong>Collaboration &amp; reflection</strong></td><td>Useful peer review given; applied a fix; honest, specific reflection.</td><td>Adequate peer review and reflection.</td><td>Minimal review / reflection.</td><td>None.</td><td><strong>20 pts</strong></td></tr>
+<tr><td><strong>TOTAL</strong></td><td></td><td></td><td></td><td></td><td><strong>100 pts</strong></td></tr>
+</tbody></table></div>
+<blockquote><strong>Pass for the badge:</strong> the program runs and meets the brief, Assessment Rubric weighted score ≥ 70% (at least <em>Developing</em> on every criterion), and the peer review + showcase are completed — <strong>verified by an instructor</strong>. See <a href="#skillsmap"><code>skills-map.md</code></a> for what the badge unlocks.</blockquote></section>
+<section class="page" id="page-rubrics" data-id="rubrics"><h1>📊 Rubrics — Python Variables Micro-Credential</h1>
+<p>All assessment instruments used across the course. Atoms reference these by <code>rubric</code> flavor: <code>knowledge-mini</code>, <code>skill</code>, <code>capstone-5</code> (plus a <code>code-quality</code> lens applied throughout).</p>
+<hr>
+<h2>🔹 <code>knowledge-mini</code> — concept checks (Atoms 1–2)</h2>
+<p>Quick formative check; used for the pop quizzes.</p>
+<div class='tablewrap'><table><thead><tr><th>Criterion</th><th>Excellent (3)</th><th>Adequate (2)</th><th>Needs improvement (1)</th></tr></thead><tbody>
+<tr><td><strong>Accuracy</strong></td><td>All answers correct; predicts <code>type()</code>/conversion results</td><td>Mostly correct</td><td>Repeats a misconception (e.g. <code>=</code> means <code>==</code>)</td></tr>
+<tr><td><strong>Vocabulary</strong></td><td>Uses terms correctly (assign, type, convert, concatenate)</td><td>Roughly right</td><td>Vague / wrong terms</td></tr>
+<tr><td><strong>Self-application</strong></td><td>Connects to own code example</td><td>Generic example</td><td>None</td></tr>
+</tbody></table></div>
+<blockquote>Pass = 2+ on each. Knowledge here is <strong>L1–L2</strong> — it enables the Skills that follow.</blockquote>
+<hr>
+<h2>🔹 <code>skill</code> — performance mini-rubric (Atoms 3–4)</h2>
+<p>For the naming/assignment codelab and the expressions/conversion/f-strings codelab.</p>
+<div class='tablewrap'><table><thead><tr><th>Criterion</th><th>Excellent (3)</th><th>Adequate (2)</th><th>Needs improvement (1)</th></tr></thead><tbody>
+<tr><td><strong>Correct mechanics</strong></td><td>Assignment, reassignment, swap, expressions all work</td><td>Minor gaps</td><td>Code doesn't run</td></tr>
+<tr><td><strong>Naming (PEP 8)</strong></td><td>All names valid, descriptive <code>snake_case</code></td><td>Mostly good</td><td>Cryptic / invalid names</td></tr>
+<tr><td><strong>Types &amp; conversion</strong></td><td>Converts input correctly; right type everywhere</td><td>One slip</td><td>Type bugs unresolved</td></tr>
+<tr><td><strong>Reads errors</strong></td><td>Diagnoses Syntax/Name/Type errors and fixes them</td><td>Fixes with hints</td><td>Guesses randomly</td></tr>
+</tbody></table></div>
+<blockquote>Pass = 2+ on each → <strong>L2</strong> evidence for the relevant Skill component.</blockquote>
+<hr>
+<h2>🔹 <code>code-quality</code> — the attention-to-detail lens (applied across Atoms 3–5) ⭐</h2>
+<p>The lens that builds the <strong>Ability</strong> <code>A-attention-detail</code>. A habit, not a single moment — looked for across the <strong>3 assessed occasions</strong> (two codelabs + the capstone).</p>
+<div class='tablewrap'><table><thead><tr><th>Criterion</th><th>Excellent (3)</th><th>Adequate (2)</th><th>Needs improvement (1)</th></tr></thead><tbody>
+<tr><td><strong>Readability</strong></td><td>Clear names, tidy layout, helpful comment where needed</td><td>Generally readable</td><td>Hard to follow</td></tr>
+<tr><td><strong>Error handling habit</strong></td><td>Reads the error message and fixes the real cause</td><td>Fixes eventually</td><td>Ignores / works around</td></tr>
+<tr><td><strong>Runs clean</strong></td><td>No errors on normal input across all occasions</td><td>Occasional slip</td><td>Frequently broken</td></tr>
+</tbody></table></div>
+<blockquote>Consistent 2+ across occasions supports <strong>L2</strong> for <code>A-attention-detail</code>.</blockquote>
+<hr>
+<h2>✨ <code>capstone-5</code> — Assessment Rubric (standard ADA capstone)</h2>
+<p>The capstone is scored on <strong>five criteria</strong> across <strong>four proficiency bands</strong>, weighted to a total of <strong>100 points</strong>. Each criterion's band sets how much of its weight is earned. **Pass = ≥ 70% overall with at least <em>Developing</em> on every criterion**, instructor-verified (human-in-the-loop).</p>
+<div class='tablewrap'><table><thead><tr><th>Criteria</th><th>Excellent (100–90%)</th><th>Competent (89–80%)</th><th>Developing (79–70%)</th><th>Initial (69% or less)</th><th>Weight</th></tr></thead><tbody>
+<tr><td><strong>Relevance (competency alignment)</strong></td><td>Program clearly meets the brief and uses variables meaningfully and purposefully.</td><td>Program meets the brief; variable use mostly purposeful.</td><td>Program loosely meets the brief; trivial or forced variable use.</td><td>Off-target or trivial; brief not met.</td><td><strong>20 pts</strong></td></tr>
+<tr><td><strong>Application of skills</strong></td><td>Names, types, conversion, expressions, f-strings, functions + unit tests all used correctly.</td><td>Most used correctly, with minor errors.</td><td>Several gaps (e.g. missing conversion, weak names, no tests).</td><td>Minimal or incorrect application.</td><td><strong>25 pts</strong></td></tr>
+<tr><td><strong>Problem-solving</strong></td><td>Handles inputs sensibly; bugs found via tests/errors, fixed and explained.</td><td>Works on normal input; fixes most issues.</td><td>Works partially; some bugs unresolved.</td><td>Frequently broken; errors unresolved.</td><td><strong>20 pts</strong></td></tr>
+<tr><td><strong>Clarity &amp; communication</strong></td><td>Clean output + clear mini-README + crisp showcase.</td><td>Generally clear output and docs.</td><td>Uneven; missing README or unclear output.</td><td>Unclear or missing.</td><td><strong>15 pts</strong></td></tr>
+<tr><td><strong>Collaboration &amp; reflection</strong></td><td>Useful peer review given; applied a fix; honest, specific reflection.</td><td>Adequate peer review and reflection.</td><td>Minimal review / reflection.</td><td>None.</td><td><strong>20 pts</strong></td></tr>
+<tr><td><strong>TOTAL</strong></td><td></td><td></td><td></td><td></td><td><strong>100 pts</strong></td></tr>
+</tbody></table></div>
+<blockquote><strong>Badge pass:</strong> atom-level <code>skill</code> checks ≥ 2 each AND Assessment Rubric weighted ≥ 70% (at least <em>Developing</em> on every criterion), <strong>instructor-verified</strong> (human-in-the-loop).</blockquote>
+<hr>
+<h2>🧮 Evidence → badge logic</h2>
+<div class="mermaid">flowchart LR
+  A3[&quot;Atom 3&lt;br/&gt;skill ✔&quot;] --&gt; BADGE
+  A4[&quot;Atom 4&lt;br/&gt;skill ✔&quot;] --&gt; BADGE
+  CAP[&quot;Capstone&lt;br/&gt;capstone-5 ✔&quot;] --&gt; BADGE
+  INSTR[&quot;🧑‍🏫 Instructor verification&quot;] --&gt; BADGE
+  BADGE[&quot;🏅 Python Variables Foundations&lt;br/&gt;S-declare-assign=2 · S-use-values=2 · A-attention-detail=2&quot;]</div></section>
+<section class="page" id="page-skillsmap" data-id="skillsmap"><h1>🗺️ Skills Map — what the badge unlocks</h1>
+<p>How the <strong>🏅 Python Variables Foundations</strong> badge writes into a learner's skills map and starts a developer/data pathway. Conforms to <a href="../../index.html#/specs/skills-map-and-job-matching.md" target="_blank" rel="noopener"><code>../../specs/skills-map-and-job-matching.md</code></a>.</p>
+<hr>
+<h2>🏅 What the badge certifies</h2>
+<p>On verified completion, the badge sets these components in the learner's skills map:</p>
+<div class='tablewrap'><table><thead><tr><th>Component</th><th>Type</th><th>Level earned</th></tr></thead><tbody>
+<tr><td><code>S-declare-assign</code></td><td>🛠️ Skill</td><td><strong>2</strong></td></tr>
+<tr><td><code>S-use-values</code></td><td>🛠️ Skill</td><td><strong>2</strong></td></tr>
+<tr><td><code>A-attention-detail</code></td><td>🌱 Ability</td><td>2</td></tr>
+<tr><td><code>K-var-concept</code></td><td>🧠 Knowledge</td><td>1</td></tr>
+<tr><td><code>K-data-types</code></td><td>🧠 Knowledge</td><td>2</td></tr>
+</tbody></table></div>
+<pre class="code"><span class="lang">yaml</span><code># fragment merged into the learner&#x27;s skills map on badge issuance
+badge: python-variables-foundations
+issued_on: verified-evidence
+components:
+  S-declare-assign: 2
+  S-use-values: 2
+  A-attention-detail: 2
+  K-var-concept: 1
+  K-data-types: 2</code></pre>
+<hr>
+<h2>🎯 Why this matters for job matching</h2>
+<p>This is a <strong>foundation</strong> badge: on its own it won't match a full role, but it is the prerequisite brick under almost every Python-related requirement. It moves a learner from "no evidence" to a verified first rung.</p>
+<div class='tablewrap'><table><thead><tr><th>Requirement (<code>must_have</code>)</th><th>Before</th><th>After badge</th></tr></thead><tbody>
+<tr><td>Basic Python / scripting (Skill ≥ 1)</td><td>❌ 0</td><td>✅ 2</td></tr>
+<tr><td>Understands data types &amp; conversion (Knowledge ≥ 1)</td><td>❌ 0</td><td>✅ 2</td></tr>
+<tr><td>Writes clean, readable code (Ability ≥ 1)</td><td>⚠️ unproven</td><td>✅ 2</td></tr>
+</tbody></table></div>
+<div class="mermaid">flowchart LR
+  GAP[&quot;🔎 Job match gap&lt;br/&gt;Skill: basic Python = MISSING&quot;] --&gt; MC[&quot;🎓 Python Variables&lt;br/&gt;micro-credential&quot;]
+  MC --&gt; EV[&quot;📦 Code evidence&lt;br/&gt;2 codelabs + shipped program&quot;]
+  EV --&gt; BADGE[&quot;🏅 Python Variables Foundations&quot;]
+  BADGE --&gt; MAP[&quot;🗺️ Skills map&lt;br/&gt;S-declare-assign=2 · S-use-values=2&quot;]
+  MAP --&gt; NEXT[&quot;➡️ Unlocks next bricks&quot;]</div>
+<hr>
+<h2>🔗 Where this fits a role pathway</h2>
+<p><code>S-declare-assign</code> and <code>S-use-values</code> are the <strong>first technical bricks</strong> in the foundation layer of any Python-based role pathway built with <a href="../../index.html#/specs/role-to-credential-mapping.md" target="_blank" rel="noopener"><code>../../specs/role-to-credential-mapping.md</code></a>. A natural sequence after this badge:</p>
+<div class="mermaid">flowchart LR
+  VARS[&quot;🐍 Variables&lt;br/&gt;(this badge)&quot;] --&gt; STR[&quot;🔤 Strings &amp; lists&quot;]
+  STR --&gt; COND[&quot;🔀 Conditionals&quot;]
+  COND --&gt; LOOP[&quot;🔁 Loops&quot;]
+  LOOP --&gt; FUNC[&quot;🧩 Functions&quot;]
+  FUNC --&gt; ROLE[&quot;💼 Junior Developer /&lt;br/&gt;Data Analyst pathway&quot;]</div>
+<p>Pair it with the durable <a href="../../index.html#/examples/growth-mindset-micro-credential/README.md" target="_blank" rel="noopener">Growth Mindset micro-credential</a> so a learner builds <strong>both</strong> the hard-skill base <em>and</em> the learning attitude that entry-level employers ask for — and see the <a href="../../index.html#/examples/role-data-scientist-pathway.md" target="_blank" rel="noopener">Data Scientist pathway</a> for how foundation bricks stack into a full role.</p>
+<blockquote>⚠️ Per the methodology, AI-suggested matches are <strong>decision support</strong>, not a hiring decision — an instructor/employer validates the evidence before the badge counts (human-in-the-loop).</blockquote></section></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var pages=Array.prototype.slice.call(document.querySelectorAll(".page"));
+  var ids=pages.map(function(p){return p.getAttribute("data-id");});
+  var links=Array.prototype.slice.call(document.querySelectorAll(".navlink"));
+  var atomIds=["atom-1","atom-2","atom-3","atom-4","atom-5"];
+  var idx=0;
+
+  function show(id){
+    var i=ids.indexOf(id); if(i<0)i=0; idx=i;
+    pages.forEach(function(p){p.classList.toggle("active",p.getAttribute("data-id")===id);});
+    links.forEach(function(a){a.classList.toggle("active",a.getAttribute("data-target")===id);});
+    document.getElementById("prevbtn").disabled=(idx===0);
+    document.getElementById("nextbtn").disabled=(idx===pages.length-1);
+    if(location.hash.slice(1)!==id) history.replaceState(null,"","#"+id);
+    document.getElementById("side").classList.remove("open");
+    window.scrollTo(0,0);
+    renderMermaid();
+  }
+  links.forEach(function(a){a.addEventListener("click",function(e){e.preventDefault();show(a.getAttribute("data-target"));});});
+  document.getElementById("prevbtn").addEventListener("click",function(){if(idx>0)show(ids[idx-1]);});
+  document.getElementById("nextbtn").addEventListener("click",function(){if(idx<ids.length-1)show(ids[idx+1]);});
+  document.getElementById("menutoggle").addEventListener("click",function(){document.getElementById("side").classList.toggle("open");});
+
+  // progress (localStorage)
+  var KEY="ada-python-variables-progress";
+  function load(){try{return JSON.parse(localStorage.getItem(KEY)||"{}");}catch(e){return {};}}
+  function save(s){try{localStorage.setItem(KEY,JSON.stringify(s));}catch(e){}}
+  function refresh(){
+    var s=load(),done=0;
+    document.querySelectorAll(".donechk").forEach(function(c){
+      c.checked=!!s[c.getAttribute("data-atom")]; if(c.checked)done++;});
+    var pct=Math.round(done/atomIds.length*100);
+    document.getElementById("progfill").style.width=pct+"%";
+    document.getElementById("progtext").textContent=done+" / "+atomIds.length+" atoms complete";
+  }
+  document.querySelectorAll(".donechk").forEach(function(c){
+    c.addEventListener("change",function(){var s=load();s[c.getAttribute("data-atom")]=c.checked;save(s);refresh();});
+  });
+  refresh();
+
+  // copy buttons
+  document.querySelectorAll(".copybtn").forEach(function(b){
+    b.addEventListener("click",function(){
+      var pre=b.closest(".promptcard").querySelector("pre");
+      var txt=pre.innerText;
+      (navigator.clipboard?navigator.clipboard.writeText(txt):Promise.reject()).then(function(){
+        b.textContent="Copied!";b.classList.add("ok");setTimeout(function(){b.textContent="Copy";b.classList.remove("ok");},1400);
+      }).catch(function(){
+        var r=document.createRange();r.selectNodeContents(pre);var sel=getSelection();sel.removeAllRanges();sel.addRange(r);
+        try{document.execCommand("copy");}catch(e){} sel.removeAllRanges();
+        b.textContent="Copied!";b.classList.add("ok");setTimeout(function(){b.textContent="Copy";b.classList.remove("ok");},1400);
+      });
+    });
+  });
+
+  // youtube click-to-play
+  document.querySelectorAll(".yt").forEach(function(y){
+    var btn=y.querySelector(".yt-play");
+    btn.addEventListener("click",function(){
+      var id=y.getAttribute("data-id"); if(!id)return;
+      var f=document.createElement("iframe");
+      f.src="https://www.youtube-nocookie.com/embed/"+id+"?autoplay=1&rel=0";
+      f.allow="accelerated-sensors;autoplay;encrypted-media;picture-in-picture";
+      f.setAttribute("allowfullscreen","");
+      btn.replaceWith(f);
+    });
+  });
+
+  // mermaid (CDN, brand theme, root emphasis, graceful fallback)
+  var mmReady=null;
+  function ensureMermaid(){
+    if(mmReady)return mmReady;
+    mmReady=new Promise(function(res,rej){
+      if(window.mermaid)return res(window.mermaid);
+      var s=document.createElement("script");
+      s.src="https://cdn.jsdelivr.net/npm/mermaid@11.15.0/dist/mermaid.min.js";
+      s.onload=function(){res(window.mermaid);};
+      s.onerror=function(){
+        var s2=document.createElement("script");
+        s2.src="https://unpkg.com/mermaid@11.15.0/dist/mermaid.min.js";
+        s2.onload=function(){res(window.mermaid);}; s2.onerror=rej;
+        document.head.appendChild(s2);
+      };
+      document.head.appendChild(s);
+    });
+    return mmReady;
+  }
+  function src(n){var s=n.getAttribute("data-src");if(s===null){s=n.textContent;n.setAttribute("data-src",s);}return s;}
+  function fallback(n){n.classList.add("fallback");n.innerHTML="<pre>"+src(n).replace(/[&<>]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;"}[c];})+"</pre>";}
+  function detectRoots(s){
+    try{var L=s.split(/\r?\n/);if(!/^\s*(flowchart|graph)\b/i.test(L[0]||""))return [];
+      var all={},tg={};
+      for(var i=1;i<L.length;i++){var t=(L[i]||"").trim();
+        if(!t||/^%%/.test(t))continue;
+        if(/^(classdef|class|style|linkstyle|click|direction|subgraph|end)\b/i.test(t))continue;
+        var x=L[i];for(var k=0;k<8;k++){x=x.replace(/\(\([^()]*\)\)/g," ").replace(/\[[^\[\]]*\]/g," ").replace(/\{[^{}]*\}/g," ").replace(/\([^()]*\)/g," ");}
+        x=x.replace(/\|[^|]*\|/g," ");if(x.indexOf("--")<0&&x.indexOf("==")<0)continue;
+        var ids=x.split(/\s*(?:-{2,}>?|={2,}>?|-\.->?)\s*/).map(function(z){return (z.trim().match(/^[A-Za-z0-9_]+/)||[""])[0];}).filter(Boolean);
+        for(var j=0;j<ids.length;j++){all[ids[j]]=1;if(j>0)tg[ids[j]]=1;}}
+      var r=Object.keys(all).filter(function(id){return !tg[id];});
+      return r.length&&r.length<=4?r:[];
+    }catch(e){return [];}
+  }
+  function emphasize(s){var r=detectRoots(s);if(!r.length)return s;
+    return s+"\nclassDef adaRootNode fill:#1E2A6E,stroke:#E0A53C,stroke-width:3px,color:#ffffff,font-weight:bold,font-size:21px;\nclass "+r.join(",")+" adaRootNode;";}
+  var seq=0;
+  function renderMermaid(){
+    var nodes=Array.prototype.slice.call(document.querySelectorAll(".page.active .mermaid:not([data-done])"));
+    if(!nodes.length)return;
+    nodes.forEach(src);
+    ensureMermaid().then(function(m){
+      m.initialize({startOnLoad:false,securityLevel:"loose",theme:"base",fontFamily:"inherit",fontSize:"16px",
+        flowchart:{htmlLabels:true,useMaxWidth:true,curve:"basis",padding:14,nodeSpacing:52,rankSpacing:58},
+        themeVariables:{fontSize:"16px",primaryColor:"#1E2A6E",primaryTextColor:"#ffffff",primaryBorderColor:"#15B5C6",
+          mainBkg:"#1E2A6E",nodeBorder:"#15B5C6",nodeTextColor:"#ffffff",lineColor:"#1E2A6E",
+          clusterBkg:"#eef2fb",clusterBorder:"#15B5C6",titleColor:"#1E2A6E",
+          background:"#ffffff",textColor:"#1E2A6E",edgeLabelBackground:"#ffffff",
+          cScale0:"#1E2A6E",cScale1:"#15B5C6",cScale2:"#E0A53C",cScale3:"#2a3aa0",
+          cScaleLabel0:"#ffffff",cScaleLabel1:"#0A1124",cScaleLabel2:"#0A1124",cScaleLabel3:"#ffffff"}});
+      nodes.forEach(function(n){
+        n.setAttribute("data-done","1");
+        var id="mm-"+(Date.now())+"-"+(seq++);
+        try{m.render(id,emphasize(src(n))).then(function(o){n.innerHTML=o.svg;}).catch(function(){fallback(n);});}
+        catch(e){fallback(n);}
+      });
+    }).catch(function(){nodes.forEach(fallback);});
+  }
+
+  window.addEventListener("hashchange",function(){show(location.hash.slice(1)||ids[0]);});
+  show(location.hash.slice(1)||ids[0]);
+})();
+</script>
+</body>
+</html>

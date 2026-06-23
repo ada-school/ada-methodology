@@ -105,14 +105,19 @@ Learners **share and critique peer work** in the community space.
 - ✅ Poster/artwork submission  
 - ✅ Peer review participation  
 
-### Rubric (Capstone Project)
-| Criterion | Excellent (5) | Good (3–4) | Needs Improvement (1–2) | Weight |
-|-----------|---------------|------------|--------------------------|--------|
-| **Relevance (Job Competency Alignment)** | Artwork demonstrates strong understanding of color theory | Mostly correct, some gaps | Weak or missing application | 20% |
-| **Application of Skills** | Correct use of color harmonies | Mostly correct, minor mistakes | Limited or incorrect application | 25% |
-| **Problem-Solving & Creativity** | Creative, visually appealing solution | Adequate but conventional | Limited originality | 20% |
-| **Clarity & Communication** | Clear, professional presentation | Some issues in clarity | Unclear or poorly presented | 15% |
-| **Collaboration & Reflection** | Peer review completed with insightful feedback | Peer review done, limited depth | No peer review | 20% |
+### 📋 Assessment Rubric (Capstone Project)
+
+Five criteria across four proficiency bands, weighted to **100 points** (pass ≥ 70%, at least
+*Developing* on every criterion).
+
+| Criteria | Excellent (100–90%) | Competent (89–80%) | Developing (79–70%) | Initial (69% or less) | Weight |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Relevance (Job Competency Alignment)** | Artwork demonstrates strong, accurate understanding of color theory. | Mostly correct, some gaps. | Partial understanding; notable gaps. | Weak or missing application. | **20 pts** |
+| **Application of Skills** | Correct, confident use of color harmonies. | Mostly correct, minor mistakes. | Inconsistent use; several mistakes. | Limited or incorrect application. | **25 pts** |
+| **Problem-Solving & Creativity** | Creative, visually appealing solution. | Adequate but conventional. | Limited originality; partly works. | Little originality; ineffective. | **20 pts** |
+| **Clarity & Communication** | Clear, professional presentation. | Generally clear, some issues. | Uneven clarity / presentation. | Unclear or poorly presented. | **15 pts** |
+| **Collaboration & Reflection** | Peer review completed with insightful feedback. | Peer review done, limited depth. | Minimal peer review / reflection. | No peer review. | **20 pts** |
+| **TOTAL** | | | | | **100 pts** |
 
 ---
 

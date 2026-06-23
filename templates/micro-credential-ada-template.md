@@ -246,27 +246,37 @@ Includes: 👥 peer feedback · 🗣️ co-creation projects · 🌐 forums · �
 
 ---
 
-### ✨ Standard Rubric for Capstone Project (5 Criteria)
+### 📋 Assessment Rubric (Capstone — 5 Criteria)
 
-| Criterion                                | Excellent (5)                                | Good (3–4)                   | Needs Improvement (1–2)          | Weight |
-| ---------------------------------------- | -------------------------------------------- | ---------------------------- | -------------------------------- | ------ |
-| **Relevance (Job Competency Alignment)** | Fully aligned with the target job competency | Mostly aligned, minor gaps   | Weak or missing alignment        | 20%    |
-| **Application of Skills**                | Advanced, correct use of tools/methods       | Adequate use, minor errors   | Minimal or incorrect application | 25%    |
-| **Problem-Solving & Creativity**         | Innovative, practical solutions              | Adequate but conventional    | Limited originality, impractical | 20%    |
-| **Clarity & Communication**              | Clear, well-structured, professional         | Generally clear, some issues | Unclear, poorly structured       | 15%    |
-| **Collaboration & Reflection**           | Strong peer engagement + reflection          | Moderate engagement          | Minimal or missing               | 20%    |
+The capstone is scored on **five criteria** across **four proficiency bands**, weighted to a total
+of **100 points**. A criterion's band sets how much of its weight is earned. Recommended
+**pass = ≥ 70% overall, with at least *Developing* on every criterion**, mentor-verified
+(human-in-the-loop). This is the standard ADA rubric — reuse it across all your micro-credentials.
+
+| Criteria | Excellent (100–90%) | Competent (89–80%) | Developing (79–70%) | Initial (69% or less) | Weight |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Relevance (Job Competency Alignment)** | Fully aligned with the target job competency throughout. | Mostly aligned, minor gaps. | Partially aligned; notable gaps. | Weak or missing alignment. | **20 pts** |
+| **Application of Skills** | Advanced, correct use of the target tools/methods. | Adequate use, minor errors. | Inconsistent use; several errors. | Minimal or incorrect application. | **25 pts** |
+| **Problem-Solving & Creativity** | Innovative, practical solutions. | Sound but conventional. | Limited originality; partly impractical. | Little originality; impractical. | **20 pts** |
+| **Clarity & Communication** | Clear, well-structured, professional. | Generally clear, minor issues. | Uneven clarity / structure. | Unclear, poorly structured. | **15 pts** |
+| **Collaboration & Reflection** | Strong peer engagement + insightful reflection. | Moderate engagement + reflection. | Minimal engagement / reflection. | Missing. | **20 pts** |
+| **TOTAL** | | | | | **100 pts** |
 
 ---
 
-### 📝 Blank Rubric Template (Capstone – Fill-in)
+### 📝 Blank Assessment Rubric (Capstone — Fill-in)
 
-| Criterion                                | Excellent (5) \[Describe mastery] | Good (3–4) \[Describe adequate performance] | Needs Improvement (1–2) \[Describe weak performance] | Weight \[%] |
-| ---------------------------------------- | --------------------------------- | ------------------------------------------- | ---------------------------------------------------- | ----------- |
-| **Relevance (Job Competency Alignment)** | \[Describe]                       | \[Describe]                                 | \[Describe]                                          | \[20%]      |
-| **Application of Skills**                | \[Describe]                       | \[Describe]                                 | \[Describe]                                          | \[25%]      |
-| **Problem-Solving & Creativity**         | \[Describe]                       | \[Describe]                                 | \[Describe]                                          | \[20%]      |
-| **Clarity & Communication**              | \[Describe]                       | \[Describe]                                 | \[Describe]                                          | \[15%]      |
-| **Collaboration & Reflection**           | \[Describe]                       | \[Describe]                                 | \[Describe]                                          | \[20%]      |
+\[Copy this table and write a descriptor in each cell for your competency. Keep the four bands and
+adjust the weights so they total **100 pts**.]
+
+| Criteria | Excellent (100–90%) | Competent (89–80%) | Developing (79–70%) | Initial (69% or less) | Weight |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **\[Criterion 1 — Relevance]** | \[Describe mastery] | \[Describe competent] | \[Describe developing] | \[Describe initial] | **\[20 pts]** |
+| **\[Criterion 2 — Application of Skills]** | \[Describe] | \[Describe] | \[Describe] | \[Describe] | **\[25 pts]** |
+| **\[Criterion 3 — Problem-Solving]** | \[Describe] | \[Describe] | \[Describe] | \[Describe] | **\[20 pts]** |
+| **\[Criterion 4 — Clarity & Communication]** | \[Describe] | \[Describe] | \[Describe] | \[Describe] | **\[15 pts]** |
+| **\[Criterion 5 — Collaboration & Reflection]** | \[Describe] | \[Describe] | \[Describe] | \[Describe] | **\[20 pts]** |
+| **TOTAL** | | | | | **100 pts** |
 
 ---
 

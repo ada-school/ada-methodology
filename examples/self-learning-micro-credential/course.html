@@ -1,0 +1,1261 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>🧭 Self-Learning · ADA Micro-Credential</title>
+<link rel="icon" href="../../img/Isotipo.png">
+<style>
+:root{
+  --ink:#0A1124; --indigo:#1E2A6E; --turq:#15B5C6; --gold:#E0A53C;
+  --bg:#f6f8fc; --surface:#ffffff; --border:#e2e7f2; --text:#1b2440; --muted:#5b6685;
+  --radius:14px; --shadow:0 6px 24px rgba(20,30,70,.08);
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Arial,sans-serif;
+  background:var(--bg);color:var(--text);line-height:1.65}
+a{color:var(--indigo);text-decoration:none}
+a:hover{text-decoration:underline}
+.app{display:grid;grid-template-columns:300px minmax(0,1fr);min-height:100vh}
+
+/* sidebar */
+.side{position:sticky;top:0;height:100vh;overflow-y:auto;background:var(--ink);color:#dfe5fb;
+  padding:18px 14px;border-right:1px solid #111a36}
+.brand{display:flex;align-items:center;gap:10px;padding:6px 6px 14px}
+.brand img{width:40px;height:40px;animation:spin 9s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.brand b{font-size:15px;color:#fff;line-height:1.2}
+.brand small{display:block;color:var(--turq);font-weight:600;font-size:11px;letter-spacing:.04em}
+.progwrap{margin:8px 6px 16px}
+.progbar{height:8px;border-radius:8px;background:#1b2547;overflow:hidden}
+.progfill{height:100%;width:0;background:linear-gradient(90deg,var(--turq),var(--gold));transition:width .5s}
+.progtext{font-size:11px;color:#9fb0e6;margin-top:6px}
+.nav-group{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:#8fa0d8;
+  margin:14px 8px 4px;font-weight:700}
+.navlink{display:block;padding:8px 10px;border-radius:9px;color:#cdd6f6;font-size:14px;margin:2px 0}
+.navlink:hover{background:#16204180;text-decoration:none;color:#fff}
+.navlink.active{background:linear-gradient(90deg,var(--indigo),#2a3aa0);color:#fff;font-weight:600}
+
+/* main */
+.main{padding:0}
+.topbar{position:sticky;top:0;z-index:5;background:rgba(246,248,252,.85);backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--border);padding:12px 28px;display:flex;align-items:center;gap:14px}
+.topbar .pill{font-size:12px;font-weight:700;color:#fff;background:var(--indigo);padding:4px 12px;border-radius:30px}
+.topbar .sp{flex:1}
+.navbtn{border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:9px;
+  padding:7px 14px;font-size:13px;cursor:pointer;font-weight:600}
+.navbtn:hover{border-color:var(--turq)}
+.navbtn:disabled{opacity:.4;cursor:not-allowed}
+.wrap{max-width:880px;margin:0 auto;padding:30px 28px 90px}
+.page{display:none;animation:fade .35s ease}
+.page.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+h1,h2,h3,h4{color:var(--indigo);line-height:1.25}
+h1{font-size:30px;margin:.2em 0 .5em;border-bottom:3px solid var(--turq);padding-bottom:.3em}
+h2{font-size:22px;margin:1.5em 0 .5em}
+h3{font-size:18px;margin:1.3em 0 .4em}
+h4{font-size:15px;margin:1.1em 0 .3em;color:var(--ink)}
+p{margin:.7em 0}
+hr{border:0;border-top:1px solid var(--border);margin:1.6em 0}
+ul,ol{padding-left:1.4em;margin:.6em 0}
+li{margin:.3em 0}
+li input[type=checkbox]{margin-right:6px}
+img{max-width:100%;border-radius:10px}
+code{background:#eef1f9;padding:.12em .4em;border-radius:6px;font-size:.88em;
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:#27306b}
+pre.code{background:var(--ink);color:#e7ecff;padding:16px 18px;border-radius:var(--radius);
+  overflow:auto;position:relative;box-shadow:var(--shadow)}
+pre.code code{background:none;color:inherit;padding:0;font-size:13.5px;line-height:1.6}
+pre.code .lang{position:absolute;top:8px;right:12px;font-size:10px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--turq);font-family:inherit}
+blockquote{margin:1em 0;padding:.7em 1.1em;border-left:4px solid var(--gold);
+  background:#fff8ec;border-radius:0 10px 10px 0;color:#5a4a23}
+.tablewrap{overflow-x:auto;margin:1em 0;border:1px solid var(--border);border-radius:var(--radius)}
+table{border-collapse:collapse;width:100%;font-size:14px;background:var(--surface)}
+th,td{padding:9px 12px;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+th{background:var(--indigo);color:#fff;font-weight:600}
+tr:nth-child(even) td{background:#f7f9fe}
+
+.donebox{float:right;display:inline-flex;align-items:center;gap:7px;background:var(--surface);
+  border:1px solid var(--border);border-radius:30px;padding:6px 14px;font-size:13px;font-weight:600;
+  color:var(--muted);cursor:pointer;box-shadow:var(--shadow)}
+.donebox input{accent-color:var(--turq)}
+
+/* youtube facade */
+.yt{margin:1.2em 0;border-radius:var(--radius);overflow:hidden;background:var(--ink);box-shadow:var(--shadow)}
+.yt .yt-play{position:relative;display:block;width:100%;aspect-ratio:16/9;border:0;cursor:pointer;
+  background:radial-gradient(circle at 50% 45%,#243069,#0A1124);color:#fff}
+.yt-tri{font-size:42px;color:#fff;background:rgba(225,165,60,.92);width:84px;height:58px;
+  border-radius:16px;display:grid;place-items:center;margin:0 auto;box-shadow:0 6px 18px rgba(0,0,0,.4);
+  transition:transform .2s}
+.yt .yt-play:hover .yt-tri{transform:scale(1.08)}
+.yt iframe{display:block;width:100%;aspect-ratio:16/9;border:0}
+.yt-meta{padding:9px 14px;font-size:13px;background:#121c3a}
+.yt-meta a{color:var(--turq);word-break:break-all}
+.yt-cap{color:#aebadf;font-size:12px;margin-top:2px}
+
+/* prompt card */
+.promptcard{margin:1.2em 0;border:1px solid #d9c79a;border-radius:var(--radius);overflow:hidden;
+  background:#fffdf6;box-shadow:var(--shadow)}
+.promptcard-h{display:flex;align-items:center;justify-content:space-between;padding:8px 14px;
+  background:linear-gradient(90deg,#fbf0d6,#fff7e6);font-weight:700;color:#7a5b16;font-size:13px}
+.promptcard pre{margin:0;padding:14px 16px;white-space:pre-wrap;font-size:13px;color:#4a4634;
+  font-family:ui-monospace,Menlo,monospace}
+.copybtn{border:1px solid var(--gold);background:#fff;color:#8a6516;border-radius:7px;
+  padding:3px 12px;font-size:12px;cursor:pointer;font-weight:700}
+.copybtn:hover{background:var(--gold);color:#fff}
+.copybtn.ok{background:var(--turq);border-color:var(--turq);color:#fff}
+
+/* mermaid */
+.mermaid{margin:1.2em 0;text-align:center;background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
+.mermaid.fallback{text-align:left;background:var(--ink)}
+.mermaid.fallback pre{color:#e7ecff;margin:0;white-space:pre-wrap;font-size:12px}
+.mermaid svg .nodeLabel,.mermaid svg .label{font-weight:600}
+.mermaid svg .edgeLabel,.mermaid svg .edgeLabel *{color:#1E2A6E !important;font-weight:600}
+
+@media(max-width:880px){
+  .app{grid-template-columns:1fr}
+  .side{position:fixed;left:-300px;width:300px;z-index:30;transition:left .25s}
+  .side.open{left:0}
+  .menutoggle{display:inline-flex !important}
+}
+.menutoggle{display:none;align-items:center;justify-content:center;width:38px;height:38px;
+  border:1px solid var(--border);background:var(--surface);border-radius:9px;cursor:pointer;font-size:18px}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side" id="side">
+    <div class="brand">
+      <img src="../../img/Isotipo.png" alt="ADA">
+      <div><b>Self-Learning</b><small>ADA MICRO-CREDENTIAL</small></div>
+    </div>
+    <div class="progwrap">
+      <div class="progbar"><div class="progfill" id="progfill"></div></div>
+      <div class="progtext" id="progtext">0 / 6 atoms complete</div>
+    </div>
+    <nav id="nav"><div class="nav-group">Start</div>
+<a class="navlink" data-target="overview" href="#overview">Course overview</a>
+<a class="navlink" data-target="spec" href="#spec">Micro-credential spec</a>
+<div class="nav-group">🙉 Phase 1 · hear</div>
+<a class="navlink" data-target="atom-1" href="#atom-1">1 · How learning works</a>
+<a class="navlink" data-target="atom-2" href="#atom-2">2 · Sources &amp; how AI works</a>
+<div class="nav-group">🙈 Phase 2 · see</div>
+<a class="navlink" data-target="atom-3" href="#atom-3">3 · Research with search</a>
+<div class="nav-group">🙊 Phase 3 · do</div>
+<a class="navlink" data-target="atom-4" href="#atom-4">4 · Learn with AI 🛠️</a>
+<a class="navlink" data-target="atom-5" href="#atom-5">5 · The self-learning loop 🛠️</a>
+<div class="nav-group">🐵 Phase 4 · share</div>
+<a class="navlink" data-target="atom-6" href="#atom-6">6 · Capstone 🚀</a>
+<div class="nav-group">Assess</div>
+<a class="navlink" data-target="capstone" href="#capstone">Capstone brief</a>
+<a class="navlink" data-target="rubrics" href="#rubrics">Rubrics</a>
+<a class="navlink" data-target="skillsmap" href="#skillsmap">Skills map → job match</a></nav>
+  </aside>
+  <div class="main">
+    <div class="topbar">
+      <button class="menutoggle" id="menutoggle" aria-label="Menu">&#9776;</button>
+      <span class="pill">🧭 Self-Learning</span>
+      <span class="sp"></span>
+      <button class="navbtn" id="prevbtn">&larr; Prev</button>
+      <button class="navbtn" id="nextbtn">Next &rarr;</button>
+    </div>
+    <div class="wrap"><section class="page" id="page-overview" data-id="overview"><h1>🧭 Worked Example — Self-Learning Micro-Credential (full course)</h1>
+<p align="center">
+  <img alt="Indigo #1E2A6E" src="https://img.shields.io/badge/Indigo-1E2A6E?style=flat-square&amp;labelColor=1E2A6E&amp;color=1E2A6E">
+  <img alt="Turquoise #15B5C6" src="https://img.shields.io/badge/Turquoise-15B5C6?style=flat-square&amp;labelColor=15B5C6&amp;color=15B5C6">
+  <img alt="Gold #E0A53C" src="https://img.shields.io/badge/Gold-E0A53C?style=flat-square&amp;labelColor=E0A53C&amp;color=E0A53C">
+  <img alt="Ink #0A1124" src="https://img.shields.io/badge/Ink-0A1124?style=flat-square&amp;labelColor=0A1124&amp;color=0A1124">
+</p>
+<p>A <strong>complete, ready-to-run ADA micro-credential</strong> for the most foundational skill of all: <strong>learning how to learn</strong> — online, with AI, and on your own. It is a <em>fully populated</em> example built end-to-end with the ADA Methodology (KSA + 4 phases + learning-atom topology): every atom has <strong>real reading text</strong>, <strong>curated videos</strong>, <strong>Mermaid diagrams</strong>, <strong>image-generation prompts</strong>, hands-on research and prompting drills, and rubrics.</p>
+<blockquote>🖥️ <strong>See it live:</strong> open <a href="course.html" target="_blank" rel="noopener"><code>course.html</code></a> in any browser for an interactive, navigable version of this course (sidebar, progress, embedded videos, diagrams, copyable prompts).</blockquote>
+<p>This is the course that makes every <em>other</em> course optional: once you can learn independently, you can acquire any future skill. It deliberately teaches that <strong>the process of reaching an answer matters more than the answer</strong>, that <strong>failing is data, not defeat</strong>, how to <strong>research with search engines</strong> and <strong>learn with AI</strong>, and — importantly — the <strong>limitations of LLMs</strong> so you never trust them blindly. It complements <a href="../../index.html#/examples/growth-mindset-micro-credential/README.md" target="_blank" rel="noopener">Growth Mindset</a> (the belief that drives learning) and <a href="../../index.html#/examples/effective-communication-micro-credential/README.md" target="_blank" rel="noopener">Effective Communication</a>.</p>
+<p>Conforms to <a href="../../index.html#/specs/micro-credential-v2-schema.md" target="_blank" rel="noopener"><code>../../specs/micro-credential-v2-schema.md</code></a> · modalities from <a href="../../index.html#/specs/learning-atom-topology.md" target="_blank" rel="noopener"><code>../../specs/learning-atom-topology.md</code></a> · KSA from <a href="../../index.html#/specs/ksa-taxonomy.md" target="_blank" rel="noopener"><code>../../specs/ksa-taxonomy.md</code></a>.</p>
+<hr>
+<h2>🧭 What this teaches</h2>
+<p>The half-life of any specific skill keeps shrinking; the ability to <strong>teach yourself the next thing</strong> is what lasts. This course makes self-learning concrete and certifiable: learners build a working model of how learning actually happens (effort, struggle, and <strong>productive failure</strong> are features, not bugs), learn to <strong>find trustworthy answers</strong> with search engines, <strong>learn with AI</strong> through basic prompting while understanding <strong>where LLMs fail</strong>, and run a real <strong>self-directed learning loop</strong> that they finish by teaching what they learned.</p>
+<div class='tablewrap'><table><thead><tr><th></th><th></th></tr></thead><tbody>
+<tr><td><strong>Title</strong></td><td>Self-Learning: Learn Anything Online &amp; with AI</td></tr>
+<tr><td><strong>Duration</strong></td><td>~10 hours · 2–3 weeks</td></tr>
+<tr><td><strong>Primary KSA</strong></td><td>🛠️ Skill — <em>research with search</em> and <em>learn with AI</em>, plus the 🌱 Abilities (curiosity, resilience) that sustain them</td></tr>
+<tr><td><strong>Target competency</strong></td><td>O*NET process skills: <strong>Active Learning</strong> (2.A.2.a), <strong>Learning Strategies</strong> (2.A.2.b), <strong>Critical Thinking</strong> (2.A.2.c) · ESCO transversal <em>"learn to learn", "manage one's own learning"</em> · DigComp 1 <em>Information &amp; data literacy</em></td></tr>
+<tr><td><strong>Badge</strong></td><td>🏅 <em>Self-Directed Learner</em></td></tr>
+<tr><td><strong>Prerequisites</strong></td><td>None. Internet access and a free AI chat tool (e.g. an LLM assistant) to practice with.</td></tr>
+</tbody></table></div>
+<hr>
+<h2>📚 Course contents</h2>
+<div class='tablewrap'><table><thead><tr><th>#</th><th>File</th><th>What it is</th></tr></thead><tbody>
+<tr><td>—</td><td><a href="#spec"><code>micro-credential.md</code></a></td><td>The full micro-credential spec (YAML schema, objectives, KSA map, phase planner)</td></tr>
+<tr><td>1</td><td><a href="#atom-1"><code>atoms/atom-1-how-learning-works.md</code></a></td><td>🙉 P1 · 🧠 K — How learning works: the process &gt; the answer; learn by failing</td></tr>
+<tr><td>2</td><td><a href="#atom-2"><code>atoms/atom-2-trust-sources-and-how-ai-works.md</code></a></td><td>🙉 P1 · 🧠 K — Trustworthy sources &amp; how AI really works (LLM limits)</td></tr>
+<tr><td>3</td><td><a href="#atom-3"><code>atoms/atom-3-research-with-search.md</code></a></td><td>🙈 P2 · 🛠️ S — Research with search engines (Google) &amp; triangulating sources</td></tr>
+<tr><td>4</td><td><a href="#atom-4"><code>atoms/atom-4-learn-with-ai.md</code></a></td><td>🙊 P3 · 🛠️ S — Learn with AI: basic prompts to explain anything + verify</td></tr>
+<tr><td>5</td><td><a href="#atom-5"><code>atoms/atom-5-self-learning-loop.md</code></a></td><td>🙊 P3 · 🛠️ S + 🌱 A — The self-learning loop: learn by failing forward</td></tr>
+<tr><td>6</td><td><a href="#atom-6"><code>atoms/atom-6-capstone-learn-something-new.md</code></a></td><td>🐵 P4 · 🛠️ S + 🌱 A — Capstone: teach yourself something new &amp; teach it back</td></tr>
+<tr><td>—</td><td><a href="#capstone"><code>capstone.md</code></a></td><td>Capstone brief + how it maps to KSA</td></tr>
+<tr><td>—</td><td><a href="#rubrics"><code>rubrics.md</code></a></td><td>All rubrics (knowledge-mini, skill, behavioral, capstone-5)</td></tr>
+<tr><td>—</td><td><a href="#skillsmap"><code>skills-map.md</code></a></td><td>Badge → skills map and how it powers every other pathway</td></tr>
+</tbody></table></div>
+<blockquote>🤝 <strong>Practiced for real:</strong> the Abilities (curiosity, resilience-through-failure) are assessed <strong>behaviorally across ≥3 occasions</strong> (never a quiz), and the capstone ends in a peer teach-back.</blockquote>
+<hr>
+<h2>🔄 Phase journey</h2>
+<div class="mermaid">flowchart LR
+  P1[&quot;🙉 P1 · hear&lt;br/&gt;How learning works · sources &amp; AI limits&quot;] --&gt; P2[&quot;🙈 P2 · see&lt;br/&gt;Research with search&quot;]
+  P2 --&gt; P3[&quot;🙊 P3 · do&lt;br/&gt;Learn with AI · the learning loop&quot;]
+  P3 --&gt; P4[&quot;🐵 P4 · share&lt;br/&gt;Teach yourself &amp; teach back&quot;]
+  P4 --&gt; BADGE[&quot;🏅 Self-Directed Learner&quot;]</div>
+<hr>
+<h2>🤖 How it was authored (and how to reuse it)</h2>
+<p>This course follows the Gen AI authoring workflow in <a href="../../index.html#/specs/genai-authoring-workflow.md" target="_blank" rel="noopener"><code>../../specs/genai-authoring-workflow.md</code></a>: competency → KSA → atoms → modalities → rubrics → badge. Conventions used throughout:</p>
+<ul>
+<li><strong>🎬 Videos</strong> are written as a <code>youtube</code> block with the real URL + caption (the interactive site</li>
+</ul>
+<p>  embeds them as a click-to-play player).</p>
+<ul>
+<li><strong>🖼️ Diagrams</strong> are provided two ways: a live <strong>Mermaid</strong> diagram <em>and</em> a reusable</li>
+</ul>
+<p>  <strong>image-generation prompt</strong> in a <code>prompt</code> block.</p>
+<ul>
+<li><strong>✅ Activities</strong> include search drills, prompt scripts, checklists, and rubrics so the course is</li>
+</ul>
+<p>  self-paced and practicable.</p>
+<blockquote>⚠️ <strong>Human-in-the-loop (methodology guardrail):</strong> the links and references below are <strong>curated starting points</strong> — a mentor/instructor should verify each one before delivery. And the whole point of Atoms 2 &amp; 4 is that <strong>AI output is never authoritative on its own</strong>: always verify against trustworthy sources. See <a href="../../index.html#/CLAUDE.md" target="_blank" rel="noopener"><code>../../CLAUDE.md</code></a> §5.</blockquote></section>
+<section class="page" id="page-spec" data-id="spec"><h1>🎓 Micro-Credential — Self-Learning: Learn Anything Online &amp; with AI</h1>
+<p>The full specification for this micro-credential. It conforms to <a href="../../index.html#/specs/micro-credential-v2-schema.md" target="_blank" rel="noopener"><code>../../specs/micro-credential-v2-schema.md</code></a>.</p>
+<hr>
+<h2>YAML front matter</h2>
+<pre class="code"><span class="lang">yaml</span><code>schema: ada-microcredential/v2
+id: mc-self-learning
+title: &quot;Self-Learning: Learn Anything Online &amp; with AI&quot;
+language: en
+duration_hours: 10
+level: beginner
+status: published
+license: CC-BY-SA-4.0
+mentors: [&quot;@sancarbar&quot;]
+
+target_roles:
+  - role: &quot;Any role and any learner — self-learning is the meta-skill that underpins every other credential and a lifelong career&quot;
+    framework_ref: &gt;
+      O*NET process skills: 2.A.2.a Active Learning, 2.A.2.b Learning Strategies, 2.A.2.c Critical Thinking ·
+      ESCO transversal: &quot;learn to learn&quot;, &quot;manage one&#x27;s own learning&quot;, &quot;process information&quot; ·
+      DigComp 2.2 area 1: Information &amp; data literacy (browsing/searching, evaluating data &amp; information)
+
+ksa:
+  - { id: K-learning-process,    type: knowledge, label: &quot;How learning works: the process beats the answer; struggle &amp; productive failure; metacognition&quot;, target_level: 2, bloom: understand }
+  - { id: K-sources-and-ai-limits, type: knowledge, label: &quot;Evaluating trustworthy sources, and how LLMs work + their limitations (hallucination, no live data, bias, confidence ≠ correctness)&quot;, target_level: 2, bloom: understand }
+  - { id: S-search-research,     type: skill,     label: &quot;Research with search engines: craft queries, use operators, triangulate trustworthy sources&quot;, target_level: 2, bloom: apply, primary: true }
+  - { id: S-learn-with-ai,       type: skill,     label: &quot;Learn with AI: basic prompting to explain anything, ask for sources, and verify the output&quot;, target_level: 2, bloom: apply, primary: true }
+  - { id: S-learning-loop,       type: skill,     label: &quot;Run a self-directed learning loop: goal → resources → practice → self-test → reflect&quot;, target_level: 2, bloom: apply }
+  - { id: A-curiosity,           type: ability,   label: &quot;Curiosity &amp; learner agency: ask questions and drive your own learning&quot;, target_level: 2, affective_stage: value, assessed_occasions: 3 }
+  - { id: A-resilience-failure,  type: ability,   label: &quot;Resilience: treat being stuck/wrong as data and persist (learn by failing forward)&quot;, target_level: 2, affective_stage: respond, assessed_occasions: 3 }
+
+atoms:
+  - { id: atom-1, title: &quot;How learning works (process &gt; answer)&quot;, ksa_refs: [K-learning-process], phase: 1, modalities: [{dimension: read, subtype: Article}, {dimension: watch, subtype: Video Explainer}, {dimension: see, subtype: Mental Model}, {dimension: evaluate, subtype: Pop Quiz}], rubric: knowledge-mini }
+  - { id: atom-2, title: &quot;Trustworthy sources &amp; how AI really works&quot;, ksa_refs: [K-sources-and-ai-limits], phase: 1, modalities: [{dimension: read, subtype: Article}, {dimension: see, subtype: Framework}, {dimension: practice, subtype: Worksheet / Exercise}, {dimension: evaluate, subtype: Pop Quiz}], rubric: knowledge-mini }
+  - { id: atom-3, title: &quot;Research with search engines&quot;, ksa_refs: [S-search-research], phase: 2, modalities: [{dimension: watch, subtype: Video Explainer}, {dimension: see, subtype: Diagram}, {dimension: practice, subtype: Challenge / Quest}, {dimension: evaluate, subtype: Performance Task}], rubric: skill }
+  - { id: atom-4, title: &quot;Learn with AI (basic prompting + verify)&quot;, ksa_refs: [S-learn-with-ai, K-sources-and-ai-limits], phase: 3, modalities: [{dimension: read, subtype: Technical Article}, {dimension: practice, subtype: AI Prompt Question}, {dimension: practice, subtype: Worksheet / Exercise}, {dimension: evaluate, subtype: Performance Task}], rubric: skill }
+  - { id: atom-5, title: &quot;The self-learning loop (learn by failing forward)&quot;, ksa_refs: [S-learning-loop, A-curiosity, A-resilience-failure], phase: 3, modalities: [{dimension: practice, subtype: Project / Quest}, {dimension: practice, subtype: Reflection / Learning Log}, {dimension: collaborate, subtype: Pair Programming}, {dimension: evaluate, subtype: Behavioral Assessment}], rubric: behavioral }
+  - { id: atom-6, title: &quot;Capstone: teach yourself something new &amp; teach it back&quot;, ksa_refs: [S-search-research, S-learn-with-ai, S-learning-loop, A-curiosity, A-resilience-failure], phase: 4, modalities: [{dimension: practice, subtype: Project / Quest}, {dimension: collaborate, subtype: Showcase / Demo Day}, {dimension: collaborate, subtype: Async Peer Review}, {dimension: evaluate, subtype: Capstone Project}], rubric: capstone-5 }
+
+capstone:
+  title: &quot;Teach yourself a new micro-skill using online + AI + search, document the process (incl. failures), and teach it back&quot;
+  integrates_ksa: [K-learning-process, K-sources-and-ai-limits, S-search-research, S-learn-with-ai, S-learning-loop, A-curiosity, A-resilience-failure]
+  rubric: capstone-5
+
+badge:
+  name: &quot;Self-Directed Learner&quot;
+  evidence_required: [&quot;atom-3&quot;, &quot;atom-4&quot;, &quot;atom-5&quot;, &quot;capstone&quot;]
+  issued_on: verified-evidence</code></pre>
+<hr>
+<h2>🎯 Target job competency</h2>
+<p><strong>Learn independently and continuously.</strong> Employers increasingly hire for <em>learning agility</em> — the capacity to pick up new tools, domains, and problems without being formally taught. This credential makes that hireable: the learner can find trustworthy answers online, use AI as a study partner (without being misled by it), and run a disciplined self-learning loop. Mapped to <strong>O*NET</strong> process skills (Active Learning, Learning Strategies, Critical Thinking), <strong>ESCO</strong> <em>"learn to learn"</em>, and <strong>DigComp</strong> area 1 (information &amp; data literacy).</p>
+<h2>🧬 KSA breakdown — the meta-skill, taught the right way</h2>
+<div class='tablewrap'><table><thead><tr><th>KSA</th><th>Component</th><th>Why this type</th><th>Target</th></tr></thead><tbody>
+<tr><td>🧠 Knowledge</td><td>How learning works (process &gt; answer; productive failure)</td><td>A mental model that reframes struggle as learning</td><td>L2</td></tr>
+<tr><td>🧠 Knowledge</td><td>Trustworthy sources &amp; LLM limits</td><td>You can't verify what you don't understand</td><td>L2</td></tr>
+<tr><td>🛠️ Skill</td><td>Research with search engines</td><td>A trainable technique (queries, operators, triangulation)</td><td><strong>L2</strong></td></tr>
+<tr><td>🛠️ Skill</td><td>Learn with AI (+ verify)</td><td>Basic prompting <em>paired with</em> verification</td><td><strong>L2</strong></td></tr>
+<tr><td>🛠️ Skill</td><td>The self-learning loop</td><td>A repeatable procedure for any new topic</td><td>L2</td></tr>
+<tr><td>🌱 Ability</td><td>Curiosity &amp; learner agency</td><td>A disposition shown across situations, over time</td><td>L2</td></tr>
+<tr><td>🌱 Ability</td><td>Resilience (learn by failing)</td><td>A habit of persisting through being stuck/wrong</td><td>L2</td></tr>
+</tbody></table></div>
+<blockquote><strong>Why this shape:</strong> self-learning is mostly <strong>doing</strong> (Skills: search, prompt, loop), but it only <em>sticks</em> when paired with the <strong>Abilities</strong> that drive it — curiosity (to keep asking) and resilience (to keep going when you fail). Those Abilities are assessed <strong>behaviorally, across ≥3 occasions</strong>, never with a quiz.</blockquote>
+<h2>📘 Learning objectives (Bloom + KSA)</h2>
+<div class='tablewrap'><table><thead><tr><th>Objective</th><th>Bloom</th><th>KSA</th><th>Component</th><th>Target</th></tr></thead><tbody>
+<tr><td>Explain why the <em>process</em> of reaching an answer matters more than the answer, and how failure aids learning</td><td>Understand</td><td>🧠 K</td><td>K-learning-process</td><td>L2</td></tr>
+<tr><td>Evaluate whether a source is trustworthy and explain basic LLM limitations</td><td>Understand/Evaluate</td><td>🧠 K</td><td>K-sources-and-ai-limits</td><td>L2</td></tr>
+<tr><td>Find and triangulate trustworthy answers using a search engine</td><td>Apply</td><td>🛠️ S</td><td>S-search-research</td><td>L2</td></tr>
+<tr><td>Prompt an AI to explain a topic, request sources, and verify the result</td><td>Apply</td><td>🛠️ S</td><td>S-learn-with-ai</td><td>L2</td></tr>
+<tr><td>Run a full self-learning loop on a chosen topic</td><td>Apply</td><td>🛠️ S</td><td>S-learning-loop</td><td>L2</td></tr>
+<tr><td>Drive your own learning with curiosity across multiple situations</td><td>Value (affective)</td><td>🌱 A</td><td>A-curiosity</td><td>L2</td></tr>
+<tr><td>Persist and adapt when stuck or wrong, treating failure as data</td><td>Respond (affective)</td><td>🌱 A</td><td>A-resilience-failure</td><td>L2</td></tr>
+</tbody></table></div>
+<hr>
+<h2>🔍 Phase planner</h2>
+<div class='tablewrap'><table><thead><tr><th>Phase</th><th>Atom(s)</th><th>KSA focus</th><th>Activity</th><th>Assessment</th></tr></thead><tbody>
+<tr><td>🙉 1 · hear</td><td>Atom 1, 2</td><td>🧠 K</td><td>reading + video on how learning works; source-trust + LLM-limits worksheet</td><td>knowledge-mini (pop quizzes)</td></tr>
+<tr><td>🙈 2 · see</td><td>Atom 3</td><td>🛠️ S</td><td>search techniques modeled; a research scavenger hunt</td><td>performance task</td></tr>
+<tr><td>🙊 3 · do</td><td>Atom 4, 5</td><td>🛠️ S + 🌱 A</td><td>AI study prompts + verification; a real learn-by-failing micro-project</td><td>performance task + behavioral assessment</td></tr>
+<tr><td>🐵 4 · share</td><td>Atom 6 (capstone)</td><td>🛠️ S + 🌱 A</td><td>teach yourself a new skill; document the messy middle; teach back</td><td>capstone-5</td></tr>
+</tbody></table></div>
+<hr>
+<h2>🚀 Capstone &amp; 📊 assessment</h2>
+<p>Full brief in <a href="#capstone"><code>capstone.md</code></a>; all rubrics in <a href="#rubrics"><code>rubrics.md</code></a>. In short: formative pop quizzes for the Knowledge atoms, a skill performance task for search and for AI-assisted learning, a <strong>behavioral assessment</strong> across occasions for the Abilities, and a self-taught skill + learning log + teach-back graded on the standard 5-criteria capstone rubric. The badge → skills-map mapping is in <a href="#skillsmap"><code>skills-map.md</code></a>.</p>
+<h2>🎓 Outcomes &amp; recognition</h2>
+<ul>
+<li>A reframed relationship with effort and failure: <strong>struggle is learning</strong>, not a sign you're failing.</li>
+<li>The ability to <strong>find trustworthy answers</strong> online and <strong>triangulate</strong> them.</li>
+<li>The ability to <strong>learn with AI</strong> as a study partner — and to catch it when it's wrong.</li>
+<li>A repeatable <strong>self-learning loop</strong> you can point at any new skill.</li>
+<li>A portfolio artifact: a self-taught micro-skill + a learning log that shows the <em>process</em> (including</li>
+</ul>
+<p>  the failures and how you recovered).</p>
+<ul>
+<li>LinkedIn-compatible digital badge: <strong>🏅 Self-Directed Learner</strong> — the meta-credential that makes</li>
+</ul>
+<p>  every other pathway faster.</p></section>
+<section class="page" id="page-atom-1" data-id="atom-1"><label class="donebox"><input type="checkbox" class="donechk" data-atom="atom-1"> Mark this atom complete</label><h2>⚛ Learning Atom 1 — <em>How Learning Works (Process &gt; Answer)</em></h2>
+<p><strong>Phase:</strong> 🙉 1 · Self-Guided Introduction (<em>hear</em>) · <strong>KSA:</strong> 🧠 Knowledge · <strong>Target level:</strong> L2 · <strong>Component id:</strong> <code>K-learning-process</code></p>
+<h3>🎯 Learning objective</h3>
+<ul>
+<li><strong>Explain</strong> why the <em>process</em> of reaching an answer matters more than the answer itself, and **how</li>
+</ul>
+<p>  struggle and failure drive learning.**</p>
+<h3>🧩 Prerequisites</h3>
+<ul>
+<li>None. Bring one thing you tried to learn and found hard.</li>
+</ul>
+<h3>🧭 Atom description</h3>
+<p>Most people think learning means <em>getting the right answer fast</em>. That belief quietly sabotages them: they copy the answer, feel productive, and learn nothing. This atom rewires that. You'll see that the <strong>effortful process</strong> — struggling, getting it wrong, retrieving from memory — is <em>where the learning actually happens</em>. Get this, and the rest of the course (search, AI, the loop) becomes a way to make the process better, not a shortcut around it.</p>
+<hr>
+<h3>📖 Reading — <em>The answer is the by-product; the process is the point</em> (≈ 7 min)</h3>
+<p>Imagine two students. One watches a worked solution and nods along — it all makes sense. The other wrestles with the problem, gets stuck, tries three wrong things, then finally cracks it. The first <em>feels</em> like they learned more (it was smooth). The second actually did. This is one of the most robust findings in the science of learning: <strong>the conditions that make learning feel hard are often the ones that make it stick.</strong> Researchers call these <strong>desirable difficulties.</strong></p>
+<p>Three ideas to internalize:</p>
+<ul>
+<li><strong>Process over answer.</strong> The answer is disposable — tomorrow's problem is different. What transfers</li>
+</ul>
+<p>  is <em>how you got there</em>: the questions you asked, the dead ends you ruled out, the method you built.   When you copy an answer, you keep the answer and throw away the learning.</p>
+<ul>
+<li><strong>Productive failure.</strong> Being wrong isn't the opposite of learning — it's part of it. A wrong</li>
+</ul>
+<p>  attempt tells you exactly where your model of the world is broken, which is the precise spot to fix.   Studies on <em>productive failure</em> (Kapur) show learners who struggle <em>before</em> being shown the solution   understand it more deeply than those shown first. <strong>Fail → notice the gap → close it.</strong></p>
+<ul>
+<li><strong>Metacognition (thinking about your thinking).</strong> Good learners constantly ask: *What do I actually</li>
+</ul>
+<p>  understand? Where am I confused? What will I try next?* This self-monitoring is what turns effort   into progress instead of spinning.</p>
+<p>Two traps to avoid:</p>
+<ul>
+<li><strong>The fluency illusion.</strong> Re-reading and highlighting <em>feel</em> like learning but mostly create</li>
+</ul>
+<p>  familiarity, not memory. <strong>Retrieval</strong> (closing the book and trying to recall/explain) and <strong>spacing</strong>   (revisiting over days) are far stronger — even though they feel harder.</p>
+<ul>
+<li><strong>Answer-seeking.</strong> Jumping straight to "just tell me the answer" (from a person, Google, or an AI)</li>
+</ul>
+<p>  skips the struggle that builds understanding. Use answers to <strong>check and unblock</strong>, not to replace   the attempt. <em>Try first, then look.</em></p>
+<blockquote><strong>Reframe for the whole course:</strong> when something is hard, you are not failing at learning — you are <em>doing</em> learning. The discomfort is the sensation of your brain changing.</blockquote>
+<p><strong>Key takeaways</strong></p>
+<ul>
+<li><input type="checkbox" disabled> The <strong>process</strong> of reaching an answer is what transfers; the answer is disposable.</li>
+<li><input type="checkbox" disabled> <strong>Failure is data</strong> — it pinpoints exactly what to fix (<em>productive failure</em>).</li>
+<li><input type="checkbox" disabled> <strong>Retrieval + spacing</strong> beat re-reading, even though they feel harder (<em>desirable difficulties</em>).</li>
+<li><input type="checkbox" disabled> <strong>Metacognition</strong> — ask what you understand and what to try next.</li>
+<li><input type="checkbox" disabled> <strong>Try first, then look</strong> — use answers to check/unblock, not to skip the struggle.</li>
+</ul>
+<hr>
+<h3>🎬 Watch — learning how to learn (pick one, ~10–17 min)</h3>
+<div class="yt" data-id="O96fE1E-rf8"><button class="yt-play" type="button" aria-label="Play video"><span class="yt-tri">&#9654;</span></button><div class="yt-meta"><a href="https://www.youtube.com/watch?v=O96fE1E-rf8" target="_blank" rel="noopener">https://www.youtube.com/watch?v=O96fE1E-rf8</a><div class="yt-cap">Barbara Oakley — "Learning how to learn" (TEDxOaklandUniversity).</div></div></div>
+<div class="yt" data-id="5eW6Eagr9XA"><button class="yt-play" type="button" aria-label="Play video"><span class="yt-tri">&#9654;</span></button><div class="yt-meta"><a href="https://www.youtube.com/watch?v=5eW6Eagr9XA" target="_blank" rel="noopener">https://www.youtube.com/watch?v=5eW6Eagr9XA</a><div class="yt-cap">Veritasium — "The 4 things it takes to be an expert" (deliberate practice &amp; feedback).</div></div></div>
+<hr>
+<h3>🖼️ See — the learn-by-failing loop</h3>
+<div class="mermaid">flowchart LR
+  TRY[&quot;🛠️ Attempt&lt;br/&gt;(try first)&quot;] --&gt; STUCK[&quot;❓ Stuck / wrong&quot;]
+  STUCK --&gt; GAP[&quot;🔍 Notice the gap&lt;br/&gt;(what&#x27;s broken?)&quot;]
+  GAP --&gt; LOOK[&quot;📖 Look it up / ask&lt;br/&gt;(check &amp; unblock)&quot;]
+  LOOK --&gt; RETRY[&quot;🔁 Retry from memory&quot;]
+  RETRY -.deeper understanding.-&gt; TRY</div>
+<p>A reusable prompt to generate an on-brand version of this diagram:</p>
+<div class="promptcard"><div class="promptcard-h"><span>🖼️ Image / AI prompt</span><button class="copybtn" type="button">Copy</button></div><pre><code>Create a clean, modern educational infographic of a &quot;learn by failing forward&quot; loop: Attempt → Get
+stuck/wrong → Notice the gap → Look it up to unblock → Retry from memory → (loop back) deeper
+understanding. Emphasize that failure is a step in the loop, not an exit. Use ADA brand colors (Indigo
+#1E2A6E, Turquoise #15B5C6, Gold #E0A53C accents) on a light background, flat vector style, legible
+sans-serif, no text errors. 16:9.</code></pre></div>
+<hr>
+<h3>✅ Evaluate — Pop quiz (formative, <code>knowledge-mini</code>)</h3>
+<ol>
+<li>Why can copying a correct answer leave you having learned almost nothing?</li>
+<li>What is "productive failure," and why does it help?</li>
+<li>Name a study habit that <em>feels</em> effective but mostly creates an illusion of learning — and what to</li>
+</ol>
+<p>   do instead.</p>
+<details>
+<summary>Answer key</summary>
+<ol>
+<li>Because the learning is in the <strong>process</strong> of reaching the answer (the questions, dead ends, and</li>
+</ol>
+<p>   method) — copying keeps the disposable answer and throws away the transferable process.</p>
+<ol>
+<li>Struggling/being wrong <strong>before</strong> seeing the solution; it exposes exactly where your understanding</li>
+</ol>
+<p>   is broken, so the later explanation lands deeper.</p>
+<ol>
+<li><strong>Re-reading/highlighting</strong> (the fluency illusion) → instead use <strong>retrieval practice</strong> (recall</li>
+</ol>
+<p>   from memory) and <strong>spacing</strong> (revisit over days).</p>
+</details>
+<hr>
+<h3>📦 Deliverable</h3>
+<ul>
+<li>Pick something you recently "learned" by copying an answer. In 4–6 sentences, describe how you'd</li>
+</ul>
+<p>  re-learn it using <strong>try-first + retrieval</strong>, and what gap your earlier shortcut hid.</p>
+<h3>🧠 Final reflection</h3>
+<ul>
+<li>When learning feels uncomfortable, what's your usual reaction? How could you reinterpret that</li>
+</ul>
+<p>  discomfort after this atom?</p>
+<h3>🔗 Sources to verify (human-in-the-loop)</h3>
+<ul>
+<li>Brown, Roediger &amp; McDaniel, <em>Make It Stick: The Science of Successful Learning</em>.</li>
+<li>Bjork &amp; Bjork, <em>Making Things Hard on Yourself, but in a Good Way</em> (desirable difficulties).</li>
+<li>Kapur, <em>Productive Failure</em> (research papers).</li>
+<li>Oakley, <em>A Mind for Numbers</em> / "Learning How to Learn" (Coursera).</li>
+</ul>
+<h3>🧩 Connections</h3>
+<ul>
+<li><strong>Successors:</strong> Atom 2 (where to <em>get</em> trustworthy answers), Atom 5 (the loop, in practice).</li>
+</ul></section>
+<section class="page" id="page-atom-2" data-id="atom-2"><label class="donebox"><input type="checkbox" class="donechk" data-atom="atom-2"> Mark this atom complete</label><h2>⚛ Learning Atom 2 — <em>Trustworthy Sources &amp; How AI Really Works</em></h2>
+<p><strong>Phase:</strong> 🙉 1 · Self-Guided Introduction (<em>hear</em>) · <strong>KSA:</strong> 🧠 Knowledge · <strong>Target level:</strong> L2 · <strong>Component id:</strong> <code>K-sources-and-ai-limits</code></p>
+<h3>🎯 Learning objective</h3>
+<ul>
+<li><strong>Evaluate</strong> whether a source is trustworthy, and **explain — at a basic level — how LLMs work and</li>
+</ul>
+<p>  where they fail.**</p>
+<h3>🧩 Prerequisites</h3>
+<ul>
+<li>Atom 1. The mindset of "try first, then verify" carries straight into this atom.</li>
+</ul>
+<h3>🧭 Atom description</h3>
+<p>Self-learning online means swimming in information of wildly different quality — and now, in <em>confident</em> answers from AI that may simply be wrong. Before you research (Atom 3) or learn with AI (Atom 4), you need a basic radar for <strong>what to trust</strong> and an honest picture of <strong>what an LLM actually is.</strong> This is the safety briefing for everything that follows.</p>
+<hr>
+<h3>📖 Reading — <em>Trust, but verify — especially the confident robot</em> (≈ 8 min)</h3>
+<p><strong>Part A — Is this source trustworthy?</strong> A quick checklist (one version is the <strong>CRAAP</strong> test):</p>
+<ul>
+<li><strong>Currency</strong> — How recent is it? Does recency matter for this topic (it does for tech/medicine,</li>
+</ul>
+<p>  less for history)?</p>
+<ul>
+<li><strong>Relevance</strong> — Does it actually answer <em>your</em> question, at the right depth?</li>
+<li><strong>Authority</strong> — Who wrote it, and what makes them credible? An expert, institution, or peer-reviewed</li>
+</ul>
+<p>  outlet beats an anonymous blog or a random forum post.</p>
+<ul>
+<li><strong>Accuracy</strong> — Is it supported by evidence and consistent with other reputable sources? Can you</li>
+</ul>
+<p>  trace its claims?</p>
+<ul>
+<li><strong>Purpose</strong> — Why does this exist? To inform, to sell, to persuade? Watch for bias and incentives</li>
+</ul>
+<p>  (e.g., a "study" funded by the company it flatters).</p>
+<p>A <strong>source hierarchy</strong> (rough, not absolute): peer-reviewed research &amp; official documentation &gt; reputable institutions (universities, established news, standards bodies) &gt; expert practitioners &amp; well-sourced explainers &gt; anonymous blogs/forums &gt; random social posts. <strong>Triangulate:</strong> trust a claim more when <strong>two or three independent, reputable sources</strong> agree. Primary sources (the original paper, the official docs) beat someone's summary of them.</p>
+<p><strong>Part B — How an LLM actually works (basic).</strong> A large language model (the thing behind AI chat) is, underneath, a very sophisticated <strong>next-word predictor.</strong> It was trained on huge amounts of text and learned the statistical patterns of language. When you ask it something, it generates the most likely <em>sounding</em> continuation — word by word. It is <em>not</em> looking up facts in a database, and it has <strong>no understanding or intent</strong>; it produces text that <em>resembles</em> a correct answer.</p>
+<p>That design creates specific, important limitations:</p>
+<ul>
+<li><strong>Hallucination.</strong> It can state false things — fake facts, fake citations, fake quotes — **fluently</li>
+</ul>
+<p>  and confidently.** Plausible ≠ true. This is the single most important thing to remember.</p>
+<ul>
+<li><strong>Confidence ≠ correctness.</strong> Its certainty in tone tells you <em>nothing</em> about whether it's right.</li>
+</ul>
+<p>  It will be just as smooth when wrong as when right.</p>
+<ul>
+<li><strong>Knowledge cutoff / no live data.</strong> A base model only "knows" up to its training date and doesn't</li>
+</ul>
+<p>  truly browse the live web (unless a specific tool gives it that, and even then, verify).</p>
+<ul>
+<li><strong>Bias &amp; gaps.</strong> It reflects biases and blind spots in its training data; it can be confidently</li>
+</ul>
+<p>  Western-centric, outdated, or simply ignorant of niche topics.</p>
+<ul>
+<li><strong>No real sources by default.</strong> If it offers citations, they may be invented. Always check that a</li>
+</ul>
+<p>  cited source exists and actually says what's claimed.</p>
+<ul>
+<li><strong>You steer it.</strong> It often agrees with you (sycophancy) and follows leading questions. Garbage or</li>
+</ul>
+<p>  biased prompts in → biased answers out.</p>
+<blockquote><strong>The golden rule for the rest of this course:</strong> treat an LLM like a <strong>fast, confident, sometimes wrong study partner</strong> — brilliant for explaining, brainstorming, and getting unstuck, never the final word. <strong>Verify anything that matters against a trustworthy source.</strong></blockquote>
+<p><strong>Key takeaways</strong></p>
+<ul>
+<li><input type="checkbox" disabled> Vet sources with <strong>CRAAP</strong> (Currency, Relevance, Authority, Accuracy, Purpose) and <strong>triangulate.</strong></li>
+<li><input type="checkbox" disabled> An LLM is a <strong>next-word predictor</strong> — it has no understanding and isn't a fact database.</li>
+<li><input type="checkbox" disabled> It can <strong>hallucinate</strong> confidently; <strong>confidence ≠ correctness.</strong></li>
+<li><input type="checkbox" disabled> Mind the <strong>knowledge cutoff, bias, and fake citations</strong> — verify against real sources.</li>
+</ul>
+<hr>
+<h3>🖼️ See — verify-the-AI flow</h3>
+<div class="mermaid">flowchart TD
+  ASK[&quot;🤖 AI gives an answer&quot;] --&gt; IMP{&quot;Does it matter&lt;br/&gt;if it&#x27;s wrong?&quot;}
+  IMP --&gt;|no| USE[&quot;💡 Use as a starting point&quot;]
+  IMP --&gt;|yes| VERIFY[&quot;🔍 Verify against a&lt;br/&gt;trustworthy source&quot;]
+  VERIFY --&gt; AGREE{&quot;Reputable sources&lt;br/&gt;agree?&quot;}
+  AGREE --&gt;|yes| TRUST[&quot;✅ Trust &amp; use&quot;]
+  AGREE --&gt;|no| REJECT[&quot;🚫 Discard / dig deeper&quot;]</div>
+<p>A reusable prompt to generate an on-brand version:</p>
+<div class="promptcard"><div class="promptcard-h"><span>🖼️ Image / AI prompt</span><button class="copybtn" type="button">Copy</button></div><pre><code>Create a clean, modern decision-tree infographic titled &quot;Should I Trust This AI Answer?&quot;. Branch:
+&quot;Does it matter if it&#x27;s wrong?&quot; → No: &quot;Use as a starting point&quot; / Yes: &quot;Verify against a trustworthy
+source&quot; → &quot;Do reputable sources agree?&quot; → Yes: &quot;Trust &amp; use&quot; / No: &quot;Discard or dig deeper&quot;. Add a
+small caption: &quot;Confidence ≠ correctness.&quot; Use ADA brand colors (Indigo #1E2A6E, Turquoise #15B5C6,
+Gold #E0A53C), light background, flat vector, legible sans-serif. 16:9.</code></pre></div>
+<hr>
+<h3>🧪 Practice — <em>Source &amp; AI-claim audit</em></h3>
+<ol>
+<li><strong>Source triage.</strong> Take a question you care about and find three sources (e.g., a research/official</li>
+</ol>
+<p>   page, a reputable explainer, a random blog/forum). Score each with CRAAP and rank them.</p>
+<ol>
+<li><strong>Catch a hallucination.</strong> Ask an AI something specific and checkable (a date, a citation, a niche</li>
+</ol>
+<p>   fact). Then verify each claim against a trustworthy source. Note anything that was confidently    wrong or unverifiable.</p>
+<details>
+<summary>What good looks like</summary>
+<ul>
+<li>You can articulate <em>why</em> one source outranks another (authority + accuracy + purpose).</li>
+<li>You found at least one AI claim you couldn't verify — or proved one wrong — and you didn't take its</li>
+</ul>
+<p>  confidence as evidence.</p>
+</details>
+<hr>
+<h3>✅ Evaluate — Pop quiz (formative, <code>knowledge-mini</code>)</h3>
+<ol>
+<li>What does each letter of CRAAP stand for, and what does "triangulate" mean?</li>
+<li>In one sentence, what is an LLM actually doing when it answers?</li>
+<li>Why is "the AI sounded very confident" <em>not</em> a reason to trust an answer?</li>
+</ol>
+<details>
+<summary>Answer key</summary>
+<ol>
+<li><strong>C</strong>urrency, <strong>R</strong>elevance, <strong>A</strong>uthority, <strong>A</strong>ccuracy, <strong>P</strong>urpose. <em>Triangulate</em> = confirm a</li>
+</ol>
+<p>   claim across multiple independent, reputable sources.</p>
+<ol>
+<li>Predicting the <strong>most likely next words</strong> based on patterns in its training data — not looking up</li>
+</ol>
+<p>   verified facts.</p>
+<ol>
+<li>Because LLMs generate confident-sounding text whether right or wrong — <strong>confidence ≠ correctness</strong>,</li>
+</ol>
+<p>   and they can <strong>hallucinate.</strong></p>
+</details>
+<hr>
+<h3>📦 Deliverable</h3>
+<ul>
+<li>Your source-triage ranking (3 sources + CRAAP notes) <strong>and</strong> one documented AI claim you verified or</li>
+</ul>
+<p>  debunked, with the trustworthy source you checked against.</p>
+<h3>🧠 Final reflection</h3>
+<ul>
+<li>Where have you previously trusted a source (or an AI answer) you shouldn't have? What's your new rule?</li>
+</ul>
+<h3>🔗 Sources to verify (human-in-the-loop)</h3>
+<ul>
+<li>CSU/Meriam Library — <em>The CRAAP Test</em> (source evaluation).</li>
+<li>DigComp 2.2 — competence area 1: <em>Information &amp; data literacy</em>.</li>
+<li>Plain-language explainers on how LLMs work and why they hallucinate (verify currency before use).</li>
+</ul>
+<h3>🧩 Connections</h3>
+<ul>
+<li><strong>Predecessor:</strong> Atom 1. <strong>Successors:</strong> Atom 3 (search for trustworthy sources), Atom 4 (use AI</li>
+</ul>
+<p>  safely with verification).</p></section>
+<section class="page" id="page-atom-3" data-id="atom-3"><label class="donebox"><input type="checkbox" class="donechk" data-atom="atom-3"> Mark this atom complete</label><h2>⚛ Learning Atom 3 — <em>Research with Search Engines</em></h2>
+<p><strong>Phase:</strong> 🙈 2 · Visual Exploration (<em>see</em>) · <strong>KSA:</strong> 🛠️ Skill · <strong>Target level:</strong> L2 · <strong>Component id:</strong> <code>S-search-research</code></p>
+<h3>🎯 Learning objective</h3>
+<ul>
+<li><strong>Find and triangulate</strong> trustworthy answers to a real question using a search engine (e.g., Google)</li>
+</ul>
+<p>  — crafting good queries, using operators, and reading critically.</p>
+<h3>🧩 Prerequisites</h3>
+<ul>
+<li>Atom 2 (source trust) — searching is only useful if you can judge what you find.</li>
+</ul>
+<h3>🧭 Atom description</h3>
+<p>Search is the most-used learning tool on earth, and almost everyone uses it at 20% of its power. This atom turns "typing a question and clicking the first link" into a deliberate research skill: ask a sharp query, use a few operators to cut noise, scan results critically, and triangulate across sources. It's in Phase 2 (<em>see</em>) because you learn it by watching it modeled, then doing a hunt.</p>
+<hr>
+<h3>🎬 Watch — searching like a pro (~5–10 min)</h3>
+<div class="yt" data-id="Fzd07K-bScw"><button class="yt-play" type="button" aria-label="Play video"><span class="yt-tri">&#9654;</span></button><div class="yt-meta"><a href="https://www.youtube.com/watch?v=Fzd07K-bScw" target="_blank" rel="noopener">https://www.youtube.com/watch?v=Fzd07K-bScw</a><div class="yt-cap">"Google search tips &amp; operators" — a practical explainer (verify before delivery).</div></div></div>
+<hr>
+<h3>📖 Reading — <em>Ask a better question, get a better answer</em> (≈ 7 min)</h3>
+<p><strong>1) Craft the query.</strong> The search box rewards precision:</p>
+<ul>
+<li><strong>Use keywords, not full sentences.</strong> Drop filler words; keep the meaningful terms. `python list vs</li>
+</ul>
+<p>  tuple difference<code> beats </code>what is the difference between a list and a tuple in python please`.</p>
+<ul>
+<li><strong>Add context that narrows it:</strong> the year, the version, the platform, the domain — `react useEffect</li>
+</ul>
+<p>  cleanup 2025<code>, </code>excel xlookup vs vlookup`.</p>
+<ul>
+<li><strong>Speak the source's language.</strong> Think about the words an expert page would use, not how a beginner</li>
+</ul>
+<p>  phrases it. Searching the <em>answer's</em> vocabulary finds better pages.</p>
+<ul>
+<li><strong>Iterate.</strong> Your first query is a probe. Read the snippets, steal better terms from them, and</li>
+</ul>
+<p>  refine. Research is a loop, not one shot.</p>
+<p><strong>2) Use a few high-leverage operators:</strong></p>
+<div class='tablewrap'><table><thead><tr><th>Operator</th><th>Does</th><th>Example</th></tr></thead><tbody>
+<tr><td><code>&quot;exact phrase&quot;</code></td><td>Forces an exact match</td><td><code>&quot;productive failure&quot; learning</code></td></tr>
+<tr><td><code>site:</code></td><td>Search within one site</td><td><code>site:docs.python.org enumerate</code></td></tr>
+<tr><td><code>-word</code></td><td>Excludes a term</td><td><code>jaguar speed -car</code></td></tr>
+<tr><td><code>filetype:</code></td><td>Find a file type</td><td><code>machine learning basics filetype:pdf</code></td></tr>
+<tr><td><code>OR</code></td><td>Either term</td><td><code>bicycle OR cycling commuting</code></td></tr>
+<tr><td><code>intitle:</code> / <code>*</code></td><td>In the title / wildcard</td><td><code>intitle:tutorial docker</code> · <code>&quot;learn * in 30 days&quot;</code></td></tr>
+</tbody></table></div>
+<p><strong>3) Read the results critically.</strong> Don't auto-click result #1 (it's often an ad or SEO bait). Scan several snippets, prefer sources that pass the Atom-2 trust test (official docs, reputable institutions, well-sourced explainers), and <strong>open a few in parallel</strong> to compare. Watch the <em>date</em>.</p>
+<p><strong>4) Triangulate &amp; trace.</strong> For anything important, confirm it across <strong>2–3 independent reputable sources</strong> and try to reach the <strong>primary source</strong> (the original docs/paper), not a copy of a copy. If sources disagree, that disagreement is itself information — dig into why.</p>
+<p><strong>5) Know when to switch tools.</strong> Search is best for <em>finding trustworthy sources and current/specific facts</em>; AI (Atom 4) is best for <em>explaining and synthesizing</em>. Strong self-learners bounce between them: search to find and verify, AI to understand — then verify the AI with search again.</p>
+<p><strong>Key takeaways</strong></p>
+<ul>
+<li><input type="checkbox" disabled> Query with <strong>precise keywords + context</strong>, in the <em>source's</em> vocabulary; then <strong>iterate.</strong></li>
+<li><input type="checkbox" disabled> A few <strong>operators</strong> (<code>&quot;...&quot;</code>, <code>site:</code>, <code>-</code>, <code>filetype:</code>) cut noise fast.</li>
+<li><input type="checkbox" disabled> <strong>Don't trust result #1 by default</strong> — scan, compare, check dates.</li>
+<li><input type="checkbox" disabled> <strong>Triangulate</strong> across 2–3 reputable sources and reach the <strong>primary source.</strong></li>
+</ul>
+<hr>
+<h3>🖼️ See — the research loop</h3>
+<div class="mermaid">flowchart LR
+  Q[&quot;❓ Sharp question&quot;] --&gt; QUERY[&quot;⌨️ Keyword query&lt;br/&gt;+ operators&quot;]
+  QUERY --&gt; SCAN[&quot;👀 Scan results&lt;br/&gt;critically&quot;]
+  SCAN --&gt; EVAL{&quot;Trustworthy?&lt;br/&gt;(CRAAP)&quot;}
+  EVAL --&gt;|no| QUERY
+  EVAL --&gt;|yes| TRI[&quot;🔺 Triangulate&lt;br/&gt;2–3 sources&quot;]
+  TRI --&gt; ANS[&quot;✅ Verified answer&quot;]</div>
+<p>A reusable prompt to generate an on-brand version:</p>
+<div class="promptcard"><div class="promptcard-h"><span>🖼️ Image / AI prompt</span><button class="copybtn" type="button">Copy</button></div><pre><code>Create a clean, modern infographic of a &quot;search research loop&quot;: Sharp question → Keyword query +
+operators → Scan results critically → Trustworthy? (CRAAP) → (loop back if no) → Triangulate 2–3
+sources → Verified answer. Use ADA brand colors (Indigo #1E2A6E, Turquoise #15B5C6, Gold #E0A53C),
+light background, flat vector, legible sans-serif. 16:9.</code></pre></div>
+<hr>
+<h3>🧪 Practice — <em>Research scavenger hunt</em> (Challenge / Quest)</h3>
+<p>Answer each with a search engine, and for each record: your <strong>final query</strong>, the <strong>operator(s)</strong> used, your <strong>two trustworthy sources</strong>, and the <strong>answer</strong>.</p>
+<ol>
+<li>Find the <strong>official documentation</strong> page for a tool you use (use <code>site:</code>), not a third-party copy.</li>
+<li>Find a <strong>PDF</strong> report from a reputable institution on a topic you care about (use <code>filetype:pdf</code>).</li>
+<li>Find the <strong>exact origin</strong> of a popular quote — is it correctly attributed? (use <code>&quot;exact phrase&quot;</code>).</li>
+<li>Find the <strong>current</strong> recommended way to do something that changed recently (add a year/version).</li>
+<li>Find a claim where <strong>two reputable sources disagree</strong> — and note why.</li>
+</ol>
+<hr>
+<h3>✅ Evaluate — Performance task (<code>skill</code>)</h3>
+<p>Submit your scavenger-hunt sheet. Scored on:</p>
+<div class='tablewrap'><table><thead><tr><th>Criterion</th><th>Excellent (3)</th><th>Adequate (2)</th><th>Needs work (1)</th></tr></thead><tbody>
+<tr><td><strong>Query craft</strong></td><td>Precise keywords + apt operators; iterates</td><td>Workable queries</td><td>Full-sentence, no refinement</td></tr>
+<tr><td><strong>Source quality</strong></td><td>Reaches primary/reputable sources</td><td>Mostly decent sources</td><td>First link / low quality</td></tr>
+<tr><td><strong>Triangulation</strong></td><td>Confirms across independent sources</td><td>Some cross-checking</td><td>Single source</td></tr>
+<tr><td><strong>Critical reading</strong></td><td>Notes dates, bias, disagreement</td><td>Some critique</td><td>Takes results at face value</td></tr>
+</tbody></table></div>
+<blockquote>Pass = 2+ each → <strong>L2</strong> evidence for <code>S-search-research</code>.</blockquote>
+<h3>📦 Deliverable</h3>
+<ul>
+<li>Your completed scavenger-hunt sheet (queries + operators + sources + answers).</li>
+</ul>
+<h3>🧠 Final reflection</h3>
+<ul>
+<li>Which operator or habit will most change how you search day-to-day? Why?</li>
+</ul>
+<h3>🔗 Sources to verify (human-in-the-loop)</h3>
+<ul>
+<li>Google — <em>Search operators / refine web searches</em> (official help).</li>
+<li>DigComp 2.2 — area 1: <em>browsing, searching and filtering data, information, and digital content</em>.</li>
+<li>Any reputable "advanced search techniques" guide (verify currency).</li>
+</ul>
+<h3>🧩 Connections</h3>
+<ul>
+<li><strong>Predecessor:</strong> Atom 2. <strong>Successor:</strong> Atom 4 (use AI to <em>explain</em> what you find — then verify by</li>
+</ul>
+<p>  searching).</p></section>
+<section class="page" id="page-atom-4" data-id="atom-4"><label class="donebox"><input type="checkbox" class="donechk" data-atom="atom-4"> Mark this atom complete</label><h2>⚛ Learning Atom 4 — <em>Learn with AI (Basic Prompting + Verify)</em></h2>
+<p><strong>Phase:</strong> 🙊 3 · Applied Practice (<em>do</em>) · <strong>KSA:</strong> 🛠️ Skill · <strong>Target level:</strong> L2 · <strong>Component ids:</strong> <code>S-learn-with-ai</code>, <code>K-sources-and-ai-limits</code></p>
+<h3>🎯 Learning objective</h3>
+<ul>
+<li><strong>Prompt an AI</strong> to explain a topic at the right level, <strong>ask it for sources</strong>, and <strong>verify</strong> its</li>
+</ul>
+<p>  output — using it as a study partner, not an oracle.</p>
+<h3>🧩 Prerequisites</h3>
+<ul>
+<li>Atom 2 (how AI works + its limits) and Atom 3 (search, for verification). This atom <em>applies</em> both.</li>
+</ul>
+<h3>🧭 Atom description</h3>
+<p>Used well, an AI assistant is the best on-demand tutor ever made: infinitely patient, available 24/7, able to re-explain anything five different ways. Used badly, it's a confident misinformation machine that does your thinking for you. This atom teaches the <em>well</em> version: basic prompting to learn, plus a verification habit that protects you from the limitations you met in Atom 2.</p>
+<hr>
+<h3>📖 Reading — <em>Prompt to learn, not to copy</em> (≈ 8 min)</h3>
+<p><strong>Anatomy of a good learning prompt.</strong> A useful prompt usually has four parts — <strong>Role, Context, Task, Format</strong>:</p>
+<ul>
+<li><strong>Role:</strong> <em>"Act as a patient tutor for a complete beginner."</em></li>
+<li><strong>Context:</strong> what you know and where you're stuck — <em>"I understand X but not how Y connects."</em></li>
+<li><strong>Task:</strong> what you want — <em>"Explain Z with a simple analogy, then a concrete example."</em></li>
+<li><strong>Format:</strong> how to deliver — <em>"Keep it under 150 words; then ask me one question to check I got it."</em></li>
+</ul>
+<p>**Prompts that make you <em>learn</em>, not just receive answers:**</p>
+<ul>
+<li><strong>Explain at a level:</strong> <em>"Explain like I'm 12,"</em> then *"now explain it the way you'd tell a</li>
+</ul>
+<p>  professional."* Comparing levels builds real understanding.</p>
+<ul>
+<li><strong>Analogy + example:</strong> <em>"Give me an analogy, then a real example, then a counter-example."</em></li>
+<li><strong>Make it quiz you:</strong> *"Ask me 5 questions one at a time to test my understanding, and tell me if</li>
+</ul>
+<p>  I'm wrong and why."* This forces <strong>retrieval</strong> (Atom 1) instead of passive reading.</p>
+<ul>
+<li><strong>Find your gaps:</strong> *"Here's my explanation of X in my own words: [...]. What did I get wrong or</li>
+</ul>
+<p>  miss?"* — the single most powerful learning prompt.</p>
+<ul>
+<li><strong>Unstick, don't solve:</strong> *"Don't give me the answer. Give me a hint and the next question I should</li>
+</ul>
+<p>  ask myself."* This protects the productive struggle from Atom 1.</p>
+<ul>
+<li><strong>Plan a path:</strong> *"I want to learn X in two weeks with ~30 min/day. Give me a step-by-step plan with</li>
+</ul>
+<p>  free resources I should verify."*</p>
+<p><strong>The non-negotiable: verify.</strong> Because of hallucination and the other limits from Atom 2:</p>
+<ul>
+<li><strong>Ask for sources</strong> — <em>"Cite reputable sources I can check."</em> — then <strong>actually open them</strong> (they may</li>
+</ul>
+<p>  be invented). Reaching the real source is a feature, not a chore.</p>
+<ul>
+<li><strong>Cross-check anything that matters</strong> with a search (Atom 3), especially facts, numbers, dates, code</li>
+</ul>
+<p>  that touches real systems, citations, and anything high-stakes.</p>
+<ul>
+<li><strong>Don't outsource the struggle.</strong> Use AI to <em>explain and unblock</em>, then close the book and **redo it</li>
+</ul>
+<p>  yourself from memory.** If you only nodded along, you didn't learn it.</p>
+<ul>
+<li><strong>Watch sycophancy &amp; leading questions.</strong> If you ask <em>"isn't X true?"</em> it may just agree. Ask</li>
+</ul>
+<p>  neutrally: <em>"Is X true? What's the evidence for and against?"</em></p>
+<blockquote><strong>Mental model:</strong> AI is a brilliant, fast, confident <strong>study partner that is sometimes wrong.</strong> Pair it with search to verify, and with your own practice to actually learn. Search <strong>finds and verifies</strong>; AI <strong>explains and synthesizes</strong>; <em>you</em> do the learning.</blockquote>
+<p><strong>Key takeaways</strong></p>
+<ul>
+<li><input type="checkbox" disabled> Structure prompts with <strong>Role · Context · Task · Format.</strong></li>
+<li><input type="checkbox" disabled> Use prompts that force <strong>retrieval</strong> (quiz me, critique my explanation, hint don't solve).</li>
+<li><input type="checkbox" disabled> <strong>Always verify</strong> — ask for sources, open them, cross-check with search.</li>
+<li><input type="checkbox" disabled> <strong>Don't outsource the struggle</strong>; redo it from memory. Ask <strong>neutrally</strong> to avoid sycophancy.</li>
+</ul>
+<hr>
+<h3>🖼️ See — search + AI working together</h3>
+<div class="mermaid">flowchart LR
+  GOAL[&quot;🎯 What I want to learn&quot;] --&gt; AI[&quot;🤖 AI: explain / analogy / quiz me&quot;]
+  AI --&gt; TRY[&quot;🧠 Redo from memory&quot;]
+  TRY --&gt; VER[&quot;🔍 Verify with search&lt;br/&gt;(open real sources)&quot;]
+  VER --&gt; OK{&quot;Holds up?&quot;}
+  OK --&gt;|yes| LEARNED[&quot;✅ Learned (for now)&quot;]
+  OK --&gt;|no| AI</div>
+<p>A reusable prompt to generate an on-brand version:</p>
+<div class="promptcard"><div class="promptcard-h"><span>🖼️ Image / AI prompt</span><button class="copybtn" type="button">Copy</button></div><pre><code>Create a clean, modern infographic titled &quot;Learn With AI, Safely&quot;: What I want to learn → AI explains
+/ quizzes me → Redo from memory → Verify with search (open real sources) → Holds up? → Yes: Learned /
+No: back to AI. Caption: &quot;AI explains, search verifies, you learn.&quot; Use ADA brand colors (Indigo
+#1E2A6E, Turquoise #15B5C6, Gold #E0A53C), light background, flat vector, legible sans-serif. 16:9.</code></pre></div>
+<hr>
+<h3>🧪 Practice — <em>AI study session</em> (AI Prompt Question + Worksheet)</h3>
+<p>Pick one real topic you want to understand. Run this sequence with an AI tool and save the transcript:</p>
+<ol>
+<li><strong>Explain prompt</strong> (Role·Context·Task·Format) — get a beginner explanation + an example.</li>
+<li><strong>Level-shift</strong> — ask for the same idea explained for a professional; note what's added.</li>
+<li><strong>Quiz me</strong> — have it ask you 5 questions one at a time; answer from memory.</li>
+<li><strong>Critique my understanding</strong> — write your own 4-sentence explanation; ask the AI what you got</li>
+</ol>
+<p>   wrong.</p>
+<ol>
+<li><strong>Verify</strong> — ask for sources, then <strong>check at least two claims</strong> with a search (Atom 3). Record any</li>
+</ol>
+<p>   claim that was wrong, unverifiable, or had a fake citation.</p>
+<hr>
+<h3>✅ Evaluate — Performance task (<code>skill</code>)</h3>
+<p>Submit your transcript + worksheet. Scored on:</p>
+<div class='tablewrap'><table><thead><tr><th>Criterion</th><th>Excellent (3)</th><th>Adequate (2)</th><th>Needs work (1)</th></tr></thead><tbody>
+<tr><td><strong>Prompt quality</strong></td><td>Clear Role·Context·Task·Format; iterates</td><td>Workable prompts</td><td>Vague one-liners</td></tr>
+<tr><td><strong>Learning (not copying)</strong></td><td>Uses quiz/critique/redo-from-memory</td><td>Some active use</td><td>Passive copy-paste</td></tr>
+<tr><td><strong>Verification</strong></td><td>Opens sources; cross-checks; catches an error</td><td>Some checking</td><td>Takes AI at face value</td></tr>
+<tr><td><strong>Judgment about limits</strong></td><td>Articulates where AI helped vs. couldn't be trusted</td><td>Some awareness</td><td>None</td></tr>
+</tbody></table></div>
+<blockquote>Pass = 2+ each → <strong>L2</strong> evidence for <code>S-learn-with-ai</code>.</blockquote>
+<h3>📦 Deliverable</h3>
+<ul>
+<li>Your AI study-session transcript, your own written explanation, and your verification notes</li>
+</ul>
+<p>  (including anything the AI got wrong).</p>
+<h3>🧠 Final reflection</h3>
+<ul>
+<li>Where did AI genuinely accelerate your learning, and where did verification save you? What's your</li>
+</ul>
+<p>  personal rule for trusting it?</p>
+<h3>🔗 Sources to verify (human-in-the-loop)</h3>
+<ul>
+<li>Any reputable, current "prompting basics / how to learn with AI" guide (verify currency).</li>
+<li>Atom 2 of this course (LLM limitations) — re-read before high-stakes use.</li>
+<li>DigComp 2.2 — interacting with and critically evaluating AI-generated content.</li>
+</ul>
+<h3>🧩 Connections</h3>
+<ul>
+<li><strong>Predecessors:</strong> Atoms 2 &amp; 3. <strong>Successor:</strong> Atom 5 (put search + AI inside a full learning loop).</li>
+</ul></section>
+<section class="page" id="page-atom-5" data-id="atom-5"><label class="donebox"><input type="checkbox" class="donechk" data-atom="atom-5"> Mark this atom complete</label><h2>⚛ Learning Atom 5 — <em>The Self-Learning Loop (Learn by Failing Forward)</em></h2>
+<p><strong>Phase:</strong> 🙊 3 · Applied Practice (<em>do</em>) · <strong>KSA:</strong> 🛠️ Skill + 🌱 Ability · <strong>Target level:</strong> L2 · <strong>Component ids:</strong> <code>S-learning-loop</code>, <code>A-curiosity</code>, <code>A-resilience-failure</code></p>
+<h3>🎯 Learning objective</h3>
+<ul>
+<li><strong>Run a complete self-learning loop</strong> on a small real topic — driven by curiosity and **persisting</li>
+</ul>
+<p>  through failure** — and keep a learning log of the process.</p>
+<h3>🧩 Prerequisites</h3>
+<ul>
+<li>Atoms 1–4. This atom assembles the whole toolkit into one repeatable process.</li>
+</ul>
+<h3>🧭 Atom description</h3>
+<p>So far you have the pieces: a mindset (process &gt; answer; failure is data), source judgment, search, and AI. This atom is where they become a <strong>habit you can point at anything.</strong> You'll pick a genuinely unknown micro-topic and learn it end-to-end in a single loop — on purpose hitting walls and documenting how you got past them. This is also where the <strong>Abilities</strong> (curiosity, resilience) get their first real workout.</p>
+<hr>
+<h3>📖 Reading — <em>One loop you can reuse forever</em> (≈ 6 min)</h3>
+<p>The self-learning loop has five steps. The magic is in repeating it in tight cycles, not doing it once perfectly:</p>
+<ol>
+<li><strong>Set a sharp goal.</strong> Make it small and observable. Not "learn data viz" but *"make one bar chart</li>
+</ol>
+<p>   from a CSV and explain what it shows."* A goal you can <em>demonstrate</em> beats a goal you can only    <em>feel.</em></p>
+<ol>
+<li><strong>Find resources (filter ruthlessly).</strong> Use search (Atom 3) to find 1–2 trustworthy resources and</li>
+</ol>
+<p>   AI (Atom 4) to explain the confusing parts. Resist collecting 30 tabs — that's procrastination in    disguise. Pick a starting point and move.</p>
+<ol>
+<li><strong>Practice — try before you're ready.</strong> Attempt the thing <em>now</em>, while you still feel unprepared.</li>
+</ol>
+<p>   You will get stuck and get things wrong. <strong>Good.</strong> Each failure is a precise pointer to the next    thing to learn (Atom 1). Look things up to <em>unblock</em>, then keep going.</p>
+<ol>
+<li><strong>Self-test (retrieve).</strong> Close everything and check: can you do it / explain it from memory? If</li>
+</ol>
+<p>   not, you found your gap — loop back to step 2 or 3 for <em>that specific gap.</em></p>
+<ol>
+<li><strong>Reflect (metacognition).</strong> Write a few lines: what you learned, what tripped you, what you'd do</li>
+</ol>
+<p>   differently. Reflection is what converts a one-off into a transferable method.</p>
+<p><strong>The role of the Abilities in the loop:</strong></p>
+<ul>
+<li><strong>🌱 Curiosity</strong> is the engine. It's what makes you ask "but why?" and "what if?", chase the</li>
+</ul>
+<p>  interesting tangent, and keep generating questions. Without it, the loop stalls at step 1.</p>
+<ul>
+<li><strong>🌱 Resilience (learn by failing forward)</strong> is the fuel for steps 3–4. The moment you're stuck is</li>
+</ul>
+<p>  the moment most people quit — and it's exactly the moment learning is about to happen. Reframe "I   failed" as <strong>"I found a gap; that's progress,"</strong> take a breath, and try the next thing. Persistence   + a new approach, not just grinding the same wrong way.</p>
+<blockquote><strong>"Failing forward"</strong> means every failure moves you closer because you <em>extract the lesson</em> from it. A failure you ignore is a loss; a failure you mine is tuition you already paid — collect the lesson.</blockquote>
+<p><strong>Key takeaways</strong></p>
+<ul>
+<li><input type="checkbox" disabled> The loop: <strong>goal → resources → practice → self-test → reflect</strong>, repeated in tight cycles.</li>
+<li><input type="checkbox" disabled> Make goals <strong>small and demonstrable</strong>; avoid resource-hoarding.</li>
+<li><input type="checkbox" disabled> <strong>Try before you're ready</strong>; treat each stuck moment as the next thing to learn.</li>
+<li><input type="checkbox" disabled> <strong>Curiosity</strong> drives the loop; <strong>resilience</strong> gets you through the stuck parts.</li>
+</ul>
+<hr>
+<h3>🖼️ See — the self-learning loop</h3>
+<div class="mermaid">flowchart LR
+  GOAL[&quot;🎯 Sharp goal&quot;] --&gt; FIND[&quot;🔎 Find resources&lt;br/&gt;(search + AI)&quot;]
+  FIND --&gt; DO[&quot;🛠️ Practice&lt;br/&gt;(try before ready)&quot;]
+  DO --&gt; FAIL[&quot;💥 Get stuck / fail&quot;]
+  FAIL --&gt; LESSON[&quot;💡 Extract the lesson&quot;]
+  LESSON --&gt; TEST[&quot;🧠 Self-test from memory&quot;]
+  TEST --&gt; REFLECT[&quot;📝 Reflect&quot;]
+  REFLECT -.next cycle.-&gt; GOAL</div>
+<hr>
+<h3>🧪 Practice — <em>One full loop + learning log</em> (Project / Quest + Reflection)</h3>
+<p>Pick a <strong>small, genuinely new</strong> micro-skill you can attempt in ~60–90 minutes (e.g., make a chart from data, write a one-page summary in a new format, learn 10 phrases of a language and use them, fix a small thing using docs). Run the loop <strong>and keep a learning log</strong> capturing:</p>
+<ul>
+<li>Your <strong>goal</strong> (small + demonstrable) and <strong>why you're curious</strong> about it.</li>
+<li>The <strong>resources</strong> you chose (and why) — search + AI, with verification.</li>
+<li><strong>At least two failures / stuck points</strong>, what each one taught you, and how you got past it.</li>
+<li>Your <strong>self-test</strong> result (could you do/explain it from memory?).</li>
+<li>A short <strong>reflection</strong> + what you'd do differently next loop.</li>
+</ul>
+<p><strong>Pair option (collaborate):</strong> swap learning logs with a partner and trade one piece of encouragement + one suggestion. Hearing how someone else got unstuck is itself a lesson.</p>
+<hr>
+<h3>✅ Evaluate — Behavioral assessment (<code>behavioral</code>)</h3>
+<p>Scored from your learning log + (if paired) your partner's observation. This is a key occasion for the Abilities:</p>
+<div class='tablewrap'><table><thead><tr><th>Criterion</th><th>Excellent (3)</th><th>Adequate (2)</th><th>Needs work (1)</th></tr></thead><tbody>
+<tr><td><strong>Loop execution (🛠️)</strong></td><td>All 5 steps, tight cycles, demonstrable goal</td><td>Most steps</td><td>Skipped practice/self-test</td></tr>
+<tr><td><strong>Curiosity (🌱)</strong></td><td>Generates own questions; chases understanding</td><td>Some initiative</td><td>Waits to be told</td></tr>
+<tr><td><strong>Resilience / failing forward (🌱)</strong></td><td>Documents failures + lessons; persists &amp; adapts</td><td>Some persistence</td><td>Quits or hides the struggle</td></tr>
+<tr><td><strong>Verification</strong></td><td>Checks AI/sources within the loop</td><td>Some checking</td><td>None</td></tr>
+<tr><td><strong>Reflection</strong></td><td>Honest, specific, forward-looking</td><td>Generic</td><td>Missing</td></tr>
+</tbody></table></div>
+<blockquote>Pass = 2+ each. This is <strong>occasion 1 of 3</strong> for <code>A-curiosity</code> and <code>A-resilience-failure</code> (also observed in the capstone, and across the course).</blockquote>
+<h3>📦 Deliverable</h3>
+<ul>
+<li>Your learning log for one full loop (goal · resources · ≥2 documented failures + lessons · self-test</li>
+</ul>
+<p>  · reflection) and the artifact you produced.</p>
+<h3>🧠 Final reflection</h3>
+<ul>
+<li>Which step do you skip when you're impatient (usually self-test or reflect)? What does skipping it</li>
+</ul>
+<p>  cost you?</p>
+<h3>🔗 Sources to verify (human-in-the-loop)</h3>
+<ul>
+<li>Ericsson &amp; Pool, <em>Peak</em> (deliberate practice — practice at the edge of ability).</li>
+<li>Zimmerman, <em>Self-Regulated Learning</em> (the plan → monitor → reflect cycle).</li>
+<li>Atom 1 of this course (productive failure &amp; retrieval).</li>
+</ul>
+<h3>🧩 Connections</h3>
+<ul>
+<li><strong>Predecessors:</strong> Atoms 1–4. <strong>Successor:</strong> Atom 6 (run the loop on a bigger self-chosen skill and</li>
+</ul>
+<p>  teach it back).</p></section>
+<section class="page" id="page-atom-6" data-id="atom-6"><label class="donebox"><input type="checkbox" class="donechk" data-atom="atom-6"> Mark this atom complete</label><h2>⚛ Learning Atom 6 — <em>Capstone: Teach Yourself Something New &amp; Teach It Back</em></h2>
+<p><strong>Phase:</strong> 🐵 4 · Collaboration &amp; Reflection (<em>share</em>) · <strong>KSA:</strong> 🛠️ Skill + 🌱 Ability · <strong>Target level:</strong> L2 · <strong>Component ids:</strong> <code>S-search-research</code>, <code>S-learn-with-ai</code>, <code>S-learning-loop</code>, <code>A-curiosity</code>, <code>A-resilience-failure</code></p>
+<h3>🎯 Learning objective</h3>
+<ul>
+<li><strong>Teach yourself a brand-new micro-skill</strong> using online resources, search, and AI; **document the</li>
+</ul>
+<p>  process<strong> (including failures and how you verified information); and </strong>teach it back** to peers.</p>
+<h3>🧩 Prerequisites</h3>
+<ul>
+<li>All prior atoms.</li>
+</ul>
+<h3>🧭 Atom description</h3>
+<p>The capstone proves the meta-skill: hand the learner something they don't know and watch them learn it <em>well, on their own.</em> It integrates everything — the right mindset (process &gt; answer; failure is data), search, AI-with-verification, and the full learning loop — and ends with a teach-back, because <strong>explaining what you learned is the ultimate test that you actually learned it.</strong></p>
+<hr>
+<h3>🚀 The brief</h3>
+<blockquote>Choose a <strong>genuinely new micro-skill</strong> you can plausibly reach a basic working level in within the course window (roughly 3–6 focused hours), e.g.: make a simple data chart, build a one-page site, learn the basics of a tool, learn enough of a language to hold a 60-second self-intro, edit a short video, write SQL for 3 simple queries. <strong>(1)</strong> Learn it using search + AI + free online resources, running the self-learning loop. <strong>(2)</strong> Keep a <strong>learning log</strong> that shows the <em>process</em> — including the failures, the dead ends, and how you <strong>verified</strong> AI/online claims. <strong>(3)</strong> Produce a small <strong>artifact</strong> that demonstrates the skill. <strong>(4)</strong> <strong>Teach it back</strong> in a short session and peer-review a classmate.</blockquote>
+<p>Pick something <strong>real and modest.</strong> The grade is on <em>how you learned</em> and <em>whether you can teach it</em> — not on mastering something huge.</p>
+<hr>
+<h3>📦 What to submit</h3>
+<ul>
+<li><input type="checkbox" disabled> <strong>The artifact</strong> — the thing you made/can now do (file, link, recording, or live demo).</li>
+<li><input type="checkbox" disabled> <strong>A learning log</strong> — goal, resources (with why + verification), **≥3 documented failures/stuck</li>
+</ul>
+<p>  points and the lesson from each**, self-tests, and reflections across the loop cycles.</p>
+<ul>
+<li><input type="checkbox" disabled> <strong>A source &amp; AI audit</strong> — at least 3 claims you verified, the trustworthy sources you used, and</li>
+</ul>
+<p>  any AI output you caught being wrong or unverifiable.</p>
+<ul>
+<li><input type="checkbox" disabled> <strong>A teach-back</strong> — a 3–5 minute explanation (live or recorded) that teaches the basics to someone</li>
+</ul>
+<p>  else, including one thing that tripped you up and how you got past it.</p>
+<ul>
+<li><input type="checkbox" disabled> <strong>A peer review you gave</strong> — the capstone rubric applied to a classmate's teach-back + learning</li>
+</ul>
+<p>  log, with specific, kind, useful feedback.</p>
+<hr>
+<h3>🎤 Showcase / teach-back structure (≈ 5 minutes)</h3>
+<ol>
+<li><strong>What &amp; why</strong> (30s) — the skill and why you were curious about it.</li>
+<li><strong>Teach the basics</strong> (2–3 min) — explain it so a beginner could start; show the artifact.</li>
+<li><strong>The messy middle</strong> (1 min) — a failure that taught you the most, and how you got unstuck.</li>
+<li><strong>How you knew it was true</strong> (30s) — one thing you verified (and one AI limitation you hit).</li>
+</ol>
+<hr>
+<h3>✅ Evaluate — Capstone (<code>capstone-5</code>)</h3>
+<p>Graded with the standard 5-criteria Assessment Rubric in <a href="../../index.html#/examples/self-learning-micro-credential/atoms/rubrics.md" target="_blank" rel="noopener"><code>../rubrics.md</code></a> / <a href="../../index.html#/examples/self-learning-micro-credential/atoms/capstone.md" target="_blank" rel="noopener"><code>../capstone.md</code></a>. This is the <strong>third and decisive occasion</strong> for the Abilities <code>A-curiosity</code> and <code>A-resilience-failure</code>, alongside the Skills.</p>
+<h3>📦 Deliverable</h3>
+<ul>
+<li>Your artifact + learning log + source/AI audit + teach-back + the peer review you gave.</li>
+</ul>
+<h3>🧠 Final reflection</h3>
+<ul>
+<li>You now have a process you can point at <em>anything</em>. What's the next skill you'll teach yourself with</li>
+</ul>
+<p>  it — and what's your first small, demonstrable goal?</p>
+<h3>🔗 Sources to verify (human-in-the-loop)</h3>
+<ul>
+<li><a href="../../index.html#/examples/self-learning-micro-credential/atoms/capstone.md" target="_blank" rel="noopener"><code>../capstone.md</code></a> · <a href="../../index.html#/examples/self-learning-micro-credential/atoms/rubrics.md" target="_blank" rel="noopener"><code>../rubrics.md</code></a> · <a href="../../index.html#/examples/self-learning-micro-credential/atoms/skills-map.md" target="_blank" rel="noopener"><code>../skills-map.md</code></a>.</li>
+<li>The teach-back ("learn by teaching") effect — Fiorella &amp; Mayer, <em>Learning as a Generative Activity</em>.</li>
+</ul>
+<h3>🧩 Connections</h3>
+<ul>
+<li><strong>Predecessor:</strong> Atom 5. <strong>Outcome:</strong> 🏅 <em>Self-Directed Learner</em> badge → the meta-credential that</li>
+</ul>
+<p>  accelerates every other pathway (see <a href="../../index.html#/examples/self-learning-micro-credential/atoms/skills-map.md" target="_blank" rel="noopener"><code>../skills-map.md</code></a>).</p></section>
+<section class="page" id="page-capstone" data-id="capstone"><h1>🚀 Capstone — <em>Teach Yourself Something New &amp; Teach It Back</em></h1>
+<p>The capstone is delivered as <a href="#atom-6">Atom 6</a>. This file is the <strong>grading brief</strong>: what learners submit, how it maps to KSA, and the showcase format.</p>
+<hr>
+<h2>🎯 The brief</h2>
+<blockquote>Choose a <strong>genuinely new micro-skill</strong> you can reach a basic working level in within the course window (~3–6 focused hours). <strong>Learn it</strong> using search + AI + free online resources, running the self-learning loop. <strong>Document the process</strong> in a learning log — including the failures and how you <strong>verified</strong> information. Produce a small <strong>artifact</strong> that demonstrates the skill, then <strong>teach it back</strong> and peer-review a classmate.</blockquote>
+<p>The point is a <strong>well-run learning process you can teach</strong> — integrating the whole course — not mastering something large.</p>
+<hr>
+<h2>📦 What to submit</h2>
+<ul>
+<li><input type="checkbox" disabled> <strong>The artifact</strong> — the thing you made / can now do (file, link, recording, or live demo).</li>
+<li><input type="checkbox" disabled> <strong>A learning log</strong> — goal, resources (with why + verification), **≥3 documented failures and the</li>
+</ul>
+<p>  lesson from each**, self-tests, and reflections across the loop cycles.</p>
+<ul>
+<li><input type="checkbox" disabled> <strong>A source &amp; AI audit</strong> — ≥3 claims you verified, the trustworthy sources used, and any AI output</li>
+</ul>
+<p>  you caught being wrong/unverifiable.</p>
+<ul>
+<li><input type="checkbox" disabled> <strong>A teach-back</strong> — a 3–5 minute explanation (live or recorded) that teaches the basics, including</li>
+</ul>
+<p>  one thing that tripped you up and how you got past it.</p>
+<ul>
+<li><input type="checkbox" disabled> <strong>A peer review you gave</strong> — the capstone rubric applied to a classmate, with specific, kind,</li>
+</ul>
+<p>  useful feedback.</p>
+<hr>
+<h2>🎤 Showcase / teach-back structure (≈ 5 minutes)</h2>
+<ol>
+<li><strong>What &amp; why</strong> (30s) — the skill and the curiosity behind it.</li>
+<li><strong>Teach the basics</strong> (2–3 min) — explain it so a beginner could start; show the artifact.</li>
+<li><strong>The messy middle</strong> (1 min) — a failure that taught the most, and how you got unstuck.</li>
+<li><strong>How you knew it was true</strong> (30s) — one thing you verified + one AI limitation you hit.</li>
+</ol>
+<hr>
+<h2>🧬 How the capstone maps to KSA</h2>
+<div class='tablewrap'><table><thead><tr><th>Capstone element</th><th>Evidences</th><th>Component</th></tr></thead><tbody>
+<tr><td>Reframing the struggle in the log; "failing forward"</td><td>How learning works</td><td>🧠 K-learning-process</td></tr>
+<tr><td>Source &amp; AI audit</td><td>Trustworthy sources &amp; LLM limits</td><td>🧠 K-sources-and-ai-limits</td></tr>
+<tr><td>Finding &amp; triangulating resources</td><td>Research with search</td><td>🛠️ S-search-research (L2)</td></tr>
+<tr><td>Using AI to explain + verifying it</td><td>Learn with AI</td><td>🛠️ S-learn-with-ai (L2)</td></tr>
+<tr><td>Running the full loop to a demonstrable artifact</td><td>Self-learning loop</td><td>🛠️ S-learning-loop (L2)</td></tr>
+<tr><td>Driving own learning; chasing questions</td><td>Curiosity &amp; learner agency</td><td>🌱 A-curiosity (L2)</td></tr>
+<tr><td>Persisting through documented failures</td><td>Resilience / failing forward</td><td>🌱 A-resilience-failure (L2)</td></tr>
+<tr><td>Teach-back + peer review + reflection</td><td>Collaboration &amp; reflection</td><td>(capstone-5 collaboration)</td></tr>
+</tbody></table></div>
+<blockquote>The Abilities (<code>A-curiosity</code>, <code>A-resilience-failure</code>) are confirmed here as the <strong>3rd observed occasion</strong>, after Atom 5 and across the course.</blockquote>
+<hr>
+<h2>✅ Grading</h2>
+<p>Atom-level checks (<code>knowledge-mini</code>, <code>skill</code>, <code>behavioral</code>) gate entry to the capstone, which is then scored on the standard 5-criteria <strong>Assessment Rubric</strong> below (also in <a href="#rubrics"><code>rubrics.md</code></a>).</p>
+<h2>📋 Assessment Rubric</h2>
+<p>Five criteria across four proficiency bands, weighted to <strong>100 points</strong>.</p>
+<div class='tablewrap'><table><thead><tr><th>Criteria</th><th>Excellent (100–90%)</th><th>Competent (89–80%)</th><th>Developing (79–70%)</th><th>Initial (69% or less)</th><th>Weight</th></tr></thead><tbody>
+<tr><td><strong>Relevance (competency alignment)</strong></td><td>A genuinely new, well-scoped skill learned to a demonstrable level via online + AI + search.</td><td>Relevant skill; mostly demonstrable.</td><td>Skill too easy/vague, or weakly demonstrated.</td><td>Off-target or pre-known.</td><td><strong>20 pts</strong></td></tr>
+<tr><td><strong>Application of skills</strong></td><td>Search, AI-with-verification, and the full learning loop are all used correctly and naturally.</td><td>Most used correctly, minor gaps.</td><td>Several gaps (no verification, skipped loop steps).</td><td>Minimal/incorrect application.</td><td><strong>25 pts</strong></td></tr>
+<tr><td><strong>Problem-solving (learn by failing)</strong></td><td>Documents real failures, mines each for a lesson, and adapts; clear "failing forward".</td><td>Documents some failures + lessons.</td><td>Mentions struggle vaguely.</td><td>Hides struggle / gave up.</td><td><strong>20 pts</strong></td></tr>
+<tr><td><strong>Clarity &amp; communication (teach-back)</strong></td><td>Teaches the basics clearly; a beginner could start; process explained well.</td><td>Generally clear teach-back.</td><td>Uneven or hard to follow.</td><td>Unclear or missing.</td><td><strong>15 pts</strong></td></tr>
+<tr><td><strong>Collaboration &amp; reflection</strong></td><td>Curiosity evident; sharp source/AI audit; insightful peer review + honest reflection.</td><td>Adequate audit, review, reflection.</td><td>Minimal.</td><td>Missing.</td><td><strong>20 pts</strong></td></tr>
+<tr><td><strong>TOTAL</strong></td><td></td><td></td><td></td><td></td><td><strong>100 pts</strong></td></tr>
+</tbody></table></div>
+<blockquote><strong>Pass for the badge:</strong> atom-level checks ≥ 2 each (incl. the behavioral assessment), Assessment Rubric weighted score ≥ 70% (at least <em>Developing</em> on every criterion), and the peer review + reflection completed — <strong>verified by a mentor/instructor</strong> (human-in-the-loop). See <a href="#skillsmap"><code>skills-map.md</code></a> for what the badge unlocks.</blockquote></section>
+<section class="page" id="page-rubrics" data-id="rubrics"><h1>📊 Rubrics — Self-Learning</h1>
+<p>All rubrics for this micro-credential. Atom-level rubrics are <strong>formative</strong> (gate progress); the <strong>capstone-5</strong> rubric is the <strong>summative</strong> Assessment Rubric. Abilities are scored <strong>behaviorally across ≥3 occasions</strong>, never with a quiz.</p>
+<blockquote>See the rubric philosophy in <a href="../../index.html#/guides/curriculum-design-guide.md" target="_blank" rel="noopener"><code>../../guides/curriculum-design-guide.md</code></a> and the standard rubric in <a href="../../index.html#/templates/micro-credential-ada-template.md" target="_blank" rel="noopener"><code>../../templates/micro-credential-ada-template.md</code></a>.</blockquote>
+<hr>
+<h2>1) <code>knowledge-mini</code> — for Knowledge atoms (Atoms 1–2)</h2>
+<p>Formative checks for understanding (used by the pop quizzes).</p>
+<div class='tablewrap'><table><thead><tr><th>Criterion</th><th>Pass (✓)</th><th>Not yet (✗)</th></tr></thead><tbody>
+<tr><td><strong>Comprehension</strong></td><td>Explains the concept (process&gt;answer, CRAAP, LLM limits) in own words</td><td>Recites without understanding</td></tr>
+<tr><td><strong>Application</strong></td><td>Judges a source / spots a likely hallucination in a scenario</td><td>Cannot transfer to a new case</td></tr>
+<tr><td><strong>Reflection</strong></td><td>Connects the idea to a real learning situation</td><td>No connection made</td></tr>
+</tbody></table></div>
+<p>Pass = all ✓. Retake allowed.</p>
+<hr>
+<h2>2) <code>skill</code> — for Skill atoms (Atoms 3–4)</h2>
+<div class='tablewrap'><table><thead><tr><th>Criterion</th><th>Excellent (3)</th><th>Adequate (2)</th><th>Needs work (1)</th></tr></thead><tbody>
+<tr><td><strong>Search research (Atom 3)</strong></td><td>Precise queries + operators; reaches &amp; triangulates reputable sources</td><td>Workable queries; some cross-checking</td><td>First link; single low-quality source</td></tr>
+<tr><td><strong>Learn with AI (Atom 4)</strong></td><td>Structured prompts that force retrieval; sources opened &amp; verified</td><td>Some active use + checking</td><td>Passive copy-paste; no verification</td></tr>
+<tr><td><strong>Critical judgment</strong></td><td>Articulates source quality &amp; AI limitations</td><td>Some awareness</td><td>Takes results at face value</td></tr>
+</tbody></table></div>
+<p>Pass = 2+ on each relevant row → <strong>L2</strong> for the targeted Skill.</p>
+<hr>
+<h2>3) <code>behavioral</code> — for the Abilities (Atom 5, capstone, across the course)</h2>
+<p>Scored by <strong>observation across ≥3 occasions</strong> (Atom 5 loop + learning log, the capstone, and general participation). The Ability is credited only if it shows up <strong>consistently.</strong></p>
+<div class='tablewrap'><table><thead><tr><th>Ability</th><th>Looks like (✓)</th><th>Doesn't look like (✗)</th><th>Occasions</th></tr></thead><tbody>
+<tr><td><strong>Curiosity &amp; learner agency (<code>A-curiosity</code>)</strong></td><td>Asks own questions, chases understanding, self-starts</td><td>Waits to be told; does the minimum</td><td>Atom 5, capstone, throughout</td></tr>
+<tr><td><strong>Resilience / failing forward (<code>A-resilience-failure</code>)</strong></td><td>Treats stuck/wrong as data; documents lessons; persists &amp; adapts</td><td>Quits when stuck; hides or repeats failures</td><td>Atom 5, capstone, throughout</td></tr>
+</tbody></table></div>
+<p>Credit at <strong>L2</strong> = observed ✓ in <strong>at least 3 occasions</strong> (the capstone alone is not enough).</p>
+<hr>
+<h2>4) <code>capstone-5</code> — summative Assessment Rubric (the badge gate)</h2>
+<p>The standard ADA 5-criteria / 4-band / 100-point rubric. Identical to the table in <a href="#capstone"><code>capstone.md</code></a>:</p>
+<div class='tablewrap'><table><thead><tr><th>Criteria</th><th>Excellent (100–90%)</th><th>Competent (89–80%)</th><th>Developing (79–70%)</th><th>Initial (69% or less)</th><th>Weight</th></tr></thead><tbody>
+<tr><td><strong>Relevance (competency alignment)</strong></td><td>A new, well-scoped skill learned to a demonstrable level via online + AI + search.</td><td>Relevant; mostly demonstrable.</td><td>Too easy/vague or weakly demonstrated.</td><td>Off-target / pre-known.</td><td><strong>20 pts</strong></td></tr>
+<tr><td><strong>Application of skills</strong></td><td>Search, AI-with-verification, and the full loop used correctly &amp; naturally.</td><td>Most used correctly.</td><td>Several gaps.</td><td>Minimal/incorrect.</td><td><strong>25 pts</strong></td></tr>
+<tr><td><strong>Problem-solving (learn by failing)</strong></td><td>Real failures mined for lessons; clear failing-forward.</td><td>Some failures + lessons.</td><td>Vague struggle.</td><td>Hidden / gave up.</td><td><strong>20 pts</strong></td></tr>
+<tr><td><strong>Clarity &amp; communication (teach-back)</strong></td><td>Beginner-ready teach-back; process explained well.</td><td>Generally clear.</td><td>Uneven.</td><td>Unclear/missing.</td><td><strong>15 pts</strong></td></tr>
+<tr><td><strong>Collaboration &amp; reflection</strong></td><td>Curiosity + sharp source/AI audit + insightful review &amp; reflection.</td><td>Adequate.</td><td>Minimal.</td><td>Missing.</td><td><strong>20 pts</strong></td></tr>
+<tr><td><strong>TOTAL</strong></td><td></td><td></td><td></td><td></td><td><strong>100 pts</strong></td></tr>
+</tbody></table></div>
+<hr>
+<h2>🏅 Badge issuance — <em>Self-Directed Learner</em></h2>
+<p>Issued when <strong>all</strong> hold (mentor-verified — human-in-the-loop):</p>
+<ul>
+<li><input type="checkbox" disabled> <strong>Knowledge:</strong> Atoms 1–2 pop quizzes passed.</li>
+<li><input type="checkbox" disabled> <strong>Skills:</strong> Atom 3 (search) + Atom 4 (learn-with-AI) performance tasks ≥ 2 each → <strong>L2</strong>.</li>
+<li><input type="checkbox" disabled> <strong>Abilities:</strong> <code>A-curiosity</code> &amp; <code>A-resilience-failure</code> observed ✓ across <strong>≥3 occasions</strong>.</li>
+<li><input type="checkbox" disabled> <strong>Capstone:</strong> Assessment Rubric weighted score <strong>≥ 70%</strong> (≥ <em>Developing</em> on each criterion).</li>
+<li><input type="checkbox" disabled> <strong>Collaboration:</strong> teach-back delivered + peer review given + reflection submitted.</li>
+</ul>
+<p>The badge writes these KSA components (with levels) into the learner's <strong>skills map</strong> — see <a href="#skillsmap"><code>skills-map.md</code></a>.</p></section>
+<section class="page" id="page-skillsmap" data-id="skillsmap"><h1>🗺️ Skills Map — <em>Self-Directed Learner</em></h1>
+<p>How earning this badge updates a learner's <strong>skills map</strong> and why it's the highest-leverage credential in the whole catalog — it makes every <em>other</em> credential faster to earn.</p>
+<blockquote>Concept reference: <a href="../../index.html#/specs/skills-map-job-matching.md" target="_blank" rel="noopener"><code>../../specs/skills-map-job-matching.md</code></a>.</blockquote>
+<hr>
+<h2>🧩 What the badge writes to the skills map</h2>
+<p>On issuance, these KSA components are recorded with evidence and level:</p>
+<div class='tablewrap'><table><thead><tr><th>Component</th><th>Type</th><th>Level</th><th>Evidence</th></tr></thead><tbody>
+<tr><td><code>K-learning-process</code> — how learning works</td><td>🧠 Knowledge</td><td>L2</td><td>Atom 1 quiz</td></tr>
+<tr><td><code>K-sources-and-ai-limits</code> — sources &amp; LLM limits</td><td>🧠 Knowledge</td><td>L2</td><td>Atom 2 quiz + audit</td></tr>
+<tr><td><code>S-search-research</code> — research with search</td><td>🛠️ Skill</td><td><strong>L2</strong></td><td>Atom 3 performance task + capstone</td></tr>
+<tr><td><code>S-learn-with-ai</code> — learn with AI (+ verify)</td><td>🛠️ Skill</td><td><strong>L2</strong></td><td>Atom 4 performance task + capstone</td></tr>
+<tr><td><code>S-learning-loop</code> — run a self-learning loop</td><td>🛠️ Skill</td><td>L2</td><td>Atom 5 log + capstone</td></tr>
+<tr><td><code>A-curiosity</code> — curiosity &amp; learner agency</td><td>🌱 Ability</td><td>L2</td><td>Behavioral, ≥3 occasions</td></tr>
+<tr><td><code>A-resilience-failure</code> — learn by failing forward</td><td>🌱 Ability</td><td>L2</td><td>Behavioral, ≥3 occasions</td></tr>
+</tbody></table></div>
+<hr>
+<h2>🎯 Why this badge is a force multiplier</h2>
+<div class="mermaid">flowchart TD
+  SL[&quot;🏅 Self-Directed Learner&quot;] --&gt; TECH[&quot;🐍 Technical pathways&lt;br/&gt;learn tools/languages faster&quot;]
+  SL --&gt; HUMAN[&quot;🗣️ Human-skill pathways&lt;br/&gt;self-study + practice&quot;]
+  SL --&gt; AI[&quot;🤖 AI-era work&lt;br/&gt;use AI well, verify, stay current&quot;]
+  SL --&gt; CAREER[&quot;📈 Lifelong career agility&lt;br/&gt;re-skill as roles change&quot;]</div>
+<p>Most badges boost one role. **Self-Directed Learner boosts your ability to earn <em>every other badge</em><strong> — and to keep learning after formal training ends. Employers increasingly screen for </strong>learning agility<strong> and </strong>responsible AI use**; this credential evidences both. It maps to O*NET process skills (Active Learning, Learning Strategies, Critical Thinking), ESCO <em>"learn to learn"</em>, and DigComp area 1 (information &amp; data literacy), which appear, in some form, in almost every modern role.</p>
+<hr>
+<h2>🧭 How it fits a learning pathway</h2>
+<div class='tablewrap'><table><thead><tr><th>Stage</th><th>Credential</th><th>What it adds</th></tr></thead><tbody>
+<tr><td><strong>Foundation (do this first)</strong></td><td>🏅 <strong>Self-Directed Learner</strong> <em>(this one)</em></td><td>learn anything online + with AI, safely</td></tr>
+<tr><td>Pairs with</td><td>🏅 <a href="../../index.html#/examples/growth-mindset-micro-credential/skills-map.md" target="_blank" rel="noopener">Growth Mindset</a></td><td>the belief that effort &amp; failure grow ability</td></tr>
+<tr><td>Pairs with</td><td>🏅 <a href="../../index.html#/examples/effective-communication-micro-credential/skills-map.md" target="_blank" rel="noopener">Effective Communication</a></td><td>turn what you learn into shared understanding</td></tr>
+<tr><td>Accelerates</td><td>🐍 <a href="../../index.html#/examples/python-variables-micro-credential/skills-map.md" target="_blank" rel="noopener">Python Variables</a> &amp; all technical badges</td><td>self-study makes technical pathways faster</td></tr>
+<tr><td>Builds toward</td><td><em>Research Skills · Critical Thinking · AI Literacy</em></td><td>(future credentials) deeper information work</td></tr>
+</tbody></table></div>
+<blockquote><strong>Job-matching note:</strong> because self-learning is a <em>transversal, foundational</em> competency, it rarely appears alone in a role's minimums — it <strong>multiplies</strong> the others. The recommended sequence is to earn this <strong>first</strong>, then stack role-specific badges on top. Matching against a specific job's minimum bar still requires <strong>human (mentor/employer) validation</strong> — AI-suggested mappings are a starting point, not a verdict (see <a href="../../index.html#/CLAUDE.md" target="_blank" rel="noopener"><code>../../CLAUDE.md</code></a> §5).</blockquote></section></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var pages=Array.prototype.slice.call(document.querySelectorAll(".page"));
+  var ids=pages.map(function(p){return p.getAttribute("data-id");});
+  var links=Array.prototype.slice.call(document.querySelectorAll(".navlink"));
+  var atomIds=["atom-1","atom-2","atom-3","atom-4","atom-5","atom-6"];
+  var idx=0;
+
+  function show(id){
+    var i=ids.indexOf(id); if(i<0)i=0; idx=i;
+    pages.forEach(function(p){p.classList.toggle("active",p.getAttribute("data-id")===id);});
+    links.forEach(function(a){a.classList.toggle("active",a.getAttribute("data-target")===id);});
+    document.getElementById("prevbtn").disabled=(idx===0);
+    document.getElementById("nextbtn").disabled=(idx===pages.length-1);
+    if(location.hash.slice(1)!==id) history.replaceState(null,"","#"+id);
+    document.getElementById("side").classList.remove("open");
+    window.scrollTo(0,0);
+    renderMermaid();
+  }
+  links.forEach(function(a){a.addEventListener("click",function(e){e.preventDefault();show(a.getAttribute("data-target"));});});
+  document.getElementById("prevbtn").addEventListener("click",function(){if(idx>0)show(ids[idx-1]);});
+  document.getElementById("nextbtn").addEventListener("click",function(){if(idx<ids.length-1)show(ids[idx+1]);});
+  document.getElementById("menutoggle").addEventListener("click",function(){document.getElementById("side").classList.toggle("open");});
+
+  // progress (localStorage)
+  var KEY="self-learning-progress";
+  function load(){try{return JSON.parse(localStorage.getItem(KEY)||"{}");}catch(e){return {};}}
+  function save(s){try{localStorage.setItem(KEY,JSON.stringify(s));}catch(e){}}
+  function refresh(){
+    var s=load(),done=0;
+    document.querySelectorAll(".donechk").forEach(function(c){
+      c.checked=!!s[c.getAttribute("data-atom")]; if(c.checked)done++;});
+    var pct=Math.round(done/atomIds.length*100);
+    document.getElementById("progfill").style.width=pct+"%";
+    document.getElementById("progtext").textContent=done+" / "+atomIds.length+" atoms complete";
+  }
+  document.querySelectorAll(".donechk").forEach(function(c){
+    c.addEventListener("change",function(){var s=load();s[c.getAttribute("data-atom")]=c.checked;save(s);refresh();});
+  });
+  refresh();
+
+  // copy buttons
+  document.querySelectorAll(".copybtn").forEach(function(b){
+    b.addEventListener("click",function(){
+      var pre=b.closest(".promptcard").querySelector("pre");
+      var txt=pre.innerText;
+      (navigator.clipboard?navigator.clipboard.writeText(txt):Promise.reject()).then(function(){
+        b.textContent="Copied!";b.classList.add("ok");setTimeout(function(){b.textContent="Copy";b.classList.remove("ok");},1400);
+      }).catch(function(){
+        var r=document.createRange();r.selectNodeContents(pre);var sel=getSelection();sel.removeAllRanges();sel.addRange(r);
+        try{document.execCommand("copy");}catch(e){} sel.removeAllRanges();
+        b.textContent="Copied!";b.classList.add("ok");setTimeout(function(){b.textContent="Copy";b.classList.remove("ok");},1400);
+      });
+    });
+  });
+
+  // youtube click-to-play
+  document.querySelectorAll(".yt").forEach(function(y){
+    var btn=y.querySelector(".yt-play");
+    btn.addEventListener("click",function(){
+      var id=y.getAttribute("data-id"); if(!id)return;
+      var f=document.createElement("iframe");
+      f.src="https://www.youtube-nocookie.com/embed/"+id+"?autoplay=1&rel=0";
+      f.allow="accelerated-sensors;autoplay;encrypted-media;picture-in-picture";
+      f.setAttribute("allowfullscreen","");
+      btn.replaceWith(f);
+    });
+  });
+
+  // mermaid (CDN, brand theme, root emphasis, graceful fallback)
+  var mmReady=null;
+  function ensureMermaid(){
+    if(mmReady)return mmReady;
+    mmReady=new Promise(function(res,rej){
+      if(window.mermaid)return res(window.mermaid);
+      var s=document.createElement("script");
+      s.src="https://cdn.jsdelivr.net/npm/mermaid@11.15.0/dist/mermaid.min.js";
+      s.onload=function(){res(window.mermaid);};
+      s.onerror=function(){
+        var s2=document.createElement("script");
+        s2.src="https://unpkg.com/mermaid@11.15.0/dist/mermaid.min.js";
+        s2.onload=function(){res(window.mermaid);}; s2.onerror=rej;
+        document.head.appendChild(s2);
+      };
+      document.head.appendChild(s);
+    });
+    return mmReady;
+  }
+  function src(n){var s=n.getAttribute("data-src");if(s===null){s=n.textContent;n.setAttribute("data-src",s);}return s;}
+  function fallback(n){n.classList.add("fallback");n.innerHTML="<pre>"+src(n).replace(/[&<>]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;"}[c];})+"</pre>";}
+  function detectRoots(s){
+    try{var L=s.split(/\r?\n/);if(!/^\s*(flowchart|graph)\b/i.test(L[0]||""))return [];
+      var all={},tg={};
+      for(var i=1;i<L.length;i++){var t=(L[i]||"").trim();
+        if(!t||/^%%/.test(t))continue;
+        if(/^(classdef|class|style|linkstyle|click|direction|subgraph|end)\b/i.test(t))continue;
+        var x=L[i];for(var k=0;k<8;k++){x=x.replace(/\(\([^()]*\)\)/g," ").replace(/\[[^\[\]]*\]/g," ").replace(/\{[^{}]*\}/g," ").replace(/\([^()]*\)/g," ");}
+        x=x.replace(/\|[^|]*\|/g," ");if(x.indexOf("--")<0&&x.indexOf("==")<0)continue;
+        var ids=x.split(/\s*(?:-{2,}>?|={2,}>?|-\.->?)\s*/).map(function(z){return (z.trim().match(/^[A-Za-z0-9_]+/)||[""])[0];}).filter(Boolean);
+        for(var j=0;j<ids.length;j++){all[ids[j]]=1;if(j>0)tg[ids[j]]=1;}}
+      var r=Object.keys(all).filter(function(id){return !tg[id];});
+      return r.length&&r.length<=4?r:[];
+    }catch(e){return [];}
+  }
+  function emphasize(s){var r=detectRoots(s);if(!r.length)return s;
+    return s+"\nclassDef adaRootNode fill:#1E2A6E,stroke:#E0A53C,stroke-width:3px,color:#ffffff,font-weight:bold,font-size:21px;\nclass "+r.join(",")+" adaRootNode;";}
+  var seq=0;
+  function renderMermaid(){
+    var nodes=Array.prototype.slice.call(document.querySelectorAll(".page.active .mermaid:not([data-done])"));
+    if(!nodes.length)return;
+    nodes.forEach(src);
+    ensureMermaid().then(function(m){
+      m.initialize({startOnLoad:false,securityLevel:"loose",theme:"base",fontFamily:"inherit",fontSize:"16px",
+        flowchart:{htmlLabels:true,useMaxWidth:true,curve:"basis",padding:14,nodeSpacing:52,rankSpacing:58},
+        themeVariables:{fontSize:"16px",primaryColor:"#1E2A6E",primaryTextColor:"#ffffff",primaryBorderColor:"#15B5C6",
+          mainBkg:"#1E2A6E",nodeBorder:"#15B5C6",nodeTextColor:"#ffffff",lineColor:"#1E2A6E",
+          clusterBkg:"#eef2fb",clusterBorder:"#15B5C6",titleColor:"#1E2A6E",
+          background:"#ffffff",textColor:"#1E2A6E",edgeLabelBackground:"#ffffff",
+          cScale0:"#1E2A6E",cScale1:"#15B5C6",cScale2:"#E0A53C",cScale3:"#2a3aa0",
+          cScaleLabel0:"#ffffff",cScaleLabel1:"#0A1124",cScaleLabel2:"#0A1124",cScaleLabel3:"#ffffff"}});
+      nodes.forEach(function(n){
+        n.setAttribute("data-done","1");
+        var id="mm-"+(Date.now())+"-"+(seq++);
+        try{m.render(id,emphasize(src(n))).then(function(o){n.innerHTML=o.svg;}).catch(function(){fallback(n);});}
+        catch(e){fallback(n);}
+      });
+    }).catch(function(){nodes.forEach(fallback);});
+  }
+
+  window.addEventListener("hashchange",function(){show(location.hash.slice(1)||ids[0]);});
+  show(location.hash.slice(1)||ids[0]);
+})();
+</script>
+</body>
+</html>

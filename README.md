@@ -21,6 +21,11 @@
 
 <br />
 
+<p align="center">
+  🎓 <strong>New here?</strong> Learn & master the methodology by building one →
+  <a href="LEARN.md"><strong>LEARN.md</strong></a> (a self-paced ADA micro-credential).
+</p>
+
 ---
 
 ## 🎯 Pedagogical Principle
@@ -246,6 +251,10 @@ JOB POSTING → [Gen AI + human validation] → TARGET KSA PROFILE
 * 🌱 [Attitude — Adaptability & Growth Mindset](examples/ksa-attitude-adaptability.md)
 * 🗺️ [End-to-end — Job posting → skills map → job-ready](examples/skills-map-job-match-frontend.md)
 * 🌱 [**Full course** — Growth Mindset micro-credential](examples/growth-mindset-micro-credential/README.md) · 🖥️ [open the interactive `course.html`](examples/growth-mindset-micro-credential/course.html)
+* 🐍 [**Full course** — Python Variables micro-credential (beginner)](examples/python-variables-micro-credential/README.md) · 🖥️ [open the interactive `course.html`](examples/python-variables-micro-credential/course.html)
+* 🗣️ [**Full course** — Effective Communication micro-credential](examples/effective-communication-micro-credential/README.md) · 🖥️ [open the interactive `course.html`](examples/effective-communication-micro-credential/course.html)
+* 🧭 [**Full course** — Self-Learning micro-credential (online + AI)](examples/self-learning-micro-credential/README.md) · 🖥️ [open the interactive `course.html`](examples/self-learning-micro-credential/course.html)
+* 🧩 [**Full course** — Problem Solving micro-credential](examples/problem-solving-micro-credential/README.md) · 🖥️ [open the interactive `course.html`](examples/problem-solving-micro-credential/course.html)
 
 ---
 
@@ -297,6 +306,7 @@ number** that tells the learner exactly what to earn next.
 
 ## 🧭 Curriculum Designer Resources
 
+* 🎓 [**Learn ADA (start here)** — master the methodology by building a credential.](LEARN.md)
 * [Step-by-Step Guide](guides/curriculum-design-guide.md).
 * [Learning Atom Template.](templates/learning-atom-template.md)
 * [Example Learning Atoms.](examples/learning-atom-art.md)
@@ -315,6 +325,11 @@ number** that tells the learner exactly what to earn next.
 * [KSA Examples: technical / human / attitude / job-match.](examples/skills-map-job-match-frontend.md)
 * [Role pathway example: Data Processing → Data Scientist.](examples/role-data-scientist-pathway.md)
 * [Full worked course: Growth Mindset micro-credential](examples/growth-mindset-micro-credential/README.md) (with interactive [`course.html`](examples/growth-mindset-micro-credential/course.html)).
+* [Full worked course: Python Variables micro-credential](examples/python-variables-micro-credential/README.md) — a beginner technical skill (with interactive [`course.html`](examples/python-variables-micro-credential/course.html)).
+* 🎓 [Full worked course: ADA Methodology Designer micro-credential](examples/ada-methodology-designer-micro-credential/README.md) — get certified to design ADA credentials (with interactive [`course.html`](examples/ada-methodology-designer-micro-credential/course.html)).
+* 🗣️ [Full worked course: Effective Communication micro-credential](examples/effective-communication-micro-credential/README.md) — a near-universal human skill (with interactive [`course.html`](examples/effective-communication-micro-credential/course.html)).
+* 🧭 [Full worked course: Self-Learning micro-credential](examples/self-learning-micro-credential/README.md) — learn anything online & with AI, the meta-skill (with interactive [`course.html`](examples/self-learning-micro-credential/course.html)).
+* 🧩 [Full worked course: Problem Solving micro-credential](examples/problem-solving-micro-credential/README.md) — define, diagnose & decide (with interactive [`course.html`](examples/problem-solving-micro-credential/course.html)).
 
 ---
 

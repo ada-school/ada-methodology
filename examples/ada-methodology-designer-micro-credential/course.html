@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>🎓 ADA Methodology Designer · ADA Micro-Credential</title>
+<link rel="icon" href="../../img/Isotipo.png">
+<style>
+:root{
+  --ink:#0A1124; --indigo:#1E2A6E; --turq:#15B5C6; --gold:#E0A53C;
+  --bg:#f6f8fc; --surface:#ffffff; --border:#e2e7f2; --text:#1b2440; --muted:#5b6685;
+  --radius:14px; --shadow:0 6px 24px rgba(20,30,70,.08);
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Arial,sans-serif;
+  background:var(--bg);color:var(--text);line-height:1.65}
+a{color:var(--indigo);text-decoration:none}
+a:hover{text-decoration:underline}
+.app{display:grid;grid-template-columns:300px minmax(0,1fr);min-height:100vh}
+
+/* sidebar */
+.side{position:sticky;top:0;height:100vh;overflow-y:auto;background:var(--ink);color:#dfe5fb;
+  padding:18px 14px;border-right:1px solid #111a36}
+.brand{display:flex;align-items:center;gap:10px;padding:6px 6px 14px}
+.brand img{width:40px;height:40px;animation:spin 9s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.brand b{font-size:15px;color:#fff;line-height:1.2}
+.brand small{display:block;color:var(--turq);font-weight:600;font-size:11px;letter-spacing:.04em}
+.progwrap{margin:8px 6px 16px}
+.progbar{height:8px;border-radius:8px;background:#1b2547;overflow:hidden}
+.progfill{height:100%;width:0;background:linear-gradient(90deg,var(--turq),var(--gold));transition:width .5s}
+.progtext{font-size:11px;color:#9fb0e6;margin-top:6px}
+.nav-group{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:#8fa0d8;
+  margin:14px 8px 4px;font-weight:700}
+.navlink{display:block;padding:8px 10px;border-radius:9px;color:#cdd6f6;font-size:14px;margin:2px 0}
+.navlink:hover{background:#16204180;text-decoration:none;color:#fff}
+.navlink.active{background:linear-gradient(90deg,var(--indigo),#2a3aa0);color:#fff;font-weight:600}
+
+/* main */
+.main{padding:0}
+.topbar{position:sticky;top:0;z-index:5;background:rgba(246,248,252,.85);backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--border);padding:12px 28px;display:flex;align-items:center;gap:14px}
+.topbar .pill{font-size:12px;font-weight:700;color:#fff;background:var(--indigo);padding:4px 12px;border-radius:30px}
+.topbar .sp{flex:1}
+.navbtn{border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:9px;
+  padding:7px 14px;font-size:13px;cursor:pointer;font-weight:600}
+.navbtn:hover{border-color:var(--turq)}
+.navbtn:disabled{opacity:.4;cursor:not-allowed}
+.wrap{max-width:880px;margin:0 auto;padding:30px 28px 90px}
+.page{display:none;animation:fade .35s ease}
+.page.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+h1,h2,h3,h4{color:var(--indigo);line-height:1.25}
+h1{font-size:30px;margin:.2em 0 .5em;border-bottom:3px solid var(--turq);padding-bottom:.3em}
+h2{font-size:22px;margin:1.5em 0 .5em}
+h3{font-size:18px;margin:1.3em 0 .4em}
+h4{font-size:15px;margin:1.1em 0 .3em;color:var(--ink)}
+p{margin:.7em 0}
+hr{border:0;border-top:1px solid var(--border);margin:1.6em 0}
+ul,ol{padding-left:1.4em;margin:.6em 0}
+li{margin:.3em 0}
+li input[type=checkbox]{margin-right:6px}
+img{max-width:100%;border-radius:10px}
+code{background:#eef1f9;padding:.12em .4em;border-radius:6px;font-size:.88em;
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:#27306b}
+pre.code{background:var(--ink);color:#e7ecff;padding:16px 18px;border-radius:var(--radius);
+  overflow:auto;position:relative;box-shadow:var(--shadow)}
+pre.code code{background:none;color:inherit;padding:0;font-size:13.5px;line-height:1.6}
+pre.code .lang{position:absolute;top:8px;right:12px;font-size:10px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--turq);font-family:inherit}
+blockquote{margin:1em 0;padding:.7em 1.1em;border-left:4px solid var(--gold);
+  background:#fff8ec;border-radius:0 10px 10px 0;color:#5a4a23}
+.tablewrap{overflow-x:auto;margin:1em 0;border:1px solid var(--border);border-radius:var(--radius)}
+table{border-collapse:collapse;width:100%;font-size:14px;background:var(--surface)}
+th,td{padding:9px 12px;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+th{background:var(--indigo);color:#fff;font-weight:600}
+tr:nth-child(even) td{background:#f7f9fe}
+
+.donebox{float:right;display:inline-flex;align-items:center;gap:7px;background:var(--surface);
+  border:1px solid var(--border);border-radius:30px;padding:6px 14px;font-size:13px;font-weight:600;
+  color:var(--muted);cursor:pointer;box-shadow:var(--shadow)}
+.donebox input{accent-color:var(--turq)}
+
+/* youtube facade */
+.yt{margin:1.2em 0;border-radius:var(--radius);overflow:hidden;background:var(--ink);box-shadow:var(--shadow)}
+.yt .yt-play{position:relative;display:block;width:100%;aspect-ratio:16/9;border:0;cursor:pointer;
+  background:radial-gradient(circle at 50% 45%,#243069,#0A1124);color:#fff}
+.yt-tri{font-size:42px;color:#fff;background:rgba(225,165,60,.92);width:84px;height:58px;
+  border-radius:16px;display:grid;place-items:center;margin:0 auto;box-shadow:0 6px 18px rgba(0,0,0,.4);
+  transition:transform .2s}
+.yt .yt-play:hover .yt-tri{transform:scale(1.08)}
+.yt iframe{display:block;width:100%;aspect-ratio:16/9;border:0}
+.yt-meta{padding:9px 14px;font-size:13px;background:#121c3a}
+.yt-meta a{color:var(--turq);word-break:break-all}
+.yt-cap{color:#aebadf;font-size:12px;margin-top:2px}
+
+/* prompt card */
+.promptcard{margin:1.2em 0;border:1px solid #d9c79a;border-radius:var(--radius);overflow:hidden;
+  background:#fffdf6;box-shadow:var(--shadow)}
+.promptcard-h{display:flex;align-items:center;justify-content:space-between;padding:8px 14px;
+  background:linear-gradient(90deg,#fbf0d6,#fff7e6);font-weight:700;color:#7a5b16;font-size:13px}
+.promptcard pre{margin:0;padding:14px 16px;white-space:pre-wrap;font-size:13px;color:#4a4634;
+  font-family:ui-monospace,Menlo,monospace}
+.copybtn{border:1px solid var(--gold);background:#fff;color:#8a6516;border-radius:7px;
+  padding:3px 12px;font-size:12px;cursor:pointer;font-weight:700}
+.copybtn:hover{background:var(--gold);color:#fff}
+.copybtn.ok{background:var(--turq);border-color:var(--turq);color:#fff}
+
+/* mermaid */
+.mermaid{margin:1.2em 0;text-align:center;background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
+.mermaid.fallback{text-align:left;background:var(--ink)}
+.mermaid.fallback pre{color:#e7ecff;margin:0;white-space:pre-wrap;font-size:12px}
+.mermaid svg .nodeLabel,.mermaid svg .label{font-weight:600}
+.mermaid svg .edgeLabel,.mermaid svg .edgeLabel *{color:#1E2A6E !important;font-weight:600}
+
+@media(max-width:880px){
+  .app{grid-template-columns:1fr}
+  .side{position:fixed;left:-300px;width:300px;z-index:30;transition:left .25s}
+  .side.open{left:0}
+  .menutoggle{display:inline-flex !important}
+}
+.menutoggle{display:none;align-items:center;justify-content:center;width:38px;height:38px;
+  border:1px solid var(--border);background:var(--surface);border-radius:9px;cursor:pointer;font-size:18px}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side" id="side">
+    <div class="brand">
+      <img src="../../img/Isotipo.png" alt="ADA">
+      <div><b>ADA Methodology Designer</b><small>ADA MICRO-CREDENTIAL</small></div>
+    </div>
+    <div class="progwrap">
+      <div class="progbar"><div class="progfill" id="progfill"></div></div>
+      <div class="progtext" id="progtext">0 / 7 atoms complete</div>
+    </div>
+    <nav id="nav"><div class="nav-group">Start</div>
+<a class="navlink" data-target="overview" href="#overview">Course overview</a>
+<a class="navlink" data-target="spec" href="#spec">Micro-credential spec</a>
+<div class="nav-group">🙉 Phase 1 · hear</div>
+<a class="navlink" data-target="atom-1" href="#atom-1">1 · The ADA big picture</a>
+<a class="navlink" data-target="atom-2" href="#atom-2">2 · KSA in depth</a>
+<a class="navlink" data-target="atom-3" href="#atom-3">3 · Bloom &amp; objectives</a>
+<div class="nav-group">🙈 Phase 2 · see</div>
+<a class="navlink" data-target="atom-4" href="#atom-4">4 · Atom topology</a>
+<div class="nav-group">🙊 Phase 3 · do</div>
+<a class="navlink" data-target="atom-5" href="#atom-5">5 · Build 3 atom types 🛠️</a>
+<a class="navlink" data-target="atom-6" href="#atom-6">6 · Design the assessment 🛠️</a>
+<div class="nav-group">🐵 Phase 4 · share</div>
+<a class="navlink" data-target="atom-7" href="#atom-7">7 · Capstone 🚀</a>
+<div class="nav-group">Assess</div>
+<a class="navlink" data-target="capstone" href="#capstone">Capstone brief</a>
+<a class="navlink" data-target="rubrics" href="#rubrics">Rubrics</a>
+<a class="navlink" data-target="skillsmap" href="#skillsmap">Skills map → job match</a></nav>
+  </aside>
+  <div class="main">
+    <div class="topbar">
+      <button class="menutoggle" id="menutoggle" aria-label="Menu">&#9776;</button>
+      <span class="pill">🎓 ADA Methodology Designer</span>
+      <span class="sp"></span>
+      <button class="navbtn" id="prevbtn">&larr; Prev</button>
+      <button class="navbtn" id="nextbtn">Next &rarr;</button>
+    </div>
+    <div class="wrap"><section class="page" id="page-overview" data-id="overview"><h1>🎓 Worked Example — ADA Methodology Designer Micro-Credential (full course)</h1>
+<p align="center">
+  <img alt="Indigo #1E2A6E" src="https://img.shields.io/badge/Indigo-1E2A6E?style=flat-square&amp;labelColor=1E2A6E&amp;color=1E2A6E">
+  <img alt="Turquoise #15B5C6" src="https://img.shields.io/badge/Turquoise-15B5C6?style=flat-square&amp;labelColor=15B5C6&amp;color=15B5C6">
+  <img alt="Gold #E0A53C" src="https://img.shields.io/badge/Gold-E0A53C?style=flat-square&amp;labelColor=E0A53C&amp;color=E0A53C">
+  <img alt="Ink #0A1124" src="https://img.shields.io/badge/Ink-0A1124?style=flat-square&amp;labelColor=0A1124&amp;color=0A1124">
+</p>
+<p>A <strong>complete, ready-to-run ADA micro-credential</strong> that certifies someone as an <strong>ADA Methodology Designer</strong> — a person who can deconstruct a real organizational skill need into a KSA-typed, Bloom-aligned, topology-rich micro-credential with a capstone, rubric, and skills map. It is <strong>self-referential</strong>: it uses the ADA Methodology to teach the ADA Methodology (<em>learn ADA by doing ADA</em>), and the learner's capstone is <strong>a real ADA credential they design</strong>.</p>
+<blockquote>🖥️ <strong>See it live:</strong> open <a href="course.html" target="_blank" rel="noopener"><code>course.html</code></a> in any browser for an interactive, navigable version (sidebar, progress, embedded diagrams, copyable prompts).</blockquote>
+<blockquote>📄 This course is the example folder for the repo's onboarding doc <a href="../../index.html#/LEARN.md" target="_blank" rel="noopener"><code>../../LEARN.md</code></a> — the same curriculum, packaged like the other worked courses.</blockquote>
+<p>This is the <strong>train-the-designer</strong> counterpart to the content courses <a href="../../index.html#/examples/growth-mindset-micro-credential/README.md" target="_blank" rel="noopener">Growth Mindset</a> (a durable <em>Ability</em>) and <a href="../../index.html#/examples/python-variables-micro-credential/README.md" target="_blank" rel="noopener">Python Variables</a> (a technical <em>Skill</em>): instead of teaching a job skill, it teaches the <strong>skill of designing ADA credentials</strong> for any job skill.</p>
+<p>Conforms to <a href="../../index.html#/specs/micro-credential-v2-schema.md" target="_blank" rel="noopener"><code>../../specs/micro-credential-v2-schema.md</code></a> · modalities from <a href="../../index.html#/specs/learning-atom-topology.md" target="_blank" rel="noopener"><code>../../specs/learning-atom-topology.md</code></a> · KSA from <a href="../../index.html#/specs/ksa-taxonomy.md" target="_blank" rel="noopener"><code>../../specs/ksa-taxonomy.md</code></a>.</p>
+<hr>
+<h2>🧭 What this teaches</h2>
+<p>Most "instructional design" training stops at theory. This course makes the ADA design craft <strong>trainable and certifiable</strong>: the learner debriefs every core concept (KSA, the 0–4 proficiency scale, Bloom's cognitive + affective taxonomies, the 7-modality learning-atom topology), then <strong>authors learning atoms of each KSA type</strong>, <strong>builds an assessment rubric</strong>, and finally <strong>assembles a complete, job-ready micro-credential from the templates</strong> — reviewed by a peer and a mentor.</p>
+<div class='tablewrap'><table><thead><tr><th></th><th></th></tr></thead><tbody>
+<tr><td><strong>Title</strong></td><td>ADA Methodology Designer</td></tr>
+<tr><td><strong>Duration</strong></td><td>~20 hours · 3–4 weeks</td></tr>
+<tr><td><strong>Primary KSA</strong></td><td>🛠️ Skill — <em>design learning atoms</em> and <em>assemble a full micro-credential</em></td></tr>
+<tr><td><strong>Target competency</strong></td><td>O*NET 25-9031.00 Instructional Coordinators · ESCO <em>"develop curriculum", "design pedagogical approaches"</em> · SFIA <strong>LEDA</strong> (learning &amp; development), <strong>KNOW</strong></td></tr>
+<tr><td><strong>Badge</strong></td><td>🏅 <em>ADA Methodology Designer</em></td></tr>
+<tr><td><strong>Prerequisites</strong></td><td>None beyond comfort reading English docs. A subject you know well (to design a credential about) helps.</td></tr>
+</tbody></table></div>
+<hr>
+<h2>📚 Course contents</h2>
+<div class='tablewrap'><table><thead><tr><th>#</th><th>File</th><th>What it is</th></tr></thead><tbody>
+<tr><td>—</td><td><a href="#spec"><code>micro-credential.md</code></a></td><td>The full micro-credential spec (YAML schema, objectives, KSA map, phase planner)</td></tr>
+<tr><td>1</td><td><a href="#atom-1"><code>atoms/atom-1-the-ada-big-picture.md</code></a></td><td>🙉 P1 · 🧠 K — The ADA big picture (skill need → atoms → capstone → badge → skills map)</td></tr>
+<tr><td>2</td><td><a href="#atom-2"><code>atoms/atom-2-ksa-in-depth.md</code></a></td><td>🙉 P1 · 🧠 K — KSA in depth (types, 0–4 scale, affective domain, classification)</td></tr>
+<tr><td>3</td><td><a href="#atom-3"><code>atoms/atom-3-blooms-taxonomy-objectives.md</code></a></td><td>🙉 P1 · 🧠 K + 🛠️ S — Bloom's taxonomy &amp; writing measurable objectives</td></tr>
+<tr><td>4</td><td><a href="#atom-4"><code>atoms/atom-4-learning-atom-topology.md</code></a></td><td>🙈 P2 · 🧠 K — The 7-modality learning-atom topology &amp; how to select modalities</td></tr>
+<tr><td>5</td><td><a href="#atom-5"><code>atoms/atom-5-build-atoms-of-each-ksa-type.md</code></a></td><td>🙊 P3 · 🛠️ S + 🌱 A — Author one Knowledge, one Skill, one Ability atom</td></tr>
+<tr><td>6</td><td><a href="#atom-6"><code>atoms/atom-6-design-the-assessment.md</code></a></td><td>🙊 P3 · 🛠️ S — Build the 5-criteria Assessment Rubric + badge/skills-map</td></tr>
+<tr><td>7</td><td><a href="#atom-7"><code>atoms/atom-7-capstone-assemble-the-credential.md</code></a></td><td>🐵 P4 · 🛠️ S + 🌱 A — Capstone: assemble a complete ADA credential + showcase</td></tr>
+<tr><td>—</td><td><a href="#capstone"><code>capstone.md</code></a></td><td>Capstone brief + how it maps to KSA</td></tr>
+<tr><td>—</td><td><a href="#rubrics"><code>rubrics.md</code></a></td><td>All rubrics (knowledge-mini, skill, design-judgment, capstone-5)</td></tr>
+<tr><td>—</td><td><a href="#skillsmap"><code>skills-map.md</code></a></td><td>Badge → skills map and how it starts an L&amp;D / instructional-design pathway</td></tr>
+</tbody></table></div>
+<blockquote>🧰 <strong>The deliverables compound:</strong> each atom produces an artifact (objectives, atoms, a rubric) that becomes part of the learner's capstone credential — they finish the course holding a real, reusable ADA micro-credential they designed.</blockquote>
+<hr>
+<h2>🔄 Phase journey</h2>
+<div class="mermaid">flowchart LR
+  P1[&quot;🙉 P1 · hear&lt;br/&gt;ADA · KSA · Bloom&quot;] --&gt; P2[&quot;🙈 P2 · see&lt;br/&gt;Atom topology&quot;]
+  P2 --&gt; P3[&quot;🙊 P3 · do&lt;br/&gt;Build atoms + rubric&quot;]
+  P3 --&gt; P4[&quot;🐵 P4 · share&lt;br/&gt;Assemble credential + showcase&quot;]
+  P4 --&gt; BADGE[&quot;🏅 ADA Methodology Designer&quot;]</div>
+<hr>
+<h2>🤖 How it was authored (and how to reuse it)</h2>
+<p>This course follows the Gen AI authoring workflow in <a href="../../index.html#/specs/genai-authoring-workflow.md" target="_blank" rel="noopener"><code>../../specs/genai-authoring-workflow.md</code></a>: competency → KSA → atoms → modalities → rubrics → badge. Conventions used throughout:</p>
+<ul>
+<li><strong>🖼️ Diagrams</strong> are live <strong>Mermaid</strong> diagrams <em>and</em>, where useful, a reusable</li>
+</ul>
+<p>  <strong>image-generation prompt</strong> in a <code>prompt</code> block — feed it to any image model for an on-brand asset.</p>
+<ul>
+<li><strong>🧩 Templates</strong> are referenced by relative link so the learner fills the <em>actual</em> repo templates.</li>
+<li><strong>✅ Activities</strong> include answer keys / checklists so the course is self-paced and self-checkable.</li>
+</ul>
+<blockquote>⚠️ <strong>Human-in-the-loop (methodology guardrail):</strong> a designer's competency mappings, sources, and badge decisions must be <strong>validated by a human</strong> mentor/employer before they count. AI accelerates the design but is never authoritative on its own. See <a href="../../index.html#/CLAUDE.md" target="_blank" rel="noopener"><code>../../CLAUDE.md</code></a> §5.</blockquote></section>
+<section class="page" id="page-spec" data-id="spec"><h1>🎓 Micro-Credential — ADA Methodology Designer</h1>
+<p>The full specification for this micro-credential. It conforms to <a href="../../index.html#/specs/micro-credential-v2-schema.md" target="_blank" rel="noopener"><code>../../specs/micro-credential-v2-schema.md</code></a>.</p>
+<hr>
+<h2>YAML front matter</h2>
+<pre class="code"><span class="lang">yaml</span><code>schema: ada-microcredential/v2
+id: mc-ada-methodology-designer
+title: &quot;ADA Methodology Designer&quot;
+language: en
+duration_hours: 20
+level: intermediate
+status: published
+license: CC-BY-SA-4.0
+mentors: [&quot;@sancarbar&quot;]
+
+target_roles:
+  - role: &quot;Instructional designer / curriculum author / L&amp;D lead / mentor authoring ADA credentials&quot;
+    framework_ref: &gt;
+      O*NET 25-9031.00 Instructional Coordinators ·
+      ESCO &quot;develop curriculum&quot;, &quot;design pedagogical approaches&quot;, &quot;create learning materials&quot; ·
+      SFIA: LEDA (learning &amp; development), KNOW (knowledge management)
+
+ksa:
+  - { id: K-ada-architecture, type: knowledge, label: &quot;ADA building blocks &amp; flow (skill need → micro-credential → phases → atoms → capstone → badge → skills map)&quot;, target_level: 2, bloom: understand }
+  - { id: K-ksa-framework,    type: knowledge, label: &quot;KSA types, the 0-4 proficiency scale, the affective domain, and how to classify a competency&quot;, target_level: 3, bloom: analyze }
+  - { id: K-bloom,            type: knowledge, label: &quot;Bloom&#x27;s revised cognitive + affective taxonomies; writing measurable objectives&quot;, target_level: 2, bloom: understand }
+  - { id: K-topology,         type: knowledge, label: &quot;The 7 modalities and their sub-types; modality↔KSA and modality↔phase fit&quot;, target_level: 2, bloom: understand }
+  - { id: S-write-objectives, type: skill,     label: &quot;Write Bloom-verb objectives tagged with KSA type + target level&quot;, target_level: 2, bloom: apply }
+  - { id: S-design-atoms,     type: skill,     label: &quot;Design learning atoms of each KSA type with topology-correct modalities&quot;, target_level: 3, bloom: create, primary: true }
+  - { id: S-build-rubric,     type: skill,     label: &quot;Build the 5-criteria Assessment Rubric + mini-rubrics; map evidence → badge&quot;, target_level: 2, bloom: apply }
+  - { id: S-assemble-mc,      type: skill,     label: &quot;Assemble a complete micro-credential from the ADA templates&quot;, target_level: 3, bloom: create, primary: true }
+  - { id: A-design-judgment,  type: ability,   label: &quot;Design with learner empathy, framework rigor, and human-in-the-loop judgment&quot;, target_level: 2, affective_stage: value, assessed_occasions: 3 }
+
+atoms:
+  - { id: atom-1, title: &quot;The ADA big picture&quot;, ksa_refs: [K-ada-architecture], phase: 1, modalities: [{dimension: read, subtype: Article}, {dimension: see, subtype: Flowchart}, {dimension: evaluate, subtype: Pop Quiz}], rubric: knowledge-mini }
+  - { id: atom-2, title: &quot;KSA in depth&quot;, ksa_refs: [K-ksa-framework], phase: 1, modalities: [{dimension: read, subtype: Technical Article}, {dimension: see, subtype: Framework}, {dimension: practice, subtype: Worksheet / Exercise}, {dimension: evaluate, subtype: Mini-Rubric}], rubric: knowledge-mini }
+  - { id: atom-3, title: &quot;Bloom&#x27;s taxonomy &amp; measurable objectives&quot;, ksa_refs: [K-bloom, S-write-objectives], phase: 1, modalities: [{dimension: read, subtype: Technical Article}, {dimension: see, subtype: Diagram}, {dimension: practice, subtype: Worksheet / Exercise}, {dimension: evaluate, subtype: Mini-Rubric}], rubric: skill }
+  - { id: atom-4, title: &quot;The learning atom topology&quot;, ksa_refs: [K-topology], phase: 2, modalities: [{dimension: see, subtype: Mind Map}, {dimension: read, subtype: Documentation / Reference}, {dimension: practice, subtype: Design Exercise}, {dimension: evaluate, subtype: Pop Quiz}], rubric: knowledge-mini }
+  - { id: atom-5, title: &quot;Build one atom of each KSA type&quot;, ksa_refs: [S-design-atoms, A-design-judgment], phase: 3, modalities: [{dimension: practice, subtype: Design Exercise}, {dimension: collaborate, subtype: Async Peer Review}, {dimension: evaluate, subtype: Performance Task}], rubric: skill }
+  - { id: atom-6, title: &quot;Design the assessment&quot;, ksa_refs: [S-build-rubric], phase: 3, modalities: [{dimension: practice, subtype: Design Exercise}, {dimension: evaluate, subtype: Performance Task}], rubric: skill }
+  - { id: atom-7, title: &quot;Capstone — assemble the full credential&quot;, ksa_refs: [S-assemble-mc, A-design-judgment], phase: 4, modalities: [{dimension: practice, subtype: Project Task}, {dimension: collaborate, subtype: Showcase / Demo Day}, {dimension: evaluate, subtype: Capstone Project}], rubric: capstone-5 }
+
+capstone:
+  title: &quot;Design a complete ADA micro-credential for a real organizational skill need&quot;
+  integrates_ksa: [K-ada-architecture, K-ksa-framework, K-bloom, K-topology, S-write-objectives, S-design-atoms, S-build-rubric, S-assemble-mc, A-design-judgment]
+  rubric: capstone-5
+
+badge:
+  name: &quot;ADA Methodology Designer&quot;
+  evidence_required: [&quot;atom-5&quot;, &quot;atom-6&quot;, &quot;capstone&quot;]
+  issued_on: verified-evidence</code></pre>
+<hr>
+<h2>🩺 Before you start — diagnostic (optional)</h2>
+<p>Rate yourself <strong>0–4</strong> (the ADA proficiency scale taught in Atom 2) on each component, then re-rate at the end — the delta is your evidence of growth.</p>
+<div class='tablewrap'><table><thead><tr><th>Component</th><th>0–4 now</th><th>0–4 after</th></tr></thead><tbody>
+<tr><td>Explain the ADA architecture</td><td>☐</td><td>☐</td></tr>
+<tr><td>Classify a competency as K/S/A</td><td>☐</td><td>☐</td></tr>
+<tr><td>Write a Bloom-verb objective</td><td>☐</td><td>☐</td></tr>
+<tr><td>Pick modalities for an atom</td><td>☐</td><td>☐</td></tr>
+<tr><td>Build an assessment rubric</td><td>☐</td><td>☐</td></tr>
+<tr><td>Assemble a full micro-credential</td><td>☐</td><td>☐</td></tr>
+</tbody></table></div>
+<hr>
+<h2>🎯 Target job competency</h2>
+<p>Design and author <strong>ADA micro-credentials</strong> that turn a real role/skill need into a measurable, job-matchable learning unit. Appears in postings as <em>"instructional design", "curriculum development", "learning experience design", "create learning materials", "competency mapping".</em> Mapped to <strong>O*NET 25-9031.00</strong> (Instructional Coordinators), <strong>ESCO</strong> <em>"develop curriculum / design pedagogical approaches"</em>, and <strong>SFIA LEDA / KNOW</strong>.</p>
+<h2>🧬 KSA breakdown — what mastery means here</h2>
+<div class='tablewrap'><table><thead><tr><th>KSA</th><th>Component</th><th>Why this type</th><th>Target</th></tr></thead><tbody>
+<tr><td>🧠 Knowledge</td><td>ADA architecture &amp; flow</td><td>The map you reason from</td><td>L2</td></tr>
+<tr><td>🧠 Knowledge</td><td>KSA framework + 0–4 scale + affective domain</td><td>The classification engine of v2</td><td><strong>L3</strong></td></tr>
+<tr><td>🧠 Knowledge</td><td>Bloom's cognitive + affective taxonomies</td><td>How objectives become measurable</td><td>L2</td></tr>
+<tr><td>🧠 Knowledge</td><td>The 7-modality topology</td><td>The menu you design atoms from</td><td>L2</td></tr>
+<tr><td>🛠️ Skill</td><td>Write Bloom + KSA objectives</td><td>A repeatable authoring move</td><td>L2</td></tr>
+<tr><td>🛠️ Skill</td><td>Design atoms of each KSA type</td><td>The core craft — practiced for real</td><td><strong>L3</strong></td></tr>
+<tr><td>🛠️ Skill</td><td>Build the Assessment Rubric</td><td>Makes learning measurable &amp; fair</td><td>L2</td></tr>
+<tr><td>🛠️ Skill</td><td>Assemble a full micro-credential</td><td>The end-to-end deliverable</td><td><strong>L3</strong></td></tr>
+<tr><td>🌱 Ability</td><td>Instructional-design judgment</td><td>Empathy + rigor + human-in-the-loop, shown across the build</td><td>L2</td></tr>
+</tbody></table></div>
+<blockquote><strong>Why this shape:</strong> designing curriculum is mostly <strong>doing</strong> (Skills at L3 — <em>Create</em>), resting on a solid <strong>Knowledge</strong> base (KSA, Bloom, topology) and a durable <strong>Ability</strong> — the judgment to keep the learner central, cite frameworks honestly, and flag what a human must validate.</blockquote>
+<h2>📘 Learning objectives (Bloom + KSA)</h2>
+<div class='tablewrap'><table><thead><tr><th>Objective</th><th>Bloom</th><th>KSA</th><th>Component</th><th>Target</th></tr></thead><tbody>
+<tr><td>Explain how the ADA building blocks fit together</td><td>Understand</td><td>🧠 K</td><td>K-ada-architecture</td><td>L2</td></tr>
+<tr><td>Classify any competency as K/S/A and set a 0–4 target</td><td>Analyze</td><td>🧠 K</td><td>K-ksa-framework</td><td>L3</td></tr>
+<tr><td>Write measurable objectives using Bloom verbs, tagged with KSA</td><td>Apply</td><td>🛠️ S</td><td>S-write-objectives</td><td>L2</td></tr>
+<tr><td>Select topology modalities that fit an atom's KSA type and phase</td><td>Understand/Apply</td><td>🧠 K</td><td>K-topology</td><td>L2</td></tr>
+<tr><td>Design a Knowledge, a Skill, and an Ability atom</td><td>Create</td><td>🛠️ S</td><td>S-design-atoms</td><td>L3</td></tr>
+<tr><td>Build a 5-criteria Assessment Rubric and an evidence→badge map</td><td>Apply</td><td>🛠️ S</td><td>S-build-rubric</td><td>L2</td></tr>
+<tr><td>Assemble a complete, job-ready ADA micro-credential</td><td>Create</td><td>🛠️ S</td><td>S-assemble-mc</td><td>L3</td></tr>
+<tr><td>Design with learner empathy and human-in-the-loop rigor</td><td>Value (affective)</td><td>🌱 A</td><td>A-design-judgment</td><td>L2</td></tr>
+</tbody></table></div>
+<hr>
+<h2>🔍 Phase planner</h2>
+<div class='tablewrap'><table><thead><tr><th>Phase</th><th>Atom(s)</th><th>KSA focus</th><th>Activity</th><th>Assessment</th></tr></thead><tbody>
+<tr><td>🙉 1 · hear</td><td>Atom 1, 2, 3</td><td>🧠 K → 🛠️ S</td><td>read + diagrams; classify competencies; write objectives</td><td>knowledge-mini + skill mini-rubric</td></tr>
+<tr><td>🙈 2 · see</td><td>Atom 4</td><td>🧠 K</td><td>study the topology mind map; choose modalities</td><td>pop quiz + design exercise</td></tr>
+<tr><td>🙊 3 · do</td><td>Atom 5, 6</td><td>🛠️ S + 🌱 A</td><td>author 3 atoms; build the rubric</td><td>performance tasks + peer review</td></tr>
+<tr><td>🐵 4 · share</td><td>Atom 7 (capstone)</td><td>🛠️ S + 🌱 A</td><td>assemble the full credential; showcase + peer review</td><td>capstone-5</td></tr>
+</tbody></table></div>
+<hr>
+<h2>🚀 Capstone &amp; 📊 assessment</h2>
+<p>Full brief in <a href="#capstone"><code>capstone.md</code></a>; all rubrics in <a href="#rubrics"><code>rubrics.md</code></a>. In short: formative pop quizzes / mini-rubrics for the Knowledge atoms, a skill mini-rubric + performance task for the design atoms, and a <strong>complete ADA credential the learner designs</strong>, graded on the standard 5-criteria capstone rubric. The badge → skills-map mapping is in <a href="#skillsmap"><code>skills-map.md</code></a>.</p>
+<h2>🎓 Outcomes &amp; recognition</h2>
+<ul>
+<li>Fluency in the ADA building blocks, the KSA framework, Bloom, and the learning-atom topology.</li>
+<li>The craft of authoring atoms of every KSA type and building assessment rubrics.</li>
+<li>A portfolio artifact: a complete, job-ready <strong>ADA micro-credential the learner designed</strong> end to end.</li>
+<li>LinkedIn-compatible digital badge: <strong>🏅 ADA Methodology Designer</strong> — the entry point to an</li>
+</ul>
+<p>  instructional-design / L&amp;D pathway.</p></section>
+<section class="page" id="page-atom-1" data-id="atom-1"><label class="donebox"><input type="checkbox" class="donechk" data-atom="atom-1"> Mark this atom complete</label><h2>⚛ Learning Atom 1 — <em>The ADA Big Picture</em></h2>
+<p><strong>Phase:</strong> 🙉 1 · Self-Guided Introduction (<em>hear</em>) · <strong>KSA:</strong> 🧠 Knowledge · <strong>Target level:</strong> L2 · <strong>Component id:</strong> <code>K-ada-architecture</code></p>
+<h3>🎯 Learning objective</h3>
+<ul>
+<li><strong>Explain</strong> how ADA's building blocks fit together — from a real job skill all the way to a</li>
+</ul>
+<p>  verifiable badge written into a learner's skills map.</p>
+<h3>🧩 Prerequisites</h3>
+<ul>
+<li>None. Curiosity about how learning gets designed, and ideally one skill you know well (you'll</li>
+</ul>
+<p>  design a credential about it later).</p>
+<h3>🧭 Atom description</h3>
+<p>Before you can design ADA credentials, you need the map: what the pieces are and how they connect. This atom gives you that mental model so every later decision (which KSA type, which Bloom verb, which modality, which rubric) has a place to live.</p>
+<hr>
+<h3>📖 Reading — <em>The ADA stack</em> (≈ 6 min)</h3>
+<p>ADA (<strong>Applied Digital Apprenticeship</strong>) packages learning as <strong>micro-credentials</strong>: focused, <strong>10–30-hour, job-ready units</strong>. Each micro-credential is built from <strong>4–8 Learning Atoms</strong> and sequenced through <strong>4 Learning Phases</strong> that follow the Confucius progression <em>hear → see → do → share</em>.</p>
+<p>Every <strong>atom</strong> develops one <strong>objective</strong>, typed by <strong>KSA</strong> and aimed at a <strong>proficiency level</strong>, taught through <strong>modalities</strong> chosen from the topology, and proven by a <strong>deliverable + rubric</strong>. The micro-credential ends in a <strong>capstone</strong> (an integrative, job-like task), which earns a <strong>badge</strong>, which writes proven KSA levels into the learner's <strong>skills map</strong> — the graph that gets <strong>matched against real jobs</strong>.</p>
+<div class="mermaid">flowchart TD
+  NEED[&quot;🏢 Real skill need&lt;br/&gt;(a task someone must do)&quot;] --&gt; MC[&quot;🎓 Micro-credential&lt;br/&gt;10–30h, job-ready&quot;]
+  MC --&gt; PH[&quot;🔄 4 Phases&lt;br/&gt;hear → see → do → share&quot;]
+  MC --&gt; AT[&quot;⚛ 4–8 Learning Atoms&quot;]
+  AT --&gt; OBJ[&quot;🎯 One objective (Bloom verb)&quot;]
+  AT --&gt; KSA[&quot;🧬 KSA type + level&quot;]
+  AT --&gt; MOD[&quot;🧱 Modalities (topology)&quot;]
+  AT --&gt; DEL[&quot;📦 Deliverable + rubric&quot;]
+  MC --&gt; CAP[&quot;🚀 Capstone (5-criteria rubric)&quot;]
+  CAP --&gt; BADGE[&quot;🏅 Badge&quot;]
+  BADGE --&gt; MAP[&quot;🗺️ Skills map → job match&quot;]</div>
+<p>The four phases, and what each is for:</p>
+<div class='tablewrap'><table><thead><tr><th>Phase</th><th>Confucius</th><th>Goal</th><th>Typical content</th></tr></thead><tbody>
+<tr><td>🙉 1 Self-Guided Introduction</td><td><em>I hear and I forget</em></td><td>meet the concepts</td><td>readings, podcasts, videos, comprehension checks</td></tr>
+<tr><td>🙈 2 Visual Exploration</td><td><em>I see and I remember</em></td><td>make it concrete</td><td>diagrams, mental models, demos, case walkthroughs</td></tr>
+<tr><td>🙊 3 Applied Practice</td><td><em>I do and I understand</em></td><td>build the skill</td><td>labs, codelabs, simulations, rubric-scored practice</td></tr>
+<tr><td>🐵 4 Collaboration &amp; Reflection</td><td><em>I share and I multiply</em></td><td>prove &amp; transfer</td><td>peer review, showcase, capstone, reflection</td></tr>
+</tbody></table></div>
+<p><strong>Key takeaways</strong></p>
+<ul>
+<li><input type="checkbox" disabled> A micro-credential is a <strong>10–30h, job-ready unit</strong> made of <strong>4–8 atoms</strong>.</li>
+<li><input type="checkbox" disabled> An <strong>atom</strong> = one objective · a KSA type+level · modalities · a deliverable + rubric.</li>
+<li><input type="checkbox" disabled> The <strong>4 phases</strong> move the learner from passive to active: hear → see → do → share.</li>
+<li><input type="checkbox" disabled> A <strong>capstone → badge → skills map</strong> turns learning into <strong>job-matchable evidence</strong>.</li>
+</ul>
+<hr>
+<h3>🖼️ See — the path from skill need to job match</h3>
+<div class="mermaid">flowchart LR
+  A[&quot;🏢 Skill need&quot;] --&gt; B[&quot;🎓 Micro-credential&quot;]
+  B --&gt; C[&quot;⚛ Atoms (4 phases)&quot;]
+  C --&gt; D[&quot;🚀 Capstone&quot;]
+  D --&gt; E[&quot;🏅 Badge&quot;]
+  E --&gt; F[&quot;🗺️ Skills map&quot;]
+  F --&gt; G[&quot;💼 Job match&quot;]</div>
+<hr>
+<h3>✅ Evaluate — Pop quiz (formative, <code>knowledge-mini</code>)</h3>
+<ol>
+<li>How many hours and how many atoms define a typical micro-credential?</li>
+<li>Put the four phases in order with their Confucius lines.</li>
+<li>What does a badge write into, and what is that used for?</li>
+</ol>
+<details>
+<summary>Answer key</summary>
+<ol>
+<li><strong>10–30 hours</strong>; <strong>4–8 atoms</strong>.</li>
+<li>🙉 hear (<em>I hear and I forget</em>) → 🙈 see (<em>I see and I remember</em>) → 🙊 do (*I do and I</li>
+</ol>
+<p>   understand<em>) → 🐵 share (</em>I share and I multiply*).</p>
+<ol>
+<li>Into the <strong>skills map</strong> (proven KSA levels), used for <strong>job matching</strong>.</li>
+</ol>
+</details>
+<hr>
+<h3>📦 Deliverable</h3>
+<ul>
+<li>A 4–5 sentence "explain-back" of the ADA stack in your own words, plus a quick sketch (or copy) of</li>
+</ul>
+<p>  the architecture diagram annotated with where <em>your</em> future credential's pieces will go.</p>
+<h3>🧠 Final reflection</h3>
+<ul>
+<li>Which piece feels least familiar right now — KSA, Bloom, the topology, or rubrics? You'll meet</li>
+</ul>
+<p>  each in the next atoms; note your starting question for each.</p>
+<h3>🔗 Sources to verify (human-in-the-loop)</h3>
+<ul>
+<li><a href="../../index.html#/README.md" target="_blank" rel="noopener"><code>../../../README.md</code></a> — the canonical ADA methodology.</li>
+<li><a href="../../index.html#/specs/ada-v2-ksa-framework.md" target="_blank" rel="noopener"><code>../../../specs/ada-v2-ksa-framework.md</code></a> — the v2 spine.</li>
+</ul>
+<h3>🧩 Connections</h3>
+<ul>
+<li><strong>Successors:</strong> Atom 2 (KSA in depth), then Atom 3 (Bloom) and Atom 4 (topology).</li>
+</ul></section>
+<section class="page" id="page-atom-2" data-id="atom-2"><label class="donebox"><input type="checkbox" class="donechk" data-atom="atom-2"> Mark this atom complete</label><h2>⚛ Learning Atom 2 — <em>KSA in Depth (Knowledge · Skills · Abilities)</em></h2>
+<p><strong>Phase:</strong> 🙉 1 · Self-Guided Introduction (<em>hear</em>) · <strong>KSA:</strong> 🧠 Knowledge · <strong>Target level:</strong> L3 · <strong>Component id:</strong> <code>K-ksa-framework</code></p>
+<h3>🎯 Learning objective</h3>
+<ul>
+<li><strong>Classify</strong> any competency as Knowledge, Skill, or Ability, and set a <strong>0–4</strong> target level using</li>
+</ul>
+<p>  the shared proficiency scale.</p>
+<h3>🧩 Prerequisites</h3>
+<ul>
+<li>Atom 1 (the ADA big picture).</li>
+</ul>
+<h3>🧭 Atom description</h3>
+<p>KSA is the competency <em>spine</em> of ADA v2. Mistype a competency and everything downstream breaks — you end up "teaching" an attitude with a quiz, or "assessing" a skill by asking the learner to define a term. This atom builds the classification engine you'll use in every design from now on.</p>
+<hr>
+<h3>📖 Reading — <em>The competency spine</em> (≈ 10 min)</h3>
+<p>KSA gives every objective a <strong>type</strong>, so it's taught and assessed the way it actually develops.</p>
+<p>**🧠 Knowledge — the <em>know-what</em> / <em>know-why</em>.** Cognitive, factual, conceptual understanding you can recall and reason with (HTTP status codes; color theory; what psychological safety is). <em>Develops through</em> Read · Listen · Watch · See. <em>Assessed with</em> quizzes, concept checks, "explain it back". <em>Bloom home:</em> Remember, Understand.</p>
+<p>**🛠️ Skill — the <em>know-how</em>.<strong> Procedural proficiency built through </strong>deliberate, repeated practice**; observable and improvable. Technical (build a REST endpoint) or human (facilitate a retro). <em>Develops through</em> Practice — labs, codelabs, simulations, role-play, reps. <em>Assessed with</em> performance tasks and rubrics on a produced artifact. <em>Bloom home:</em> Apply, Analyze, Create.</p>
+<p>**🌱 Ability — the <em>can-do</em> / <em>will-do</em> (durable capacities &amp; attitudes).** Enduring dispositions that shape <em>how consistently and how well</em> someone applies knowledge and skills across changing contexts: adaptability, resilience, collaboration, growth mindset, attention to detail. <em>Develops through</em> repeated authentic practice <strong>+ reflection + feedback over time</strong>. <em>Assessed with</em> behavioral rubrics, reflective journals, peer/mentor <strong>360</strong> across <strong>multiple occasions</strong> — <strong>never a single quiz</strong>. <em>Bloom home:</em> all levels, paired with the <strong>affective domain</strong>.</p>
+<blockquote><strong>Skill vs. Ability — the practical test:</strong> if it improves mainly through <em>reps and procedure</em>, it's a <strong>Skill</strong>. If it's a <em>disposition expressed consistently across situations</em> (and reads as an "attitude" in a job posting), it's an <strong>Ability</strong>. Many competencies have both layers — model both when it matters.</blockquote>
+<p><strong>🪜 The shared 0–4 proficiency scale</strong> (so gaps are computable):</p>
+<div class='tablewrap'><table><thead><tr><th>Level</th><th>Label</th><th>Knowledge</th><th>Skill</th><th>Ability</th></tr></thead><tbody>
+<tr><td>0</td><td>None</td><td>no exposure</td><td>cannot perform</td><td>not observed</td></tr>
+<tr><td>1</td><td>Aware</td><td>recalls basics</td><td>performs with full guidance</td><td>shows it occasionally, prompted</td></tr>
+<tr><td>2</td><td>Working</td><td>explains &amp; relates</td><td>performs routine cases solo</td><td>reliable in familiar contexts</td></tr>
+<tr><td>3</td><td>Proficient</td><td>reasons about trade-offs</td><td>handles novel/complex; mentors</td><td>shows it under pressure / new contexts</td></tr>
+<tr><td>4</td><td>Expert</td><td>synthesizes, teaches</td><td>sets best practice</td><td>role-models &amp; develops it in others</td></tr>
+</tbody></table></div>
+<blockquote><strong>Job-readiness rule of thumb:</strong> most entry roles need <strong>L2</strong> on core KSA and <strong>L1</strong> on adjacent.</blockquote>
+<p><strong>🌀 The affective domain (for Abilities):</strong> Receive → Respond → Value → Organize → Internalize. This is how an attitude <em>deepens</em> — from noticing it, to acting when prompted, to valuing it, to organizing behavior around it, to it becoming "who you are."</p>
+<p><strong>Key takeaways</strong></p>
+<ul>
+<li><input type="checkbox" disabled> <strong>K</strong> = know-what/why · <strong>S</strong> = know-how · <strong>A</strong> = durable disposition/attitude.</li>
+<li><input type="checkbox" disabled> One <strong>0–4 scale</strong> across all three makes gaps computable for job matching.</li>
+<li><input type="checkbox" disabled> Abilities are assessed <strong>behaviorally across ≥3 occasions</strong>, never a quiz.</li>
+<li><input type="checkbox" disabled> Tag each atom's <strong>primary</strong> KSA type; list secondaries.</li>
+</ul>
+<hr>
+<h3>🖼️ See — classify with the decision flow</h3>
+<div class="mermaid">flowchart TD
+  Q1{&quot;Information you must&lt;br/&gt;recall or reason with?&quot;} --&gt;|yes| K[&quot;🧠 KNOWLEDGE&quot;]
+  Q1 --&gt;|no| Q2{&quot;A procedure that improves&lt;br/&gt;with reps / makes an artifact?&quot;}
+  Q2 --&gt;|yes| S[&quot;🛠️ SKILL&quot;]
+  Q2 --&gt;|no| Q3{&quot;A disposition shown&lt;br/&gt;consistently across situations?&quot;}
+  Q3 --&gt;|yes| A[&quot;🌱 ABILITY&quot;]</div>
+<p>A reusable prompt to generate an on-brand version of this diagram:</p>
+<div class="promptcard"><div class="promptcard-h"><span>🖼️ Image / AI prompt</span><button class="copybtn" type="button">Copy</button></div><pre><code>Create a clean, modern educational decision-tree infographic titled &quot;Is it Knowledge, Skill, or
+Ability?&quot;. Three diamond decision nodes leading to three labeled outcomes: 🧠 Knowledge (a brain /
+book icon), 🛠️ Skill (a wrench / hands icon), 🌱 Ability (a growing plant icon). Use ADA brand
+colors (Indigo #1E2A6E, Turquoise #15B5C6, Gold #E0A53C accents) on a light background, flat vector
+style, generous white space, legible sans-serif. 16:9.</code></pre></div>
+<hr>
+<h3>🧪 Practice — <em>Worksheet: classify 8 competencies</em> (Design Exercise)</h3>
+<p>For each, write <strong>K / S / A</strong> and a <strong>0–4</strong> target, with one sentence of reasoning. Tie-breakers: a tool/method/task → <strong>S</strong> (with a <strong>K</strong> prerequisite); an adjective about the person → <strong>A</strong>; a concept/standard → <strong>K</strong>.</p>
+<ol>
+<li>"Knows SQL join types"  2. "Writes a SQL query that answers a question"  3. "Detail-oriented"</li>
+<li>"Explains what idempotency means"  5. "Facilitates a sprint retro"  6. "Coachable / takes</li>
+</ol>
+<p>feedback"  7. "Builds a Figma prototype"  8. "Understands GDPR principles"</p>
+<details>
+<summary>Sample key</summary>
+<ol>
+<li>K · L2 — a concept to recall/relate.</li>
+<li>S · L2 — a procedure that makes an artifact.</li>
+<li>A · L2 — an adjective about the person.</li>
+<li>K · L2 — explain a concept.</li>
+<li>S · L2 (+ A empathy/facilitation) — a repeatable procedure with a dispositional layer.</li>
+<li>A · L2 — a disposition shown across situations.</li>
+<li>S · L2 — a tool-based procedure.</li>
+<li>K · L1–2 — principles to understand.</li>
+</ol>
+</details>
+<hr>
+<h3>✅ Evaluate — Mini-rubric (<code>knowledge-mini</code>)</h3>
+<p>Accuracy of type · correct tie-breaker reasoning · sensible level. <strong>Pass = 2+ on each.</strong></p>
+<h3>📦 Deliverable</h3>
+<ul>
+<li>Your 8 classifications <strong>with one sentence of reasoning each</strong>, applying the tie-breakers.</li>
+</ul>
+<h3>🧠 Final reflection</h3>
+<ul>
+<li>Pick a competency from a real job posting you've seen. Was it actually K, S, or A — and would the</li>
+</ul>
+<p>  posting's "assessment" (if any) have matched the type?</p>
+<h3>🔗 Sources to verify (human-in-the-loop)</h3>
+<ul>
+<li><a href="../../index.html#/specs/ksa-taxonomy.md" target="_blank" rel="noopener"><code>../../../specs/ksa-taxonomy.md</code></a> — the canonical KSA reference.</li>
+<li>O*NET Content Model (Knowledge / Skills / Abilities descriptors).</li>
+</ul>
+<h3>🧩 Connections</h3>
+<ul>
+<li><strong>Predecessor:</strong> Atom 1. <strong>Successors:</strong> Atom 3 (Bloom verbs by type), Atom 5 (build one of each).</li>
+</ul></section>
+<section class="page" id="page-atom-3" data-id="atom-3"><label class="donebox"><input type="checkbox" class="donechk" data-atom="atom-3"> Mark this atom complete</label><h2>⚛ Learning Atom 3 — <em>Bloom's Taxonomy &amp; Measurable Objectives</em></h2>
+<p><strong>Phase:</strong> 🙉 1 · Self-Guided Introduction (<em>hear</em>) · <strong>KSA:</strong> 🧠 Knowledge → 🛠️ Skill · <strong>Target level:</strong> L2 · <strong>Component ids:</strong> <code>K-bloom</code>, <code>S-write-objectives</code></p>
+<h3>🎯 Learning objective</h3>
+<ul>
+<li><strong>Write</strong> measurable learning objectives using Bloom verbs, each <strong>tagged with a KSA type</strong> and a</li>
+</ul>
+<p>  target level.</p>
+<h3>🧩 Prerequisites</h3>
+<ul>
+<li>Atom 2 (KSA in depth) — you'll tag each objective with a KSA type.</li>
+</ul>
+<h3>🧭 Atom description</h3>
+<p>Objectives are the contract of a credential: they say exactly what the learner will be able to <em>do</em>. Bloom gives you the verbs that make objectives measurable, and the KSA tag keeps each objective honest about how it must be taught and assessed. This is the first atom where you start <strong>producing</strong> design artifacts.</p>
+<hr>
+<h3>📖 Reading — <em>Bloom, the verb engine of objectives</em> (≈ 9 min)</h3>
+<p><strong>Bloom's revised taxonomy (cognitive domain, 2001)</strong> orders thinking from simple to complex. Each level has signature <strong>verbs</strong> you use to write objectives you can actually measure:</p>
+<div class='tablewrap'><table><thead><tr><th>Level</th><th>Means</th><th>Sample verbs</th><th>Pairs with KSA</th></tr></thead><tbody>
+<tr><td><strong>Remember</strong></td><td>recall facts</td><td>define, list, name, recall, label</td><td>🧠 K</td></tr>
+<tr><td><strong>Understand</strong></td><td>explain meaning</td><td>explain, summarize, classify, compare</td><td>🧠 K</td></tr>
+<tr><td><strong>Apply</strong></td><td>use it in a new situation</td><td>use, implement, run, solve, demonstrate</td><td>🛠️ S</td></tr>
+<tr><td><strong>Analyze</strong></td><td>break down, find structure</td><td>differentiate, debug, compare, test</td><td>🛠️ S / 🧠 K</td></tr>
+<tr><td><strong>Evaluate</strong></td><td>judge against criteria</td><td>critique, justify, assess, review</td><td>🛠️ S</td></tr>
+<tr><td><strong>Create</strong></td><td>produce something new</td><td>design, build, compose, assemble</td><td>🛠️ S</td></tr>
+</tbody></table></div>
+<p>A good objective = <strong>a Bloom verb + an observable thing + (often) a condition/standard</strong>. Avoid fuzzy verbs that can't be measured: <em>know, understand-as-feeling, be familiar with, appreciate, learn about.</em> Replace them with what the learner will <strong>do</strong>.</p>
+<ul>
+<li>👎 "Understand variables." → 👍 "<strong>Explain</strong> how a name is bound to a value." (Understand · 🧠 K)</li>
+<li>👎 "Know testing." → 👍 "<strong>Write</strong> a unit test that verifies a function." (Apply · 🛠️ S)</li>
+</ul>
+<p><strong>The affective domain (Krathwohl)</strong> is Bloom's companion for <strong>Abilities/attitudes</strong>: Receive → Respond → Value → Organize → Internalize. Use it when the objective is a disposition: <em>"<strong>Values</strong> feedback as fuel and seeks it proactively."</em> (Value · 🌱 A).</p>
+<blockquote><strong>Rule:</strong> the Bloom level should match the KSA type. Knowledge lives in Remember/Understand; Skills in Apply/Analyze/Create; Abilities span all levels <strong>plus</strong> the affective domain — and are never assessed by a recall quiz.</blockquote>
+<p><strong>Key takeaways</strong></p>
+<ul>
+<li><input type="checkbox" disabled> Every objective needs a <strong>measurable Bloom verb</strong> + an <strong>observable</strong> result.</li>
+<li><input type="checkbox" disabled> Tag each objective with its <strong>KSA type</strong> and <strong>target level</strong>.</li>
+<li><input type="checkbox" disabled> Match the Bloom level to the KSA type (K→Remember/Understand, S→Apply/Analyze/Create).</li>
+<li><input type="checkbox" disabled> For Abilities, reach for the <strong>affective</strong> verbs (Value, Internalize).</li>
+</ul>
+<hr>
+<h3>🖼️ See — Bloom ↔ KSA alignment</h3>
+<div class="mermaid">flowchart LR
+  REM[&quot;Remember&quot;] --&gt; UND[&quot;Understand&quot;] --&gt; APP[&quot;Apply&quot;] --&gt; ANA[&quot;Analyze&quot;] --&gt; EVA[&quot;Evaluate&quot;] --&gt; CRE[&quot;Create&quot;]
+  REM -.-&gt; K[&quot;🧠 Knowledge&quot;]
+  UND -.-&gt; K
+  APP -.-&gt; S[&quot;🛠️ Skill&quot;]
+  ANA -.-&gt; S
+  CRE -.-&gt; S
+  AFF[&quot;🌀 Affective:&lt;br/&gt;Receive→Respond→Value→Organize→Internalize&quot;] -.-&gt; A[&quot;🌱 Ability&quot;]</div>
+<hr>
+<h3>🧪 Practice — <em>Rewrite &amp; tag</em> (Design Exercise)</h3>
+<p>Rewrite these into measurable objectives, then tag <strong>Bloom level + KSA</strong>:</p>
+<ol>
+<li>"Students will know about REST."  2. "Learners get good at giving feedback."</li>
+<li>"Understand Python data types."  4. "Be adaptable."</li>
+</ol>
+<details>
+<summary>Sample key</summary>
+<ol>
+<li>"<strong>Explain</strong> what makes an API RESTful." (Understand · 🧠 K)</li>
+<li>"<strong>Structure</strong> a feedback message using SBI." (Apply · 🛠️ S) + "<strong>Value</strong> candor delivered with</li>
+</ol>
+<p>   care." (Value · 🌱 A)</p>
+<ol>
+<li>"<strong>Identify</strong> core types and <strong>predict</strong> <code>type()</code> results." (Understand · 🧠 K)</li>
+<li>"<strong>Re-plan</strong> calmly when requirements change, across ≥3 occasions." (affective Value · 🌱 A)</li>
+</ol>
+</details>
+<hr>
+<h3>✅ Evaluate — Mini-rubric (<code>skill</code>)</h3>
+<p>Verb is measurable · level matches the KSA type · objective is observable. <strong>Pass = 2+ on each.</strong></p>
+<h3>📦 Deliverable</h3>
+<ul>
+<li><strong>5 objectives</strong> for a topic you care about (ideally the subject of your future capstone</li>
+</ul>
+<p>  credential), each tagged <code>Bloom · KSA · level</code>. Keep these — you'll reuse them in Atom 7.</p>
+<h3>🧠 Final reflection</h3>
+<ul>
+<li>Which of your 5 objectives is hardest to <em>assess</em>? Often that signals a mistyped KSA (e.g. an</li>
+</ul>
+<p>  Ability hiding inside a "Skill" objective).</p>
+<h3>🔗 Sources to verify (human-in-the-loop)</h3>
+<ul>
+<li>Anderson &amp; Krathwohl (2001), <em>A Taxonomy for Learning, Teaching, and Assessing</em> (revised Bloom).</li>
+<li><a href="../../index.html#/specs/ksa-taxonomy.md" target="_blank" rel="noopener"><code>../../../specs/ksa-taxonomy.md</code></a> — "Bloom home" rows.</li>
+<li><a href="../../index.html#/templates/micro-credential-ada-template.md" target="_blank" rel="noopener"><code>../../../templates/micro-credential-ada-template.md</code></a> — objectives section.</li>
+</ul>
+<h3>🧩 Connections</h3>
+<ul>
+<li><strong>Predecessor:</strong> Atom 2. <strong>Successor:</strong> Atom 4 (choose modalities to teach each objective).</li>
+</ul></section>
+<section class="page" id="page-atom-4" data-id="atom-4"><label class="donebox"><input type="checkbox" class="donechk" data-atom="atom-4"> Mark this atom complete</label><h2>⚛ Learning Atom 4 — <em>The Learning Atom Topology</em></h2>
+<p><strong>Phase:</strong> 🙈 2 · Visual Exploration (<em>see</em>) · <strong>KSA:</strong> 🧠 Knowledge · <strong>Target level:</strong> L2 · <strong>Component id:</strong> <code>K-topology</code></p>
+<h3>🎯 Learning objective</h3>
+<ul>
+<li><strong>Select</strong> topology modalities (and sub-types) that fit an atom's <strong>KSA type and phase</strong>.</li>
+</ul>
+<h3>🧩 Prerequisites</h3>
+<ul>
+<li>Atoms 2–3 (KSA + objectives) — modality choice follows from the KSA type.</li>
+</ul>
+<h3>🧭 Atom description</h3>
+<p>The topology is the <strong>menu</strong> you design atoms from. Knowing it well is the difference between defaulting to "a video and a quiz" for everything and deliberately choosing modalities that actually develop the target KSA. This atom is in Phase 2 (<em>see</em>) because the best way to internalize the topology is visually.</p>
+<hr>
+<h3>📖 Reading — <em>The menu you design from</em> (≈ 8 min)</h3>
+<p>A Learning Atom is the <strong>smallest instructional unit</strong>: one objective, taught through a chosen mix of <strong>modalities</strong>, producing a deliverable assessed by a rubric. The topology organizes learning into <strong>7 modalities</strong> in four purpose-groups:</p>
+<div class='tablewrap'><table><thead><tr><th>Group</th><th>Modality</th><th>Verb</th><th>Purpose</th><th>KSA affinity</th></tr></thead><tbody>
+<tr><td><strong>Acquire</strong></td><td>📖 Read</td><td>I read</td><td>concepts via text</td><td>🧠 K</td></tr>
+<tr><td><strong>Acquire</strong></td><td>🎧 Listen</td><td>I hear</td><td>concepts via sound</td><td>🧠 K · 🌱 A</td></tr>
+<tr><td><strong>Acquire</strong></td><td>🎬 Watch</td><td>I see</td><td>ideas/processes in motion</td><td>🧠 K</td></tr>
+<tr><td><strong>Acquire</strong></td><td>🖼️ See</td><td>I picture</td><td>structure &amp; relationships</td><td>🧠 K</td></tr>
+<tr><td><strong>Apply</strong></td><td>🧪 Practice</td><td>I do</td><td>build skill by doing</td><td>🛠️ S</td></tr>
+<tr><td><strong>Assess</strong></td><td>✅ Evaluate</td><td>I prove</td><td>measure &amp; evidence</td><td>all</td></tr>
+<tr><td><strong>Amplify</strong></td><td>🤝 Collaborate</td><td>I share</td><td>learn socially, show dispositions</td><td>🌱 A · 🛠️ S</td></tr>
+</tbody></table></div>
+<p>Each modality has many <strong>sub-types</strong> (the leaves). A few per modality: Read → <em>Article, Technical Article, Case Study, Documentation, Cheat Sheet</em>; Listen → <em>Podcast, Narration, Guided Reflection</em>; Watch → <em>Explainer, Tutorial/Screencast, Documentary</em>; See → <em>Diagram, Mental Model, Framework, Infographic, Flowchart</em>; Practice → <em>Lab, Codelab, Simulation, Role-Play, AI Prompt Question, Project Task</em>; Evaluate → <em>(Diagnostic / Formative / Summative)</em> <em>Pop Quiz, Mini-Rubric, Performance Task, Behavioral Assessment, Capstone</em>; Collaborate → <em>Pair Programming, Workshop, Hackathon, Mentorship, Showcase, Retrospective</em>.</p>
+<blockquote><strong>AI is cross-cutting</strong>, not a dimension: Gen AI can power a <em>Practice</em> atom (AI Prompt Question), an <em>Evaluate</em> atom (AI Q&amp;A check), or a tutor in any modality.</blockquote>
+<p><strong>Key takeaways</strong></p>
+<ul>
+<li><input type="checkbox" disabled> There are <strong>7 modalities</strong> grouped as Acquire · Apply · Assess · Amplify.</li>
+<li><input type="checkbox" disabled> Each modality has many <strong>sub-types</strong> — pick the specific leaf, not just the group.</li>
+<li><input type="checkbox" disabled> <strong>Match modality to KSA type</strong>: K→Acquire, S→Practice, A→See+Practice+Collaborate.</li>
+<li><input type="checkbox" disabled> Offer <strong>≥2 Acquire options</strong> on Knowledge atoms for accessibility.</li>
+</ul>
+<hr>
+<h3>🖼️ See — the full topology (mind map)</h3>
+<div class="mermaid">mindmap
+  root((⚛ Learning Atom))
+    📖 Read
+      Article
+      Technical Article
+      Case Study
+      Documentation
+    🎧 Listen
+      Podcast
+      Narration
+      Guided Reflection
+    🎬 Watch
+      Explainer
+      Tutorial / Screencast
+      Documentary
+    🖼️ See
+      Diagram
+      Mental Model
+      Framework
+      Infographic
+    🧪 Practice
+      Lab
+      Codelab
+      Simulation
+      Role-Play
+      AI Prompt Question
+    ✅ Evaluate
+      Pop Quiz
+      Mini-Rubric
+      Performance Task
+      Behavioral Assessment
+      Capstone
+    🤝 Collaborate
+      Pair Programming
+      Workshop
+      Mentorship
+      Showcase</div>
+<p><strong>Choosing modalities by KSA type</strong> (the rule that matters most):</p>
+<div class='tablewrap'><table><thead><tr><th>KSA target</th><th>Lead modalities</th><th>Evaluation</th></tr></thead><tbody>
+<tr><td>🧠 Knowledge</td><td>Read · Listen · Watch · See (offer ≥2 for accessibility)</td><td>Pop Quiz / AI Q&amp;A</td></tr>
+<tr><td>🛠️ Skill</td><td>Watch a demo → <strong>Practice</strong> (lab/codelab)</td><td>Performance Task + Mini-Rubric</td></tr>
+<tr><td>🌱 Ability</td><td><strong>See</strong> (model it) + <strong>Practice</strong> (role-play) + <strong>Collaborate</strong></td><td>Behavioral Assessment (≥3) + Reflection</td></tr>
+</tbody></table></div>
+<hr>
+<h3>🧪 Practice — <em>Design exercise: pick modalities</em></h3>
+<p>For each atom goal, list 2–3 modality <strong>sub-types</strong> and the evaluation:</p>
+<ol>
+<li>🧠 "Explain HTTP status codes."  2. 🛠️ "Build a CRUD endpoint."  3. 🌱 "Collaborate across</li>
+</ol>
+<p>disciplines."</p>
+<details>
+<summary>Sample key</summary>
+<ol>
+<li>📖 Technical Article + 🖼️ Infographic + ✅ Pop Quiz.</li>
+<li>🎬 Screencast + 🧪 Codelab + ✅ Performance Task (+ Mini-Rubric).</li>
+<li>🖼️ Mental Model + 🧪 Role-Play + 🤝 Group Project + ✅ Behavioral Assessment ×3.</li>
+</ol>
+</details>
+<hr>
+<h3>✅ Evaluate — Pop quiz (formative, <code>knowledge-mini</code>)</h3>
+<ol>
+<li>Name the 7 modalities and their KSA affinity.</li>
+<li>Why should you never assess an Ability with a quiz?</li>
+<li>What's the minimum you should pair on a Skill atom?</li>
+</ol>
+<details>
+<summary>Answer key</summary>
+<ol>
+<li>📖 Read, 🎧 Listen, 🎬 Watch, 🖼️ See (all 🧠 K) · 🧪 Practice (🛠️ S) · ✅ Evaluate (all) ·</li>
+</ol>
+<p>   🤝 Collaborate (🌱 A · 🛠️ S).</p>
+<ol>
+<li>Abilities are dispositions shown <strong>across situations</strong>; a one-shot recall quiz can't evidence</li>
+</ol>
+<p>   consistency — use behavioral assessment across ≥3 occasions.</p>
+<ol>
+<li>At least one <strong>Acquire/Demo</strong> modality paired with one <strong>Practice</strong> sub-type.</li>
+</ol>
+</details>
+<hr>
+<h3>📦 Deliverable</h3>
+<ul>
+<li>A modality plan (sub-types + evaluation) for <strong>3 atom goals</strong> of different KSA types — ideally</li>
+</ul>
+<p>  three of the objectives you wrote in Atom 3.</p>
+<h3>🧠 Final reflection</h3>
+<ul>
+<li>Which modality do you over-rely on? Designers have defaults; naming yours helps you diversify.</li>
+</ul>
+<h3>🔗 Sources to verify (human-in-the-loop)</h3>
+<ul>
+<li><a href="../../index.html#/specs/learning-atom-topology.md" target="_blank" rel="noopener"><code>../../../specs/learning-atom-topology.md</code></a> — the</li>
+</ul>
+<p>  complete catalog with every sub-type and decision flow.</p>
+<h3>🧩 Connections</h3>
+<ul>
+<li><strong>Predecessor:</strong> Atom 3. <strong>Successor:</strong> Atom 5 (turn these plans into real atoms).</li>
+</ul></section>
+<section class="page" id="page-atom-5" data-id="atom-5"><label class="donebox"><input type="checkbox" class="donechk" data-atom="atom-5"> Mark this atom complete</label><h2>⚛ Learning Atom 5 — <em>Build One Atom of Each KSA Type</em></h2>
+<p><strong>Phase:</strong> 🙊 3 · Applied Practice (<em>do</em>) · <strong>KSA:</strong> 🛠️ Skill + 🌱 Ability · <strong>Target level:</strong> L3 · <strong>Component ids:</strong> <code>S-design-atoms</code>, <code>A-design-judgment</code></p>
+<h3>🎯 Learning objective</h3>
+<ul>
+<li><strong>Design</strong> three complete learning atoms — one <strong>Knowledge</strong>, one <strong>Skill</strong>, one <strong>Ability</strong> —</li>
+</ul>
+<p>  each with topology-correct modalities and a matching evaluation.</p>
+<h3>🧩 Prerequisites</h3>
+<ul>
+<li>Atoms 2–4 (KSA, objectives, topology). Have the [Learning Atom</li>
+</ul>
+<p>  Template](../../../templates/learning-atom-template.md) open.</p>
+<h3>🧭 Atom description</h3>
+<p>This is the core craft of an ADA designer: authoring atoms. You'll feel the difference between the three KSA types in your hands — a Knowledge atom is built to <em>acquire and check</em>, a Skill atom to <em>demo and do</em>, an Ability atom to <em>model, practice, collaborate, and observe over time</em>. This is also the first of three occasions where your <strong>design judgment</strong> (<code>A-design-judgment</code>) is observed.</p>
+<hr>
+<h3>🧭 What to do (Design Exercise)</h3>
+<p>Pick a single subject you know well (e.g. "Git basics", "writing clear emails", "data viz"). Using the <a href="../../index.html#/templates/learning-atom-template.md" target="_blank" rel="noopener">Learning Atom Template</a>, author <strong>three atoms</strong> about it — one per KSA type:</p>
+<div class="mermaid">flowchart LR
+  SUBJ[&quot;🎯 Your subject&quot;] --&gt; KA[&quot;🧠 Knowledge atom&lt;br/&gt;Read/Watch/See + Pop Quiz&quot;]
+  SUBJ --&gt; SA[&quot;🛠️ Skill atom&lt;br/&gt;Demo → Practice + Performance rubric&quot;]
+  SUBJ --&gt; AA[&quot;🌱 Ability atom&lt;br/&gt;Model + Role-Play + Collaborate + Behavioral ×3&quot;]
+  KA --&gt; REV[&quot;🤝 Peer review (checklist)&quot;]
+  SA --&gt; REV
+  AA --&gt; REV</div>
+<p>For <strong>each</strong> atom, fill in: objective (Bloom + KSA + level) · prerequisites · modalities (from the topology) · learning activities · deliverable · evaluation · reflection. Match the modality to the KSA type — that's what's being assessed.</p>
+<hr>
+<h3>🤝 Collaborate — peer review (Async Peer Review)</h3>
+<p>Trade your three atoms with a peer (or self-review against this checklist):</p>
+<ul>
+<li><input type="checkbox" disabled> Exactly <strong>one objective</strong> with a Bloom verb + KSA type + level.</li>
+<li><input type="checkbox" disabled> Modalities are <strong>from the topology</strong> and <strong>fit the KSA type</strong>.</li>
+<li><input type="checkbox" disabled> Knowledge atom offers <strong>≥2 Acquire options</strong>; Skill atom pairs <strong>Demo + Practice</strong>;</li>
+</ul>
+<p>      Ability atom uses <strong>See + Practice + Collaborate</strong> with a <strong>behavioral</strong> evaluation (≥3).</p>
+<ul>
+<li><input type="checkbox" disabled> The evaluation actually measures the objective (no quiz for an Ability).</li>
+</ul>
+<hr>
+<h3>✅ Evaluate — Performance task (<code>skill</code>)</h3>
+<p>Your three atoms are scored with the <code>skill</code> mini-rubric (correct mechanics · modality–KSA fit · evaluation match). The peer review you <em>give</em> is one of the 3 observed occasions for <code>A-design-judgment</code> (did you center the learner and give specific, kind, useful feedback?).</p>
+<h3>📦 Deliverable</h3>
+<ul>
+<li><strong>3 finished atoms</strong> (K, S, A) on one subject + the peer-review checklist you applied. These</li>
+</ul>
+<p>  become atoms in your capstone credential (Atom 7).</p>
+<h3>🧠 Final reflection</h3>
+<ul>
+<li>Which KSA type was hardest to design for? Most new designers find <strong>Ability</strong> atoms hardest —</li>
+</ul>
+<p>  they require modeling, repetition, and behavioral evidence rather than content delivery.</p>
+<h3>🔗 Sources to verify (human-in-the-loop)</h3>
+<ul>
+<li><a href="../../index.html#/templates/learning-atom-template.md" target="_blank" rel="noopener"><code>../../../templates/learning-atom-template.md</code></a> —</li>
+</ul>
+<p>  the template you fill.</p>
+<ul>
+<li>Imitate real atoms in the</li>
+</ul>
+<p>  <a href="../growth-mindset-micro-credential/atoms" target="_blank" rel="noopener">Growth Mindset</a> and   <a href="../python-variables-micro-credential/atoms" target="_blank" rel="noopener">Python Variables</a> courses.</p>
+<h3>🧩 Connections</h3>
+<ul>
+<li><strong>Predecessor:</strong> Atom 4. <strong>Successor:</strong> Atom 6 (how to assess the atoms you just built).</li>
+</ul></section>
+<section class="page" id="page-atom-6" data-id="atom-6"><label class="donebox"><input type="checkbox" class="donechk" data-atom="atom-6"> Mark this atom complete</label><h2>⚛ Learning Atom 6 — <em>Design the Assessment</em></h2>
+<p><strong>Phase:</strong> 🙊 3 · Applied Practice (<em>do</em>) · <strong>KSA:</strong> 🛠️ Skill · <strong>Target level:</strong> L2 · <strong>Component id:</strong> <code>S-build-rubric</code></p>
+<h3>🎯 Learning objective</h3>
+<ul>
+<li><strong>Build</strong> the standard 5-criteria <strong>Assessment Rubric</strong>, plus the evidence → badge → skills-map map</li>
+</ul>
+<p>  for a credential.</p>
+<h3>🧩 Prerequisites</h3>
+<ul>
+<li>Atom 5 (you'll assess the atoms you designed). Atom 2 (KSA → instrument fit).</li>
+</ul>
+<h3>🧭 Atom description</h3>
+<p>A credential is only as fair and useful as its assessment. This atom turns "I think they learned it" into evidence: the right instrument per KSA type, a weighted capstone rubric with distinct bands, and a badge that writes specific KSA levels into the skills map.</p>
+<hr>
+<h3>📖 Reading — <em>Right tool for each KSA</em> (≈ 5 min)</h3>
+<p>Match the instrument to the type: <strong>Knowledge</strong> → quiz / concept check; <strong>Skill</strong> → performance task + mini-rubric on an artifact; <strong>Ability</strong> → <strong>behavioral rubric across ≥3 occasions</strong> + reflection +</p>
+<ol>
+<li>The <strong>capstone</strong> is summative and graded with the <strong>5-criteria Assessment Rubric</strong>, weighted to</li>
+</ol>
+<p>100 points across four proficiency bands.</p>
+<div class='tablewrap'><table><thead><tr><th>KSA</th><th>Best instrument</th><th>Evidence</th></tr></thead><tbody>
+<tr><td>🧠 Knowledge</td><td>Pop quiz / concept check / AI Q&amp;A</td><td>correct recall &amp; explanation</td></tr>
+<tr><td>🛠️ Skill</td><td>Performance task + mini-rubric</td><td>a working artifact</td></tr>
+<tr><td>🌱 Ability</td><td>Behavioral rubric (≥3 occasions) + reflection + 360</td><td>consistent behavior over time</td></tr>
+<tr><td>🚀 Capstone (all)</td><td>5-criteria Assessment Rubric (100 pts)</td><td>integrative, job-like deliverable</td></tr>
+</tbody></table></div>
+<p><strong>Key takeaways</strong></p>
+<ul>
+<li><input type="checkbox" disabled> Pick the instrument from the <strong>KSA type</strong>, not habit.</li>
+<li><input type="checkbox" disabled> Capstone rubric = <strong>5 criteria × 4 bands</strong>, weighted to <strong>100 pts</strong>.</li>
+<li><input type="checkbox" disabled> Bands must be <strong>distinct and observable</strong> (a grader can tell them apart).</li>
+<li><input type="checkbox" disabled> The badge writes <strong>specific KSA levels</strong> into the skills map.</li>
+</ul>
+<hr>
+<h3>🧪 Practice — build the standard Assessment Rubric (Design Exercise)</h3>
+<p>Tailor the descriptors to your subject (keep the bands and weights):</p>
+<div class='tablewrap'><table><thead><tr><th>Criteria</th><th>Excellent (100–90%)</th><th>Competent (89–80%)</th><th>Developing (79–70%)</th><th>Initial (69% or less)</th><th>Weight</th></tr></thead><tbody>
+<tr><td><strong>Relevance (competency alignment)</strong></td><td>[describe mastery]</td><td>[describe]</td><td>[describe]</td><td>[describe]</td><td><strong>20 pts</strong></td></tr>
+<tr><td><strong>Application of skills</strong></td><td>[describe]</td><td>[describe]</td><td>[describe]</td><td>[describe]</td><td><strong>25 pts</strong></td></tr>
+<tr><td><strong>Problem-solving &amp; creativity</strong></td><td>[describe]</td><td>[describe]</td><td>[describe]</td><td>[describe]</td><td><strong>20 pts</strong></td></tr>
+<tr><td><strong>Clarity &amp; communication</strong></td><td>[describe]</td><td>[describe]</td><td>[describe]</td><td>[describe]</td><td><strong>15 pts</strong></td></tr>
+<tr><td><strong>Collaboration &amp; reflection</strong></td><td>[describe]</td><td>[describe]</td><td>[describe]</td><td>[describe]</td><td><strong>20 pts</strong></td></tr>
+<tr><td><strong>TOTAL</strong></td><td></td><td></td><td></td><td></td><td><strong>100 pts</strong></td></tr>
+</tbody></table></div>
+<p>Then write the <strong>evidence → badge</strong> logic and the <strong>skills-map</strong> fragment:</p>
+<div class="mermaid">flowchart LR
+  A5[&quot;Skill atom ✔&quot;] --&gt; BADGE
+  A6[&quot;Rubric applied ✔&quot;] --&gt; BADGE
+  CAP[&quot;Capstone ✔&quot;] --&gt; BADGE
+  MENTOR[&quot;🧑‍🏫 Mentor verification&quot;] --&gt; BADGE
+  BADGE[&quot;🏅 Your badge&lt;br/&gt;K/S/A levels certified&quot;] --&gt; MAP[&quot;🗺️ Skills map → job match&quot;]</div>
+<pre class="code"><span class="lang">yaml</span><code>badge:
+  name: &quot;[Your badge]&quot;
+  evidence_required: [&quot;[atom-x]&quot;, &quot;capstone&quot;]
+  issued_on: verified-evidence
+  components: { &quot;[K-id]&quot;: 2, &quot;[S-id]&quot;: 2, &quot;[A-id]&quot;: 2 }</code></pre>
+<hr>
+<h3>✅ Evaluate — Performance task (<code>skill</code>)</h3>
+<p>Bands are distinct &amp; observable · weights total 100 · a pass rule is stated · the badge maps to KSA levels. This is a second observed occasion for <code>A-design-judgment</code> (is the assessment <em>fair</em> and learner-respecting?).</p>
+<h3>📦 Deliverable</h3>
+<ul>
+<li>A completed Assessment Rubric + at least one mini-rubric + the badge/skills-map fragment for your</li>
+</ul>
+<p>  subject. Reuse these in the capstone (Atom 7).</p>
+<h3>🧠 Final reflection</h3>
+<ul>
+<li>Could two different graders use your rubric and land within ~10%? If not, your bands aren't</li>
+</ul>
+<p>  distinct enough yet.</p>
+<h3>🔗 Sources to verify (human-in-the-loop)</h3>
+<ul>
+<li>The standardized rubric in</li>
+</ul>
+<p>  <a href="../../index.html#/templates/micro-credential-ada-template.md" target="_blank" rel="noopener"><code>../../../templates/micro-credential-ada-template.md</code></a>.</p>
+<ul>
+<li><a href="../../index.html#/specs/skills-map-and-job-matching.md" target="_blank" rel="noopener"><code>../../../specs/skills-map-and-job-matching.md</code></a>.</li>
+</ul>
+<h3>🧩 Connections</h3>
+<ul>
+<li><strong>Predecessor:</strong> Atom 5. <strong>Successor:</strong> Atom 7 (assemble everything into one credential).</li>
+</ul></section>
+<section class="page" id="page-atom-7" data-id="atom-7"><label class="donebox"><input type="checkbox" class="donechk" data-atom="atom-7"> Mark this atom complete</label><h2>⚛ Learning Atom 7 — <em>Capstone: Assemble the Full ADA Credential</em></h2>
+<p><strong>Phase:</strong> 🐵 4 · Collaboration &amp; Reflection (<em>share</em>) · <strong>KSA:</strong> 🛠️ Skill + 🌱 Ability · <strong>Target level:</strong> L3 · <strong>Component ids:</strong> <code>S-assemble-mc</code>, <code>A-design-judgment</code></p>
+<h3>🎯 Learning objective</h3>
+<ul>
+<li><strong>Create</strong> a complete, job-ready ADA micro-credential for a <strong>real organizational skill need</strong>,</li>
+</ul>
+<p>  using <strong>all</strong> the templates, then <strong>showcase</strong> it for peer + mentor review.</p>
+<h3>🧩 Prerequisites</h3>
+<ul>
+<li>All prior atoms. You should already have: 5 tagged objectives (Atom 3), 3 atoms (Atom 5), and an</li>
+</ul>
+<p>  Assessment Rubric + badge fragment (Atom 6).</p>
+<h3>🧭 Atom description</h3>
+<p>This is where the course pays off: you assemble your accumulated artifacts into one coherent, deliverable credential — the same artifact a working ADA designer ships. It's a Phase 4 atom because the work is proven socially: a showcase and a peer review, validated by a mentor.</p>
+<hr>
+<h3>🧭 The build (use every template)</h3>
+<div class="mermaid">flowchart LR
+  S0[&quot;🏢 Step 0&lt;br/&gt;Skill-need intake&quot;] --&gt; S1[&quot;🎯 Competency&lt;br/&gt;(SFIA/O*NET/ESCO)&quot;]
+  S1 --&gt; S2[&quot;🧬 KSA breakdown&lt;br/&gt;+ 0–4 targets&quot;]
+  S2 --&gt; S3[&quot;📘 Objectives&lt;br/&gt;(Bloom + KSA)&quot;]
+  S3 --&gt; S4[&quot;⚛ 4–8 atoms&lt;br/&gt;(topology modalities)&quot;]
+  S4 --&gt; S5[&quot;🚀 Capstone&lt;br/&gt;+ Assessment Rubric&quot;]
+  S5 --&gt; S6[&quot;🏅 Badge → 🗺️ skills map&quot;]</div>
+<ol>
+<li><strong>Open the <a href="../../index.html#/templates/micro-credential-ada-template.md" target="_blank" rel="noopener">Micro-Credential Template</a></strong> and</li>
+</ol>
+<p>   complete <strong>Step 0 (skill-need intake)</strong> → <strong>Step 1 (competency)</strong> → <strong>Step 2 (KSA breakdown)</strong> →    <strong>Step 3 (objectives)</strong>. Reuse your Atom 3 objectives.</p>
+<ol>
+<li><strong>Design 4–8 atoms</strong> using the</li>
+</ol>
+<p>   <a href="../../index.html#/templates/learning-atom-template.md" target="_blank" rel="noopener">Learning Atom Template</a> (reuse and extend your    three atoms from Atom 5). Add a <a href="../../index.html#/templates/codelab-ada-template.md" target="_blank" rel="noopener">Codelab</a> if your    skill is technical.</p>
+<ol>
+<li><strong>Add the capstone + the 5-criteria Assessment Rubric</strong> from Atom 6.</li>
+<li><strong>Define the badge → skills map</strong> so completion is job-matchable.</li>
+<li><strong>Run the Design Conformance Checklist</strong> at the end of the template.</li>
+<li><strong>Showcase</strong> (5 min): the skill need, your KSA breakdown, one atom you're proud of, and how the</li>
+</ol>
+<p>   badge closes a real job gap. Exchange a <strong>peer review</strong>.</p>
+<hr>
+<h3>📦 What to submit</h3>
+<ul>
+<li><input type="checkbox" disabled> A completed <strong>micro-credential</strong> doc (Step 0 → badge), <strong>4–8 atoms</strong>, a <strong>capstone brief</strong>, a</li>
+</ul>
+<p>      <strong>5-criteria Assessment Rubric</strong>, and a <strong>badge → skills-map</strong> fragment.</p>
+<ul>
+<li><input type="checkbox" disabled> Conformance checklist passed; one <strong>peer review</strong> given; a <strong>showcase</strong> delivered.</li>
+<li><input type="checkbox" disabled> Re-take the diagnostic from <a href="#spec"><code>../micro-credential.md</code></a> and note your</li>
+</ul>
+<p>      deltas.</p>
+<hr>
+<h3>🎤 Showcase structure (≈ 5 minutes)</h3>
+<ol>
+<li><strong>The skill need</strong> (45s) — whose job, which task, why now.</li>
+<li><strong>KSA breakdown</strong> (60s) — the components and target levels.</li>
+<li><strong>One atom</strong> (90s) — the one you're proudest of, and why its modalities fit its KSA type.</li>
+<li><strong>Badge → job gap</strong> (60s) — what the skills map writes, and the requirement it closes.</li>
+<li><strong>Human-in-the-loop</strong> (15s) — what a mentor/employer must validate before it counts.</li>
+</ol>
+<hr>
+<h3>✅ Evaluate — Capstone (<code>capstone-5</code>)</h3>
+<p>Graded with the standard 5-criteria Assessment Rubric in <a href="#rubrics"><code>../rubrics.md</code></a> / <a href="#capstone"><code>../capstone.md</code></a>. This is the third and decisive observed occasion for <code>A-design-judgment</code> (learner empathy + framework rigor + honest human-in-the-loop flags).</p>
+<h3>📦 Deliverable</h3>
+<ul>
+<li>Your <strong>complete, portfolio-ready ADA micro-credential</strong> + showcase + the peer review you gave.</li>
+</ul>
+<h3>🧠 Final reflection</h3>
+<ul>
+<li>Compare your before/after diagnostic. Which component moved most? What would you redesign on a</li>
+</ul>
+<p>  second pass — and what does that tell you about your design defaults?</p>
+<h3>🔗 Sources to verify (human-in-the-loop)</h3>
+<ul>
+<li>All three templates in <a href="../../templates" target="_blank" rel="noopener"><code>../../../templates/</code></a>.</li>
+<li><a href="#capstone"><code>../capstone.md</code></a> · <a href="#rubrics"><code>../rubrics.md</code></a> · <a href="#skillsmap"><code>../skills-map.md</code></a>.</li>
+</ul>
+<h3>🧩 Connections</h3>
+<ul>
+<li><strong>Predecessor:</strong> Atom 6. <strong>Outcome:</strong> 🏅 <em>ADA Methodology Designer</em> badge → an L&amp;D /</li>
+</ul>
+<p>  instructional-design pathway (see <a href="#skillsmap"><code>../skills-map.md</code></a>).</p></section>
+<section class="page" id="page-capstone" data-id="capstone"><h1>🚀 Capstone — <em>Design a Complete ADA Credential</em></h1>
+<p>The capstone is delivered as <a href="#atom-7">Atom 7</a>. This file is the <strong>grading brief</strong>: what the designer submits, how it maps to KSA, and the showcase format.</p>
+<hr>
+<h2>🎯 The brief</h2>
+<blockquote>Take a <strong>real organizational skill need</strong> and design a complete ADA micro-credential for it, using all three templates — from a Step 0 skill-need intake through KSA breakdown, Bloom-tagged objectives, 4–8 atoms, a capstone, a 5-criteria Assessment Rubric, and a badge → skills map — then peer-review a classmate's credential and do a 5-minute showcase.</blockquote>
+<p>The point is a <strong>coherent, conformant, deliverable</strong> credential someone could actually run — not a huge one. This is exactly the job: turn a fuzzy "we need people who can do X" into a measurable, job-matchable learning unit.</p>
+<hr>
+<h2>📦 What to submit</h2>
+<ul>
+<li><input type="checkbox" disabled> <strong>The micro-credential doc</strong> — Step 0 intake → competency (SFIA/O*NET/ESCO) → KSA breakdown</li>
+</ul>
+<p>  with 0–4 targets → Bloom + KSA objectives → atoms table → capstone → badge.</p>
+<ul>
+<li><input type="checkbox" disabled> <strong>4–8 learning atoms</strong> — at least one <strong>Knowledge</strong>, one <strong>Skill</strong>, and one <strong>Ability</strong> atom,</li>
+</ul>
+<p>  each with topology-correct modalities and a matching evaluation.</p>
+<ul>
+<li><input type="checkbox" disabled> <strong>A 5-criteria Assessment Rubric</strong> for the capstone (+ at least one mini-rubric).</li>
+<li><input type="checkbox" disabled> <strong>A badge → skills-map fragment</strong> showing which KSA levels completion certifies.</li>
+<li><input type="checkbox" disabled> <strong>The Design Conformance Checklist</strong> (from the template) passed.</li>
+<li><input type="checkbox" disabled> <strong>A peer review you gave</strong> — applied to a classmate's credential.</li>
+</ul>
+<hr>
+<h2>🎤 Showcase structure (≈ 5 minutes)</h2>
+<ol>
+<li><strong>The skill need</strong> (45s) — whose job, which task, why now.</li>
+<li><strong>KSA breakdown</strong> (60s) — the components and target levels.</li>
+<li><strong>One atom</strong> (90s) — your proudest atom and why its modalities fit its KSA type.</li>
+<li><strong>Badge → job gap</strong> (60s) — what the skills map writes and the requirement it closes.</li>
+<li><strong>Human-in-the-loop</strong> (15s) — what a mentor/employer must validate before it counts.</li>
+</ol>
+<hr>
+<h2>🧬 How the capstone maps to KSA</h2>
+<div class='tablewrap'><table><thead><tr><th>Capstone element</th><th>Evidences</th><th>Component</th></tr></thead><tbody>
+<tr><td>Coherent Step 0 → badge structure</td><td>Understands the ADA architecture</td><td>🧠 K-ada-architecture</td></tr>
+<tr><td>Correct KSA typing + 0–4 targets</td><td>Classifying competencies</td><td>🧠 K-ksa-framework (L3)</td></tr>
+<tr><td>Bloom-verb, KSA-tagged objectives</td><td>Writing measurable objectives</td><td>🛠️ S-write-objectives (L2)</td></tr>
+<tr><td>Atoms with topology-correct modalities</td><td>Designing atoms of each type</td><td>🛠️ S-design-atoms (L3)</td></tr>
+<tr><td>A fair, weighted 5-criteria rubric</td><td>Building assessment</td><td>🛠️ S-build-rubric (L2)</td></tr>
+<tr><td>The whole thing assembled &amp; conformant</td><td>Assembling a micro-credential</td><td>🛠️ S-assemble-mc (L3)</td></tr>
+<tr><td>Learner-centered choices + HITL flags + peer review</td><td>Design judgment across ≥3 occasions</td><td>🌱 A-design-judgment (L2)</td></tr>
+</tbody></table></div>
+<hr>
+<h2>✅ Grading</h2>
+<p>Atom-level checks (<code>knowledge-mini</code>, <code>skill</code>) gate entry to the capstone, which is then scored on the standard 5-criteria <strong>Assessment Rubric</strong> below (also in <a href="#rubrics"><code>rubrics.md</code></a>).</p>
+<h2>📋 Assessment Rubric</h2>
+<p>Five criteria across four proficiency bands, weighted to <strong>100 points</strong>.</p>
+<div class='tablewrap'><table><thead><tr><th>Criteria</th><th>Excellent (100–90%)</th><th>Competent (89–80%)</th><th>Developing (79–70%)</th><th>Initial (69% or less)</th><th>Weight</th></tr></thead><tbody>
+<tr><td><strong>Relevance (competency alignment)</strong></td><td>Anchored to a real skill need and a named framework; alignment is tight from intake to badge.</td><td>Relevant and framework-linked; minor gaps.</td><td>Loosely relevant; framework link weak or generic.</td><td>Off-target or unanchored to any real need.</td><td><strong>20 pts</strong></td></tr>
+<tr><td><strong>Application of skills</strong></td><td>KSA typing, Bloom objectives, modality fit, and rubric design are all correct and consistent.</td><td>Mostly correct with minor errors.</td><td>Several gaps (mistyped KSA, fuzzy verbs, modality mismatch, vague bands).</td><td>Minimal or incorrect application of the methodology.</td><td><strong>25 pts</strong></td></tr>
+<tr><td><strong>Problem-solving &amp; creativity</strong></td><td>Atoms are well-sequenced and inventive; the capstone genuinely simulates the real job task.</td><td>Sound, conventional design that works.</td><td>Uneven sequence; thin or generic capstone.</td><td>Incoherent sequence or missing capstone.</td><td><strong>20 pts</strong></td></tr>
+<tr><td><strong>Clarity &amp; communication</strong></td><td>Docs are clear, on-template, and professional; showcase is crisp and persuasive.</td><td>Generally clear and on-template.</td><td>Uneven clarity or off-template in places.</td><td>Unclear, incomplete, or not on-template.</td><td><strong>15 pts</strong></td></tr>
+<tr><td><strong>Collaboration &amp; reflection</strong></td><td>Insightful peer review given; honest reflection; human-in-the-loop points explicitly flagged.</td><td>Adequate peer review and reflection.</td><td>Minimal review / reflection.</td><td>Missing peer review or reflection.</td><td><strong>20 pts</strong></td></tr>
+<tr><td><strong>TOTAL</strong></td><td></td><td></td><td></td><td></td><td><strong>100 pts</strong></td></tr>
+</tbody></table></div>
+<blockquote><strong>Pass for the badge:</strong> atom-level <code>skill</code> checks ≥ 2 each AND the Assessment Rubric weighted score ≥ 70% (at least <em>Developing</em> on every criterion), with the peer review + showcase completed — <strong>verified by a mentor</strong> (human-in-the-loop). See <a href="#skillsmap"><code>skills-map.md</code></a> for what the badge unlocks.</blockquote></section>
+<section class="page" id="page-rubrics" data-id="rubrics"><h1>📊 Rubrics — ADA Methodology Designer Micro-Credential</h1>
+<p>All assessment instruments used across the course. Atoms reference these by <code>rubric</code> flavor: <code>knowledge-mini</code>, <code>skill</code>, <code>capstone-5</code> (plus a <code>design-judgment</code> behavioral lens applied throughout).</p>
+<hr>
+<h2>🔹 <code>knowledge-mini</code> — concept checks (Atoms 1, 2, 4)</h2>
+<p>Quick formative check; used for the pop quizzes and the KSA classification worksheet.</p>
+<div class='tablewrap'><table><thead><tr><th>Criterion</th><th>Excellent (3)</th><th>Adequate (2)</th><th>Needs improvement (1)</th></tr></thead><tbody>
+<tr><td><strong>Accuracy</strong></td><td>All answers correct; classifies K/S/A and levels reliably</td><td>Mostly correct</td><td>Repeats a misconception (e.g. quiz-assessing an Ability)</td></tr>
+<tr><td><strong>Vocabulary</strong></td><td>Uses terms correctly (KSA, Bloom level, modality, affective)</td><td>Roughly right</td><td>Vague / wrong terms</td></tr>
+<tr><td><strong>Self-application</strong></td><td>Connects the concept to their own design-in-progress</td><td>Generic example</td><td>None</td></tr>
+</tbody></table></div>
+<blockquote>Pass = 2+ on each. Knowledge here is <strong>L2–L3</strong> — it enables the design Skills that follow.</blockquote>
+<hr>
+<h2>🔹 <code>skill</code> — performance mini-rubric (Atoms 3, 5, 6)</h2>
+<p>For writing objectives, authoring the three atoms, and building the rubric.</p>
+<div class='tablewrap'><table><thead><tr><th>Criterion</th><th>Excellent (3)</th><th>Adequate (2)</th><th>Needs improvement (1)</th></tr></thead><tbody>
+<tr><td><strong>Correct mechanics</strong></td><td>Objectives measurable; atoms complete; rubric weights total 100</td><td>Minor gaps</td><td>Incomplete or non-functional</td></tr>
+<tr><td><strong>KSA fit</strong></td><td>Bloom level + modalities + instrument all match the KSA type</td><td>One slip</td><td>Mismatched (e.g. quiz for an Ability)</td></tr>
+<tr><td><strong>Topology use</strong></td><td>Specific sub-types chosen deliberately from the topology</td><td>Generic but valid</td><td>Defaults to "video + quiz" everywhere</td></tr>
+<tr><td><strong>Measurability</strong></td><td>A second designer could grade with the same result</td><td>Mostly clear</td><td>Bands/criteria too vague to apply</td></tr>
+</tbody></table></div>
+<blockquote>Pass = 2+ on each → <strong>L2–L3</strong> evidence for the relevant design Skill component.</blockquote>
+<hr>
+<h2>🔹 <code>design-judgment</code> — the instructional-judgment lens (Atoms 5–7) ⭐</h2>
+<p>The lens that builds the <strong>Ability</strong> <code>A-design-judgment</code>. A habit, not a single moment — observed across the <strong>3 assessed occasions</strong> (peer review in Atom 5, the assessment design in Atom 6, the capstone in Atom 7).</p>
+<div class='tablewrap'><table><thead><tr><th>Criterion</th><th>Excellent (3)</th><th>Adequate (2)</th><th>Needs improvement (1)</th></tr></thead><tbody>
+<tr><td><strong>Learner empathy</strong></td><td>Choices clearly center the learner (accessibility, scaffolding, fairness)</td><td>Generally learner-aware</td><td>Designer-/content-centric</td></tr>
+<tr><td><strong>Framework rigor</strong></td><td>Competencies linked honestly to SFIA/O*NET/ESCO; sources cited</td><td>Some linkage</td><td>Unanchored claims</td></tr>
+<tr><td><strong>Human-in-the-loop</strong></td><td>Explicitly flags what a mentor/employer must validate</td><td>Mentions it</td><td>Treats AI/own output as authoritative</td></tr>
+</tbody></table></div>
+<blockquote>Consistent 2+ across occasions supports <strong>L2</strong> for <code>A-design-judgment</code>.</blockquote>
+<hr>
+<h2>✨ <code>capstone-5</code> — Assessment Rubric (standard ADA capstone)</h2>
+<p>The capstone is scored on <strong>five criteria</strong> across <strong>four proficiency bands</strong>, weighted to a total of <strong>100 points</strong>. Each criterion's band sets how much of its weight is earned. **Pass = ≥ 70% overall with at least <em>Developing</em> on every criterion**, mentor-verified (human-in-the-loop).</p>
+<div class='tablewrap'><table><thead><tr><th>Criteria</th><th>Excellent (100–90%)</th><th>Competent (89–80%)</th><th>Developing (79–70%)</th><th>Initial (69% or less)</th><th>Weight</th></tr></thead><tbody>
+<tr><td><strong>Relevance (competency alignment)</strong></td><td>Anchored to a real skill need and a named framework; alignment is tight from intake to badge.</td><td>Relevant and framework-linked; minor gaps.</td><td>Loosely relevant; framework link weak or generic.</td><td>Off-target or unanchored to any real need.</td><td><strong>20 pts</strong></td></tr>
+<tr><td><strong>Application of skills</strong></td><td>KSA typing, Bloom objectives, modality fit, and rubric design are all correct and consistent.</td><td>Mostly correct with minor errors.</td><td>Several gaps (mistyped KSA, fuzzy verbs, modality mismatch, vague bands).</td><td>Minimal or incorrect application of the methodology.</td><td><strong>25 pts</strong></td></tr>
+<tr><td><strong>Problem-solving &amp; creativity</strong></td><td>Atoms are well-sequenced and inventive; the capstone genuinely simulates the real job task.</td><td>Sound, conventional design that works.</td><td>Uneven sequence; thin or generic capstone.</td><td>Incoherent sequence or missing capstone.</td><td><strong>20 pts</strong></td></tr>
+<tr><td><strong>Clarity &amp; communication</strong></td><td>Docs are clear, on-template, and professional; showcase is crisp and persuasive.</td><td>Generally clear and on-template.</td><td>Uneven clarity or off-template in places.</td><td>Unclear, incomplete, or not on-template.</td><td><strong>15 pts</strong></td></tr>
+<tr><td><strong>Collaboration &amp; reflection</strong></td><td>Insightful peer review given; honest reflection; human-in-the-loop points explicitly flagged.</td><td>Adequate peer review and reflection.</td><td>Minimal review / reflection.</td><td>Missing peer review or reflection.</td><td><strong>20 pts</strong></td></tr>
+<tr><td><strong>TOTAL</strong></td><td></td><td></td><td></td><td></td><td><strong>100 pts</strong></td></tr>
+</tbody></table></div>
+<blockquote><strong>Badge pass:</strong> atom-level <code>skill</code> checks ≥ 2 each AND Assessment Rubric weighted ≥ 70% (at least <em>Developing</em> on every criterion), <strong>mentor-verified</strong> (human-in-the-loop).</blockquote>
+<hr>
+<h2>🧮 Evidence → badge logic</h2>
+<div class="mermaid">flowchart LR
+  A5[&quot;Atom 5&lt;br/&gt;skill ✔&quot;] --&gt; BADGE
+  A6[&quot;Atom 6&lt;br/&gt;skill ✔&quot;] --&gt; BADGE
+  CAP[&quot;Capstone&lt;br/&gt;capstone-5 ✔&quot;] --&gt; BADGE
+  MENTOR[&quot;🧑‍🏫 Mentor verification&quot;] --&gt; BADGE
+  BADGE[&quot;🏅 ADA Methodology Designer&lt;br/&gt;S-design-atoms=3 · S-assemble-mc=3 · A-design-judgment=2&quot;]</div></section>
+<section class="page" id="page-skillsmap" data-id="skillsmap"><h1>🗺️ Skills Map — what the badge unlocks</h1>
+<p>How the <strong>🏅 ADA Methodology Designer</strong> badge writes into a learner's skills map and starts an instructional-design / L&amp;D pathway. Conforms to <a href="../../index.html#/specs/skills-map-and-job-matching.md" target="_blank" rel="noopener"><code>../../specs/skills-map-and-job-matching.md</code></a>.</p>
+<hr>
+<h2>🏅 What the badge certifies</h2>
+<p>On verified completion, the badge sets these components in the learner's skills map:</p>
+<div class='tablewrap'><table><thead><tr><th>Component</th><th>Type</th><th>Level earned</th></tr></thead><tbody>
+<tr><td><code>S-design-atoms</code></td><td>🛠️ Skill</td><td><strong>3</strong></td></tr>
+<tr><td><code>S-assemble-mc</code></td><td>🛠️ Skill</td><td><strong>3</strong></td></tr>
+<tr><td><code>S-write-objectives</code></td><td>🛠️ Skill</td><td>2</td></tr>
+<tr><td><code>S-build-rubric</code></td><td>🛠️ Skill</td><td>2</td></tr>
+<tr><td><code>A-design-judgment</code></td><td>🌱 Ability</td><td>2</td></tr>
+<tr><td><code>K-ksa-framework</code></td><td>🧠 Knowledge</td><td>3</td></tr>
+<tr><td><code>K-ada-architecture</code></td><td>🧠 Knowledge</td><td>2</td></tr>
+<tr><td><code>K-bloom</code></td><td>🧠 Knowledge</td><td>2</td></tr>
+<tr><td><code>K-topology</code></td><td>🧠 Knowledge</td><td>2</td></tr>
+</tbody></table></div>
+<pre class="code"><span class="lang">yaml</span><code># fragment merged into the learner&#x27;s skills map on badge issuance
+badge: ada-methodology-designer
+issued_on: verified-evidence
+components:
+  S-design-atoms: 3
+  S-assemble-mc: 3
+  S-write-objectives: 2
+  S-build-rubric: 2
+  A-design-judgment: 2
+  K-ksa-framework: 3
+  K-ada-architecture: 2
+  K-bloom: 2
+  K-topology: 2</code></pre>
+<hr>
+<h2>🎯 Why this matters for job matching</h2>
+<p>This is a <strong>capability</strong> badge for the people who <em>build</em> ADA credentials. It moves a learner from "can follow a template" to "can design a job-matchable learning unit from a raw skill need."</p>
+<div class='tablewrap'><table><thead><tr><th>Requirement (<code>must_have</code>)</th><th>Before</th><th>After badge</th></tr></thead><tbody>
+<tr><td>Curriculum / learning design (Skill ≥ 2)</td><td>❌ 0</td><td>✅ 3</td></tr>
+<tr><td>Competency mapping &amp; KSA typing (Knowledge ≥ 2)</td><td>❌ 0</td><td>✅ 3</td></tr>
+<tr><td>Assessment &amp; rubric design (Skill ≥ 2)</td><td>⚠️ unproven</td><td>✅ 2</td></tr>
+<tr><td>Learner-centered design judgment (Ability ≥ 1)</td><td>⚠️ unproven</td><td>✅ 2</td></tr>
+</tbody></table></div>
+<div class="mermaid">flowchart LR
+  GAP[&quot;🔎 Job match gap&lt;br/&gt;Skill: design ADA credentials = MISSING&quot;] --&gt; MC[&quot;🎓 ADA Methodology Designer&lt;br/&gt;micro-credential&quot;]
+  MC --&gt; EV[&quot;📦 Design evidence&lt;br/&gt;3 atoms + rubric + a full credential&quot;]
+  EV --&gt; BADGE[&quot;🏅 ADA Methodology Designer&quot;]
+  BADGE --&gt; MAP[&quot;🗺️ Skills map&lt;br/&gt;S-design-atoms=3 · S-assemble-mc=3&quot;]
+  MAP --&gt; NEXT[&quot;➡️ Unlocks next bricks&quot;]</div>
+<hr>
+<h2>🔗 Where this fits a role pathway</h2>
+<p><code>S-design-atoms</code> and <code>S-assemble-mc</code> are the <strong>core bricks</strong> of an instructional-design / L&amp;D role pathway built with <a href="../../index.html#/specs/role-to-credential-mapping.md" target="_blank" rel="noopener"><code>../../specs/role-to-credential-mapping.md</code></a>. A natural sequence after this badge:</p>
+<div class="mermaid">flowchart LR
+  DES[&quot;🎓 ADA Designer&lt;br/&gt;(this badge)&quot;] --&gt; GENAI[&quot;🤖 Gen AI authoring at scale&quot;]
+  GENAI --&gt; ROLE2[&quot;🗺️ Role-to-credential mapping&quot;]
+  ROLE2 --&gt; PATH[&quot;🧭 Pathway &amp; program design&quot;]
+  PATH --&gt; ROLE[&quot;💼 Instructional Designer /&lt;br/&gt;Learning Experience Designer /&lt;br/&gt;L&amp;D Lead&quot;]</div>
+<p>Pair it with the <a href="../../index.html#/specs/genai-authoring-workflow.md" target="_blank" rel="noopener">Gen AI Authoring Workflow</a> to design faster, and with <a href="../../index.html#/specs/role-to-credential-mapping.md" target="_blank" rel="noopener">Role-to-Credential Mapping</a> to scale from single credentials to full role pathways — see the <a href="../../index.html#/examples/role-data-scientist-pathway.md" target="_blank" rel="noopener">Data Scientist pathway</a> for how bricks stack into a role.</p>
+<blockquote>⚠️ Per the methodology, AI-suggested matches and AI-generated designs are <strong>decision support</strong>, not authoritative — a mentor/employer validates the evidence before the badge counts (human-in-the-loop).</blockquote></section></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var pages=Array.prototype.slice.call(document.querySelectorAll(".page"));
+  var ids=pages.map(function(p){return p.getAttribute("data-id");});
+  var links=Array.prototype.slice.call(document.querySelectorAll(".navlink"));
+  var atomIds=["atom-1","atom-2","atom-3","atom-4","atom-5","atom-6","atom-7"];
+  var idx=0;
+
+  function show(id){
+    var i=ids.indexOf(id); if(i<0)i=0; idx=i;
+    pages.forEach(function(p){p.classList.toggle("active",p.getAttribute("data-id")===id);});
+    links.forEach(function(a){a.classList.toggle("active",a.getAttribute("data-target")===id);});
+    document.getElementById("prevbtn").disabled=(idx===0);
+    document.getElementById("nextbtn").disabled=(idx===pages.length-1);
+    if(location.hash.slice(1)!==id) history.replaceState(null,"","#"+id);
+    document.getElementById("side").classList.remove("open");
+    window.scrollTo(0,0);
+    renderMermaid();
+  }
+  links.forEach(function(a){a.addEventListener("click",function(e){e.preventDefault();show(a.getAttribute("data-target"));});});
+  document.getElementById("prevbtn").addEventListener("click",function(){if(idx>0)show(ids[idx-1]);});
+  document.getElementById("nextbtn").addEventListener("click",function(){if(idx<ids.length-1)show(ids[idx+1]);});
+  document.getElementById("menutoggle").addEventListener("click",function(){document.getElementById("side").classList.toggle("open");});
+
+  // progress (localStorage)
+  var KEY="ada-methodology-designer-progress";
+  function load(){try{return JSON.parse(localStorage.getItem(KEY)||"{}");}catch(e){return {};}}
+  function save(s){try{localStorage.setItem(KEY,JSON.stringify(s));}catch(e){}}
+  function refresh(){
+    var s=load(),done=0;
+    document.querySelectorAll(".donechk").forEach(function(c){
+      c.checked=!!s[c.getAttribute("data-atom")]; if(c.checked)done++;});
+    var pct=Math.round(done/atomIds.length*100);
+    document.getElementById("progfill").style.width=pct+"%";
+    document.getElementById("progtext").textContent=done+" / "+atomIds.length+" atoms complete";
+  }
+  document.querySelectorAll(".donechk").forEach(function(c){
+    c.addEventListener("change",function(){var s=load();s[c.getAttribute("data-atom")]=c.checked;save(s);refresh();});
+  });
+  refresh();
+
+  // copy buttons
+  document.querySelectorAll(".copybtn").forEach(function(b){
+    b.addEventListener("click",function(){
+      var pre=b.closest(".promptcard").querySelector("pre");
+      var txt=pre.innerText;
+      (navigator.clipboard?navigator.clipboard.writeText(txt):Promise.reject()).then(function(){
+        b.textContent="Copied!";b.classList.add("ok");setTimeout(function(){b.textContent="Copy";b.classList.remove("ok");},1400);
+      }).catch(function(){
+        var r=document.createRange();r.selectNodeContents(pre);var sel=getSelection();sel.removeAllRanges();sel.addRange(r);
+        try{document.execCommand("copy");}catch(e){} sel.removeAllRanges();
+        b.textContent="Copied!";b.classList.add("ok");setTimeout(function(){b.textContent="Copy";b.classList.remove("ok");},1400);
+      });
+    });
+  });
+
+  // youtube click-to-play
+  document.querySelectorAll(".yt").forEach(function(y){
+    var btn=y.querySelector(".yt-play");
+    btn.addEventListener("click",function(){
+      var id=y.getAttribute("data-id"); if(!id)return;
+      var f=document.createElement("iframe");
+      f.src="https://www.youtube-nocookie.com/embed/"+id+"?autoplay=1&rel=0";
+      f.allow="accelerated-sensors;autoplay;encrypted-media;picture-in-picture";
+      f.setAttribute("allowfullscreen","");
+      btn.replaceWith(f);
+    });
+  });
+
+  // mermaid (CDN, brand theme, root emphasis, graceful fallback)
+  var mmReady=null;
+  function ensureMermaid(){
+    if(mmReady)return mmReady;
+    mmReady=new Promise(function(res,rej){
+      if(window.mermaid)return res(window.mermaid);
+      var s=document.createElement("script");
+      s.src="https://cdn.jsdelivr.net/npm/mermaid@11.15.0/dist/mermaid.min.js";
+      s.onload=function(){res(window.mermaid);};
+      s.onerror=function(){
+        var s2=document.createElement("script");
+        s2.src="https://unpkg.com/mermaid@11.15.0/dist/mermaid.min.js";
+        s2.onload=function(){res(window.mermaid);}; s2.onerror=rej;
+        document.head.appendChild(s2);
+      };
+      document.head.appendChild(s);
+    });
+    return mmReady;
+  }
+  function src(n){var s=n.getAttribute("data-src");if(s===null){s=n.textContent;n.setAttribute("data-src",s);}return s;}
+  function fallback(n){n.classList.add("fallback");n.innerHTML="<pre>"+src(n).replace(/[&<>]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;"}[c];})+"</pre>";}
+  function detectRoots(s){
+    try{var L=s.split(/\r?\n/);if(!/^\s*(flowchart|graph)\b/i.test(L[0]||""))return [];
+      var all={},tg={};
+      for(var i=1;i<L.length;i++){var t=(L[i]||"").trim();
+        if(!t||/^%%/.test(t))continue;
+        if(/^(classdef|class|style|linkstyle|click|direction|subgraph|end)\b/i.test(t))continue;
+        var x=L[i];for(var k=0;k<8;k++){x=x.replace(/\(\([^()]*\)\)/g," ").replace(/\[[^\[\]]*\]/g," ").replace(/\{[^{}]*\}/g," ").replace(/\([^()]*\)/g," ");}
+        x=x.replace(/\|[^|]*\|/g," ");if(x.indexOf("--")<0&&x.indexOf("==")<0)continue;
+        var ids=x.split(/\s*(?:-{2,}>?|={2,}>?|-\.->?)\s*/).map(function(z){return (z.trim().match(/^[A-Za-z0-9_]+/)||[""])[0];}).filter(Boolean);
+        for(var j=0;j<ids.length;j++){all[ids[j]]=1;if(j>0)tg[ids[j]]=1;}}
+      var r=Object.keys(all).filter(function(id){return !tg[id];});
+      return r.length&&r.length<=4?r:[];
+    }catch(e){return [];}
+  }
+  function emphasize(s){var r=detectRoots(s);if(!r.length)return s;
+    return s+"\nclassDef adaRootNode fill:#1E2A6E,stroke:#E0A53C,stroke-width:3px,color:#ffffff,font-weight:bold,font-size:21px;\nclass "+r.join(",")+" adaRootNode;";}
+  var seq=0;
+  function renderMermaid(){
+    var nodes=Array.prototype.slice.call(document.querySelectorAll(".page.active .mermaid:not([data-done])"));
+    if(!nodes.length)return;
+    nodes.forEach(src);
+    ensureMermaid().then(function(m){
+      m.initialize({startOnLoad:false,securityLevel:"loose",theme:"base",fontFamily:"inherit",fontSize:"16px",
+        flowchart:{htmlLabels:true,useMaxWidth:true,curve:"basis",padding:14,nodeSpacing:52,rankSpacing:58},
+        themeVariables:{fontSize:"16px",primaryColor:"#1E2A6E",primaryTextColor:"#ffffff",primaryBorderColor:"#15B5C6",
+          mainBkg:"#1E2A6E",nodeBorder:"#15B5C6",nodeTextColor:"#ffffff",lineColor:"#1E2A6E",
+          clusterBkg:"#eef2fb",clusterBorder:"#15B5C6",titleColor:"#1E2A6E",
+          background:"#ffffff",textColor:"#1E2A6E",edgeLabelBackground:"#ffffff",
+          cScale0:"#1E2A6E",cScale1:"#15B5C6",cScale2:"#E0A53C",cScale3:"#2a3aa0",
+          cScaleLabel0:"#ffffff",cScaleLabel1:"#0A1124",cScaleLabel2:"#0A1124",cScaleLabel3:"#ffffff"}});
+      nodes.forEach(function(n){
+        n.setAttribute("data-done","1");
+        var id="mm-"+(Date.now())+"-"+(seq++);
+        try{m.render(id,emphasize(src(n))).then(function(o){n.innerHTML=o.svg;}).catch(function(){fallback(n);});}
+        catch(e){fallback(n);}
+      });
+    }).catch(function(){nodes.forEach(fallback);});
+  }
+
+  window.addEventListener("hashchange",function(){show(location.hash.slice(1)||ids[0]);});
+  show(location.hash.slice(1)||ids[0]);
+})();
+</script>
+</body>
+</html>

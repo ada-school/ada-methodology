@@ -57,9 +57,21 @@ Two instruments, both in [`rubrics.md`](rubrics.md):
 
 - **Behavioral rubric** — consistency across the **5 assessed occasions**, self-awareness, and
   response to setback/feedback. *(This is what certifies the Ability.)*
-- **Capstone-5 rubric** — the standard 5-criteria ADA capstone rubric (relevance, application,
-  problem-solving, clarity, collaboration).
+- **Assessment Rubric (capstone-5)** — the standard 5-criteria ADA capstone rubric, below.
+
+## 📋 Assessment Rubric
+
+Five criteria across four proficiency bands, weighted to **100 points**.
+
+| Criteria | Excellent (100–90%) | Competent (89–80%) | Developing (79–70%) | Initial (69% or less) | Weight |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Relevance (competency alignment)** | Goal is a real, job-relevant stretch; mindset framing is precise and accurate throughout. | Goal is relevant; mindset framing mostly accurate. | Goal loosely relevant; framing partly off or generic. | Weak / off-target goal; framing inaccurate or missing. | **20 pts** |
+| **Application of skills** | YET Loop + deliberate-practice loops used skillfully and visibly across the challenge. | Both techniques used adequately, with minor gaps. | Techniques attempted but inconsistent or superficial. | Techniques largely absent or misapplied. | **25 pts** |
+| **Problem-solving & creativity** | Setbacks reframed into smart, original next reaches. | Setbacks handled with sound, conventional responses. | Some response to setbacks, but stalls or repeats. | Stalls at obstacles; no reframing. | **20 pts** |
+| **Clarity & communication** | Journal + showcase are clear, honest, well-structured and compelling. | Generally clear and organized. | Uneven clarity; gaps or sanitized account. | Unclear, disorganized, or missing. | **15 pts** |
+| **Collaboration & reflection** | Proactive feedback-seeking, strong peer 360, deeply insightful reflection. | Solid engagement and reflection. | Minimal engagement; shallow reflection. | Little or no collaboration or reflection. | **20 pts** |
+| **TOTAL** | | | | | **100 pts** |
 
 > **Pass for the badge:** behavioral rubric ≥ 2 on every criterion **across occasions** AND
-> capstone-5 weighted score ≥ 60%, **verified by a mentor**. See
-> [`skills-map.md`](skills-map.md) for what the badge unlocks.
+> Assessment Rubric weighted score ≥ 70% (at least *Developing* on every criterion),
+> **verified by a mentor**. See [`skills-map.md`](skills-map.md) for what the badge unlocks.

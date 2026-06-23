@@ -248,27 +248,38 @@ Inclui: 👥 feedback entre pares · 🗣️ projetos de cocriação · 🌐 fó
 
 ---
 
-### ✨ Rubrica Padrão para Projeto Capstone (5 Critérios)
+### 📋 Rubrica de Avaliação (Capstone — 5 Critérios)
 
-| Critério                                 | Excelente (5)                              | Bom (3–4)                       | Precisa Melhorar (1–2)          | Peso |
-| ---------------------------------------- | ------------------------------------------ | ------------------------------- | ------------------------------- | ---- |
-| **Relevância (Alinhamento com Competência Profissional)** | Totalmente alinhado com a competência profissional alvo | Principalmente alinhado, lacunas menores | Alinhamento fraco ou ausente | 20% |
-| **Aplicação de Habilidades**             | Uso avançado e correto de ferramentas/métodos | Uso adequado, erros menores | Aplicação mínima ou incorreta | 25% |
-| **Resolução de Problemas e Criatividade** | Soluções inovadoras e práticas            | Adequado mas convencional       | Originalidade limitada, impraticável | 20% |
-| **Clareza e Comunicação**                | Claro, bem estruturado, profissional       | Geralmente claro, alguns problemas | Pouco claro, mal estruturado | 15% |
-| **Colaboração e Reflexão**               | Forte engajamento entre pares + reflexão   | Engajamento moderado            | Mínimo ou ausente              | 20% |
+O capstone é avaliado em **cinco critérios** ao longo de **quatro faixas de proficiência**,
+ponderados para um total de **100 pontos**. A faixa de cada critério define quanto do seu peso é
+obtido. Aprovação recomendada **≥ 70% no total, com pelo menos *Em Desenvolvimento* em cada
+critério**, verificada por um mentor (humano no ciclo). É a rubrica padrão da ADA — reutilize-a em
+todas as suas microcredenciais.
+
+| Critérios | Excelente (100–90%) | Competente (89–80%) | Em Desenvolvimento (79–70%) | Inicial (69% ou menos) | Peso |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Relevância (Alinhamento com Competência Profissional)** | Totalmente alinhado com a competência profissional alvo em todos os momentos. | Principalmente alinhado, lacunas menores. | Parcialmente alinhado; lacunas notáveis. | Alinhamento fraco ou ausente. | **20 pts** |
+| **Aplicação de Habilidades** | Uso avançado e correto das ferramentas/métodos. | Uso adequado, erros menores. | Uso inconsistente; vários erros. | Aplicação mínima ou incorreta. | **25 pts** |
+| **Resolução de Problemas e Criatividade** | Soluções inovadoras e práticas. | Adequado mas convencional. | Originalidade limitada; em parte impraticável. | Pouca originalidade; impraticável. | **20 pts** |
+| **Clareza e Comunicação** | Claro, bem estruturado, profissional. | Geralmente claro, problemas menores. | Clareza / estrutura irregular. | Pouco claro, mal estruturado. | **15 pts** |
+| **Colaboração e Reflexão** | Forte engajamento entre pares + reflexão profunda. | Engajamento e reflexão moderados. | Engajamento / reflexão mínimos. | Ausente. | **20 pts** |
+| **TOTAL** | | | | | **100 pts** |
 
 ---
 
-### 📝 Modelo de Rubrica em Branco (Capstone – Preencher)
+### 📝 Rubrica de Avaliação em Branco (Capstone – Preencher)
 
-| Critério                                 | Excelente (5) \[Descrever maestria] | Bom (3–4) \[Descrever desempenho adequado] | Precisa Melhorar (1–2) \[Descrever desempenho fraco] | Peso \[%] |
-| ---------------------------------------- | ------------------------------------ | ------------------------------------------- | ----------------------------------------------------- | --------- |
-| **Relevância (Alinhamento com Competência Profissional)** | \[Descrever]                    | \[Descrever]                                | \[Descrever]                                          | \[20%]    |
-| **Aplicação de Habilidades**             | \[Descrever]                        | \[Descrever]                                | \[Descrever]                                          | \[25%]    |
-| **Resolução de Problemas e Criatividade** | \[Descrever]                       | \[Descrever]                                | \[Descrever]                                          | \[20%]    |
-| **Clareza e Comunicação**                | \[Descrever]                        | \[Descrever]                                | \[Descrever]                                          | \[15%]    |
-| **Colaboração e Reflexão**               | \[Descrever]                        | \[Descrever]                                | \[Descrever]                                          | \[20%]    |
+\[Copie esta tabela e escreva um descritor em cada célula para a sua competência. Mantenha as
+quatro faixas e ajuste os pesos para somar **100 pts**.]
+
+| Critérios | Excelente (100–90%) | Competente (89–80%) | Em Desenvolvimento (79–70%) | Inicial (69% ou menos) | Peso |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **\[Critério 1 — Relevância]** | \[Descrever maestria] | \[Descrever competente] | \[Descrever em desenvolvimento] | \[Descrever inicial] | **\[20 pts]** |
+| **\[Critério 2 — Aplicação de Habilidades]** | \[Descrever] | \[Descrever] | \[Descrever] | \[Descrever] | **\[25 pts]** |
+| **\[Critério 3 — Resolução de Problemas]** | \[Descrever] | \[Descrever] | \[Descrever] | \[Descrever] | **\[20 pts]** |
+| **\[Critério 4 — Clareza e Comunicação]** | \[Descrever] | \[Descrever] | \[Descrever] | \[Descrever] | **\[15 pts]** |
+| **\[Critério 5 — Colaboração e Reflexão]** | \[Descrever] | \[Descrever] | \[Descrever] | \[Descrever] | **\[20 pts]** |
+| **TOTAL** | | | | | **100 pts** |
 
 ---
 

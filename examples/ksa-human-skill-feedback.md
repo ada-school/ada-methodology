@@ -140,6 +140,20 @@ capstone rubric:
 | Clarity & Communication | A-empathetic-communication |
 | Collaboration & Reflection | 360 + reflection journal |
 
+### 📋 Assessment Rubric (capstone-5)
+
+Five criteria across four proficiency bands, weighted to **100 points** (pass ≥ 70%, at least
+*Developing* on every criterion; mentor-verified).
+
+| Criteria | Excellent (100–90%) | Competent (89–80%) | Developing (79–70%) | Initial (69% or less) | Weight |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Relevance (competency alignment)** | Conversation is a real, job-relevant feedback case, framed accurately. | Relevant; framing mostly accurate. | Loosely relevant; framing partly off. | Off-target or inaccurate framing. | **20 pts** |
+| **Application of Skills** | SBI structure + skilled receiving used cleanly. | Both used adequately, minor gaps. | Inconsistent or partial use. | Minimal or incorrect application. | **25 pts** |
+| **Problem-Solving & Creativity** | Adapts tone to the person/situation insightfully. | Sound, conventional adaptation. | Some adaptation; uneven. | Rigid; no adaptation. | **20 pts** |
+| **Clarity & Communication** | Empathetic, clear, well-structured delivery + reflection. | Generally clear. | Uneven clarity. | Unclear or missing. | **15 pts** |
+| **Collaboration & Reflection** | Strong 360 engagement + insightful reflection journal. | Moderate engagement + reflection. | Minimal. | Missing. | **20 pts** |
+| **TOTAL** | | | | | **100 pts** |
+
 ## 🌱 Why the Ability needs ≥3 occasions
 A single good conversation could be luck. v2 certifies `A-empathetic-communication` only
 after it shows up across **Atom 2 (recognize), Atom 3 (×2 role-plays), Atom 4 (live + 360)**

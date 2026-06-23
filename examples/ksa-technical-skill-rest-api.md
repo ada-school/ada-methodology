@@ -165,6 +165,20 @@ maps to a KSA it evidences:
 | Clarity & Communication | reflection + PR description |
 | Collaboration & Reflection | A-adaptability + peer review |
 
+### 📋 Assessment Rubric (capstone-5)
+
+Five criteria across four proficiency bands, weighted to **100 points** (pass ≥ 70%, at least
+*Developing* on every criterion; mentor-verified).
+
+| Criteria | Excellent (100–90%) | Competent (89–80%) | Developing (79–70%) | Initial (69% or less) | Weight |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Relevance (job alignment)** | API fully reflects correct HTTP semantics and the brief. | Mostly aligned, minor gaps. | Partially aligned; notable gaps. | Weak or missing alignment. | **20 pts** |
+| **Application of Skills** | Endpoints + tests built correctly; clean, idiomatic code. | Adequate build/tests, minor errors. | Inconsistent; gaps in tests or correctness. | Minimal or incorrect application. | **25 pts** |
+| **Problem-Solving & Creativity** | Adapts to the new spec with a robust, elegant solution. | Sound but conventional adaptation. | Limited; partly working adaptation. | Stalls on the change. | **20 pts** |
+| **Clarity & Communication** | Clear PR description + reflection; professional. | Generally clear, minor issues. | Uneven clarity / structure. | Unclear or missing. | **15 pts** |
+| **Collaboration & Reflection** | Constructive peer review + insightful reflection. | Moderate engagement + reflection. | Minimal engagement / reflection. | Missing. | **20 pts** |
+| **TOTAL** | | | | | **100 pts** |
+
 ## 🏅 Badge → skills map
 Earning **REST API Fundamentals** sets `K-http-semantics=2`, `S-build-rest-endpoint=2`,
 `S-write-unit-tests=2`, `A-adaptability=2` in the learner profile — directly raising the

@@ -33,6 +33,7 @@ ada-methodology/
 ├── README.md            # English methodology (canonical / source of truth)
 ├── README-ES.md         # Spanish translation
 ├── README-PT-BR.md      # Portuguese (Brazil) translation
+├── LEARN.md             # Self-paced course: master ADA by building a credential (EN)
 ├── CONTRIBUTING.md      # Contribution rules + license
 ├── CLAUDE.md            # ← you are here
 ├── LICENSE              # CC BY-SA 4.0
@@ -43,7 +44,14 @@ ada-methodology/
 │   ├── *.md             # English templates
 │   ├── es/              # Spanish templates
 │   └── pt-br/           # Portuguese templates
-├── examples/            # Worked, end-to-end examples
+├── examples/            # Worked, end-to-end examples (incl. full courses with their own
+│   │                    #   build-course.py + course.html):
+│   ├── growth-mindset-micro-credential/      # full Ability course (atoms, rubrics, images)
+│   ├── python-variables-micro-credential/    # full technical Skill course (atoms + labs/tests)
+│   ├── ada-methodology-designer-micro-credential/  # train-the-designer course (packaged LEARN.md)
+│   ├── effective-communication-micro-credential/   # full human-skill course (S + A, role-plays)
+│   ├── self-learning-micro-credential/             # full meta-skill course (learn online + with AI)
+│   └── problem-solving-micro-credential/           # full cognitive-skill course (define/diagnose/decide)
 ├── specs/               # v2 specifications (KSA, skills map, Gen AI authoring)
 └── img/                 # Images used in docs
 ```
@@ -59,6 +67,7 @@ ada-methodology/
 | **KSA (v2)**         | Knowledge (know-what/why), Skills (know-how), Abilities (durable/human/attitudes). |
 | **Skills map (v2)**  | Graph of KSA components a learner earns, matched against a job's minimums.  |
 | **Role deconstruction (v2)** | Process to turn a real role into duties → tasks → KSA (at a high-performer bar) → a sequenced micro-credential **pathway** ([`specs/role-to-credential-mapping.md`](specs/role-to-credential-mapping.md)). |
+| **Onboarding course** | [`LEARN.md`](LEARN.md) is a self-referential micro-credential that teaches the methodology *by building one* (KSA · Bloom · topology → a full ADA credential). Point new authors here first. |
 
 ---
 
@@ -82,8 +91,12 @@ ada-methodology/
   Regenerate it with `python3 build-index.py` after changing docs. Its UI chrome is
   translatable via a small JSON string map (`I18N` in `build-index.py`) with an **EN / ES / PT
   language switcher**; keep those keys in sync when you add UI text. The header uses the
-  spinning `img/Isotipo.png` mark. Note: v2 `specs/` are English-only (canonical); the
-  switcher localizes the chrome and points the home README link to the chosen language.
+  spinning `img/Isotipo.png` mark. Note: v2 `specs/` are English-only (canonical).
+  - **Translations are not duplicated in the nav.** `README-ES/PT-BR` and the `templates/es`,
+    `templates/pt-br` mirrors are hidden from the sidebar/search; the language button swaps
+    them in place for the doc you're viewing. The canonical→translation mapping lives in
+    `TRANSLATION_PAIRS` in `build-index.py` — **add any new translated doc there** so the
+    switcher (not a duplicate nav entry) handles it.
 - **Licensing:** all content is **CC BY-SA 4.0**. Cite sources; only use external content
   with proper permission; attribute Ada School.
 - **Links:** prefer relative links between repo files (e.g. `templates/learning-atom-template.md`).

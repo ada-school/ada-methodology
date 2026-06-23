@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>🗣️ Effective Communication · ADA Micro-Credential</title>
+<link rel="icon" href="../../img/Isotipo.png">
+<style>
+:root{
+  --ink:#0A1124; --indigo:#1E2A6E; --turq:#15B5C6; --gold:#E0A53C;
+  --bg:#f6f8fc; --surface:#ffffff; --border:#e2e7f2; --text:#1b2440; --muted:#5b6685;
+  --radius:14px; --shadow:0 6px 24px rgba(20,30,70,.08);
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Arial,sans-serif;
+  background:var(--bg);color:var(--text);line-height:1.65}
+a{color:var(--indigo);text-decoration:none}
+a:hover{text-decoration:underline}
+.app{display:grid;grid-template-columns:300px minmax(0,1fr);min-height:100vh}
+
+/* sidebar */
+.side{position:sticky;top:0;height:100vh;overflow-y:auto;background:var(--ink);color:#dfe5fb;
+  padding:18px 14px;border-right:1px solid #111a36}
+.brand{display:flex;align-items:center;gap:10px;padding:6px 6px 14px}
+.brand img{width:40px;height:40px;animation:spin 9s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.brand b{font-size:15px;color:#fff;line-height:1.2}
+.brand small{display:block;color:var(--turq);font-weight:600;font-size:11px;letter-spacing:.04em}
+.progwrap{margin:8px 6px 16px}
+.progbar{height:8px;border-radius:8px;background:#1b2547;overflow:hidden}
+.progfill{height:100%;width:0;background:linear-gradient(90deg,var(--turq),var(--gold));transition:width .5s}
+.progtext{font-size:11px;color:#9fb0e6;margin-top:6px}
+.nav-group{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:#8fa0d8;
+  margin:14px 8px 4px;font-weight:700}
+.navlink{display:block;padding:8px 10px;border-radius:9px;color:#cdd6f6;font-size:14px;margin:2px 0}
+.navlink:hover{background:#16204180;text-decoration:none;color:#fff}
+.navlink.active{background:linear-gradient(90deg,var(--indigo),#2a3aa0);color:#fff;font-weight:600}
+
+/* main */
+.main{padding:0}
+.topbar{position:sticky;top:0;z-index:5;background:rgba(246,248,252,.85);backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--border);padding:12px 28px;display:flex;align-items:center;gap:14px}
+.topbar .pill{font-size:12px;font-weight:700;color:#fff;background:var(--indigo);padding:4px 12px;border-radius:30px}
+.topbar .sp{flex:1}
+.navbtn{border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:9px;
+  padding:7px 14px;font-size:13px;cursor:pointer;font-weight:600}
+.navbtn:hover{border-color:var(--turq)}
+.navbtn:disabled{opacity:.4;cursor:not-allowed}
+.wrap{max-width:880px;margin:0 auto;padding:30px 28px 90px}
+.page{display:none;animation:fade .35s ease}
+.page.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+h1,h2,h3,h4{color:var(--indigo);line-height:1.25}
+h1{font-size:30px;margin:.2em 0 .5em;border-bottom:3px solid var(--turq);padding-bottom:.3em}
+h2{font-size:22px;margin:1.5em 0 .5em}
+h3{font-size:18px;margin:1.3em 0 .4em}
+h4{font-size:15px;margin:1.1em 0 .3em;color:var(--ink)}
+p{margin:.7em 0}
+hr{border:0;border-top:1px solid var(--border);margin:1.6em 0}
+ul,ol{padding-left:1.4em;margin:.6em 0}
+li{margin:.3em 0}
+li input[type=checkbox]{margin-right:6px}
+img{max-width:100%;border-radius:10px}
+code{background:#eef1f9;padding:.12em .4em;border-radius:6px;font-size:.88em;
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:#27306b}
+pre.code{background:var(--ink);color:#e7ecff;padding:16px 18px;border-radius:var(--radius);
+  overflow:auto;position:relative;box-shadow:var(--shadow)}
+pre.code code{background:none;color:inherit;padding:0;font-size:13.5px;line-height:1.6}
+pre.code .lang{position:absolute;top:8px;right:12px;font-size:10px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--turq);font-family:inherit}
+blockquote{margin:1em 0;padding:.7em 1.1em;border-left:4px solid var(--gold);
+  background:#fff8ec;border-radius:0 10px 10px 0;color:#5a4a23}
+.tablewrap{overflow-x:auto;margin:1em 0;border:1px solid var(--border);border-radius:var(--radius)}
+table{border-collapse:collapse;width:100%;font-size:14px;background:var(--surface)}
+th,td{padding:9px 12px;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+th{background:var(--indigo);color:#fff;font-weight:600}
+tr:nth-child(even) td{background:#f7f9fe}
+
+.donebox{float:right;display:inline-flex;align-items:center;gap:7px;background:var(--surface);
+  border:1px solid var(--border);border-radius:30px;padding:6px 14px;font-size:13px;font-weight:600;
+  color:var(--muted);cursor:pointer;box-shadow:var(--shadow)}
+.donebox input{accent-color:var(--turq)}
+
+/* youtube facade */
+.yt{margin:1.2em 0;border-radius:var(--radius);overflow:hidden;background:var(--ink);box-shadow:var(--shadow)}
+.yt .yt-play{position:relative;display:block;width:100%;aspect-ratio:16/9;border:0;cursor:pointer;
+  background:radial-gradient(circle at 50% 45%,#243069,#0A1124);color:#fff}
+.yt-tri{font-size:42px;color:#fff;background:rgba(225,165,60,.92);width:84px;height:58px;
+  border-radius:16px;display:grid;place-items:center;margin:0 auto;box-shadow:0 6px 18px rgba(0,0,0,.4);
+  transition:transform .2s}
+.yt .yt-play:hover .yt-tri{transform:scale(1.08)}
+.yt iframe{display:block;width:100%;aspect-ratio:16/9;border:0}
+.yt-meta{padding:9px 14px;font-size:13px;background:#121c3a}
+.yt-meta a{color:var(--turq);word-break:break-all}
+.yt-cap{color:#aebadf;font-size:12px;margin-top:2px}
+
+/* prompt card */
+.promptcard{margin:1.2em 0;border:1px solid #d9c79a;border-radius:var(--radius);overflow:hidden;
+  background:#fffdf6;box-shadow:var(--shadow)}
+.promptcard-h{display:flex;align-items:center;justify-content:space-between;padding:8px 14px;
+  background:linear-gradient(90deg,#fbf0d6,#fff7e6);font-weight:700;color:#7a5b16;font-size:13px}
+.promptcard pre{margin:0;padding:14px 16px;white-space:pre-wrap;font-size:13px;color:#4a4634;
+  font-family:ui-monospace,Menlo,monospace}
+.copybtn{border:1px solid var(--gold);background:#fff;color:#8a6516;border-radius:7px;
+  padding:3px 12px;font-size:12px;cursor:pointer;font-weight:700}
+.copybtn:hover{background:var(--gold);color:#fff}
+.copybtn.ok{background:var(--turq);border-color:var(--turq);color:#fff}
+
+/* mermaid */
+.mermaid{margin:1.2em 0;text-align:center;background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
+.mermaid.fallback{text-align:left;background:var(--ink)}
+.mermaid.fallback pre{color:#e7ecff;margin:0;white-space:pre-wrap;font-size:12px}
+.mermaid svg .nodeLabel,.mermaid svg .label{font-weight:600}
+.mermaid svg .edgeLabel,.mermaid svg .edgeLabel *{color:#1E2A6E !important;font-weight:600}
+
+@media(max-width:880px){
+  .app{grid-template-columns:1fr}
+  .side{position:fixed;left:-300px;width:300px;z-index:30;transition:left .25s}
+  .side.open{left:0}
+  .menutoggle{display:inline-flex !important}
+}
+.menutoggle{display:none;align-items:center;justify-content:center;width:38px;height:38px;
+  border:1px solid var(--border);background:var(--surface);border-radius:9px;cursor:pointer;font-size:18px}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side" id="side">
+    <div class="brand">
+      <img src="../../img/Isotipo.png" alt="ADA">
+      <div><b>Effective Communication</b><small>ADA MICRO-CREDENTIAL</small></div>
+    </div>
+    <div class="progwrap">
+      <div class="progbar"><div class="progfill" id="progfill"></div></div>
+      <div class="progtext" id="progtext">0 / 6 atoms complete</div>
+    </div>
+    <nav id="nav"><div class="nav-group">Start</div>
+<a class="navlink" data-target="overview" href="#overview">Course overview</a>
+<a class="navlink" data-target="spec" href="#spec">Micro-credential spec</a>
+<div class="nav-group">🙉 Phase 1 · hear</div>
+<a class="navlink" data-target="atom-1" href="#atom-1">1 · How communication works</a>
+<a class="navlink" data-target="atom-2" href="#atom-2">2 · Audience &amp; channel</a>
+<div class="nav-group">🙈 Phase 2 · see</div>
+<a class="navlink" data-target="atom-3" href="#atom-3">3 · Active listening</a>
+<div class="nav-group">🙊 Phase 3 · do</div>
+<a class="navlink" data-target="atom-4" href="#atom-4">4 · Structure your message 🛠️</a>
+<a class="navlink" data-target="atom-5" href="#atom-5">5 · Feedback &amp; hard talks 🛠️</a>
+<div class="nav-group">🐵 Phase 4 · share</div>
+<a class="navlink" data-target="atom-6" href="#atom-6">6 · Capstone 🚀</a>
+<div class="nav-group">Assess</div>
+<a class="navlink" data-target="capstone" href="#capstone">Capstone brief</a>
+<a class="navlink" data-target="rubrics" href="#rubrics">Rubrics</a>
+<a class="navlink" data-target="skillsmap" href="#skillsmap">Skills map → job match</a></nav>
+  </aside>
+  <div class="main">
+    <div class="topbar">
+      <button class="menutoggle" id="menutoggle" aria-label="Menu">&#9776;</button>
+      <span class="pill">🗣️ Effective Communication</span>
+      <span class="sp"></span>
+      <button class="navbtn" id="prevbtn">&larr; Prev</button>
+      <button class="navbtn" id="nextbtn">Next &rarr;</button>
+    </div>
+    <div class="wrap"><section class="page" id="page-overview" data-id="overview"><h1>🗣️ Worked Example — Effective Communication Micro-Credential (full course)</h1>
+<p align="center">
+  <img alt="Indigo #1E2A6E" src="https://img.shields.io/badge/Indigo-1E2A6E?style=flat-square&amp;labelColor=1E2A6E&amp;color=1E2A6E">
+  <img alt="Turquoise #15B5C6" src="https://img.shields.io/badge/Turquoise-15B5C6?style=flat-square&amp;labelColor=15B5C6&amp;color=15B5C6">
+  <img alt="Gold #E0A53C" src="https://img.shields.io/badge/Gold-E0A53C?style=flat-square&amp;labelColor=E0A53C&amp;color=E0A53C">
+  <img alt="Ink #0A1124" src="https://img.shields.io/badge/Ink-0A1124?style=flat-square&amp;labelColor=0A1124&amp;color=0A1124">
+</p>
+<p>A <strong>complete, ready-to-run ADA micro-credential</strong> for one of the most-requested workplace competencies: <strong>communicating effectively</strong>. It is a <em>fully populated</em> example built end-to-end with the ADA Methodology (KSA + 4 phases + learning-atom topology): every atom has <strong>real reading text</strong>, <strong>curated video links</strong>, <strong>Mermaid diagrams</strong>, <strong>image-generation prompts</strong>, role-plays, and rubrics.</p>
+<blockquote>🖥️ <strong>See it live:</strong> open <a href="course.html" target="_blank" rel="noopener"><code>course.html</code></a> in any browser for an interactive, navigable version of this course (sidebar, progress, embedded videos, diagrams, copyable prompts).</blockquote>
+<p>This is a <strong>human-skill</strong> course that spans the full KSA spectrum: a small <strong>Knowledge</strong> base (how communication works, audience &amp; channel), two core <strong>Skills</strong> (active listening, structuring clear messages), the <strong>Skill</strong> of navigating feedback / difficult conversations, and the durable <strong>Abilities</strong> that make it stick (empathy and assertive, respectful expression). It complements the <a href="../../index.html#/examples/growth-mindset-micro-credential/README.md" target="_blank" rel="noopener">Growth Mindset</a> (a durable <em>Ability</em>) and <a href="../../index.html#/examples/python-variables-micro-credential/README.md" target="_blank" rel="noopener">Python Variables</a> (a technical <em>Skill</em>) courses.</p>
+<p>Conforms to <a href="../../index.html#/specs/micro-credential-v2-schema.md" target="_blank" rel="noopener"><code>../../specs/micro-credential-v2-schema.md</code></a> · modalities from <a href="../../index.html#/specs/learning-atom-topology.md" target="_blank" rel="noopener"><code>../../specs/learning-atom-topology.md</code></a> · KSA from <a href="../../index.html#/specs/ksa-taxonomy.md" target="_blank" rel="noopener"><code>../../specs/ksa-taxonomy.md</code></a>.</p>
+<hr>
+<h2>🧭 What this teaches</h2>
+<p>Almost every job posting asks for "strong communication skills" — and almost no one defines what that <em>means</em> or how to <em>train</em> it. This course makes it concrete and certifiable: learners build a working model of how communication succeeds and fails, learn to <strong>listen actively</strong>, <strong>structure a clear message</strong> (in writing and out loud), and <strong>handle feedback and hard conversations</strong> with empathy and appropriate assertiveness — finishing with a real communication performance they deliver and peer-review.</p>
+<div class='tablewrap'><table><thead><tr><th></th><th></th></tr></thead><tbody>
+<tr><td><strong>Title</strong></td><td>Effective Communication: Listen, Structure &amp; Connect</td></tr>
+<tr><td><strong>Duration</strong></td><td>~12 hours · 2–3 weeks</td></tr>
+<tr><td><strong>Primary KSA</strong></td><td>🛠️ Skill — <em>listen actively</em> and <em>structure clear messages</em>, plus the 🌱 Abilities that sustain them</td></tr>
+<tr><td><strong>Target competency</strong></td><td>O*NET basic/social skills: <strong>Active Listening</strong> (2.A.1.b), <strong>Speaking</strong> (2.A.1.d), <strong>Writing</strong> (2.A.1.c), <strong>Social Perceptiveness</strong> (2.B.1.a) · ESCO transversal <em>"communicate effectively", "use active listening"</em></td></tr>
+<tr><td><strong>Badge</strong></td><td>🏅 <em>Effective Communicator</em></td></tr>
+<tr><td><strong>Prerequisites</strong></td><td>None. A real context (team, class, project) to practice in helps.</td></tr>
+</tbody></table></div>
+<hr>
+<h2>📚 Course contents</h2>
+<div class='tablewrap'><table><thead><tr><th>#</th><th>File</th><th>What it is</th></tr></thead><tbody>
+<tr><td>—</td><td><a href="#spec"><code>micro-credential.md</code></a></td><td>The full micro-credential spec (YAML schema, objectives, KSA map, phase planner)</td></tr>
+<tr><td>1</td><td><a href="#atom-1"><code>atoms/atom-1-how-communication-works.md</code></a></td><td>🙉 P1 · 🧠 K — How communication works (the model, noise &amp; barriers)</td></tr>
+<tr><td>2</td><td><a href="#atom-2"><code>atoms/atom-2-audience-and-channel.md</code></a></td><td>🙉 P1 · 🧠 K — Audience analysis &amp; choosing the right channel</td></tr>
+<tr><td>3</td><td><a href="#atom-3"><code>atoms/atom-3-active-listening.md</code></a></td><td>🙈 P2 · 🛠️ S + 🌱 A — Active, empathetic listening (model + practice)</td></tr>
+<tr><td>4</td><td><a href="#atom-4"><code>atoms/atom-4-structure-your-message.md</code></a></td><td>🙊 P3 · 🛠️ S — Structure clear messages (BLUF · SBI · Pyramid)</td></tr>
+<tr><td>5</td><td><a href="#atom-5"><code>atoms/atom-5-feedback-and-difficult-conversations.md</code></a></td><td>🙊 P3 · 🛠️ S + 🌱 A — Feedback &amp; difficult conversations (role-play)</td></tr>
+<tr><td>6</td><td><a href="#atom-6"><code>atoms/atom-6-communication-capstone.md</code></a></td><td>🐵 P4 · 🛠️ S + 🌱 A — Capstone: deliver, converse, reflect + peer review</td></tr>
+<tr><td>—</td><td><a href="#capstone"><code>capstone.md</code></a></td><td>Capstone brief + how it maps to KSA</td></tr>
+<tr><td>—</td><td><a href="#rubrics"><code>rubrics.md</code></a></td><td>All rubrics (knowledge-mini, skill, behavioral, capstone-5)</td></tr>
+<tr><td>—</td><td><a href="#skillsmap"><code>skills-map.md</code></a></td><td>Badge → skills map and how it boosts almost every role</td></tr>
+</tbody></table></div>
+<blockquote>🤝 <strong>Practiced with people:</strong> communication is a social skill — atoms use role-plays, peer review, and a live showcase, and the Abilities are assessed <strong>behaviorally across ≥3 occasions</strong> (never a quiz).</blockquote>
+<hr>
+<h2>🔄 Phase journey</h2>
+<div class="mermaid">flowchart LR
+  P1[&quot;🙉 P1 · hear&lt;br/&gt;How it works · audience &amp; channel&quot;] --&gt; P2[&quot;🙈 P2 · see&lt;br/&gt;Active listening&quot;]
+  P2 --&gt; P3[&quot;🙊 P3 · do&lt;br/&gt;Structure · feedback &amp; hard talks&quot;]
+  P3 --&gt; P4[&quot;🐵 P4 · share&lt;br/&gt;Deliver · converse · reflect&quot;]
+  P4 --&gt; BADGE[&quot;🏅 Effective Communicator&quot;]</div>
+<hr>
+<h2>🤖 How it was authored (and how to reuse it)</h2>
+<p>This course follows the Gen AI authoring workflow in <a href="../../index.html#/specs/genai-authoring-workflow.md" target="_blank" rel="noopener"><code>../../specs/genai-authoring-workflow.md</code></a>: competency → KSA → atoms → modalities → rubrics → badge. Conventions used throughout:</p>
+<ul>
+<li><strong>🎬 Videos</strong> are written as a <code>youtube</code> block with the real URL + a caption (the interactive site</li>
+</ul>
+<p>  embeds them as a click-to-play player).</p>
+<ul>
+<li><strong>🖼️ Diagrams</strong> are provided two ways: a live <strong>Mermaid</strong> diagram <em>and</em> a reusable</li>
+</ul>
+<p>  <strong>image-generation prompt</strong> in a <code>prompt</code> block — feed it to any image model for an on-brand asset.</p>
+<ul>
+<li><strong>✅ Activities</strong> include scripts, checklists, and rubrics so the course is self-paced and practicable.</li>
+</ul>
+<blockquote>⚠️ <strong>Human-in-the-loop (methodology guardrail):</strong> the external links and references below are <strong>curated starting points</strong>. A mentor/instructor should verify each link, licensing, and currency before delivery — AI-suggested sources are never authoritative on their own. Abilities here require human/peer observation across occasions. See <a href="../../index.html#/CLAUDE.md" target="_blank" rel="noopener"><code>../../CLAUDE.md</code></a> §5.</blockquote></section>
+<section class="page" id="page-spec" data-id="spec"><h1>🎓 Micro-Credential — Effective Communication: Listen, Structure &amp; Connect</h1>
+<p>The full specification for this micro-credential. It conforms to <a href="../../index.html#/specs/micro-credential-v2-schema.md" target="_blank" rel="noopener"><code>../../specs/micro-credential-v2-schema.md</code></a>.</p>
+<hr>
+<h2>YAML front matter</h2>
+<pre class="code"><span class="lang">yaml</span><code>schema: ada-microcredential/v2
+id: mc-effective-communication
+title: &quot;Effective Communication: Listen, Structure &amp; Connect&quot;
+language: en
+duration_hours: 12
+level: beginner
+status: published
+license: CC-BY-SA-4.0
+mentors: [&quot;@sancarbar&quot;]
+
+target_roles:
+  - role: &quot;Any role — communication is a transversal, near-universal job requirement (ICs, leads, client-facing, technical)&quot;
+    framework_ref: &gt;
+      O*NET basic skills: 2.A.1.b Active Listening, 2.A.1.d Speaking, 2.A.1.c Writing ·
+      O*NET social skills: 2.B.1.a Social Perceptiveness, 2.B.1.e Persuasion ·
+      ESCO transversal: &quot;communicate effectively&quot;, &quot;use active listening techniques&quot;
+
+ksa:
+  - { id: K-comm-model,       type: knowledge, label: &quot;How communication works: sender→message→channel→receiver→feedback; noise &amp; barriers&quot;, target_level: 2, bloom: understand }
+  - { id: K-audience-channel, type: knowledge, label: &quot;Audience analysis and channel selection (sync/async, media richness)&quot;, target_level: 2, bloom: understand }
+  - { id: S-active-listening, type: skill,     label: &quot;Listen actively: attend, paraphrase, ask clarifying questions, check understanding&quot;, target_level: 2, bloom: apply, primary: true }
+  - { id: S-structure-message, type: skill,    label: &quot;Structure a clear message (BLUF, SBI, Pyramid Principle) in writing and speech&quot;, target_level: 2, bloom: apply, primary: true }
+  - { id: S-feedback-difficult, type: skill,   label: &quot;Give/receive feedback and navigate difficult conversations (SBI + nonviolent communication)&quot;, target_level: 2, bloom: apply }
+  - { id: A-empathy,          type: ability,   label: &quot;Empathy &amp; audience-awareness: read the other person and adapt&quot;, target_level: 2, affective_stage: value, assessed_occasions: 3 }
+  - { id: A-assertiveness,    type: ability,   label: &quot;Assertive, respectful expression under pressure (clear, calm, honest)&quot;, target_level: 2, affective_stage: respond, assessed_occasions: 3 }
+
+atoms:
+  - { id: atom-1, title: &quot;How communication works&quot;, ksa_refs: [K-comm-model], phase: 1, modalities: [{dimension: read, subtype: Article}, {dimension: watch, subtype: Video Explainer}, {dimension: see, subtype: Diagram}, {dimension: evaluate, subtype: Pop Quiz}], rubric: knowledge-mini }
+  - { id: atom-2, title: &quot;Audience &amp; channel&quot;, ksa_refs: [K-audience-channel], phase: 1, modalities: [{dimension: read, subtype: Article}, {dimension: see, subtype: Framework}, {dimension: practice, subtype: Worksheet / Exercise}, {dimension: evaluate, subtype: Pop Quiz}], rubric: knowledge-mini }
+  - { id: atom-3, title: &quot;Active listening&quot;, ksa_refs: [S-active-listening, A-empathy], phase: 2, modalities: [{dimension: watch, subtype: Video Explainer}, {dimension: see, subtype: Mental Model}, {dimension: practice, subtype: Role-Play}, {dimension: collaborate, subtype: Pair Programming}, {dimension: evaluate, subtype: Mini-Rubric}], rubric: skill }
+  - { id: atom-4, title: &quot;Structure your message (BLUF · SBI · Pyramid)&quot;, ksa_refs: [S-structure-message], phase: 3, modalities: [{dimension: read, subtype: Technical Article}, {dimension: practice, subtype: Worksheet / Exercise}, {dimension: practice, subtype: AI Prompt Question}, {dimension: evaluate, subtype: Performance Task}], rubric: skill }
+  - { id: atom-5, title: &quot;Feedback &amp; difficult conversations&quot;, ksa_refs: [S-feedback-difficult, A-assertiveness, A-empathy], phase: 3, modalities: [{dimension: read, subtype: Case Study}, {dimension: practice, subtype: Role-Play}, {dimension: practice, subtype: Simulation}, {dimension: evaluate, subtype: Behavioral Assessment}], rubric: behavioral }
+  - { id: atom-6, title: &quot;Communication capstone + peer review&quot;, ksa_refs: [S-active-listening, S-structure-message, S-feedback-difficult, A-empathy, A-assertiveness], phase: 4, modalities: [{dimension: practice, subtype: Performance Task}, {dimension: collaborate, subtype: Showcase / Demo Day}, {dimension: collaborate, subtype: Async Peer Review}, {dimension: evaluate, subtype: Capstone Project}], rubric: capstone-5 }
+
+capstone:
+  title: &quot;Deliver a clear message and lead a real conversation, then reflect&quot;
+  integrates_ksa: [K-comm-model, K-audience-channel, S-active-listening, S-structure-message, S-feedback-difficult, A-empathy, A-assertiveness]
+  rubric: capstone-5
+
+badge:
+  name: &quot;Effective Communicator&quot;
+  evidence_required: [&quot;atom-3&quot;, &quot;atom-4&quot;, &quot;atom-5&quot;, &quot;capstone&quot;]
+  issued_on: verified-evidence</code></pre>
+<hr>
+<h2>🎯 Target job competency</h2>
+<p><strong>Communicate effectively</strong> at work: listen so people feel heard, say/write things so people understand and act, and handle feedback and tension without damaging the relationship. It is the single most common line in job postings — <em>"excellent communication skills", "stakeholder communication", "active listening", "clear written communication".</em> Mapped to <strong>O*NET</strong> basic skills (Active Listening, Speaking, Writing) and social skills (Social Perceptiveness, Persuasion), and <strong>ESCO</strong> transversal communication skills.</p>
+<h2>🧬 KSA breakdown — a human skill, taught the right way</h2>
+<div class='tablewrap'><table><thead><tr><th>KSA</th><th>Component</th><th>Why this type</th><th>Target</th></tr></thead><tbody>
+<tr><td>🧠 Knowledge</td><td>How communication works (model, noise)</td><td>A small mental model that explains <em>why</em> messages fail</td><td>L2</td></tr>
+<tr><td>🧠 Knowledge</td><td>Audience &amp; channel</td><td>Prevents the "right message, wrong channel/audience" failure</td><td>L2</td></tr>
+<tr><td>🛠️ Skill</td><td>Active listening</td><td>A trainable technique (paraphrase, clarify, check)</td><td><strong>L2</strong></td></tr>
+<tr><td>🛠️ Skill</td><td>Structure a clear message</td><td>BLUF/SBI/Pyramid — practiced in writing &amp; speech</td><td><strong>L2</strong></td></tr>
+<tr><td>🛠️ Skill</td><td>Feedback &amp; difficult conversations</td><td>A procedure for high-stakes moments</td><td>L2</td></tr>
+<tr><td>🌱 Ability</td><td>Empathy &amp; audience-awareness</td><td>A disposition shown across situations, over time</td><td>L2</td></tr>
+<tr><td>🌱 Ability</td><td>Assertiveness (respectful)</td><td>Calm, honest expression under pressure — a habit</td><td>L2</td></tr>
+</tbody></table></div>
+<blockquote><strong>Why this shape:</strong> communication is mostly <strong>doing</strong> (Skills), but it only <em>transfers</em> when paired with the <strong>Abilities</strong> that drive it — empathy (to adapt to the other person) and assertiveness (to say the hard thing kindly). Hence the Abilities are assessed <strong>behaviorally, across ≥3 occasions</strong>, not with a quiz.</blockquote>
+<h2>📘 Learning objectives (Bloom + KSA)</h2>
+<div class='tablewrap'><table><thead><tr><th>Objective</th><th>Bloom</th><th>KSA</th><th>Component</th><th>Target</th></tr></thead><tbody>
+<tr><td>Explain the communication model and name common barriers (noise)</td><td>Understand</td><td>🧠 K</td><td>K-comm-model</td><td>L2</td></tr>
+<tr><td>Analyze an audience and choose an appropriate channel</td><td>Understand/Analyze</td><td>🧠 K</td><td>K-audience-channel</td><td>L2</td></tr>
+<tr><td>Listen actively: paraphrase, ask clarifying questions, check understanding</td><td>Apply</td><td>🛠️ S</td><td>S-active-listening</td><td>L2</td></tr>
+<tr><td>Structure a clear message with BLUF/SBI/Pyramid (written &amp; spoken)</td><td>Apply</td><td>🛠️ S</td><td>S-structure-message</td><td>L2</td></tr>
+<tr><td>Give and receive feedback and de-escalate a difficult conversation</td><td>Apply</td><td>🛠️ S</td><td>S-feedback-difficult</td><td>L2</td></tr>
+<tr><td>Adapt to the listener with empathy across multiple situations</td><td>Value (affective)</td><td>🌱 A</td><td>A-empathy</td><td>L2</td></tr>
+<tr><td>Express needs assertively and respectfully under pressure</td><td>Respond (affective)</td><td>🌱 A</td><td>A-assertiveness</td><td>L2</td></tr>
+</tbody></table></div>
+<hr>
+<h2>🔍 Phase planner</h2>
+<div class='tablewrap'><table><thead><tr><th>Phase</th><th>Atom(s)</th><th>KSA focus</th><th>Activity</th><th>Assessment</th></tr></thead><tbody>
+<tr><td>🙉 1 · hear</td><td>Atom 1, 2</td><td>🧠 K</td><td>reading + video + the comm model; audience/channel worksheet</td><td>knowledge-mini (pop quizzes)</td></tr>
+<tr><td>🙈 2 · see</td><td>Atom 3</td><td>🛠️ S + 🌱 A</td><td>model active listening; paired listening practice</td><td>skill mini-rubric</td></tr>
+<tr><td>🙊 3 · do</td><td>Atom 4, 5</td><td>🛠️ S + 🌱 A</td><td>structure messages; feedback &amp; difficult-conversation role-plays</td><td>performance task + behavioral assessment</td></tr>
+<tr><td>🐵 4 · share</td><td>Atom 6 (capstone)</td><td>🛠️ S + 🌱 A</td><td>deliver a message + lead a conversation; showcase + peer review</td><td>capstone-5</td></tr>
+</tbody></table></div>
+<hr>
+<h2>🚀 Capstone &amp; 📊 assessment</h2>
+<p>Full brief in <a href="#capstone"><code>capstone.md</code></a>; all rubrics in <a href="#rubrics"><code>rubrics.md</code></a>. In short: formative pop quizzes for the Knowledge atoms, a skill mini-rubric + performance task for listening and message structure, a <strong>behavioral assessment</strong> across occasions for the Abilities, and a live communication performance graded on the standard 5-criteria capstone rubric. The badge → skills-map mapping is in <a href="#skillsmap"><code>skills-map.md</code></a>.</p>
+<h2>🎓 Outcomes &amp; recognition</h2>
+<ul>
+<li>A working model of how communication succeeds and fails (no more "they just didn't get it").</li>
+<li>Two job-ready moves: <strong>active listening</strong> and <strong>structuring a clear message</strong> (written &amp; spoken).</li>
+<li>A repeatable approach to <strong>feedback and difficult conversations</strong>.</li>
+<li>The durable <strong>empathy</strong> and <strong>assertiveness</strong> that make communication land — evidenced over time.</li>
+<li>A portfolio artifact: a recorded/observed communication performance + reflection.</li>
+<li>LinkedIn-compatible digital badge: <strong>🏅 Effective Communicator</strong> — a multiplier on almost any role.</li>
+</ul></section>
+<section class="page" id="page-atom-1" data-id="atom-1"><label class="donebox"><input type="checkbox" class="donechk" data-atom="atom-1"> Mark this atom complete</label><h2>⚛ Learning Atom 1 — <em>How Communication Works</em></h2>
+<p><strong>Phase:</strong> 🙉 1 · Self-Guided Introduction (<em>hear</em>) · <strong>KSA:</strong> 🧠 Knowledge · <strong>Target level:</strong> L2 · <strong>Component id:</strong> <code>K-comm-model</code></p>
+<h3>🎯 Learning objective</h3>
+<ul>
+<li><strong>Explain</strong> the communication process model and <strong>name</strong> the common barriers ("noise") that make</li>
+</ul>
+<p>  messages fail.</p>
+<h3>🧩 Prerequisites</h3>
+<ul>
+<li>None. Just situations where you've been misunderstood — we'll explain why.</li>
+</ul>
+<h3>🧭 Atom description</h3>
+<p>"Strong communication" sounds vague until you see the <em>mechanism</em>. This atom gives you a simple model of how a message travels from one mind to another, and where it breaks. Once you can name the failure points, you can fix them deliberately — that's the whole rest of the course.</p>
+<hr>
+<h3>📖 Reading — <em>A message is a relay, not a transfer</em> (≈ 6 min)</h3>
+<p>We like to think communication is <strong>transferring</strong> an idea from our head to someone else's. It isn't. You <strong>encode</strong> an idea into words/tone/body language; it travels through a <strong>channel</strong>; the other person <strong>decodes</strong> it through their own experience, mood, and assumptions. What they reconstruct is never exactly what you meant — the question is how <em>close</em> you can get.</p>
+<p>The classic <strong>sender → message → channel → receiver → feedback</strong> model (Shannon–Weaver, extended by Schramm) adds two crucial ideas:</p>
+<ul>
+<li><strong>Noise</strong> — anything that distorts the message: literal noise, jargon, vague words, a bad channel,</li>
+</ul>
+<p>  stress, bias, distraction, cultural difference, or unstated assumptions.</p>
+<ul>
+<li><strong>Feedback</strong> — the receiver's response that tells you whether it landed. Communication without</li>
+</ul>
+<p>  feedback is just <em>broadcasting</em>; you don't actually know if you communicated.</p>
+<p>A few consequences worth internalizing:</p>
+<ul>
+<li><strong>Meaning lives in the receiver, not the message.</strong> "But I <em>said</em> it clearly" is irrelevant if they</li>
+</ul>
+<p>  didn't reconstruct your meaning. Effectiveness is measured at <em>their</em> end.</p>
+<ul>
+<li><strong>Most conflict is decoding error</strong>, not disagreement. People often agree but <em>think</em> they disagree</li>
+</ul>
+<p>  because words carried different meanings.</p>
+<ul>
+<li><strong>You can only manage noise you can name.</strong> That's why the next atoms target specific sources:</li>
+</ul>
+<p>  wrong channel/audience (Atom 2), not listening (Atom 3), unstructured messages (Atom 4), and   emotional noise in hard conversations (Atom 5).</p>
+<p>A handy distinction: <strong>verbal</strong> (the words), <strong>paraverbal</strong> (tone, pace, volume), and <strong>nonverbal</strong> (face, posture, gesture). When they conflict, people believe the nonverbal/paraverbal — so "I'm fine" in a flat tone reads as <em>not</em> fine.</p>
+<p><strong>Key takeaways</strong></p>
+<ul>
+<li><input type="checkbox" disabled> Communication is <strong>encode → channel → decode → feedback</strong>, not a clean transfer.</li>
+<li><input type="checkbox" disabled> <strong>Noise</strong> is anything that distorts the message; <strong>feedback</strong> confirms it landed.</li>
+<li><input type="checkbox" disabled> <strong>Meaning is reconstructed by the receiver</strong> — effectiveness is judged at their end.</li>
+<li><input type="checkbox" disabled> Verbal, paraverbal, and nonverbal must <strong>align</strong> or the nonverbal wins.</li>
+</ul>
+<hr>
+<h3>🎬 Watch — Communication, clearly explained (pick one, ~5–12 min)</h3>
+<div class="yt" data-id="eIho2S0ZahI"><button class="yt-play" type="button" aria-label="Play video"><span class="yt-tri">&#9654;</span></button><div class="yt-meta"><a href="https://www.youtube.com/watch?v=eIho2S0ZahI" target="_blank" rel="noopener">https://www.youtube.com/watch?v=eIho2S0ZahI</a><div class="yt-cap">Julian Treasure — "How to speak so that people want to listen" (TED).</div></div></div>
+<div class="yt" data-id="R1vskiVDwl4"><button class="yt-play" type="button" aria-label="Play video"><span class="yt-tri">&#9654;</span></button><div class="yt-meta"><a href="https://www.youtube.com/watch?v=R1vskiVDwl4" target="_blank" rel="noopener">https://www.youtube.com/watch?v=R1vskiVDwl4</a><div class="yt-cap">Celeste Headlee — "10 ways to have a better conversation" (TED).</div></div></div>
+<hr>
+<h3>🖼️ See — the communication model with noise</h3>
+<div class="mermaid">flowchart LR
+  S[&quot;🧑 Sender&lt;br/&gt;encodes idea&quot;] --&gt;|message| C[&quot;📡 Channel&quot;]
+  C --&gt;|message| R[&quot;🧑 Receiver&lt;br/&gt;decodes idea&quot;]
+  R --&gt;|feedback| S
+  N[&quot;🔊 Noise&lt;br/&gt;jargon · stress · bias · bad channel&quot;] -.distorts.-&gt; C</div>
+<p>A reusable prompt to generate an on-brand version of this diagram:</p>
+<div class="promptcard"><div class="promptcard-h"><span>🖼️ Image / AI prompt</span><button class="copybtn" type="button">Copy</button></div><pre><code>Create a clean, modern educational infographic titled &quot;How Communication Works&quot;. Show a Sender
+encoding an idea (lightbulb), an arrow labeled &quot;message&quot; passing through a Channel, into a Receiver
+decoding the idea, with a return arrow labeled &quot;feedback&quot;. Add a &quot;Noise&quot; burst (jargon, stress, bias,
+distraction) distorting the channel. Use ADA brand colors (Indigo #1E2A6E, Turquoise #15B5C6, Gold
+#E0A53C accents) on a light background, flat vector style, legible sans-serif, no photoreal faces. 16:9.</code></pre></div>
+<hr>
+<h3>✅ Evaluate — Pop quiz (formative, <code>knowledge-mini</code>)</h3>
+<ol>
+<li>Where does the <em>meaning</em> of a message ultimately live — in the message or the receiver?</li>
+<li>Give two examples of "noise" that are not literal sound.</li>
+<li>What turns "broadcasting" into actual communication?</li>
+</ol>
+<details>
+<summary>Answer key</summary>
+<ol>
+<li>In the <strong>receiver</strong>, who decodes it through their own context — so effectiveness is judged there.</li>
+<li>Any two: jargon, vague wording, stress, bias, distraction, wrong channel, cultural difference,</li>
+</ol>
+<p>   unstated assumptions.</p>
+<ol>
+<li><strong>Feedback</strong> — checking that the message was reconstructed as intended.</li>
+</ol>
+</details>
+<hr>
+<h3>📦 Deliverable</h3>
+<ul>
+<li>Recall a recent miscommunication. In 4–6 sentences, locate the <strong>noise</strong> (which source?) and the</li>
+</ul>
+<p>  missing/late <strong>feedback</strong>, and name one change that would have prevented it.</p>
+<h3>🧠 Final reflection</h3>
+<ul>
+<li>When your verbal and nonverbal signals last disagreed, which did people believe? What does that tell</li>
+</ul>
+<p>  you about where to put attention?</p>
+<h3>🔗 Sources to verify (human-in-the-loop)</h3>
+<ul>
+<li>Shannon &amp; Weaver, <em>A Mathematical Theory of Communication</em> (the source model).</li>
+<li>Schramm, <em>The Process and Effects of Mass Communication</em> (shared field of experience).</li>
+<li>Mehrabian, <em>Silent Messages</em> (verbal/paraverbal/nonverbal — note the often-misquoted "7%" rule).</li>
+</ul>
+<h3>🧩 Connections</h3>
+<ul>
+<li><strong>Successors:</strong> Atom 2 (audience &amp; channel — managing two big noise sources), Atom 3 (listening).</li>
+</ul></section>
+<section class="page" id="page-atom-2" data-id="atom-2"><label class="donebox"><input type="checkbox" class="donechk" data-atom="atom-2"> Mark this atom complete</label><h2>⚛ Learning Atom 2 — <em>Audience &amp; Channel</em></h2>
+<p><strong>Phase:</strong> 🙉 1 · Self-Guided Introduction (<em>hear</em>) · <strong>KSA:</strong> 🧠 Knowledge · <strong>Target level:</strong> L2 · <strong>Component id:</strong> <code>K-audience-channel</code></p>
+<h3>🎯 Learning objective</h3>
+<ul>
+<li><strong>Analyze</strong> an audience and <strong>choose</strong> an appropriate channel for a given message.</li>
+</ul>
+<h3>🧩 Prerequisites</h3>
+<ul>
+<li>Atom 1 (the communication model) — channel and audience are two of the biggest noise sources.</li>
+</ul>
+<h3>🧭 Atom description</h3>
+<p>The same words can succeed or fail depending on <em>who</em> hears them and <em>how</em> they're delivered. A great message sent on the wrong channel (a complex decision buried in a chat message; bad news by email) is a failed message. This atom gives you two quick analyses to run before you communicate anything that matters.</p>
+<hr>
+<h3>📖 Reading — <em>Right message, right person, right pipe</em> (≈ 7 min)</h3>
+<p><strong>1) Analyze the audience.</strong> Before composing, answer four questions:</p>
+<ul>
+<li><strong>Who</strong> are they (role, seniority, relationship to you)?</li>
+<li><strong>What do they already know</strong> (so you don't over- or under-explain)?</li>
+<li><strong>What do they care about</strong> (their goals, pressures, "what's in it for them")?</li>
+<li>**What do you want them to <em>do</em>** after (the call to action)?</li>
+</ul>
+<p>Adapt vocabulary, level of detail, and framing to the answers. An exec wants the decision and the "so what"; a teammate wants the how; a customer wants the benefit and reassurance.</p>
+<p>**2) Choose the channel by <em>media richness</em>.** Channels differ in how much nuance they carry:</p>
+<div class='tablewrap'><table><thead><tr><th>Richness</th><th>Channel</th><th>Best for</th></tr></thead><tbody>
+<tr><td>🔴 Richest</td><td>In-person / video call</td><td>emotion, conflict, negotiation, ambiguity, relationship building</td></tr>
+<tr><td>🟠 Rich</td><td>Phone / voice</td><td>quick nuance, tone matters, back-and-forth</td></tr>
+<tr><td>🟡 Lean</td><td>Chat / DM</td><td>quick coordination, simple questions, low stakes</td></tr>
+<tr><td>🟢 Leaner</td><td>Email</td><td>records, async detail, non-urgent, multiple recipients</td></tr>
+<tr><td>🔵 Leanest</td><td>Doc / announcement</td><td>one-to-many reference, durable information</td></tr>
+</tbody></table></div>
+<p><strong>Rules of thumb</strong></p>
+<ul>
+<li><strong>Match richness to stakes/ambiguity.</strong> Emotional or ambiguous → richer (talk). Simple/record-worthy</li>
+</ul>
+<p>  → leaner (write). <em>Hard feedback over chat</em> is the classic mismatch.</p>
+<ul>
+<li><strong>Sync vs. async.</strong> Synchronous (call/meeting) for fast convergence and rapport; asynchronous</li>
+</ul>
+<p>  (email/doc) to respect time, allow thinking, and create a record. Don't call a meeting an email   could do — or email a decision a 5-minute call would settle.</p>
+<ul>
+<li><strong>Follow rich with lean.</strong> After an important conversation, send a short written recap so the</li>
+</ul>
+<p>  decisions persist and everyone decodes the same thing.</p>
+<p><strong>Key takeaways</strong></p>
+<ul>
+<li><input type="checkbox" disabled> Run the <strong>4-question audience analysis</strong> (who · know · care · do) before composing.</li>
+<li><input type="checkbox" disabled> Match <strong>channel richness</strong> to the message's <strong>stakes and ambiguity</strong>.</li>
+<li><input type="checkbox" disabled> <strong>Talk</strong> for emotion/ambiguity; <strong>write</strong> for records/detail/many recipients.</li>
+<li><input type="checkbox" disabled> <strong>Recap rich conversations in writing</strong> so meaning persists.</li>
+</ul>
+<hr>
+<h3>🖼️ See — choosing a channel</h3>
+<div class="mermaid">flowchart TD
+  Q1{&quot;Emotional, sensitive,&lt;br/&gt;or ambiguous?&quot;} --&gt;|yes| RICH[&quot;🔴 Talk: in-person / video / call&quot;]
+  Q1 --&gt;|no| Q2{&quot;Need a record or&lt;br/&gt;many recipients?&quot;}
+  Q2 --&gt;|yes| LEAN[&quot;🟢 Write: email / doc&quot;]
+  Q2 --&gt;|no| Q3{&quot;Quick &amp; low-stakes?&quot;}
+  Q3 --&gt;|yes| CHAT[&quot;🟡 Chat / DM&quot;]
+  Q3 --&gt;|no| RICH
+  RICH -.recap.-&gt; LEAN</div>
+<p>A reusable prompt to generate an on-brand version:</p>
+<div class="promptcard"><div class="promptcard-h"><span>🖼️ Image / AI prompt</span><button class="copybtn" type="button">Copy</button></div><pre><code>Create a clean, modern decision-tree infographic titled &quot;Which Channel Should I Use?&quot;. Branch from
+&quot;Is it emotional/ambiguous?&quot; to &quot;Talk (video/in-person)&quot;, from &quot;Need a record / many people?&quot; to
+&quot;Write (email/doc)&quot;, and &quot;Quick &amp; low-stakes?&quot; to &quot;Chat&quot;. Include a small dotted arrow &quot;recap in
+writing&quot; from Talk to Write. Use ADA brand colors (Indigo #1E2A6E, Turquoise #15B5C6, Gold #E0A53C),
+light background, flat vector, legible sans-serif. 16:9.</code></pre></div>
+<hr>
+<h3>🧪 Practice — <em>Audience &amp; channel worksheet</em></h3>
+<p>For each scenario, write the <strong>audience analysis (who/know/care/do)</strong> and the <strong>channel</strong> you'd pick, with one sentence of reasoning:</p>
+<ol>
+<li>You must tell a teammate their part of the project slipped the deadline.</li>
+<li>You're announcing a new process to 40 people.</li>
+<li>You need a quick yes/no on a meeting time.</li>
+<li>You're proposing a budget to a busy executive.</li>
+</ol>
+<details>
+<summary>Sample key</summary>
+<ol>
+<li><strong>Talk</strong> (video/in-person) — sensitive, relational; recap in writing after.</li>
+<li><strong>Write</strong> (doc/announcement) — one-to-many, durable reference; offer a Q&amp;A channel.</li>
+<li><strong>Chat</strong> — quick, low-stakes.</li>
+<li><strong>Write</strong> a one-page BLUF memo (exec cares about decision + impact) → <strong>then</strong> a short meeting if</li>
+</ol>
+<p>   needed. (You'll build that message in Atom 4.)</p>
+</details>
+<hr>
+<h3>✅ Evaluate — Pop quiz (formative, <code>knowledge-mini</code>)</h3>
+<ol>
+<li>Which channel for delivering difficult, emotional news — and why?</li>
+<li>What are the four audience-analysis questions?</li>
+<li>Why send a written recap after an important meeting?</li>
+</ol>
+<details>
+<summary>Answer key</summary>
+<ol>
+<li>A <strong>rich</strong> channel (in-person/video/call): emotion and ambiguity need tone, nuance, and immediate</li>
+</ol>
+<p>   feedback.</p>
+<ol>
+<li><strong>Who</strong> they are · <strong>what they know</strong> · <strong>what they care about</strong> · <strong>what you want them to do.</strong></li>
+<li>So decisions <strong>persist</strong> and everyone <strong>decodes the same meaning</strong> (reduces later noise).</li>
+</ol>
+</details>
+<hr>
+<h3>📦 Deliverable</h3>
+<ul>
+<li>Your completed worksheet for the 4 scenarios (audience analysis + channel + reasoning).</li>
+</ul>
+<h3>🧠 Final reflection</h3>
+<ul>
+<li>What's your <em>default</em> channel? Where does that default cost you (e.g., chatting things that deserve</li>
+</ul>
+<p>  a call)?</p>
+<h3>🔗 Sources to verify (human-in-the-loop)</h3>
+<ul>
+<li>Daft &amp; Lengel, <em>Media Richness Theory</em>.</li>
+<li>Minto, <em>The Pyramid Principle</em> (audience-first structuring — preview of Atom 4).</li>
+</ul>
+<h3>🧩 Connections</h3>
+<ul>
+<li><strong>Predecessor:</strong> Atom 1. <strong>Successors:</strong> Atom 3 (listen to the audience), Atom 4 (structure for them).</li>
+</ul></section>
+<section class="page" id="page-atom-3" data-id="atom-3"><label class="donebox"><input type="checkbox" class="donechk" data-atom="atom-3"> Mark this atom complete</label><h2>⚛ Learning Atom 3 — <em>Active Listening</em></h2>
+<p><strong>Phase:</strong> 🙈 2 · Visual Exploration (<em>see</em>) · <strong>KSA:</strong> 🛠️ Skill + 🌱 Ability · <strong>Target level:</strong> L2 · <strong>Component ids:</strong> <code>S-active-listening</code>, <code>A-empathy</code></p>
+<h3>🎯 Learning objective</h3>
+<ul>
+<li><strong>Listen actively</strong> — attend fully, paraphrase, ask clarifying questions, and check understanding —</li>
+</ul>
+<p>  while showing empathy for the speaker.</p>
+<h3>🧩 Prerequisites</h3>
+<ul>
+<li>Atoms 1–2. A partner (or a willing colleague/friend) for the practice.</li>
+</ul>
+<h3>🧭 Atom description</h3>
+<p>Most people think communication is about <em>talking</em>. The highest-leverage skill is the opposite: listening so well the other person feels understood. This atom is in Phase 2 (<em>see</em>) because you learn listening best by <strong>watching it modeled</strong> and then <strong>doing it</strong> in a low-stakes pair. It builds a Skill (a technique) <em>and</em> an Ability (empathy) at once.</p>
+<hr>
+<h3>🎬 Watch — what great listening looks like (~5–10 min)</h3>
+<div class="yt" data-id="R1vskiVDwl4"><button class="yt-play" type="button" aria-label="Play video"><span class="yt-tri">&#9654;</span></button><div class="yt-meta"><a href="https://www.youtube.com/watch?v=R1vskiVDwl4" target="_blank" rel="noopener">https://www.youtube.com/watch?v=R1vskiVDwl4</a><div class="yt-cap">Celeste Headlee — "10 ways to have a better conversation" (TED).</div></div></div>
+<div class="yt" data-id="saXfavo1OQo"><button class="yt-play" type="button" aria-label="Play video"><span class="yt-tri">&#9654;</span></button><div class="yt-meta"><a href="https://www.youtube.com/watch?v=saXfavo1OQo" target="_blank" rel="noopener">https://www.youtube.com/watch?v=saXfavo1OQo</a><div class="yt-cap">"Active Listening" — a short skills explainer (verify before delivery).</div></div></div>
+<hr>
+<h3>📖 Reading — <em>Listening is a skill you perform</em> (≈ 6 min)</h3>
+<p>There are levels of listening: <strong>ignoring → pretending → selective → attentive → empathetic</strong>. Most workplace listening stalls at "selective" (waiting to talk, half-listening). Active listening is a deliberate performance with observable moves:</p>
+<ul>
+<li><strong>Attend.</strong> Put the phone away, face them, make eye contact, leave a beat of silence. Your body says</li>
+</ul>
+<p>  "you have my attention" before any word.</p>
+<ul>
+<li><strong>Paraphrase / reflect.</strong> Say back the <em>content</em> in your words: *"So the deadline moved and now the</li>
+</ul>
+<p>  test plan is at risk — is that right?"* This proves you decoded correctly and lets them correct you.</p>
+<ul>
+<li><strong>Name the feeling (empathy).</strong> Reflect the <em>emotion</em>, tentatively: <em>"Sounds frustrating."</em> Naming</li>
+</ul>
+<p>  emotion lowers it and signals you see the person, not just the task.</p>
+<ul>
+<li><strong>Ask open, clarifying questions.</strong> Prefer "what" and "how" over "why" (why feels accusatory).</li>
+</ul>
+<p>  <em>"What would make this easier?"</em> beats <em>"Why didn't you flag it?"</em></p>
+<ul>
+<li><strong>Don't fix yet.</strong> Resist jumping to solutions. People first need to feel heard; advice given too</li>
+</ul>
+<p>  early reads as dismissal.</p>
+<ul>
+<li><strong>Check understanding.</strong> Summarize and confirm before moving on or responding.</li>
+</ul>
+<p>Two anti-patterns to kill: <strong>the autobiographical hijack</strong> ("Oh that happened to me too, when I…") and <strong>solution-first</strong> (fixing before understanding). Both move the spotlight off the speaker.</p>
+<blockquote><strong>Empathy vs. agreement.</strong> Reflecting a feeling ("that sounds stressful") is <em>not</em> agreeing or conceding — it's acknowledging their experience. You can empathize and still disagree.</blockquote>
+<p><strong>Key takeaways</strong></p>
+<ul>
+<li><input type="checkbox" disabled> Active listening is <strong>observable</strong>: attend · paraphrase · name feeling · ask open Qs · check.</li>
+<li><input type="checkbox" disabled> <strong>Paraphrasing</strong> proves (and corrects) your decoding — the core move.</li>
+<li><input type="checkbox" disabled> <strong>Name the emotion</strong> to show empathy; it lowers the temperature.</li>
+<li><input type="checkbox" disabled> <strong>Don't fix first.</strong> Understand, then (if wanted) help.</li>
+</ul>
+<hr>
+<h3>🖼️ See — the active-listening loop</h3>
+<div class="mermaid">flowchart LR
+  ATT[&quot;👂 Attend&lt;br/&gt;(full attention)&quot;] --&gt; PAR[&quot;🔁 Paraphrase&lt;br/&gt;content&quot;]
+  PAR --&gt; EMP[&quot;💙 Name the feeling&lt;br/&gt;(empathy)&quot;]
+  EMP --&gt; ASK[&quot;❓ Ask open&lt;br/&gt;clarifying questions&quot;]
+  ASK --&gt; CHK[&quot;✅ Check&lt;br/&gt;understanding&quot;]
+  CHK -.loop.-&gt; ATT</div>
+<hr>
+<h3>🧪 Practice — <em>Paired listening drill</em> (Role-Play + Pair)</h3>
+<p>In pairs, 12–15 minutes total:</p>
+<ol>
+<li><strong>Speaker (3 min):</strong> talk about a real (mild) frustration or a project decision.</li>
+<li><strong>Listener:</strong> use only active-listening moves — <strong>no advice</strong>. Paraphrase, name the feeling, ask</li>
+</ol>
+<p>   open questions, check understanding.</p>
+<ol>
+<li><strong>Swap.</strong> Then debrief 2 min: <em>"When did you feel most understood?"</em></li>
+</ol>
+<p>Solo option: watch a 5-min interview, pause, and write the paraphrase + feeling-name + one open question you'd offer.</p>
+<hr>
+<h3>✅ Evaluate — Skill mini-rubric (<code>skill</code>) + first behavioral occasion</h3>
+<p>Self/peer-score the drill:</p>
+<div class='tablewrap'><table><thead><tr><th>Criterion</th><th>Excellent (3)</th><th>Adequate (2)</th><th>Needs work (1)</th></tr></thead><tbody>
+<tr><td><strong>Attending</strong></td><td>Full attention, no interrupting</td><td>Mostly attentive</td><td>Distracted / interrupts</td></tr>
+<tr><td><strong>Paraphrasing</strong></td><td>Accurate, in own words; invites correction</td><td>Some reflecting</td><td>Repeats verbatim or none</td></tr>
+<tr><td><strong>Empathy (🌱)</strong></td><td>Names feeling; speaker felt understood</td><td>Some acknowledgment</td><td>Jumps to self/solution</td></tr>
+<tr><td><strong>Questions</strong></td><td>Open, clarifying, non-leading</td><td>Mix</td><td>Closed/leading only</td></tr>
+</tbody></table></div>
+<blockquote>Pass = 2+ each. This is <strong>occasion 1 of 3</strong> for the Ability <code>A-empathy</code> (also observed in Atoms 5–6).</blockquote>
+<h3>📦 Deliverable</h3>
+<ul>
+<li>A short note from your partner (or self-reflection) on <strong>when they felt most understood</strong>, plus the</li>
+</ul>
+<p>  filled mini-rubric.</p>
+<h3>🧠 Final reflection</h3>
+<ul>
+<li>Which move is hardest for you — staying silent, paraphrasing, or not fixing? Pick one to practice</li>
+</ul>
+<p>  this week.</p>
+<h3>🔗 Sources to verify (human-in-the-loop)</h3>
+<ul>
+<li>Covey, <em>The 7 Habits</em> — Habit 5, "Seek first to understand."</li>
+<li>Rogers &amp; Farson, <em>Active Listening</em> (1957).</li>
+<li>Headlee, <em>We Need to Talk</em>.</li>
+</ul>
+<h3>🧩 Connections</h3>
+<ul>
+<li><strong>Predecessor:</strong> Atom 2. <strong>Successors:</strong> Atom 4 (now structure what <em>you</em> say), Atom 5 (listening</li>
+</ul>
+<p>  under pressure).</p></section>
+<section class="page" id="page-atom-4" data-id="atom-4"><label class="donebox"><input type="checkbox" class="donechk" data-atom="atom-4"> Mark this atom complete</label><h2>⚛ Learning Atom 4 — <em>Structure Your Message (BLUF · SBI · Pyramid)</em></h2>
+<p><strong>Phase:</strong> 🙊 3 · Applied Practice (<em>do</em>) · <strong>KSA:</strong> 🛠️ Skill · <strong>Target level:</strong> L2 · <strong>Component id:</strong> <code>S-structure-message</code></p>
+<h3>🎯 Learning objective</h3>
+<ul>
+<li><strong>Structure</strong> a clear message — in writing and out loud — using <strong>BLUF</strong>, <strong>SBI</strong>, and the</li>
+</ul>
+<p>  <strong>Pyramid Principle</strong>.</p>
+<h3>🧩 Prerequisites</h3>
+<ul>
+<li>Atom 2 (audience analysis) — structure serves the audience.</li>
+</ul>
+<h3>🧭 Atom description</h3>
+<p>Clarity isn't a personality trait; it's a structure. Three reusable frameworks cover most workplace messages: lead with the point (BLUF), give specific behavioral feedback (SBI), and organize support top-down (Pyramid). This atom turns "I'll just wing the email/update" into a fast, repeatable move.</p>
+<hr>
+<h3>📖 Reading — <em>Three structures that make you clear</em> (≈ 8 min)</h3>
+<p><strong>1) BLUF — Bottom Line Up Front.</strong> Put the conclusion / ask / decision in the <strong>first sentence</strong>, then support it. Readers are busy and skim; burying the point in paragraph three guarantees it's missed. Compare:</p>
+<ul>
+<li>👎 *"Following up on yesterday's discussion, there were several considerations, and after looking</li>
+</ul>
+<p>  into the vendor options and timelines… [200 words] …so we should probably go with Option B."*</p>
+<ul>
+<li>👍 <em>"<strong>Recommendation: choose Option B (ships 2 weeks sooner, same cost).</strong> Details below."</em></li>
+</ul>
+<p><strong>2) The Pyramid Principle (Minto).</strong> Structure any explanation top-down: <strong>answer/main point → grouped supporting arguments → evidence</strong>. Each level summarizes the one below. It's BLUF applied recursively, and it's how you turn a messy brain-dump into a logical flow. Use signposting: <em>"There are three reasons… First… Second… Third…"</em></p>
+<p><strong>3) SBI — Situation · Behavior · Impact</strong> (for feedback or describing an issue). Keep it specific and non-judgmental:</p>
+<ul>
+<li><strong>Situation:</strong> when/where — <em>"In this morning's standup…"</em></li>
+<li><strong>Behavior:</strong> the observable action (not character) — *"…you cut off Maria twice before she</li>
+</ul>
+<p>  finished."*</p>
+<ul>
+<li><strong>Impact:</strong> the effect — <em>"…so we lost her point and she went quiet for the rest of the meeting."</em></li>
+</ul>
+<p>SBI keeps feedback about <strong>behavior</strong>, not labels ("you're rude"), which is what makes it hearable. (You'll use SBI live in Atom 5.)</p>
+<p><strong>General clarity habits:</strong> one idea per sentence; concrete words over abstractions; cut filler and hedging; define jargon or drop it; end with a clear <strong>call to action</strong> ("Can you confirm by Friday?"). For spoken messages: state the headline, preview the structure ("two things"), then deliver.</p>
+<p><strong>Key takeaways</strong></p>
+<ul>
+<li><input type="checkbox" disabled> <strong>BLUF:</strong> lead with the point/ask; support after.</li>
+<li><input type="checkbox" disabled> <strong>Pyramid:</strong> main point → grouped reasons → evidence; signpost the structure.</li>
+<li><input type="checkbox" disabled> <strong>SBI:</strong> Situation → Behavior (observable) → Impact — for issues/feedback.</li>
+<li><input type="checkbox" disabled> Always end with a <strong>clear call to action.</strong></li>
+</ul>
+<hr>
+<h3>🖼️ See — the pyramid</h3>
+<div class="mermaid">flowchart TD
+  TOP[&quot;🎯 Main point / answer / ask&lt;br/&gt;(BLUF)&quot;] --&gt; R1[&quot;Reason 1&quot;]
+  TOP --&gt; R2[&quot;Reason 2&quot;]
+  TOP --&gt; R3[&quot;Reason 3&quot;]
+  R1 --&gt; E1[&quot;evidence&quot;]
+  R2 --&gt; E2[&quot;evidence&quot;]
+  R3 --&gt; E3[&quot;evidence&quot;]</div>
+<p>A reusable prompt to generate an on-brand version:</p>
+<div class="promptcard"><div class="promptcard-h"><span>🖼️ Image / AI prompt</span><button class="copybtn" type="button">Copy</button></div><pre><code>Create a clean, modern infographic of the &quot;Pyramid Principle&quot; for communication: a top box &quot;Main
+point / ask (BLUF)&quot; connected down to three &quot;Reason&quot; boxes, each connected to an &quot;Evidence&quot; box.
+Caption: &quot;Lead with the answer, then group your support.&quot; Use ADA brand colors (Indigo #1E2A6E,
+Turquoise #15B5C6, Gold #E0A53C), light background, flat vector, legible sans-serif. 16:9.</code></pre></div>
+<hr>
+<h3>🧪 Practice — <em>Rewrite for clarity</em> (Worksheet + AI Prompt Question)</h3>
+<ol>
+<li><strong>BLUF rewrite.</strong> Take a rambling update (yours or this one) and rewrite it so the **first</li>
+</ol>
+<p>   sentence** carries the point; trim 30% of the words.</p>
+<ol>
+<li><strong>Pyramid a recommendation.</strong> Pick a small decision and structure it: main point → 3 reasons →</li>
+</ol>
+<p>   evidence. Write it as a 5–6 line message.</p>
+<ol>
+<li><strong>SBI draft.</strong> Write one piece of feedback in strict SBI (situation, behavior, impact) — you'll</li>
+</ol>
+<p>   deliver it in Atom 5.</p>
+<ol>
+<li><strong>AI Prompt Question.</strong> Ask an AI: *"Rewrite this message using BLUF and the Pyramid Principle, and</li>
+</ol>
+<p>   point out where I buried the lead."* Critique its output — did it actually lead with the point?</p>
+<hr>
+<h3>✅ Evaluate — Performance task (<code>skill</code>)</h3>
+<p>Submit your BLUF rewrite + pyramid recommendation. Scored on:</p>
+<div class='tablewrap'><table><thead><tr><th>Criterion</th><th>Excellent (3)</th><th>Adequate (2)</th><th>Needs work (1)</th></tr></thead><tbody>
+<tr><td><strong>Lead with the point</strong></td><td>Point/ask in sentence 1</td><td>Point early</td><td>Buried</td></tr>
+<tr><td><strong>Logical structure</strong></td><td>Clear pyramid; signposted</td><td>Mostly ordered</td><td>Rambling</td></tr>
+<tr><td><strong>Concision &amp; clarity</strong></td><td>Tight, concrete, jargon-managed</td><td>Some filler</td><td>Wordy/vague</td></tr>
+<tr><td><strong>Call to action</strong></td><td>Specific &amp; clear</td><td>Present</td><td>Missing</td></tr>
+</tbody></table></div>
+<blockquote>Pass = 2+ each → <strong>L2</strong> evidence for <code>S-structure-message</code>.</blockquote>
+<h3>📦 Deliverable</h3>
+<ul>
+<li>Your rewritten BLUF message, your pyramid recommendation, and your SBI feedback draft.</li>
+</ul>
+<h3>🧠 Final reflection</h3>
+<ul>
+<li>Where do you tend to bury the lead — emails, updates, or asks? What's the cost when you do?</li>
+</ul>
+<h3>🔗 Sources to verify (human-in-the-loop)</h3>
+<ul>
+<li>Minto, <em>The Pyramid Principle</em>.</li>
+<li>Center for Creative Leadership — <em>SBI feedback model</em>.</li>
+<li>US Army / general business usage — <em>BLUF</em>.</li>
+</ul>
+<h3>🧩 Connections</h3>
+<ul>
+<li><strong>Predecessor:</strong> Atom 3. <strong>Successor:</strong> Atom 5 (deliver SBI feedback live, under pressure).</li>
+</ul></section>
+<section class="page" id="page-atom-5" data-id="atom-5"><label class="donebox"><input type="checkbox" class="donechk" data-atom="atom-5"> Mark this atom complete</label><h2>⚛ Learning Atom 5 — <em>Feedback &amp; Difficult Conversations</em></h2>
+<p><strong>Phase:</strong> 🙊 3 · Applied Practice (<em>do</em>) · <strong>KSA:</strong> 🛠️ Skill + 🌱 Ability · <strong>Target level:</strong> L2 · <strong>Component ids:</strong> <code>S-feedback-difficult</code>, <code>A-assertiveness</code>, <code>A-empathy</code></p>
+<h3>🎯 Learning objective</h3>
+<ul>
+<li><strong>Give and receive feedback</strong> and <strong>de-escalate a difficult conversation</strong>, expressing your view</li>
+</ul>
+<p>  assertively <em>and</em> respectfully.</p>
+<h3>🧩 Prerequisites</h3>
+<ul>
+<li>Atom 3 (active listening) and Atom 4 (SBI). This is where they combine under pressure.</li>
+</ul>
+<h3>🧭 Atom description</h3>
+<p>This is the highest-stakes communication moment: telling someone something they may not want to hear, or staying composed when <em>you're</em> on the receiving end. It fuses everything so far — listen (Atom 3), structure with SBI (Atom 4), pick a rich channel (Atom 2) — and adds the <strong>Abilities</strong> of empathy and assertiveness. It's practiced through role-play because you can't learn this from reading alone.</p>
+<hr>
+<h3>📖 Reading — <em>Candor with care</em> (≈ 8 min)</h3>
+<p>Two failure modes bracket difficult conversations: <strong>aggression</strong> (blunt, blaming — wins the point, loses the person) and <strong>avoidance</strong> (sugarcoating or silence — keeps the peace, loses the truth). <strong>Assertiveness</strong> is the middle: say the honest thing <em>and</em> protect the relationship.</p>
+<p>A reliable structure for <strong>giving feedback</strong>:</p>
+<ol>
+<li><strong>Ask permission / set context.</strong> <em>"Can I share something about this morning?"</em> Invites, not ambushes.</li>
+<li><strong>SBI.</strong> Situation → observable Behavior → Impact (from Atom 4). Stay on behavior, not character.</li>
+<li><strong>Pause &amp; listen.</strong> Hand them the mic; use active listening (Atom 3). Their view may change yours.</li>
+<li><strong>Move forward together.</strong> Agree a concrete next step. <em>"What would help?"</em></li>
+</ol>
+<p>Tools that lower the temperature:</p>
+<ul>
+<li><strong>"I" statements</strong> over "you" accusations: <em>"I felt blocked when the update was late"</em> vs. *"You</li>
+</ul>
+<p>  never update me."* "I" statements own your experience and are far harder to argue with.</p>
+<ul>
+<li><strong>Nonviolent Communication (NVC):</strong> Observation → Feeling → Need → Request. *"When the deadline</li>
+</ul>
+<p>  moved without a heads-up (observation), I felt anxious (feeling) because I need predictability to   plan (need). Could we agree to flag slips within a day? (request)."*</p>
+<ul>
+<li><strong>Separate the person from the problem.</strong> Attack the issue side by side, not each other.</li>
+<li><strong>Regulate first.</strong> If you're flooded (heart pounding), name it and take a beat — *"I want to get</li>
+</ul>
+<p>  this right; can we take five?"* You cannot listen or be precise while flooded.</p>
+<p><strong>Receiving feedback</strong> is also a skill: listen without defending, paraphrase to confirm you got it, ask for specifics, thank them, then decide what to act on. Treat it as data, not a verdict.</p>
+<blockquote><strong>Empathy + assertiveness are not opposites.</strong> The goal is <em>"I respect you enough to be honest, and I care enough to be kind."</em> Reflect their view (empathy) <em>and</em> hold your own (assertiveness).</blockquote>
+<p><strong>Key takeaways</strong></p>
+<ul>
+<li><input type="checkbox" disabled> Aim for the middle: <strong>assertive (honest) + respectful (kind)</strong> — not aggressive or avoidant.</li>
+<li><input type="checkbox" disabled> Give feedback with <strong>permission → SBI → listen → next step</strong>.</li>
+<li><input type="checkbox" disabled> Use <strong>"I" statements</strong> and <strong>NVC</strong> (observation/feeling/need/request) to de-escalate.</li>
+<li><input type="checkbox" disabled> <strong>Regulate yourself first</strong>; receive feedback as <strong>data</strong>, not a verdict.</li>
+</ul>
+<hr>
+<h3>🖼️ See — the assertiveness middle path</h3>
+<div class="mermaid">flowchart LR
+  AGG[&quot;😤 Aggressive&lt;br/&gt;wins point, loses person&quot;] --- ASSERT[&quot;💪💙 Assertive + respectful&lt;br/&gt;honest AND kind&quot;]
+  ASSERT --- AVOID[&quot;🙈 Avoidant&lt;br/&gt;keeps peace, loses truth&quot;]
+  SBI[&quot;SBI + &#x27;I&#x27; statements&lt;br/&gt;+ active listening&quot;] --&gt; ASSERT</div>
+<p>A reusable prompt to generate an on-brand version:</p>
+<div class="promptcard"><div class="promptcard-h"><span>🖼️ Image / AI prompt</span><button class="copybtn" type="button">Copy</button></div><pre><code>Create a clean, modern infographic showing a spectrum with three points: &quot;Aggressive&quot; (left),
+&quot;Assertive + Respectful&quot; (center, highlighted), &quot;Avoidant/Passive&quot; (right). Below the center, list
+tools: &quot;I-statements, SBI, active listening, NVC&quot;. Caption: &quot;Candor with care.&quot; Use ADA brand colors
+(Indigo #1E2A6E, Turquoise #15B5C6, Gold #E0A53C), light background, flat vector, legible
+sans-serif. 16:9.</code></pre></div>
+<hr>
+<h3>🧪 Practice — <em>Difficult-conversation role-plays</em> (Role-Play + Simulation)</h3>
+<p>In trios (speaker · receiver · observer), run <strong>three</strong> 6–8 min scenarios so each person plays each role at least once:</p>
+<ol>
+<li><strong>Give feedback:</strong> a teammate keeps missing handoffs (deliver your SBI draft from Atom 4).</li>
+<li><strong>Receive feedback:</strong> your "manager" says your updates are too vague — practice receiving well.</li>
+<li><strong>De-escalate:</strong> a "stakeholder" is upset about a delay — acknowledge, use NVC, agree a next step.</li>
+</ol>
+<p>The <strong>observer</strong> scores against the rubric and gives SBI feedback afterward (meta-practice!).</p>
+<hr>
+<h3>✅ Evaluate — Behavioral assessment (<code>behavioral</code>)</h3>
+<p>Scored by the observer across the role-plays — this is a key occasion for the Abilities:</p>
+<div class='tablewrap'><table><thead><tr><th>Criterion</th><th>Excellent (3)</th><th>Adequate (2)</th><th>Needs work (1)</th></tr></thead><tbody>
+<tr><td><strong>Assertiveness (🌱)</strong></td><td>Honest and clear; holds position calmly</td><td>Mostly clear</td><td>Aggressive or avoidant</td></tr>
+<tr><td><strong>Empathy (🌱)</strong></td><td>Acknowledges feeling/need; person feels respected</td><td>Some acknowledgment</td><td>Dismissive</td></tr>
+<tr><td><strong>Structure (🛠️)</strong></td><td>Clean SBI / "I" statements / NVC</td><td>Partial</td><td>Blame/labels</td></tr>
+<tr><td><strong>Listening (🛠️)</strong></td><td>Paraphrases, asks, adjusts</td><td>Some</td><td>Talks over</td></tr>
+<tr><td><strong>Repair</strong></td><td>Lands a concrete next step</td><td>Vague step</td><td>None</td></tr>
+</tbody></table></div>
+<blockquote>Pass = 2+ each. This is <strong>occasion 2 of 3</strong> for <code>A-empathy</code> and <code>A-assertiveness</code> (capstone is the 3rd).</blockquote>
+<h3>📦 Deliverable</h3>
+<ul>
+<li>The observer's completed rubric for your role-plays + a 3–4 sentence reflection on your hardest</li>
+</ul>
+<p>  moment and how you handled it.</p>
+<h3>🧠 Final reflection</h3>
+<ul>
+<li>Do you default to aggression or avoidance under pressure? What's your one cue to find the middle?</li>
+</ul>
+<h3>🔗 Sources to verify (human-in-the-loop)</h3>
+<ul>
+<li>Stone, Patton &amp; Heen, <em>Difficult Conversations</em> (Harvard Negotiation Project).</li>
+<li>Patterson et al., <em>Crucial Conversations</em>.</li>
+<li>Rosenberg, <em>Nonviolent Communication</em>.</li>
+</ul>
+<h3>🧩 Connections</h3>
+<ul>
+<li><strong>Predecessor:</strong> Atom 4. <strong>Successor:</strong> Atom 6 (capstone — put it all together, live).</li>
+</ul></section>
+<section class="page" id="page-atom-6" data-id="atom-6"><label class="donebox"><input type="checkbox" class="donechk" data-atom="atom-6"> Mark this atom complete</label><h2>⚛ Learning Atom 6 — <em>Communication Capstone</em></h2>
+<p><strong>Phase:</strong> 🐵 4 · Collaboration &amp; Reflection (<em>share</em>) · <strong>KSA:</strong> 🛠️ Skill + 🌱 Ability · <strong>Target level:</strong> L2 · <strong>Component ids:</strong> <code>S-active-listening</code>, <code>S-structure-message</code>, <code>S-feedback-difficult</code>, <code>A-empathy</code>, <code>A-assertiveness</code></p>
+<h3>🎯 Learning objective</h3>
+<ul>
+<li><strong>Deliver</strong> a clear, structured message <strong>and lead a real conversation</strong> — listening actively and</li>
+</ul>
+<p>  expressing yourself with empathy and appropriate assertiveness — then <strong>reflect</strong> and <strong>peer-review</strong>.</p>
+<h3>🧩 Prerequisites</h3>
+<ul>
+<li>All prior atoms.</li>
+</ul>
+<h3>🧭 Atom description</h3>
+<p>The capstone is a single, realistic communication performance that integrates the whole course: audience analysis + channel choice (Atoms 1–2), active listening (Atom 3), a structured message (Atom 4), and assertive-yet-empathetic handling of a real exchange (Atom 5). It's delivered live (or recorded) and reviewed by peers and a mentor.</p>
+<hr>
+<h3>🚀 The brief</h3>
+<blockquote>Pick a <strong>real</strong> communication you actually need to do (a project update, a proposal, a piece of feedback, a tough ask). <strong>(1)</strong> Plan it (audience + channel + structured message), <strong>(2)</strong> deliver it as a 3–5 minute spoken message or a written piece, and <strong>(3)</strong> lead the follow-up conversation — listening actively and handling at least one question, pushback, or hard moment. Then reflect and peer-review a classmate.</blockquote>
+<p>Keep it <strong>real and modest</strong>. The goal is a genuine, well-handled exchange you can explain — not a TED talk.</p>
+<hr>
+<h3>📦 What to submit</h3>
+<ul>
+<li><input type="checkbox" disabled> <strong>A one-page plan</strong> — audience analysis (who/know/care/do), chosen channel + why, and your</li>
+</ul>
+<p>  message outlined with <strong>BLUF + Pyramid</strong> (and <strong>SBI</strong> if it's feedback).</p>
+<ul>
+<li><input type="checkbox" disabled> <strong>The performance</strong> — a recording, live observation, or the written piece + a transcript/notes</li>
+</ul>
+<p>  of the follow-up conversation.</p>
+<ul>
+<li><input type="checkbox" disabled> <strong>A reflection</strong> (6–8 sentences) — what landed, one noise source you managed, and how you</li>
+</ul>
+<p>  handled the hardest moment (empathy + assertiveness).</p>
+<ul>
+<li><input type="checkbox" disabled> <strong>A peer review you gave</strong> — apply the capstone rubric to a classmate's performance with</li>
+</ul>
+<p>  specific, kind, useful (SBI) feedback.</p>
+<hr>
+<h3>🎤 Showcase / observation structure (≈ 5 minutes)</h3>
+<ol>
+<li><strong>Context</strong> (30s) — the audience and why this channel.</li>
+<li><strong>The message</strong> (2–3 min) — deliver it, leading with the point.</li>
+<li><strong>The conversation</strong> (1–2 min) — field a question/pushback live; listen, then respond.</li>
+<li><strong>One choice</strong> (30s) — a deliberate communication choice you made and why.</li>
+</ol>
+<hr>
+<h3>✅ Evaluate — Capstone (<code>capstone-5</code>)</h3>
+<p>Graded with the standard 5-criteria Assessment Rubric in <a href="../../index.html#/examples/effective-communication-micro-credential/atoms/rubrics.md" target="_blank" rel="noopener"><code>../rubrics.md</code></a> / <a href="../../index.html#/examples/effective-communication-micro-credential/atoms/capstone.md" target="_blank" rel="noopener"><code>../capstone.md</code></a>. This is the <strong>third and decisive occasion</strong> for the Abilities <code>A-empathy</code> and <code>A-assertiveness</code> (observed live), alongside the Skills.</p>
+<h3>📦 Deliverable</h3>
+<ul>
+<li>Your plan + performance + reflection + the peer review you gave.</li>
+</ul>
+<h3>🧠 Final reflection</h3>
+<ul>
+<li>Compare a conversation from week 1 to this one. What changed in <em>how you listen</em> and *how you say</li>
+</ul>
+<p>  hard things*? Name one habit you'll keep practicing.</p>
+<h3>🔗 Sources to verify (human-in-the-loop)</h3>
+<ul>
+<li><a href="../../index.html#/examples/effective-communication-micro-credential/atoms/capstone.md" target="_blank" rel="noopener"><code>../capstone.md</code></a> · <a href="../../index.html#/examples/effective-communication-micro-credential/atoms/rubrics.md" target="_blank" rel="noopener"><code>../rubrics.md</code></a> · <a href="../../index.html#/examples/effective-communication-micro-credential/atoms/skills-map.md" target="_blank" rel="noopener"><code>../skills-map.md</code></a>.</li>
+<li>Anderson, <em>TED Talks: The Official TED Guide to Public Speaking</em> (for the spoken option).</li>
+</ul>
+<h3>🧩 Connections</h3>
+<ul>
+<li><strong>Predecessor:</strong> Atom 5. <strong>Outcome:</strong> 🏅 <em>Effective Communicator</em> badge → boosts almost any role</li>
+</ul>
+<p>  (see <a href="../../index.html#/examples/effective-communication-micro-credential/atoms/skills-map.md" target="_blank" rel="noopener"><code>../skills-map.md</code></a>).</p></section>
+<section class="page" id="page-capstone" data-id="capstone"><h1>🚀 Capstone — <em>Deliver, Converse, Reflect</em></h1>
+<p>The capstone is delivered as <a href="#atom-6">Atom 6</a>. This file is the <strong>grading brief</strong>: what learners submit, how it maps to KSA, and the showcase format.</p>
+<hr>
+<h2>🎯 The brief</h2>
+<blockquote>Pick a <strong>real</strong> communication you need to do (update, proposal, feedback, or a tough ask). Plan it (audience + channel + structured message), <strong>deliver</strong> it as a 3–5 minute spoken message or written piece, and <strong>lead the follow-up conversation</strong> — listening actively and handling at least one question, pushback, or hard moment with empathy and appropriate assertiveness. Then <strong>reflect</strong> and <strong>peer-review</strong> a classmate.</blockquote>
+<p>The point is a <strong>real, well-handled exchange</strong> you can explain — integrating the whole course — not a polished performance for its own sake.</p>
+<hr>
+<h2>📦 What to submit</h2>
+<ul>
+<li><input type="checkbox" disabled> <strong>A one-page plan</strong> — audience analysis (who/know/care/do), chosen channel + why, message</li>
+</ul>
+<p>  outlined with <strong>BLUF + Pyramid</strong> (and <strong>SBI</strong> if it's feedback).</p>
+<ul>
+<li><input type="checkbox" disabled> <strong>The performance</strong> — a recording, a live observation, or the written piece + notes/transcript</li>
+</ul>
+<p>  of the follow-up conversation.</p>
+<ul>
+<li><input type="checkbox" disabled> <strong>A reflection</strong> (6–8 sentences) — what landed, one noise source you managed, and how you</li>
+</ul>
+<p>  handled the hardest moment.</p>
+<ul>
+<li><input type="checkbox" disabled> <strong>A peer review you gave</strong> — the capstone rubric applied to a classmate, with specific, kind,</li>
+</ul>
+<p>  useful (SBI) feedback.</p>
+<hr>
+<h2>🎤 Showcase / observation structure (≈ 5 minutes)</h2>
+<ol>
+<li><strong>Context</strong> (30s) — the audience and why this channel.</li>
+<li><strong>The message</strong> (2–3 min) — deliver it, leading with the point.</li>
+<li><strong>The conversation</strong> (1–2 min) — field a question/pushback live; listen, then respond.</li>
+<li><strong>One choice</strong> (30s) — a deliberate communication choice and why.</li>
+</ol>
+<hr>
+<h2>🧬 How the capstone maps to KSA</h2>
+<div class='tablewrap'><table><thead><tr><th>Capstone element</th><th>Evidences</th><th>Component</th></tr></thead><tbody>
+<tr><td>Audience + channel choice in the plan</td><td>How communication works; audience/channel</td><td>🧠 K-comm-model, K-audience-channel</td></tr>
+<tr><td>Listening during the follow-up conversation</td><td>Active listening</td><td>🛠️ S-active-listening (L2)</td></tr>
+<tr><td>BLUF/Pyramid/SBI message</td><td>Structuring clear messages</td><td>🛠️ S-structure-message (L2)</td></tr>
+<tr><td>Handling pushback / a hard moment</td><td>Feedback &amp; difficult conversations</td><td>🛠️ S-feedback-difficult (L2)</td></tr>
+<tr><td>Adapting to the listener; person feels respected</td><td>Empathy across occasions</td><td>🌱 A-empathy (L2)</td></tr>
+<tr><td>Saying the hard thing calmly and clearly</td><td>Assertive, respectful expression</td><td>🌱 A-assertiveness (L2)</td></tr>
+<tr><td>Peer review given + honest reflection</td><td>Collaboration &amp; reflection</td><td>(capstone-5 collaboration)</td></tr>
+</tbody></table></div>
+<blockquote>The Abilities (<code>A-empathy</code>, <code>A-assertiveness</code>) are confirmed here as the <strong>3rd observed occasion</strong>, after Atoms 3 and 5.</blockquote>
+<hr>
+<h2>✅ Grading</h2>
+<p>Atom-level checks (<code>knowledge-mini</code>, <code>skill</code>, <code>behavioral</code>) gate entry to the capstone, which is then scored on the standard 5-criteria <strong>Assessment Rubric</strong> below (also in <a href="#rubrics"><code>rubrics.md</code></a>).</p>
+<h2>📋 Assessment Rubric</h2>
+<p>Five criteria across four proficiency bands, weighted to <strong>100 points</strong>.</p>
+<div class='tablewrap'><table><thead><tr><th>Criteria</th><th>Excellent (100–90%)</th><th>Competent (89–80%)</th><th>Developing (79–70%)</th><th>Initial (69% or less)</th><th>Weight</th></tr></thead><tbody>
+<tr><td><strong>Relevance (competency alignment)</strong></td><td>Message is purpose-built for a real audience and goal; channel choice is justified and apt.</td><td>Relevant; audience/channel mostly fitting.</td><td>Loosely fitting; generic audience/channel choice.</td><td>Off-target; no clear audience or purpose.</td><td><strong>20 pts</strong></td></tr>
+<tr><td><strong>Application of skills</strong></td><td>Active listening, BLUF/Pyramid/SBI, and de-escalation are all used correctly and naturally.</td><td>Most used correctly, with minor lapses.</td><td>Several gaps (buried lead, weak listening, no structure).</td><td>Minimal or incorrect application.</td><td><strong>25 pts</strong></td></tr>
+<tr><td><strong>Problem-solving</strong></td><td>Handles the live pushback/hard moment skillfully; adapts in real time.</td><td>Handles it adequately.</td><td>Partly handled; some defensiveness or rigidity.</td><td>Mishandled or avoided.</td><td><strong>20 pts</strong></td></tr>
+<tr><td><strong>Clarity &amp; communication</strong></td><td>Message is clear, concise, well-structured; nonverbals align.</td><td>Generally clear.</td><td>Uneven clarity or structure.</td><td>Unclear or disorganized.</td><td><strong>15 pts</strong></td></tr>
+<tr><td><strong>Collaboration &amp; reflection</strong></td><td>Empathy and assertiveness evident; insightful peer review + honest reflection.</td><td>Adequate empathy/assertiveness, review, reflection.</td><td>Minimal.</td><td>Missing.</td><td><strong>20 pts</strong></td></tr>
+<tr><td><strong>TOTAL</strong></td><td></td><td></td><td></td><td></td><td><strong>100 pts</strong></td></tr>
+</tbody></table></div>
+<blockquote><strong>Pass for the badge:</strong> atom-level checks ≥ 2 each (incl. the behavioral assessment), Assessment Rubric weighted score ≥ 70% (at least <em>Developing</em> on every criterion), and the peer review + reflection completed — <strong>verified by a mentor/instructor</strong> (human-in-the-loop). See <a href="#skillsmap"><code>skills-map.md</code></a> for what the badge unlocks.</blockquote></section>
+<section class="page" id="page-rubrics" data-id="rubrics"><h1>📊 Rubrics — Effective Communication</h1>
+<p>All rubrics for this micro-credential. Atom-level rubrics are <strong>formative</strong> (gate progress); the <strong>capstone-5</strong> rubric is the <strong>summative</strong> Assessment Rubric. Abilities are scored <strong>behaviorally across ≥3 occasions</strong>, never with a quiz.</p>
+<blockquote>See the rubric philosophy in <a href="../../index.html#/guides/curriculum-design-guide.md" target="_blank" rel="noopener"><code>../../guides/curriculum-design-guide.md</code></a> and the standard rubric in <a href="../../index.html#/templates/micro-credential-ada-template.md" target="_blank" rel="noopener"><code>../../templates/micro-credential-ada-template.md</code></a>.</blockquote>
+<hr>
+<h2>1) <code>knowledge-mini</code> — for Knowledge atoms (Atoms 1–2)</h2>
+<p>Formative checks for understanding (used by the pop quizzes).</p>
+<div class='tablewrap'><table><thead><tr><th>Criterion</th><th>Pass (✓)</th><th>Not yet (✗)</th></tr></thead><tbody>
+<tr><td><strong>Comprehension</strong></td><td>Explains the model/concept in own words</td><td>Recites without understanding</td></tr>
+<tr><td><strong>Application</strong></td><td>Picks the right channel / spots the noise in a scenario</td><td>Cannot transfer to a new case</td></tr>
+<tr><td><strong>Reflection</strong></td><td>Connects the idea to a real situation</td><td>No connection made</td></tr>
+</tbody></table></div>
+<p>Pass = all ✓. Retake allowed.</p>
+<hr>
+<h2>2) <code>skill</code> — for Skill atoms (Atoms 3–4)</h2>
+<div class='tablewrap'><table><thead><tr><th>Criterion</th><th>Excellent (3)</th><th>Adequate (2)</th><th>Needs work (1)</th></tr></thead><tbody>
+<tr><td><strong>Active listening (Atom 3)</strong></td><td>Attends, paraphrases, names feeling, asks open Qs, checks</td><td>Some moves present</td><td>Talks over / fixes first</td></tr>
+<tr><td><strong>Message structure (Atom 4)</strong></td><td>Leads with point; clean pyramid; clear CTA</td><td>Mostly structured</td><td>Buried lead / rambling</td></tr>
+<tr><td><strong>Concision &amp; clarity</strong></td><td>Tight, concrete, jargon-managed</td><td>Some filler</td><td>Wordy / vague</td></tr>
+</tbody></table></div>
+<p>Pass = 2+ on each relevant row → <strong>L2</strong> for the targeted Skill.</p>
+<hr>
+<h2>3) <code>behavioral</code> — for the Abilities (Atoms 3, 5, capstone)</h2>
+<p>Scored by <strong>observation across ≥3 occasions</strong> (Atom 3 listening drill, Atom 5 role-plays, capstone). The Ability is credited only if it shows up <strong>consistently</strong>.</p>
+<div class='tablewrap'><table><thead><tr><th>Ability</th><th>Looks like (✓)</th><th>Doesn't look like (✗)</th><th>Occasions</th></tr></thead><tbody>
+<tr><td><strong>Empathy &amp; audience-awareness (<code>A-empathy</code>)</strong></td><td>Adapts to the listener; names feelings; person feels understood</td><td>Talks at people; ignores cues; one-size message</td><td>Atoms 3, 5, capstone</td></tr>
+<tr><td><strong>Assertiveness, respectful (<code>A-assertiveness</code>)</strong></td><td>Says the hard thing calmly and clearly; holds position without aggression</td><td>Aggressive (blames) or avoidant (sugarcoats/silent)</td><td>Atoms 5, capstone</td></tr>
+</tbody></table></div>
+<p>Credit at <strong>L2</strong> = observed ✓ in <strong>at least 3 occasions</strong> (Atom 5 alone is not enough).</p>
+<hr>
+<h2>4) <code>capstone-5</code> — summative Assessment Rubric (the badge gate)</h2>
+<p>The standard ADA 5-criteria / 4-band / 100-point rubric. Identical to the table in <a href="#capstone"><code>capstone.md</code></a>:</p>
+<div class='tablewrap'><table><thead><tr><th>Criteria</th><th>Excellent (100–90%)</th><th>Competent (89–80%)</th><th>Developing (79–70%)</th><th>Initial (69% or less)</th><th>Weight</th></tr></thead><tbody>
+<tr><td><strong>Relevance (competency alignment)</strong></td><td>Message is purpose-built for a real audience and goal; channel choice justified.</td><td>Relevant; mostly fitting.</td><td>Loosely fitting; generic.</td><td>Off-target.</td><td><strong>20 pts</strong></td></tr>
+<tr><td><strong>Application of skills</strong></td><td>Listening, BLUF/Pyramid/SBI, de-escalation all used correctly and naturally.</td><td>Most used correctly.</td><td>Several gaps.</td><td>Minimal/incorrect.</td><td><strong>25 pts</strong></td></tr>
+<tr><td><strong>Problem-solving</strong></td><td>Handles live pushback skillfully; adapts in real time.</td><td>Handles adequately.</td><td>Partly; some rigidity.</td><td>Mishandled/avoided.</td><td><strong>20 pts</strong></td></tr>
+<tr><td><strong>Clarity &amp; communication</strong></td><td>Clear, concise, structured; nonverbals align.</td><td>Generally clear.</td><td>Uneven.</td><td>Unclear.</td><td><strong>15 pts</strong></td></tr>
+<tr><td><strong>Collaboration &amp; reflection</strong></td><td>Empathy + assertiveness evident; insightful peer review + honest reflection.</td><td>Adequate.</td><td>Minimal.</td><td>Missing.</td><td><strong>20 pts</strong></td></tr>
+<tr><td><strong>TOTAL</strong></td><td></td><td></td><td></td><td></td><td><strong>100 pts</strong></td></tr>
+</tbody></table></div>
+<hr>
+<h2>🏅 Badge issuance — <em>Effective Communicator</em></h2>
+<p>Issued when <strong>all</strong> hold (mentor-verified — human-in-the-loop):</p>
+<ul>
+<li><input type="checkbox" disabled> <strong>Knowledge:</strong> Atoms 1–2 pop quizzes passed.</li>
+<li><input type="checkbox" disabled> <strong>Skills:</strong> Atom 3 (listening) + Atom 4 (structure) mini-rubrics ≥ 2 each → <strong>L2</strong>.</li>
+<li><input type="checkbox" disabled> <strong>Abilities:</strong> <code>A-empathy</code> &amp; <code>A-assertiveness</code> observed ✓ across <strong>≥3 occasions</strong>.</li>
+<li><input type="checkbox" disabled> <strong>Capstone:</strong> Assessment Rubric weighted score <strong>≥ 70%</strong> (≥ <em>Developing</em> on each criterion).</li>
+<li><input type="checkbox" disabled> <strong>Collaboration:</strong> peer review given + reflection submitted.</li>
+</ul>
+<p>The badge writes these KSA components (with levels) into the learner's <strong>skills map</strong> — see <a href="#skillsmap"><code>skills-map.md</code></a>.</p></section>
+<section class="page" id="page-skillsmap" data-id="skillsmap"><h1>🗺️ Skills Map — <em>Effective Communicator</em></h1>
+<p>How earning this badge updates a learner's <strong>skills map</strong> and why it's one of the highest-leverage credentials to hold — communication is a near-universal job requirement.</p>
+<blockquote>Concept reference: <a href="../../index.html#/specs/skills-map-job-matching.md" target="_blank" rel="noopener"><code>../../specs/skills-map-job-matching.md</code></a>.</blockquote>
+<hr>
+<h2>🧩 What the badge writes to the skills map</h2>
+<p>On issuance, these KSA components are recorded with evidence and level:</p>
+<div class='tablewrap'><table><thead><tr><th>Component</th><th>Type</th><th>Level</th><th>Evidence</th></tr></thead><tbody>
+<tr><td><code>K-comm-model</code> — how communication works</td><td>🧠 Knowledge</td><td>L2</td><td>Atom 1 quiz</td></tr>
+<tr><td><code>K-audience-channel</code> — audience &amp; channel</td><td>🧠 Knowledge</td><td>L2</td><td>Atom 2 quiz + worksheet</td></tr>
+<tr><td><code>S-active-listening</code> — listen actively</td><td>🛠️ Skill</td><td><strong>L2</strong></td><td>Atom 3 mini-rubric + capstone</td></tr>
+<tr><td><code>S-structure-message</code> — structure clear messages</td><td>🛠️ Skill</td><td><strong>L2</strong></td><td>Atom 4 performance task + capstone</td></tr>
+<tr><td><code>S-feedback-difficult</code> — feedback &amp; hard conversations</td><td>🛠️ Skill</td><td>L2</td><td>Atom 5 behavioral + capstone</td></tr>
+<tr><td><code>A-empathy</code> — empathy &amp; audience-awareness</td><td>🌱 Ability</td><td>L2</td><td>Behavioral, ≥3 occasions</td></tr>
+<tr><td><code>A-assertiveness</code> — assertive, respectful</td><td>🌱 Ability</td><td>L2</td><td>Behavioral, ≥3 occasions</td></tr>
+</tbody></table></div>
+<hr>
+<h2>🎯 Why this badge matters everywhere</h2>
+<div class="mermaid">flowchart TD
+  EC[&quot;🏅 Effective Communicator&quot;] --&gt; IC[&quot;👩‍💻 Any IC role&lt;br/&gt;clearer updates, fewer reworks&quot;]
+  EC --&gt; LEAD[&quot;🧭 Team lead / manager&lt;br/&gt;feedback, 1:1s, alignment&quot;]
+  EC --&gt; CLIENT[&quot;🤝 Client-facing / sales&lt;br/&gt;discovery, proposals, trust&quot;]
+  EC --&gt; CROSS[&quot;🔀 Cross-functional work&lt;br/&gt;stakeholder communication&quot;]</div>
+<p>"Communication skills" appears in the majority of job postings across functions. Unlike most badges that boost one role, <strong>Effective Communicator is a multiplier</strong> on nearly every role's effectiveness and is frequently an explicit hiring criterion (O*NET lists Active Listening, Speaking, and Writing as <em>basic skills</em> required across occupations).</p>
+<hr>
+<h2>🧭 How it fits a learning pathway</h2>
+<div class='tablewrap'><table><thead><tr><th>Stage</th><th>Credential</th><th>What it adds</th></tr></thead><tbody>
+<tr><td>Foundational (durable)</td><td>🏅 <strong>Effective Communicator</strong> <em>(this one)</em></td><td>listen, structure, handle hard talks</td></tr>
+<tr><td>Pairs well with</td><td>🏅 <a href="../../index.html#/examples/growth-mindset-micro-credential/skills-map.md" target="_blank" rel="noopener">Growth Mindset</a></td><td>resilience + feedback-seeking — the receiving side of communication</td></tr>
+<tr><td>Builds toward</td><td><em>Facilitation · Influencing &amp; Negotiation · Presentation &amp; Storytelling</em></td><td>(future credentials) advanced communication</td></tr>
+<tr><td>Role pathways</td><td><em>Team Lead · Product Manager · Customer Success · Consultant · Tech Lead</em></td><td>communication is a core competency in each</td></tr>
+</tbody></table></div>
+<blockquote><strong>Job-matching note:</strong> because communication is a <em>transversal</em> competency, this badge rarely appears alone in a role's minimums — it <strong>stacks</strong> with technical badges (e.g., <a href="../../index.html#/examples/python-variables-micro-credential/skills-map.md" target="_blank" rel="noopener">Python Variables</a> → developer pathway) to make a candidate's profile credible end-to-end. Matching against a specific job's minimum bar still requires <strong>human (mentor/employer) validation</strong> — AI-suggested mappings are a starting point, not a verdict (see <a href="../../index.html#/CLAUDE.md" target="_blank" rel="noopener"><code>../../CLAUDE.md</code></a> §5).</blockquote></section></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var pages=Array.prototype.slice.call(document.querySelectorAll(".page"));
+  var ids=pages.map(function(p){return p.getAttribute("data-id");});
+  var links=Array.prototype.slice.call(document.querySelectorAll(".navlink"));
+  var atomIds=["atom-1","atom-2","atom-3","atom-4","atom-5","atom-6"];
+  var idx=0;
+
+  function show(id){
+    var i=ids.indexOf(id); if(i<0)i=0; idx=i;
+    pages.forEach(function(p){p.classList.toggle("active",p.getAttribute("data-id")===id);});
+    links.forEach(function(a){a.classList.toggle("active",a.getAttribute("data-target")===id);});
+    document.getElementById("prevbtn").disabled=(idx===0);
+    document.getElementById("nextbtn").disabled=(idx===pages.length-1);
+    if(location.hash.slice(1)!==id) history.replaceState(null,"","#"+id);
+    document.getElementById("side").classList.remove("open");
+    window.scrollTo(0,0);
+    renderMermaid();
+  }
+  links.forEach(function(a){a.addEventListener("click",function(e){e.preventDefault();show(a.getAttribute("data-target"));});});
+  document.getElementById("prevbtn").addEventListener("click",function(){if(idx>0)show(ids[idx-1]);});
+  document.getElementById("nextbtn").addEventListener("click",function(){if(idx<ids.length-1)show(ids[idx+1]);});
+  document.getElementById("menutoggle").addEventListener("click",function(){document.getElementById("side").classList.toggle("open");});
+
+  // progress (localStorage)
+  var KEY="effective-communication-progress";
+  function load(){try{return JSON.parse(localStorage.getItem(KEY)||"{}");}catch(e){return {};}}
+  function save(s){try{localStorage.setItem(KEY,JSON.stringify(s));}catch(e){}}
+  function refresh(){
+    var s=load(),done=0;
+    document.querySelectorAll(".donechk").forEach(function(c){
+      c.checked=!!s[c.getAttribute("data-atom")]; if(c.checked)done++;});
+    var pct=Math.round(done/atomIds.length*100);
+    document.getElementById("progfill").style.width=pct+"%";
+    document.getElementById("progtext").textContent=done+" / "+atomIds.length+" atoms complete";
+  }
+  document.querySelectorAll(".donechk").forEach(function(c){
+    c.addEventListener("change",function(){var s=load();s[c.getAttribute("data-atom")]=c.checked;save(s);refresh();});
+  });
+  refresh();
+
+  // copy buttons
+  document.querySelectorAll(".copybtn").forEach(function(b){
+    b.addEventListener("click",function(){
+      var pre=b.closest(".promptcard").querySelector("pre");
+      var txt=pre.innerText;
+      (navigator.clipboard?navigator.clipboard.writeText(txt):Promise.reject()).then(function(){
+        b.textContent="Copied!";b.classList.add("ok");setTimeout(function(){b.textContent="Copy";b.classList.remove("ok");},1400);
+      }).catch(function(){
+        var r=document.createRange();r.selectNodeContents(pre);var sel=getSelection();sel.removeAllRanges();sel.addRange(r);
+        try{document.execCommand("copy");}catch(e){} sel.removeAllRanges();
+        b.textContent="Copied!";b.classList.add("ok");setTimeout(function(){b.textContent="Copy";b.classList.remove("ok");},1400);
+      });
+    });
+  });
+
+  // youtube click-to-play
+  document.querySelectorAll(".yt").forEach(function(y){
+    var btn=y.querySelector(".yt-play");
+    btn.addEventListener("click",function(){
+      var id=y.getAttribute("data-id"); if(!id)return;
+      var f=document.createElement("iframe");
+      f.src="https://www.youtube-nocookie.com/embed/"+id+"?autoplay=1&rel=0";
+      f.allow="accelerated-sensors;autoplay;encrypted-media;picture-in-picture";
+      f.setAttribute("allowfullscreen","");
+      btn.replaceWith(f);
+    });
+  });
+
+  // mermaid (CDN, brand theme, root emphasis, graceful fallback)
+  var mmReady=null;
+  function ensureMermaid(){
+    if(mmReady)return mmReady;
+    mmReady=new Promise(function(res,rej){
+      if(window.mermaid)return res(window.mermaid);
+      var s=document.createElement("script");
+      s.src="https://cdn.jsdelivr.net/npm/mermaid@11.15.0/dist/mermaid.min.js";
+      s.onload=function(){res(window.mermaid);};
+      s.onerror=function(){
+        var s2=document.createElement("script");
+        s2.src="https://unpkg.com/mermaid@11.15.0/dist/mermaid.min.js";
+        s2.onload=function(){res(window.mermaid);}; s2.onerror=rej;
+        document.head.appendChild(s2);
+      };
+      document.head.appendChild(s);
+    });
+    return mmReady;
+  }
+  function src(n){var s=n.getAttribute("data-src");if(s===null){s=n.textContent;n.setAttribute("data-src",s);}return s;}
+  function fallback(n){n.classList.add("fallback");n.innerHTML="<pre>"+src(n).replace(/[&<>]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;"}[c];})+"</pre>";}
+  function detectRoots(s){
+    try{var L=s.split(/\r?\n/);if(!/^\s*(flowchart|graph)\b/i.test(L[0]||""))return [];
+      var all={},tg={};
+      for(var i=1;i<L.length;i++){var t=(L[i]||"").trim();
+        if(!t||/^%%/.test(t))continue;
+        if(/^(classdef|class|style|linkstyle|click|direction|subgraph|end)\b/i.test(t))continue;
+        var x=L[i];for(var k=0;k<8;k++){x=x.replace(/\(\([^()]*\)\)/g," ").replace(/\[[^\[\]]*\]/g," ").replace(/\{[^{}]*\}/g," ").replace(/\([^()]*\)/g," ");}
+        x=x.replace(/\|[^|]*\|/g," ");if(x.indexOf("--")<0&&x.indexOf("==")<0)continue;
+        var ids=x.split(/\s*(?:-{2,}>?|={2,}>?|-\.->?)\s*/).map(function(z){return (z.trim().match(/^[A-Za-z0-9_]+/)||[""])[0];}).filter(Boolean);
+        for(var j=0;j<ids.length;j++){all[ids[j]]=1;if(j>0)tg[ids[j]]=1;}}
+      var r=Object.keys(all).filter(function(id){return !tg[id];});
+      return r.length&&r.length<=4?r:[];
+    }catch(e){return [];}
+  }
+  function emphasize(s){var r=detectRoots(s);if(!r.length)return s;
+    return s+"\nclassDef adaRootNode fill:#1E2A6E,stroke:#E0A53C,stroke-width:3px,color:#ffffff,font-weight:bold,font-size:21px;\nclass "+r.join(",")+" adaRootNode;";}
+  var seq=0;
+  function renderMermaid(){
+    var nodes=Array.prototype.slice.call(document.querySelectorAll(".page.active .mermaid:not([data-done])"));
+    if(!nodes.length)return;
+    nodes.forEach(src);
+    ensureMermaid().then(function(m){
+      m.initialize({startOnLoad:false,securityLevel:"loose",theme:"base",fontFamily:"inherit",fontSize:"16px",
+        flowchart:{htmlLabels:true,useMaxWidth:true,curve:"basis",padding:14,nodeSpacing:52,rankSpacing:58},
+        themeVariables:{fontSize:"16px",primaryColor:"#1E2A6E",primaryTextColor:"#ffffff",primaryBorderColor:"#15B5C6",
+          mainBkg:"#1E2A6E",nodeBorder:"#15B5C6",nodeTextColor:"#ffffff",lineColor:"#1E2A6E",
+          clusterBkg:"#eef2fb",clusterBorder:"#15B5C6",titleColor:"#1E2A6E",
+          background:"#ffffff",textColor:"#1E2A6E",edgeLabelBackground:"#ffffff",
+          cScale0:"#1E2A6E",cScale1:"#15B5C6",cScale2:"#E0A53C",cScale3:"#2a3aa0",
+          cScaleLabel0:"#ffffff",cScaleLabel1:"#0A1124",cScaleLabel2:"#0A1124",cScaleLabel3:"#ffffff"}});
+      nodes.forEach(function(n){
+        n.setAttribute("data-done","1");
+        var id="mm-"+(Date.now())+"-"+(seq++);
+        try{m.render(id,emphasize(src(n))).then(function(o){n.innerHTML=o.svg;}).catch(function(){fallback(n);});}
+        catch(e){fallback(n);}
+      });
+    }).catch(function(){nodes.forEach(fallback);});
+  }
+
+  window.addEventListener("hashchange",function(){show(location.hash.slice(1)||ids[0]);});
+  show(location.hash.slice(1)||ids[0]);
+})();
+</script>
+</body>
+</html>

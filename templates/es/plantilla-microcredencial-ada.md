@@ -248,27 +248,37 @@ Incluye: 👥 retroalimentación entre pares · 🗣️ proyectos de co-creació
 
 ---
 
-### ✨ Rúbrica Estándar para Proyecto Capstone (5 Criterios)
+### 📋 Rúbrica de Evaluación (Capstone — 5 Criterios)
 
-| Criterio                                 | Excelente (5)                               | Bueno (3–4)                     | Necesita Mejorar (1–2)          | Peso |
-| ---------------------------------------- | ------------------------------------------- | ------------------------------- | ------------------------------- | ---- |
-| **Relevancia (Alineación con Competencia Laboral)** | Completamente alineado con la competencia laboral objetivo | Mayormente alineado, brechas menores | Alineación débil o faltante | 20% |
-| **Aplicación de Habilidades**            | Uso avanzado y correcto de herramientas/métodos | Uso adecuado, errores menores | Aplicación mínima o incorrecta | 25% |
-| **Resolución de Problemas y Creatividad** | Soluciones innovadoras y prácticas         | Adecuado pero convencional      | Originalidad limitada, impráctico | 20% |
-| **Claridad y Comunicación**              | Claro, bien estructurado, profesional      | Generalmente claro, algunos problemas | Poco claro, mal estructurado | 15% |
-| **Colaboración y Reflexión**             | Fuerte compromiso entre pares + reflexión  | Compromiso moderado             | Mínimo o faltante              | 20% |
+El capstone se califica con **cinco criterios** en **cuatro bandas de competencia**, ponderados a un
+total de **100 puntos**. La banda de cada criterio define cuánto de su peso se obtiene. Aprobación
+recomendada **≥ 70% en total, con al menos *En Desarrollo* en cada criterio**, verificada por un
+mentor (humano en el ciclo). Es la rúbrica estándar de ADA — reutilízala en todas tus micro-credenciales.
+
+| Criterios | Excelente (100–90%) | Competente (89–80%) | En Desarrollo (79–70%) | Inicial (69% o menos) | Peso |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Relevancia (Alineación con Competencia Laboral)** | Completamente alineado con la competencia laboral objetivo en todo momento. | Mayormente alineado, brechas menores. | Parcialmente alineado; brechas notables. | Alineación débil o faltante. | **20 pts** |
+| **Aplicación de Habilidades** | Uso avanzado y correcto de las herramientas/métodos. | Uso adecuado, errores menores. | Uso inconsistente; varios errores. | Aplicación mínima o incorrecta. | **25 pts** |
+| **Resolución de Problemas y Creatividad** | Soluciones innovadoras y prácticas. | Adecuado pero convencional. | Originalidad limitada; en parte impráctico. | Poca originalidad; impráctico. | **20 pts** |
+| **Claridad y Comunicación** | Claro, bien estructurado, profesional. | Generalmente claro, problemas menores. | Claridad / estructura irregular. | Poco claro, mal estructurado. | **15 pts** |
+| **Colaboración y Reflexión** | Fuerte compromiso entre pares + reflexión profunda. | Compromiso y reflexión moderados. | Compromiso / reflexión mínimos. | Faltante. | **20 pts** |
+| **TOTAL** | | | | | **100 pts** |
 
 ---
 
-### 📝 Plantilla de Rúbrica en Blanco (Capstone – Completar)
+### 📝 Rúbrica de Evaluación en Blanco (Capstone – Completar)
 
-| Criterio                                 | Excelente (5) \[Describir dominio] | Bueno (3–4) \[Describir desempeño adecuado] | Necesita Mejorar (1–2) \[Describir desempeño débil] | Peso \[%] |
-| ---------------------------------------- | ---------------------------------- | -------------------------------------------- | ---------------------------------------------------- | --------- |
-| **Relevancia (Alineación con Competencia Laboral)** | \[Describir]                  | \[Describir]                                 | \[Describir]                                         | \[20%]    |
-| **Aplicación de Habilidades**            | \[Describir]                      | \[Describir]                                 | \[Describir]                                         | \[25%]    |
-| **Resolución de Problemas y Creatividad** | \[Describir]                     | \[Describir]                                 | \[Describir]                                         | \[20%]    |
-| **Claridad y Comunicación**              | \[Describir]                      | \[Describir]                                 | \[Describir]                                         | \[15%]    |
-| **Colaboración y Reflexión**             | \[Describir]                      | \[Describir]                                 | \[Describir]                                         | \[20%]    |
+\[Copia esta tabla y escribe un descriptor en cada celda para tu competencia. Conserva las cuatro
+bandas y ajusta los pesos para que sumen **100 pts**.]
+
+| Criterios | Excelente (100–90%) | Competente (89–80%) | En Desarrollo (79–70%) | Inicial (69% o menos) | Peso |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **\[Criterio 1 — Relevancia]** | \[Describir dominio] | \[Describir competente] | \[Describir en desarrollo] | \[Describir inicial] | **\[20 pts]** |
+| **\[Criterio 2 — Aplicación de Habilidades]** | \[Describir] | \[Describir] | \[Describir] | \[Describir] | **\[25 pts]** |
+| **\[Criterio 3 — Resolución de Problemas]** | \[Describir] | \[Describir] | \[Describir] | \[Describir] | **\[20 pts]** |
+| **\[Criterio 4 — Claridad y Comunicación]** | \[Describir] | \[Describir] | \[Describir] | \[Describir] | **\[15 pts]** |
+| **\[Criterio 5 — Colaboración y Reflexión]** | \[Describir] | \[Describir] | \[Describir] | \[Describir] | **\[20 pts]** |
+| **TOTAL** | | | | | **100 pts** |
 
 ---
 

@@ -154,6 +154,21 @@ Capstone criteria map to KSA:
 | Clarity & Communication | reflection + change log |
 | Collaboration & Reflection | A-growth-mindset + peer 360 |
 
+### 📋 Assessment Rubric (capstone-5)
+
+Five criteria across four proficiency bands, weighted to **100 points** (pass ≥ 70%, at least
+*Developing* on every criterion; mentor-verified). Because this certifies an **Ability**, pair it
+with the behavioral rubric across occasions above.
+
+| Criteria | Excellent (100–90%) | Competent (89–80%) | Developing (79–70%) | Initial (69% or less) | Weight |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Relevance (competency alignment)** | The pivot is a realistic, job-relevant stretch; framing accurate. | Relevant; framing mostly accurate. | Loosely relevant; framing partly off. | Off-target or inaccurate. | **20 pts** |
+| **Application of Skills** | Reframing technique used skillfully to re-scope. | Used adequately, minor gaps. | Attempted but inconsistent. | Largely absent or misapplied. | **25 pts** |
+| **Problem-Solving & Creativity** | Re-plans calmly into a smart new path. | Sound, conventional re-plan. | Some re-planning; stalls at points. | Freezes; no adaptation. | **20 pts** |
+| **Clarity & Communication** | Clear change log + honest, structured reflection. | Generally clear. | Uneven clarity. | Unclear or missing. | **15 pts** |
+| **Collaboration & Reflection** | Strong peer 360 + deeply insightful reflection. | Moderate engagement + reflection. | Minimal. | Missing. | **20 pts** |
+| **TOTAL** | | | | | **100 pts** |
+
 ## 🏅 Badge → skills map
 Sets `A-adaptability=2` and `A-growth-mindset=2` — exactly the durable Abilities that
 employers list as `must_have` "attitude/fit" and that a Knowledge-only course can never

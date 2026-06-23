@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>🧩 Problem Solving · ADA Micro-Credential</title>
+<link rel="icon" href="../../img/Isotipo.png">
+<style>
+:root{
+  --ink:#0A1124; --indigo:#1E2A6E; --turq:#15B5C6; --gold:#E0A53C;
+  --bg:#f6f8fc; --surface:#ffffff; --border:#e2e7f2; --text:#1b2440; --muted:#5b6685;
+  --radius:14px; --shadow:0 6px 24px rgba(20,30,70,.08);
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Arial,sans-serif;
+  background:var(--bg);color:var(--text);line-height:1.65}
+a{color:var(--indigo);text-decoration:none}
+a:hover{text-decoration:underline}
+.app{display:grid;grid-template-columns:300px minmax(0,1fr);min-height:100vh}
+
+/* sidebar */
+.side{position:sticky;top:0;height:100vh;overflow-y:auto;background:var(--ink);color:#dfe5fb;
+  padding:18px 14px;border-right:1px solid #111a36}
+.brand{display:flex;align-items:center;gap:10px;padding:6px 6px 14px}
+.brand img{width:40px;height:40px;animation:spin 9s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.brand b{font-size:15px;color:#fff;line-height:1.2}
+.brand small{display:block;color:var(--turq);font-weight:600;font-size:11px;letter-spacing:.04em}
+.progwrap{margin:8px 6px 16px}
+.progbar{height:8px;border-radius:8px;background:#1b2547;overflow:hidden}
+.progfill{height:100%;width:0;background:linear-gradient(90deg,var(--turq),var(--gold));transition:width .5s}
+.progtext{font-size:11px;color:#9fb0e6;margin-top:6px}
+.nav-group{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:#8fa0d8;
+  margin:14px 8px 4px;font-weight:700}
+.navlink{display:block;padding:8px 10px;border-radius:9px;color:#cdd6f6;font-size:14px;margin:2px 0}
+.navlink:hover{background:#16204180;text-decoration:none;color:#fff}
+.navlink.active{background:linear-gradient(90deg,var(--indigo),#2a3aa0);color:#fff;font-weight:600}
+
+/* main */
+.main{padding:0}
+.topbar{position:sticky;top:0;z-index:5;background:rgba(246,248,252,.85);backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--border);padding:12px 28px;display:flex;align-items:center;gap:14px}
+.topbar .pill{font-size:12px;font-weight:700;color:#fff;background:var(--indigo);padding:4px 12px;border-radius:30px}
+.topbar .sp{flex:1}
+.navbtn{border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:9px;
+  padding:7px 14px;font-size:13px;cursor:pointer;font-weight:600}
+.navbtn:hover{border-color:var(--turq)}
+.navbtn:disabled{opacity:.4;cursor:not-allowed}
+.wrap{max-width:880px;margin:0 auto;padding:30px 28px 90px}
+.page{display:none;animation:fade .35s ease}
+.page.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+h1,h2,h3,h4{color:var(--indigo);line-height:1.25}
+h1{font-size:30px;margin:.2em 0 .5em;border-bottom:3px solid var(--turq);padding-bottom:.3em}
+h2{font-size:22px;margin:1.5em 0 .5em}
+h3{font-size:18px;margin:1.3em 0 .4em}
+h4{font-size:15px;margin:1.1em 0 .3em;color:var(--ink)}
+p{margin:.7em 0}
+hr{border:0;border-top:1px solid var(--border);margin:1.6em 0}
+ul,ol{padding-left:1.4em;margin:.6em 0}
+li{margin:.3em 0}
+li input[type=checkbox]{margin-right:6px}
+img{max-width:100%;border-radius:10px}
+code{background:#eef1f9;padding:.12em .4em;border-radius:6px;font-size:.88em;
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:#27306b}
+pre.code{background:var(--ink);color:#e7ecff;padding:16px 18px;border-radius:var(--radius);
+  overflow:auto;position:relative;box-shadow:var(--shadow)}
+pre.code code{background:none;color:inherit;padding:0;font-size:13.5px;line-height:1.6}
+pre.code .lang{position:absolute;top:8px;right:12px;font-size:10px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--turq);font-family:inherit}
+blockquote{margin:1em 0;padding:.7em 1.1em;border-left:4px solid var(--gold);
+  background:#fff8ec;border-radius:0 10px 10px 0;color:#5a4a23}
+.tablewrap{overflow-x:auto;margin:1em 0;border:1px solid var(--border);border-radius:var(--radius)}
+table{border-collapse:collapse;width:100%;font-size:14px;background:var(--surface)}
+th,td{padding:9px 12px;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+th{background:var(--indigo);color:#fff;font-weight:600}
+tr:nth-child(even) td{background:#f7f9fe}
+
+.donebox{float:right;display:inline-flex;align-items:center;gap:7px;background:var(--surface);
+  border:1px solid var(--border);border-radius:30px;padding:6px 14px;font-size:13px;font-weight:600;
+  color:var(--muted);cursor:pointer;box-shadow:var(--shadow)}
+.donebox input{accent-color:var(--turq)}
+
+/* youtube facade */
+.yt{margin:1.2em 0;border-radius:var(--radius);overflow:hidden;background:var(--ink);box-shadow:var(--shadow)}
+.yt .yt-play{position:relative;display:block;width:100%;aspect-ratio:16/9;border:0;cursor:pointer;
+  background:radial-gradient(circle at 50% 45%,#243069,#0A1124);color:#fff}
+.yt-tri{font-size:42px;color:#fff;background:rgba(225,165,60,.92);width:84px;height:58px;
+  border-radius:16px;display:grid;place-items:center;margin:0 auto;box-shadow:0 6px 18px rgba(0,0,0,.4);
+  transition:transform .2s}
+.yt .yt-play:hover .yt-tri{transform:scale(1.08)}
+.yt iframe{display:block;width:100%;aspect-ratio:16/9;border:0}
+.yt-meta{padding:9px 14px;font-size:13px;background:#121c3a}
+.yt-meta a{color:var(--turq);word-break:break-all}
+.yt-cap{color:#aebadf;font-size:12px;margin-top:2px}
+
+/* prompt card */
+.promptcard{margin:1.2em 0;border:1px solid #d9c79a;border-radius:var(--radius);overflow:hidden;
+  background:#fffdf6;box-shadow:var(--shadow)}
+.promptcard-h{display:flex;align-items:center;justify-content:space-between;padding:8px 14px;
+  background:linear-gradient(90deg,#fbf0d6,#fff7e6);font-weight:700;color:#7a5b16;font-size:13px}
+.promptcard pre{margin:0;padding:14px 16px;white-space:pre-wrap;font-size:13px;color:#4a4634;
+  font-family:ui-monospace,Menlo,monospace}
+.copybtn{border:1px solid var(--gold);background:#fff;color:#8a6516;border-radius:7px;
+  padding:3px 12px;font-size:12px;cursor:pointer;font-weight:700}
+.copybtn:hover{background:var(--gold);color:#fff}
+.copybtn.ok{background:var(--turq);border-color:var(--turq);color:#fff}
+
+/* mermaid */
+.mermaid{margin:1.2em 0;text-align:center;background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
+.mermaid.fallback{text-align:left;background:var(--ink)}
+.mermaid.fallback pre{color:#e7ecff;margin:0;white-space:pre-wrap;font-size:12px}
+.mermaid svg .nodeLabel,.mermaid svg .label{font-weight:600}
+.mermaid svg .edgeLabel,.mermaid svg .edgeLabel *{color:#1E2A6E !important;font-weight:600}
+
+@media(max-width:880px){
+  .app{grid-template-columns:1fr}
+  .side{position:fixed;left:-300px;width:300px;z-index:30;transition:left .25s}
+  .side.open{left:0}
+  .menutoggle{display:inline-flex !important}
+}
+.menutoggle{display:none;align-items:center;justify-content:center;width:38px;height:38px;
+  border:1px solid var(--border);background:var(--surface);border-radius:9px;cursor:pointer;font-size:18px}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side" id="side">
+    <div class="brand">
+      <img src="../../img/Isotipo.png" alt="ADA">
+      <div><b>Problem Solving</b><small>ADA MICRO-CREDENTIAL</small></div>
+    </div>
+    <div class="progwrap">
+      <div class="progbar"><div class="progfill" id="progfill"></div></div>
+      <div class="progtext" id="progtext">0 / 6 atoms complete</div>
+    </div>
+    <nav id="nav"><div class="nav-group">Start</div>
+<a class="navlink" data-target="overview" href="#overview">Course overview</a>
+<a class="navlink" data-target="spec" href="#spec">Micro-credential spec</a>
+<div class="nav-group">🙉 Phase 1 · hear</div>
+<a class="navlink" data-target="atom-1" href="#atom-1">1 · How problem solving works</a>
+<a class="navlink" data-target="atom-2" href="#atom-2">2 · Decisions &amp; biases</a>
+<div class="nav-group">🙈 Phase 2 · see</div>
+<a class="navlink" data-target="atom-3" href="#atom-3">3 · Define &amp; decompose 🛠️</a>
+<div class="nav-group">🙊 Phase 3 · do</div>
+<a class="navlink" data-target="atom-4" href="#atom-4">4 · Find the root cause 🛠️</a>
+<a class="navlink" data-target="atom-5" href="#atom-5">5 · Generate &amp; choose 🛠️</a>
+<div class="nav-group">🐵 Phase 4 · share</div>
+<a class="navlink" data-target="atom-6" href="#atom-6">6 · Capstone 🚀</a>
+<div class="nav-group">Assess</div>
+<a class="navlink" data-target="capstone" href="#capstone">Capstone brief</a>
+<a class="navlink" data-target="rubrics" href="#rubrics">Rubrics</a>
+<a class="navlink" data-target="skillsmap" href="#skillsmap">Skills map → job match</a></nav>
+  </aside>
+  <div class="main">
+    <div class="topbar">
+      <button class="menutoggle" id="menutoggle" aria-label="Menu">&#9776;</button>
+      <span class="pill">🧩 Problem Solving</span>
+      <span class="sp"></span>
+      <button class="navbtn" id="prevbtn">&larr; Prev</button>
+      <button class="navbtn" id="nextbtn">Next &rarr;</button>
+    </div>
+    <div class="wrap"><section class="page" id="page-overview" data-id="overview"><h1>🧩 Worked Example — Problem Solving Micro-Credential (full course)</h1>
+<p align="center">
+  <img alt="Indigo #1E2A6E" src="https://img.shields.io/badge/Indigo-1E2A6E?style=flat-square&amp;labelColor=1E2A6E&amp;color=1E2A6E">
+  <img alt="Turquoise #15B5C6" src="https://img.shields.io/badge/Turquoise-15B5C6?style=flat-square&amp;labelColor=15B5C6&amp;color=15B5C6">
+  <img alt="Gold #E0A53C" src="https://img.shields.io/badge/Gold-E0A53C?style=flat-square&amp;labelColor=E0A53C&amp;color=E0A53C">
+  <img alt="Ink #0A1124" src="https://img.shields.io/badge/Ink-0A1124?style=flat-square&amp;labelColor=0A1124&amp;color=0A1124">
+</p>
+<p>A <strong>complete, ready-to-run ADA micro-credential</strong> for the competency at the top of nearly every employer's wishlist: <strong>solving problems</strong>. It is a <em>fully populated</em> example built end-to-end with the ADA Methodology (KSA + 4 phases + learning-atom topology): every atom has <strong>real reading text</strong>, <strong>curated videos</strong>, <strong>Mermaid diagrams</strong>, <strong>image-generation prompts</strong>, hands-on drills, and rubrics.</p>
+<blockquote>🖥️ <strong>See it live:</strong> open <a href="course.html" target="_blank" rel="noopener"><code>course.html</code></a> in any browser for an interactive, navigable version of this course (sidebar, progress, embedded videos, diagrams, copyable prompts).</blockquote>
+<p>Problem solving is a <strong>cognitive skill</strong> that spans the full KSA spectrum: a small <strong>Knowledge</strong> base (the problem-solving process; decisions &amp; biases), three core <strong>Skills</strong> (frame &amp; decompose a problem, find the root cause, and generate &amp; choose solutions), and the durable <strong>Abilities</strong> that power them (persistence with ambiguity, and critical, curious thinking). It pairs naturally with <a href="../../index.html#/examples/self-learning-micro-credential/README.md" target="_blank" rel="noopener">Self-Learning</a> (how you fill the gaps a problem reveals) and <a href="../../index.html#/examples/effective-communication-micro-credential/README.md" target="_blank" rel="noopener">Effective Communication</a> (how you sell the solution).</p>
+<p>Conforms to <a href="../../index.html#/specs/micro-credential-v2-schema.md" target="_blank" rel="noopener"><code>../../specs/micro-credential-v2-schema.md</code></a> · modalities from <a href="../../index.html#/specs/learning-atom-topology.md" target="_blank" rel="noopener"><code>../../specs/learning-atom-topology.md</code></a> · KSA from <a href="../../index.html#/specs/ksa-taxonomy.md" target="_blank" rel="noopener"><code>../../specs/ksa-taxonomy.md</code></a>.</p>
+<hr>
+<h2>🧭 What this teaches</h2>
+<p>"Strong problem-solving skills" is the most common line in job ads — and the least taught. This course makes it concrete and certifiable: learners stop jumping straight to solutions and instead learn to <strong>define the real problem</strong>, <strong>diagnose its root cause</strong> (not its symptoms), <strong>generate options and choose well</strong> under trade-offs, and <strong>persist</strong> through ambiguity — finishing by solving a real problem end-to-end and defending how they did it.</p>
+<div class='tablewrap'><table><thead><tr><th></th><th></th></tr></thead><tbody>
+<tr><td><strong>Title</strong></td><td>Problem Solving: Define, Diagnose &amp; Decide</td></tr>
+<tr><td><strong>Duration</strong></td><td>~12 hours · 2–3 weeks</td></tr>
+<tr><td><strong>Primary KSA</strong></td><td>🛠️ Skill — <em>frame a problem</em> and <em>find the root cause</em>, plus the 🌱 Abilities that sustain them</td></tr>
+<tr><td><strong>Target competency</strong></td><td>O*NET: <strong>Complex Problem Solving</strong> (2.B.2.i), <strong>Critical Thinking</strong> (2.A.2.a), <strong>Judgment &amp; Decision Making</strong> (2.B.4.e) · ESCO transversal <em>"solve problems", "think analytically"</em></td></tr>
+<tr><td><strong>Badge</strong></td><td>🏅 <em>Problem Solver</em></td></tr>
+<tr><td><strong>Prerequisites</strong></td><td>None. A real problem from your work/study/life to practice on helps.</td></tr>
+</tbody></table></div>
+<hr>
+<h2>📚 Course contents</h2>
+<div class='tablewrap'><table><thead><tr><th>#</th><th>File</th><th>What it is</th></tr></thead><tbody>
+<tr><td>—</td><td><a href="#spec"><code>micro-credential.md</code></a></td><td>The full micro-credential spec (YAML schema, objectives, KSA map, phase planner)</td></tr>
+<tr><td>1</td><td><a href="#atom-1"><code>atoms/atom-1-how-problem-solving-works.md</code></a></td><td>🙉 P1 · 🧠 K — How problem solving works (the process + mindset)</td></tr>
+<tr><td>2</td><td><a href="#atom-2"><code>atoms/atom-2-decisions-and-biases.md</code></a></td><td>🙉 P1 · 🧠 K — Decisions &amp; cognitive biases (why we get it wrong)</td></tr>
+<tr><td>3</td><td><a href="#atom-3"><code>atoms/atom-3-define-and-decompose.md</code></a></td><td>🙈 P2 · 🛠️ S — Define &amp; decompose the problem (frame it right)</td></tr>
+<tr><td>4</td><td><a href="#atom-4"><code>atoms/atom-4-root-cause-analysis.md</code></a></td><td>🙊 P3 · 🛠️ S — Find the root cause (5 Whys · fishbone · hypotheses)</td></tr>
+<tr><td>5</td><td><a href="#atom-5"><code>atoms/atom-5-generate-and-choose-solutions.md</code></a></td><td>🙊 P3 · 🛠️ S + 🌱 A — Generate &amp; choose solutions (options + trade-offs)</td></tr>
+<tr><td>6</td><td><a href="#atom-6"><code>atoms/atom-6-capstone-solve-a-real-problem.md</code></a></td><td>🐵 P4 · 🛠️ S + 🌱 A — Capstone: solve a real problem end-to-end + peer review</td></tr>
+<tr><td>—</td><td><a href="#capstone"><code>capstone.md</code></a></td><td>Capstone brief + how it maps to KSA</td></tr>
+<tr><td>—</td><td><a href="#rubrics"><code>rubrics.md</code></a></td><td>All rubrics (knowledge-mini, skill, behavioral, capstone-5)</td></tr>
+<tr><td>—</td><td><a href="#skillsmap"><code>skills-map.md</code></a></td><td>Badge → skills map and how it boosts almost every role</td></tr>
+</tbody></table></div>
+<blockquote>🤝 <strong>Practiced for real:</strong> the Abilities (persistence/ambiguity-tolerance, critical-curious thinking) are assessed <strong>behaviorally across ≥3 occasions</strong> (never a quiz), and the capstone ends in a defense + peer review.</blockquote>
+<hr>
+<h2>🔄 Phase journey</h2>
+<div class="mermaid">flowchart LR
+  P1[&quot;🙉 P1 · hear&lt;br/&gt;The process · decisions &amp; biases&quot;] --&gt; P2[&quot;🙈 P2 · see&lt;br/&gt;Define &amp; decompose&quot;]
+  P2 --&gt; P3[&quot;🙊 P3 · do&lt;br/&gt;Root cause · generate &amp; choose&quot;]
+  P3 --&gt; P4[&quot;🐵 P4 · share&lt;br/&gt;Solve it end-to-end · defend&quot;]
+  P4 --&gt; BADGE[&quot;🏅 Problem Solver&quot;]</div>
+<hr>
+<h2>🤖 How it was authored (and how to reuse it)</h2>
+<p>This course follows the Gen AI authoring workflow in <a href="../../index.html#/specs/genai-authoring-workflow.md" target="_blank" rel="noopener"><code>../../specs/genai-authoring-workflow.md</code></a>: competency → KSA → atoms → modalities → rubrics → badge. Conventions used throughout:</p>
+<ul>
+<li><strong>🎬 Videos</strong> are written as a <code>youtube</code> block with the real URL + caption (the interactive site</li>
+</ul>
+<p>  embeds them as a click-to-play player).</p>
+<ul>
+<li><strong>🖼️ Diagrams</strong> are provided two ways: a live <strong>Mermaid</strong> diagram <em>and</em> a reusable</li>
+</ul>
+<p>  <strong>image-generation prompt</strong> in a <code>prompt</code> block.</p>
+<ul>
+<li><strong>✅ Activities</strong> include worksheets, decision matrices, checklists, and rubrics so the course is</li>
+</ul>
+<p>  self-paced and practicable.</p>
+<blockquote>⚠️ <strong>Human-in-the-loop (methodology guardrail):</strong> the links and references below are <strong>curated starting points</strong> — a mentor/instructor should verify each one before delivery. The Abilities here require human/peer observation across occasions. See <a href="../../index.html#/CLAUDE.md" target="_blank" rel="noopener"><code>../../CLAUDE.md</code></a> §5.</blockquote></section>
+<section class="page" id="page-spec" data-id="spec"><h1>🎓 Micro-Credential — Problem Solving: Define, Diagnose &amp; Decide</h1>
+<p>The full specification for this micro-credential. It conforms to <a href="../../index.html#/specs/micro-credential-v2-schema.md" target="_blank" rel="noopener"><code>../../specs/micro-credential-v2-schema.md</code></a>.</p>
+<hr>
+<h2>YAML front matter</h2>
+<pre class="code"><span class="lang">yaml</span><code>schema: ada-microcredential/v2
+id: mc-problem-solving
+title: &quot;Problem Solving: Define, Diagnose &amp; Decide&quot;
+language: en
+duration_hours: 12
+level: beginner
+status: published
+license: CC-BY-SA-4.0
+mentors: [&quot;@sancarbar&quot;]
+
+target_roles:
+  - role: &quot;Any role — problem solving is a transversal, near-universal job requirement (ICs, leads, analysts, operators, founders)&quot;
+    framework_ref: &gt;
+      O*NET: 2.B.2.i Complex Problem Solving, 2.A.2.a Critical Thinking, 2.B.4.e Judgment and Decision Making ·
+      ESCO transversal: &quot;solve problems&quot;, &quot;think analytically&quot;, &quot;think critically&quot;
+
+ksa:
+  - { id: K-process,          type: knowledge, label: &quot;The problem-solving process (define→diagnose→generate→decide→implement→review) and mindset (symptom vs root cause; divergent vs convergent)&quot;, target_level: 2, bloom: understand }
+  - { id: K-decisions-biases, type: knowledge, label: &quot;Decision-making basics (criteria, trade-offs) and common cognitive biases that derail problem solving&quot;, target_level: 2, bloom: understand }
+  - { id: S-frame,            type: skill,     label: &quot;Define and decompose a problem: write a clear problem statement, break it down, use first principles&quot;, target_level: 2, bloom: apply, primary: true }
+  - { id: S-root-cause,       type: skill,     label: &quot;Find the root cause: 5 Whys, fishbone (Ishikawa), and simple hypothesis testing&quot;, target_level: 2, bloom: apply, primary: true }
+  - { id: S-solutions,        type: skill,     label: &quot;Generate options (divergent) and choose well (convergent) using a decision matrix and trade-offs&quot;, target_level: 2, bloom: apply }
+  - { id: A-persistence,      type: ability,   label: &quot;Persistence and tolerance for ambiguity: stay with a hard, unclear problem without forcing a premature answer&quot;, target_level: 2, affective_stage: respond, assessed_occasions: 3 }
+  - { id: A-critical-curious, type: ability,   label: &quot;Critical, curious thinking: question assumptions and ask &#x27;why/what if&#x27; rather than accept the obvious&quot;, target_level: 2, affective_stage: value, assessed_occasions: 3 }
+
+atoms:
+  - { id: atom-1, title: &quot;How problem solving works&quot;, ksa_refs: [K-process], phase: 1, modalities: [{dimension: read, subtype: Article}, {dimension: watch, subtype: Video Explainer}, {dimension: see, subtype: Mental Model}, {dimension: evaluate, subtype: Pop Quiz}], rubric: knowledge-mini }
+  - { id: atom-2, title: &quot;Decisions &amp; cognitive biases&quot;, ksa_refs: [K-decisions-biases], phase: 1, modalities: [{dimension: read, subtype: Article}, {dimension: watch, subtype: Video Explainer}, {dimension: see, subtype: Framework}, {dimension: evaluate, subtype: Pop Quiz}], rubric: knowledge-mini }
+  - { id: atom-3, title: &quot;Define &amp; decompose the problem&quot;, ksa_refs: [S-frame], phase: 2, modalities: [{dimension: see, subtype: Diagram}, {dimension: practice, subtype: Worksheet / Exercise}, {dimension: practice, subtype: AI Prompt Question}, {dimension: evaluate, subtype: Performance Task}], rubric: skill }
+  - { id: atom-4, title: &quot;Find the root cause&quot;, ksa_refs: [S-root-cause], phase: 3, modalities: [{dimension: read, subtype: Technical Article}, {dimension: practice, subtype: Case Study}, {dimension: practice, subtype: Worksheet / Exercise}, {dimension: evaluate, subtype: Performance Task}], rubric: skill }
+  - { id: atom-5, title: &quot;Generate &amp; choose solutions&quot;, ksa_refs: [S-solutions, A-persistence, A-critical-curious], phase: 3, modalities: [{dimension: practice, subtype: Challenge / Quest}, {dimension: practice, subtype: Simulation}, {dimension: collaborate, subtype: Pair Programming}, {dimension: evaluate, subtype: Behavioral Assessment}], rubric: behavioral }
+  - { id: atom-6, title: &quot;Capstone: solve a real problem end-to-end&quot;, ksa_refs: [S-frame, S-root-cause, S-solutions, A-persistence, A-critical-curious], phase: 4, modalities: [{dimension: practice, subtype: Project / Quest}, {dimension: collaborate, subtype: Showcase / Demo Day}, {dimension: collaborate, subtype: Async Peer Review}, {dimension: evaluate, subtype: Capstone Project}], rubric: capstone-5 }
+
+capstone:
+  title: &quot;Take a real, messy problem from definition to a defended, decided solution — and document the process&quot;
+  integrates_ksa: [K-process, K-decisions-biases, S-frame, S-root-cause, S-solutions, A-persistence, A-critical-curious]
+  rubric: capstone-5
+
+badge:
+  name: &quot;Problem Solver&quot;
+  evidence_required: [&quot;atom-3&quot;, &quot;atom-4&quot;, &quot;atom-5&quot;, &quot;capstone&quot;]
+  issued_on: verified-evidence</code></pre>
+<hr>
+<h2>🎯 Target job competency</h2>
+<p><strong>Solve problems methodically.</strong> Employers don't just want answers — they want people who can take an ambiguous, messy situation, <strong>figure out what the real problem is</strong>, <strong>diagnose why it's happening</strong>, and <strong>choose a defensible solution</strong> under constraints. It is one of the most-requested competencies across every function. Mapped to <strong>O*NET</strong> (Complex Problem Solving, Critical Thinking, Judgment &amp; Decision Making) and <strong>ESCO</strong> transversal <em>"solve problems / think analytically."</em></p>
+<h2>🧬 KSA breakdown — a cognitive skill, taught the right way</h2>
+<div class='tablewrap'><table><thead><tr><th>KSA</th><th>Component</th><th>Why this type</th><th>Target</th></tr></thead><tbody>
+<tr><td>🧠 Knowledge</td><td>The problem-solving process &amp; mindset</td><td>A mental model that stops "solution-jumping"</td><td>L2</td></tr>
+<tr><td>🧠 Knowledge</td><td>Decisions &amp; cognitive biases</td><td>You can't counter biases you can't name</td><td>L2</td></tr>
+<tr><td>🛠️ Skill</td><td>Define &amp; decompose</td><td>A trainable technique (problem statement, breakdown)</td><td><strong>L2</strong></td></tr>
+<tr><td>🛠️ Skill</td><td>Root cause analysis</td><td>5 Whys / fishbone / hypotheses — practiced on cases</td><td><strong>L2</strong></td></tr>
+<tr><td>🛠️ Skill</td><td>Generate &amp; choose solutions</td><td>Divergent options + convergent decision matrix</td><td>L2</td></tr>
+<tr><td>🌱 Ability</td><td>Persistence &amp; ambiguity tolerance</td><td>A disposition shown across situations, over time</td><td>L2</td></tr>
+<tr><td>🌱 Ability</td><td>Critical, curious thinking</td><td>A habit of questioning assumptions</td><td>L2</td></tr>
+</tbody></table></div>
+<blockquote><strong>Why this shape:</strong> problem solving is mostly <strong>doing</strong> (Skills: frame, diagnose, decide), but it only <em>works</em> when paired with the <strong>Abilities</strong> that drive it — persistence (to stay with hard, unclear problems) and critical curiosity (to question the obvious). Those Abilities are assessed <strong>behaviorally, across ≥3 occasions</strong>, not with a quiz.</blockquote>
+<h2>📘 Learning objectives (Bloom + KSA)</h2>
+<div class='tablewrap'><table><thead><tr><th>Objective</th><th>Bloom</th><th>KSA</th><th>Component</th><th>Target</th></tr></thead><tbody>
+<tr><td>Explain the problem-solving process and distinguish symptom from root cause</td><td>Understand</td><td>🧠 K</td><td>K-process</td><td>L2</td></tr>
+<tr><td>Recognize common cognitive biases and how they distort decisions</td><td>Understand</td><td>🧠 K</td><td>K-decisions-biases</td><td>L2</td></tr>
+<tr><td>Write a clear problem statement and decompose a problem</td><td>Apply</td><td>🛠️ S</td><td>S-frame</td><td>L2</td></tr>
+<tr><td>Find a root cause using 5 Whys / fishbone / hypothesis testing</td><td>Apply</td><td>🛠️ S</td><td>S-root-cause</td><td>L2</td></tr>
+<tr><td>Generate options and choose one with a decision matrix and trade-offs</td><td>Apply</td><td>🛠️ S</td><td>S-solutions</td><td>L2</td></tr>
+<tr><td>Persist with ambiguous problems without forcing a premature answer</td><td>Respond (affective)</td><td>🌱 A</td><td>A-persistence</td><td>L2</td></tr>
+<tr><td>Question assumptions and pursue "why/what if" across situations</td><td>Value (affective)</td><td>🌱 A</td><td>A-critical-curious</td><td>L2</td></tr>
+</tbody></table></div>
+<hr>
+<h2>🔍 Phase planner</h2>
+<div class='tablewrap'><table><thead><tr><th>Phase</th><th>Atom(s)</th><th>KSA focus</th><th>Activity</th><th>Assessment</th></tr></thead><tbody>
+<tr><td>🙉 1 · hear</td><td>Atom 1, 2</td><td>🧠 K</td><td>reading + video on the process; biases framework</td><td>knowledge-mini (pop quizzes)</td></tr>
+<tr><td>🙈 2 · see</td><td>Atom 3</td><td>🛠️ S</td><td>model problem framing; write &amp; decompose a real problem statement</td><td>performance task</td></tr>
+<tr><td>🙊 3 · do</td><td>Atom 4, 5</td><td>🛠️ S + 🌱 A</td><td>root-cause a case; generate &amp; choose under trade-offs</td><td>performance task + behavioral assessment</td></tr>
+<tr><td>🐵 4 · share</td><td>Atom 6 (capstone)</td><td>🛠️ S + 🌱 A</td><td>solve a real problem end-to-end; defend + peer review</td><td>capstone-5</td></tr>
+</tbody></table></div>
+<hr>
+<h2>🚀 Capstone &amp; 📊 assessment</h2>
+<p>Full brief in <a href="#capstone"><code>capstone.md</code></a>; all rubrics in <a href="#rubrics"><code>rubrics.md</code></a>. In short: formative pop quizzes for the Knowledge atoms, skill performance tasks for framing and root-cause, a <strong>behavioral assessment</strong> across occasions for the Abilities, and a real end-to-end problem solved, documented, and defended on the standard 5-criteria capstone rubric. The badge → skills-map mapping is in <a href="#skillsmap"><code>skills-map.md</code></a>.</p>
+<h2>🎓 Outcomes &amp; recognition</h2>
+<ul>
+<li>A repeatable process that replaces "solution-jumping" with <strong>define → diagnose → decide</strong>.</li>
+<li>The ability to write a sharp <strong>problem statement</strong> and <strong>decompose</strong> complexity.</li>
+<li>Working <strong>root-cause analysis</strong> (5 Whys, fishbone, hypotheses).</li>
+<li>A defensible way to <strong>generate options and choose</strong> under trade-offs (decision matrix).</li>
+<li>The durable <strong>persistence</strong> and <strong>critical curiosity</strong> that make it stick — evidenced over time.</li>
+<li>A portfolio artifact: a real problem solved end-to-end with the reasoning documented.</li>
+<li>LinkedIn-compatible digital badge: <strong>🏅 Problem Solver</strong> — a multiplier on almost any role.</li>
+</ul></section>
+<section class="page" id="page-atom-1" data-id="atom-1"><label class="donebox"><input type="checkbox" class="donechk" data-atom="atom-1"> Mark this atom complete</label><h2>⚛ Learning Atom 1 — <em>How Problem Solving Works</em></h2>
+<p><strong>Phase:</strong> 🙉 1 · Self-Guided Introduction (<em>hear</em>) · <strong>KSA:</strong> 🧠 Knowledge · <strong>Target level:</strong> L2 · <strong>Component id:</strong> <code>K-process</code></p>
+<h3>🎯 Learning objective</h3>
+<ul>
+<li><strong>Explain</strong> the problem-solving process and <strong>distinguish</strong> a symptom from a root cause, and</li>
+</ul>
+<p>  divergent from convergent thinking.</p>
+<h3>🧩 Prerequisites</h3>
+<ul>
+<li>None. Bring one nagging problem you keep "fixing" that keeps coming back.</li>
+</ul>
+<h3>🧭 Atom description</h3>
+<p>Most people "solve problems" by grabbing the first idea that feels right and running with it. That works for trivial problems and fails for important ones. This atom gives you the mental model that the whole course hangs on: a repeatable <strong>process</strong> that separates <em>understanding</em> the problem from <em>solving</em> it — so you fix the real thing, not the first thing.</p>
+<hr>
+<h3>📖 Reading — <em>Slow down to speed up</em> (≈ 7 min)</h3>
+<p>There's a famous (probably apocryphal) line attributed to Einstein: <em>"If I had an hour to solve a problem, I'd spend 55 minutes thinking about the problem and 5 minutes thinking about solutions."</em> The point survives the misattribution: <strong>most failed solutions are answers to the wrong problem.</strong></p>
+<p>A reliable problem-solving process has six steps:</p>
+<ol>
+<li><strong>Define</strong> — What exactly is the problem? Who has it, where, when, how big? Write it down.</li>
+<li><strong>Diagnose</strong> — <em>Why</em> is it happening? Dig past symptoms to the <strong>root cause</strong> (Atom 4).</li>
+<li><strong>Generate</strong> — Produce <em>several</em> possible solutions, not one (Atom 5).</li>
+<li><strong>Decide</strong> — Choose using explicit criteria and trade-offs (Atom 5).</li>
+<li><strong>Implement</strong> — Do it (often as a small test first).</li>
+<li><strong>Review</strong> — Did it work? What did you learn? Loop if not.</li>
+</ol>
+<p>Three ideas to internalize:</p>
+<ul>
+<li><strong>Symptom vs. root cause.</strong> A <em>symptom</em> is what you notice ("the report is late again"); the *root</li>
+</ul>
+<p>  cause* is why it keeps happening ("approvals queue with one person"). Treating symptoms gives you   temporary relief and a recurring problem. Treating the root cause makes it <em>stay</em> fixed.</p>
+<ul>
+<li><strong>Divergent vs. convergent thinking.</strong> Good problem solving alternates two modes: <strong>divergent</strong></li>
+</ul>
+<p>  (open up — generate many questions, causes, and options without judging) and <strong>convergent</strong>   (narrow down — analyze, evaluate, decide). The classic mistake is converging too early: judging   ideas before you've generated enough of them. <em>Separate the generating from the judging.</em></p>
+<ul>
+<li><strong>Solution-jumping is the default failure.</strong> Under time pressure we leap from a vague problem</li>
+</ul>
+<p>  straight to a favorite solution, skipping define and diagnose. The fix is mechanical: <strong>force   yourself through define → diagnose before you allow a single solution.</strong></p>
+<blockquote><strong>Reframe for the whole course:</strong> the quality of your solution is capped by the quality of your problem definition. Time spent understanding is not a delay — it's the work.</blockquote>
+<p><strong>Key takeaways</strong></p>
+<ul>
+<li><input type="checkbox" disabled> The process: <strong>define → diagnose → generate → decide → implement → review.</strong></li>
+<li><input type="checkbox" disabled> Fix the <strong>root cause</strong>, not the <strong>symptom</strong>, or the problem returns.</li>
+<li><input type="checkbox" disabled> Alternate <strong>divergent</strong> (generate) and <strong>convergent</strong> (decide); don't judge too early.</li>
+<li><input type="checkbox" disabled> Beware <strong>solution-jumping</strong> — force define + diagnose first.</li>
+</ul>
+<hr>
+<h3>🎬 Watch — how we think &amp; solve (pick one, ~5–12 min)</h3>
+<div class="yt" data-id="UBVV8pch1dM"><button class="yt-play" type="button" aria-label="Play video"><span class="yt-tri">&#9654;</span></button><div class="yt-meta"><a href="https://www.youtube.com/watch?v=UBVV8pch1dM" target="_blank" rel="noopener">https://www.youtube.com/watch?v=UBVV8pch1dM</a><div class="yt-cap">Veritasium — "The Science of Thinking" (fast vs. slow thinking; why we jump to answers).</div></div></div>
+<div class="yt" data-id="9gM8j-mtL0"><button class="yt-play" type="button" aria-label="Play video"><span class="yt-tri">&#9654;</span></button><div class="yt-meta"><a href="https://www.youtube.com/watch?v=9gM8j-mtL0" target="_blank" rel="noopener">https://www.youtube.com/watch?v=9gM8j-mtL0</a><div class="yt-cap">A short explainer on a structured problem-solving process (verify before delivery).</div></div></div>
+<hr>
+<h3>🖼️ See — the problem-solving loop</h3>
+<div class="mermaid">flowchart LR
+  DEF[&quot;🔎 Define&lt;br/&gt;what is the problem?&quot;] --&gt; DIAG[&quot;🧪 Diagnose&lt;br/&gt;root cause?&quot;]
+  DIAG --&gt; GEN[&quot;💡 Generate&lt;br/&gt;several options&quot;]
+  GEN --&gt; DEC[&quot;⚖️ Decide&lt;br/&gt;criteria + trade-offs&quot;]
+  DEC --&gt; IMP[&quot;🛠️ Implement&lt;br/&gt;(test small)&quot;]
+  IMP --&gt; REV[&quot;🔁 Review&lt;br/&gt;did it work?&quot;]
+  REV -.loop if not.-&gt; DEF</div>
+<p>A reusable prompt to generate an on-brand version of this diagram:</p>
+<div class="promptcard"><div class="promptcard-h"><span>🖼️ Image / AI prompt</span><button class="copybtn" type="button">Copy</button></div><pre><code>Create a clean, modern educational infographic of a six-step problem-solving loop: Define → Diagnose →
+Generate → Decide → Implement → Review, with a dotted arrow looping Review back to Define. Add small
+captions: &quot;fix the root cause, not the symptom&quot; and &quot;diverge then converge&quot;. Use ADA brand colors
+(Indigo #1E2A6E, Turquoise #15B5C6, Gold #E0A53C accents) on a light background, flat vector style,
+legible sans-serif, no text errors. 16:9.</code></pre></div>
+<hr>
+<h3>✅ Evaluate — Pop quiz (formative, <code>knowledge-mini</code>)</h3>
+<ol>
+<li>What's the difference between a symptom and a root cause? Give an example.</li>
+<li>What does "converging too early" mean, and why is it a problem?</li>
+<li>Name the six steps of the process in order.</li>
+</ol>
+<details>
+<summary>Answer key</summary>
+<ol>
+<li>A <strong>symptom</strong> is the visible effect you notice; the <strong>root cause</strong> is the underlying reason it</li>
+</ol>
+<p>   keeps happening (e.g., symptom: "late reports"; root cause: "single approver bottleneck"). Fixing    only the symptom lets the problem return.</p>
+<ol>
+<li>Judging/eliminating ideas before generating enough of them — you settle on a mediocre option and</li>
+</ol>
+<p>   never discover better ones. <strong>Separate generating from judging.</strong></p>
+<ol>
+<li><strong>Define → Diagnose → Generate → Decide → Implement → Review.</strong></li>
+</ol>
+</details>
+<hr>
+<h3>📦 Deliverable</h3>
+<ul>
+<li>Take your recurring problem. In 4–6 sentences, separate the <strong>symptom</strong> from a likely <strong>root cause</strong>,</li>
+</ul>
+<p>  and note where you've been <strong>solution-jumping.</strong></p>
+<h3>🧠 Final reflection</h3>
+<ul>
+<li>Which step do you personally skip most under pressure — define, diagnose, or generate? What does</li>
+</ul>
+<p>  skipping it cost you?</p>
+<h3>🔗 Sources to verify (human-in-the-loop)</h3>
+<ul>
+<li>Pólya, <em>How to Solve It</em> (the classic four-step heuristic).</li>
+<li>Kahneman, <em>Thinking, Fast and Slow</em> (System 1/2 and why we jump to answers).</li>
+<li>Guilford — divergent vs. convergent thinking.</li>
+</ul>
+<h3>🧩 Connections</h3>
+<ul>
+<li><strong>Successors:</strong> Atom 2 (the biases that derail the process), Atoms 3–5 (each step, in practice).</li>
+</ul></section>
+<section class="page" id="page-atom-2" data-id="atom-2"><label class="donebox"><input type="checkbox" class="donechk" data-atom="atom-2"> Mark this atom complete</label><h2>⚛ Learning Atom 2 — <em>Decisions &amp; Cognitive Biases</em></h2>
+<p><strong>Phase:</strong> 🙉 1 · Self-Guided Introduction (<em>hear</em>) · <strong>KSA:</strong> 🧠 Knowledge · <strong>Target level:</strong> L2 · <strong>Component id:</strong> <code>K-decisions-biases</code></p>
+<h3>🎯 Learning objective</h3>
+<ul>
+<li><strong>Recognize</strong> common cognitive biases and <strong>explain</strong> how they distort problem solving and</li>
+</ul>
+<p>  decisions — plus the basics of deciding with criteria and trade-offs.</p>
+<h3>🧩 Prerequisites</h3>
+<ul>
+<li>Atom 1 (the process). Biases mostly attack the <em>diagnose</em> and <em>decide</em> steps.</li>
+</ul>
+<h3>🧭 Atom description</h3>
+<p>Your brain takes shortcuts. Most of the time that's efficient; in problem solving it quietly steers you toward the wrong cause and the comfortable answer. This atom names the usual suspects so you can catch them — and introduces the simple idea of deciding <em>on purpose</em>, with explicit criteria, instead of by gut feel.</p>
+<hr>
+<h3>📖 Reading — <em>Your brain's helpful, dangerous shortcuts</em> (≈ 8 min)</h3>
+<p>We run on two systems (Kahneman): <strong>System 1</strong> is fast, automatic, intuitive; <strong>System 2</strong> is slow, effortful, analytical. System 1 is brilliant for routine life and terrible for novel problems, where it serves up a confident answer that <em>feels</em> right and skips the analysis. Biases are the predictable ways System 1 misfires:</p>
+<ul>
+<li><strong>Confirmation bias</strong> — you look for evidence that supports your existing hunch and ignore evidence</li>
+</ul>
+<p>  against it. <em>Antidote:</em> actively seek disconfirming evidence; ask "what would prove me wrong?"</p>
+<ul>
+<li><strong>Anchoring</strong> — the first number/idea you hear drags your judgment toward it. <em>Antidote:</em> generate</li>
+</ul>
+<p>  your own estimate before looking at others'.</p>
+<ul>
+<li><strong>Availability</strong> — you overweight whatever is recent, vivid, or easy to recall. <em>Antidote:</em> look at</li>
+</ul>
+<p>  base rates / actual data, not just the dramatic example.</p>
+<ul>
+<li><strong>Sunk-cost fallacy</strong> — you keep pouring effort into something because you've already invested, not</li>
+</ul>
+<p>  because it's working. <em>Antidote:</em> decide based on future value, not past spend.</p>
+<ul>
+<li><strong>Premature convergence / "first idea" bias</strong> — you grab the first plausible cause or solution.</li>
+</ul>
+<p>  <em>Antidote:</em> the divergent step (Atom 1) — force more options.</p>
+<ul>
+<li><strong>Groupthink / authority bias</strong> — you defer to the loudest or most senior voice. <em>Antidote:</em> gather</li>
+</ul>
+<p>  views independently first; invite a devil's advocate.</p>
+<ul>
+<li><strong>Overconfidence</strong> — you trust your judgment more than the evidence warrants. <em>Antidote:</em> ask for</li>
+</ul>
+<p>  the data and a second opinion.</p>
+<p><strong>Deciding on purpose (preview of Atom 5).</strong> Once you have options, don't decide by vibe. Make the <strong>criteria explicit</strong> (what does a good solution need — impact, cost, effort, risk, time?), weigh them, and compare options against them. Writing it down both improves the decision <em>and</em> exposes your biases ("oh, I only liked option A because I thought of it first"). Almost every important decision is a <strong>trade-off</strong> — naming what you're trading is half the skill.</p>
+<blockquote><strong>The meta-move:</strong> you can't delete biases, but you can build <em>habits and checklists</em> that catch them. Slow down, write it down, seek the opposite. That's most of "critical thinking."</blockquote>
+<p><strong>Key takeaways</strong></p>
+<ul>
+<li><input type="checkbox" disabled> <strong>System 1</strong> (fast/intuitive) hands you confident answers that skip analysis — engage <strong>System 2.</strong></li>
+<li><input type="checkbox" disabled> Know the big biases: <strong>confirmation, anchoring, availability, sunk-cost, premature convergence.</strong></li>
+<li><input type="checkbox" disabled> <strong>Antidote pattern:</strong> slow down, write it down, <strong>seek disconfirming evidence.</strong></li>
+<li><input type="checkbox" disabled> Decide with <strong>explicit criteria + trade-offs</strong>, not by gut.</li>
+</ul>
+<hr>
+<h3>🎬 Watch — thinking about thinking (~5–11 min)</h3>
+<div class="yt" data-id="JiTz2i4VHFw"><button class="yt-play" type="button" aria-label="Play video"><span class="yt-tri">&#9654;</span></button><div class="yt-meta"><a href="https://www.youtube.com/watch?v=JiTz2i4VHFw" target="_blank" rel="noopener">https://www.youtube.com/watch?v=JiTz2i4VHFw</a><div class="yt-cap">"Cognitive biases / how to think, not what to think" — a short explainer (verify before delivery).</div></div></div>
+<hr>
+<h3>🖼️ See — bias → antidote</h3>
+<div class="mermaid">flowchart LR
+  B1[&quot;🎯 Confirmation&quot;] --&gt;|seek disconfirming evidence| A1[&quot;✅ Better judgment&quot;]
+  B2[&quot;⚓ Anchoring&quot;] --&gt;|estimate first, then compare| A1
+  B3[&quot;💡 First-idea bias&quot;] --&gt;|force more options| A1
+  B4[&quot;💸 Sunk cost&quot;] --&gt;|judge future value| A1</div>
+<p>A reusable prompt to generate an on-brand version:</p>
+<div class="promptcard"><div class="promptcard-h"><span>🖼️ Image / AI prompt</span><button class="copybtn" type="button">Copy</button></div><pre><code>Create a clean, modern infographic titled &quot;Catch Your Biases&quot;: a left column of cognitive biases
+(Confirmation, Anchoring, First-idea, Sunk cost, Availability) each with an arrow to its antidote
+(seek disconfirming evidence, estimate first, force more options, judge future value, check the data),
+ending in &quot;Better judgment&quot;. Use ADA brand colors (Indigo #1E2A6E, Turquoise #15B5C6, Gold #E0A53C),
+light background, flat vector, legible sans-serif. 16:9.</code></pre></div>
+<hr>
+<h3>✅ Evaluate — Pop quiz (formative, <code>knowledge-mini</code>)</h3>
+<ol>
+<li>What is confirmation bias, and what's a practical antidote?</li>
+<li>Why is the sunk-cost fallacy dangerous when deciding whether to continue a project?</li>
+<li>Why does writing down explicit criteria improve a decision?</li>
+</ol>
+<details>
+<summary>Answer key</summary>
+<ol>
+<li>Favoring evidence that supports your existing belief and ignoring the rest; antidote: actively</li>
+</ol>
+<p>   <strong>seek disconfirming evidence</strong> ("what would prove me wrong?").</p>
+<ol>
+<li>It makes you continue based on <strong>past</strong> investment rather than <strong>future</strong> value, throwing good</li>
+</ol>
+<p>   resources after bad. Decide on expected future outcomes.</p>
+<ol>
+<li>It forces a structured comparison, makes <strong>trade-offs</strong> visible, and exposes biases (e.g., favoring</li>
+</ol>
+<p>   your own idea) instead of deciding by gut.</p>
+</details>
+<hr>
+<h3>📦 Deliverable</h3>
+<ul>
+<li>Recall a decision that went wrong. Name the <strong>bias</strong> most responsible and the <strong>antidote</strong> that</li>
+</ul>
+<p>  would have helped — in 3–5 sentences.</p>
+<h3>🧠 Final reflection</h3>
+<ul>
+<li>Which bias do you fall into most? What one habit/checklist could catch it next time?</li>
+</ul>
+<h3>🔗 Sources to verify (human-in-the-loop)</h3>
+<ul>
+<li>Kahneman, <em>Thinking, Fast and Slow</em>.</li>
+<li>Heath &amp; Heath, <em>Decisive</em> (the WRAP process for better decisions).</li>
+<li>Cognitive bias references (e.g., the "Cognitive Bias Codex" — verify before use).</li>
+</ul>
+<h3>🧩 Connections</h3>
+<ul>
+<li><strong>Predecessor:</strong> Atom 1. <strong>Successors:</strong> Atom 4 (avoid bias while diagnosing), Atom 5 (decide with</li>
+</ul>
+<p>  criteria).</p></section>
+<section class="page" id="page-atom-3" data-id="atom-3"><label class="donebox"><input type="checkbox" class="donechk" data-atom="atom-3"> Mark this atom complete</label><h2>⚛ Learning Atom 3 — <em>Define &amp; Decompose the Problem</em></h2>
+<p><strong>Phase:</strong> 🙈 2 · Visual Exploration (<em>see</em>) · <strong>KSA:</strong> 🛠️ Skill · <strong>Target level:</strong> L2 · <strong>Component id:</strong> <code>S-frame</code></p>
+<h3>🎯 Learning objective</h3>
+<ul>
+<li><strong>Write</strong> a clear problem statement and <strong>decompose</strong> a problem into parts — using first-principles</li>
+</ul>
+<p>  thinking to get past assumptions.</p>
+<h3>🧩 Prerequisites</h3>
+<ul>
+<li>Atoms 1–2. This is the <em>define</em> step, done well.</li>
+</ul>
+<h3>🧭 Atom description</h3>
+<p>A well-defined problem is half-solved. This atom turns vague complaints ("our process is broken") into sharp, workable problem statements, and big tangled problems into smaller pieces you can actually attack. It's in Phase 2 (<em>see</em>) because you learn it by watching it modeled, then doing it on a real problem of your own.</p>
+<hr>
+<h3>📖 Reading — <em>Define it before you fight it</em> (≈ 8 min)</h3>
+<p><strong>1) Write a problem statement.</strong> A good statement is specific, neutral, and solution-free. A simple template:</p>
+<blockquote><em>"[Who] is experiencing [what problem], in [what context/when], which causes [what impact]. Today it is [current state] vs. the desired [target state]. Success looks like [measurable outcome]."</em></blockquote>
+<p>Compare:</p>
+<ul>
+<li>👎 <em>"The website is bad."</em></li>
+<li>👍 *"New mobile users abandon checkout (68% drop-off on the payment step) since the April redesign,</li>
+</ul>
+<p>  costing ~$X/month. We want drop-off back under 40%."*</p>
+<p>The second is <strong>specific</strong> (who, where, how big), <strong>measurable</strong> (68% → 40%), and <strong>doesn't smuggle in a solution.</strong> Avoid baking the answer into the question ("we need a new payment button" presumes the button is the cause — that's the diagnose step's job).</p>
+<p><strong>2) Sharpen with questions.</strong> Interrogate the problem before solving:</p>
+<ul>
+<li><strong>Is it the right problem?</strong> Ask "why does that matter?" up the chain until you hit the problem worth</li>
+</ul>
+<p>  solving. (You may discover the real problem is bigger or smaller than you thought.)</p>
+<ul>
+<li><strong>What's in/out of scope?</strong> State boundaries so you don't boil the ocean.</li>
+<li><strong>What do we actually know vs. assume?</strong> Separate facts from guesses — guesses become hypotheses to</li>
+</ul>
+<p>  test (Atom 4).</p>
+<ul>
+<li><strong>How will we know it's solved?</strong> Define the success metric <em>now</em>.</li>
+</ul>
+<p><strong>3) Decompose.</strong> Break the problem into parts so it's tractable:</p>
+<ul>
+<li><strong>Issue tree / MECE.</strong> Split the problem into sub-problems that are <strong>M</strong>utually <strong>E</strong>xclusive and</li>
+</ul>
+<p>  <strong>C</strong>ollectively <strong>E</strong>xhaustive (no overlaps, no gaps). E.g., "low profit" → "revenue too low" OR   "costs too high"; then break each down further. Now you can attack branches independently.</p>
+<ul>
+<li><strong>First principles.</strong> Strip away assumptions and inherited "that's how it's done" until you reach</li>
+</ul>
+<p>  the basic truths, then reason up from there. Ask: <em>what do we actually know to be true? what are we   assuming just because it's familiar?</em> First-principles thinking is how you escape "we've always done   it this way."</p>
+<blockquote><strong>The payoff:</strong> a sharp statement + a clean decomposition turns an overwhelming blob into a list of smaller, solvable questions — and tells you exactly where to point the root-cause analysis next.</blockquote>
+<p><strong>Key takeaways</strong></p>
+<ul>
+<li><input type="checkbox" disabled> A good <strong>problem statement</strong> is specific, measurable, neutral, and <strong>solution-free.</strong></li>
+<li><input type="checkbox" disabled> <strong>Separate facts from assumptions</strong>; define the <strong>success metric</strong> up front.</li>
+<li><input type="checkbox" disabled> <strong>Decompose</strong> with a MECE issue tree (no overlaps, no gaps).</li>
+<li><input type="checkbox" disabled> Use <strong>first principles</strong> to escape inherited assumptions.</li>
+</ul>
+<hr>
+<h3>🖼️ See — an issue tree (MECE decomposition)</h3>
+<div class="mermaid">flowchart TD
+  P[&quot;🎯 Problem:&lt;br/&gt;profit is too low&quot;] --&gt; R[&quot;📈 Revenue too low&quot;]
+  P --&gt; C[&quot;📉 Costs too high&quot;]
+  R --&gt; R1[&quot;fewer customers&quot;]
+  R --&gt; R2[&quot;lower price/order&quot;]
+  C --&gt; C1[&quot;fixed costs&quot;]
+  C --&gt; C2[&quot;variable costs&quot;]</div>
+<p>A reusable prompt to generate an on-brand version:</p>
+<div class="promptcard"><div class="promptcard-h"><span>🖼️ Image / AI prompt</span><button class="copybtn" type="button">Copy</button></div><pre><code>Create a clean, modern &quot;issue tree / MECE decomposition&quot; infographic: a top box &quot;Problem: profit too
+low&quot; branching into &quot;Revenue too low&quot; and &quot;Costs too high&quot;, each branching into two sub-causes.
+Caption: &quot;Break it into mutually exclusive, collectively exhaustive parts.&quot; Use ADA brand colors
+(Indigo #1E2A6E, Turquoise #15B5C6, Gold #E0A53C), light background, flat vector, legible
+sans-serif. 16:9.</code></pre></div>
+<hr>
+<h3>🧪 Practice — <em>Frame a real problem</em> (Worksheet + AI Prompt Question)</h3>
+<p>Pick a real problem you face. Then:</p>
+<ol>
+<li><strong>Statement.</strong> Write it with the template (who · what · context · impact · current vs. target ·</li>
+</ol>
+<p>   success metric). Check that no solution is hidden inside it.</p>
+<ol>
+<li><strong>Facts vs. assumptions.</strong> List 3 things you <em>know</em> and 3 you're <em>assuming.</em></li>
+<li><strong>Decompose.</strong> Draw a 2-level MECE issue tree of possible parts/causes.</li>
+<li><strong>First principles.</strong> Name one "that's just how it's done" assumption and challenge it.</li>
+<li><strong>AI Prompt Question.</strong> Ask an AI: *"Critique my problem statement — is it specific, measurable, and</li>
+</ol>
+<p>   free of a hidden solution? What's missing?"* Improve it based on the critique (then sanity-check the    critique yourself).</p>
+<hr>
+<h3>✅ Evaluate — Performance task (<code>skill</code>)</h3>
+<p>Submit your framed problem. Scored on:</p>
+<div class='tablewrap'><table><thead><tr><th>Criterion</th><th>Excellent (3)</th><th>Adequate (2)</th><th>Needs work (1)</th></tr></thead><tbody>
+<tr><td><strong>Problem statement</strong></td><td>Specific, measurable, neutral, solution-free</td><td>Mostly clear</td><td>Vague / hides a solution</td></tr>
+<tr><td><strong>Facts vs. assumptions</strong></td><td>Cleanly separated; assumptions flagged</td><td>Some separation</td><td>Mixed together</td></tr>
+<tr><td><strong>Decomposition</strong></td><td>MECE issue tree, no gaps/overlaps</td><td>Reasonable breakdown</td><td>Flat / overlapping</td></tr>
+<tr><td><strong>First principles</strong></td><td>Challenges a real assumption</td><td>Some questioning</td><td>Accepts the obvious</td></tr>
+</tbody></table></div>
+<blockquote>Pass = 2+ each → <strong>L2</strong> evidence for <code>S-frame</code>.</blockquote>
+<h3>📦 Deliverable</h3>
+<ul>
+<li>Your problem statement + facts/assumptions list + issue tree + the assumption you challenged.</li>
+</ul>
+<h3>🧠 Final reflection</h3>
+<ul>
+<li>Did framing change what you <em>thought</em> the problem was? How?</li>
+</ul>
+<h3>🔗 Sources to verify (human-in-the-loop)</h3>
+<ul>
+<li>Minto, <em>The Pyramid Principle</em> / McKinsey problem-structuring (issue trees, MECE).</li>
+<li>Spradlin, <em>Are You Solving the Right Problem?</em> (HBR).</li>
+<li>First-principles thinking references (verify before use).</li>
+</ul>
+<h3>🧩 Connections</h3>
+<ul>
+<li><strong>Predecessor:</strong> Atom 2. <strong>Successor:</strong> Atom 4 (diagnose the branches you found).</li>
+</ul></section>
+<section class="page" id="page-atom-4" data-id="atom-4"><label class="donebox"><input type="checkbox" class="donechk" data-atom="atom-4"> Mark this atom complete</label><h2>⚛ Learning Atom 4 — <em>Find the Root Cause</em></h2>
+<p><strong>Phase:</strong> 🙊 3 · Applied Practice (<em>do</em>) · <strong>KSA:</strong> 🛠️ Skill · <strong>Target level:</strong> L2 · <strong>Component id:</strong> <code>S-root-cause</code></p>
+<h3>🎯 Learning objective</h3>
+<ul>
+<li><strong>Find a root cause</strong> using the <strong>5 Whys</strong>, a <strong>fishbone (Ishikawa)</strong> diagram, and simple</li>
+</ul>
+<p>  <strong>hypothesis testing.</strong></p>
+<h3>🧩 Prerequisites</h3>
+<ul>
+<li>Atom 3 (a framed, decomposed problem). Now diagnose <em>why</em> it happens.</li>
+</ul>
+<h3>🧭 Atom description</h3>
+<p>This is the <em>diagnose</em> step — and the one most people skip. Without it you treat symptoms forever. This atom gives you three practical tools to dig from "what's wrong" to "why it's wrong," and the discipline to <strong>test</strong> your suspected cause instead of assuming it.</p>
+<hr>
+<h3>📖 Reading — <em>Keep asking why</em> (≈ 8 min)</h3>
+<p><strong>Tool 1 — The 5 Whys.</strong> Start with the symptom and ask "why?" repeatedly (roughly five times) until you reach a cause you can actually act on:</p>
+<blockquote><em>Problem: the report was late.</em> 1. Why? — It waited two days for approval. 2. Why? — Only one manager can approve, and she was out. 3. Why? — There's no backup approver. 4. Why? — We never defined one. 5. Why? — No one owns the approval process. ← <strong>root cause</strong></blockquote>
+<p>Fixing #5 (assign an owner + backup) prevents recurrence; fixing #1 ("nag the manager") doesn't. Note: "5" isn't magic — stop when you reach something <strong>actionable</strong> and <strong>systemic</strong>, not a person to blame. There can be more than one branch ("why?" may have two answers — follow both).</p>
+<p><strong>Tool 2 — Fishbone (Ishikawa) diagram.</strong> When a problem has <em>many</em> possible causes, group them into categories and brainstorm causes under each. Common categories (the "6 Ms" for operations, or adapt them): <strong>People, Process, Tools/Technology, Materials, Environment, Measurement.</strong> The diagram looks like a fish skeleton — the problem is the head, the categories are the bones. It forces you to consider causes you'd otherwise miss and prevents fixating on the first one.</p>
+<p><strong>Tool 3 — Hypothesis testing.</strong> A suspected cause is a <strong>hypothesis</strong>, not a fact. Before you commit to a fix, <strong>test it</strong>: <em>"If queue-time is the cause, then reports with single-approver steps should be late more often — let's check the data."</em> Look for evidence that would <strong>confirm or disconfirm</strong> it (remember confirmation bias from Atom 2 — actively look for evidence you're <em>wrong</em>). Cheap tests beat expensive assumptions.</p>
+<p><strong>Watch out for:</strong></p>
+<ul>
+<li><strong>Blame instead of cause.</strong> "Who did it?" is rarely the root cause; "what in the <em>system</em> allowed it?"</li>
+</ul>
+<p>  usually is. Blame ends inquiry; systems thinking continues it.</p>
+<ul>
+<li><strong>Stopping at the first plausible cause.</strong> Generate several candidate causes (divergent), then test.</li>
+<li><strong>Correlation ≠ causation.</strong> Two things moving together doesn't mean one caused the other — test.</li>
+</ul>
+<blockquote><strong>The discipline:</strong> suspect → <strong>test</strong> → confirm before you fix. A confirmed root cause is worth ten clever solutions to the wrong cause.</blockquote>
+<p><strong>Key takeaways</strong></p>
+<ul>
+<li><input type="checkbox" disabled> <strong>5 Whys:</strong> ask why until you reach an <strong>actionable, systemic</strong> cause (not a person to blame).</li>
+<li><input type="checkbox" disabled> <strong>Fishbone:</strong> brainstorm causes by category (People, Process, Tools, etc.) to avoid fixation.</li>
+<li><input type="checkbox" disabled> <strong>Test hypotheses</strong> with confirming <em>and</em> disconfirming evidence before committing.</li>
+<li><input type="checkbox" disabled> <strong>Correlation ≠ causation;</strong> blame ≠ root cause.</li>
+</ul>
+<hr>
+<h3>🖼️ See — fishbone (cause categories)</h3>
+<div class="mermaid">flowchart LR
+  PEOPLE[&quot;👥 People&quot;] --&gt; PROB[&quot;🐟 Problem:&lt;br/&gt;reports late&quot;]
+  PROCESS[&quot;🔄 Process&quot;] --&gt; PROB
+  TOOLS[&quot;🛠️ Tools&quot;] --&gt; PROB
+  MEAS[&quot;📏 Measurement&quot;] --&gt; PROB
+  ENV[&quot;🌍 Environment&quot;] --&gt; PROB</div>
+<p>A reusable prompt to generate an on-brand version:</p>
+<div class="promptcard"><div class="promptcard-h"><span>🖼️ Image / AI prompt</span><button class="copybtn" type="button">Copy</button></div><pre><code>Create a clean, modern fishbone (Ishikawa) diagram infographic: a central spine pointing to a fish
+head labeled &quot;Problem&quot;, with angled bones labeled People, Process, Tools/Technology, Materials,
+Environment, Measurement, each with room for sub-causes. Caption: &quot;Brainstorm causes by category.&quot;
+Use ADA brand colors (Indigo #1E2A6E, Turquoise #15B5C6, Gold #E0A53C), light background, flat vector,
+legible sans-serif. 16:9.</code></pre></div>
+<hr>
+<h3>🧪 Practice — <em>Root-cause a case</em> (Case Study + Worksheet)</h3>
+<p><strong>Case:</strong> <em>A small online store's customer support is overwhelmed — tickets doubled last month and replies now take 3 days. The team wants to hire more agents.</em> Before spending on hires:</p>
+<ol>
+<li><strong>5 Whys.</strong> Run at least one "why?" chain on "tickets doubled." (What changed last month?)</li>
+<li><strong>Fishbone.</strong> Brainstorm causes across People / Process / Tools / Measurement (e.g., a buggy</li>
+</ol>
+<p>   release? a confusing new checkout? a price change? a broken FAQ?).</p>
+<ol>
+<li><strong>Hypothesis + test.</strong> Pick the most likely cause and state how you'd <strong>test</strong> it with available</li>
+</ol>
+<p>   data before committing to a fix.</p>
+<ol>
+<li>Then do the same on <strong>your own</strong> problem from Atom 3.</li>
+</ol>
+<details>
+<summary>Sample insight</summary>
+<p>"Hire more agents" treats the symptom (too many tickets). A 5-Whys/fishbone often reveals a root cause like "a recent release introduced a bug that generates the same complaint" — fixing the bug removes the tickets entirely, far cheaper than hiring. The point: <strong>diagnose before you spend.</strong></p>
+</details>
+<hr>
+<h3>✅ Evaluate — Performance task (<code>skill</code>)</h3>
+<p>Submit your case + own-problem diagnosis. Scored on:</p>
+<div class='tablewrap'><table><thead><tr><th>Criterion</th><th>Excellent (3)</th><th>Adequate (2)</th><th>Needs work (1)</th></tr></thead><tbody>
+<tr><td><strong>Depth (5 Whys)</strong></td><td>Reaches an actionable, systemic cause</td><td>Some digging</td><td>Stops at a symptom/blame</td></tr>
+<tr><td><strong>Breadth (fishbone)</strong></td><td>Multiple categories &amp; candidate causes</td><td>A few causes</td><td>One cause only</td></tr>
+<tr><td><strong>Testing</strong></td><td>States a real confirm/disconfirm test</td><td>Vague test</td><td>Assumes the cause</td></tr>
+<tr><td><strong>Bias awareness</strong></td><td>Seeks disconfirming evidence</td><td>Some</td><td>Confirmation-driven</td></tr>
+</tbody></table></div>
+<blockquote>Pass = 2+ each → <strong>L2</strong> evidence for <code>S-root-cause</code>.</blockquote>
+<h3>📦 Deliverable</h3>
+<ul>
+<li>Your 5-Whys chain(s) + fishbone + the hypothesis test, for the case and your own problem.</li>
+</ul>
+<h3>🧠 Final reflection</h3>
+<ul>
+<li>Did the root cause differ from your first guess? What would treating only the symptom have cost?</li>
+</ul>
+<h3>🔗 Sources to verify (human-in-the-loop)</h3>
+<ul>
+<li>Ohno / Toyota Production System — <em>The 5 Whys</em>.</li>
+<li>Ishikawa — <em>cause-and-effect (fishbone) diagrams</em>.</li>
+<li>Any reputable root-cause-analysis (RCA) guide (verify before use).</li>
+</ul>
+<h3>🧩 Connections</h3>
+<ul>
+<li><strong>Predecessor:</strong> Atom 3. <strong>Successor:</strong> Atom 5 (generate &amp; choose solutions for the confirmed cause).</li>
+</ul></section>
+<section class="page" id="page-atom-5" data-id="atom-5"><label class="donebox"><input type="checkbox" class="donechk" data-atom="atom-5"> Mark this atom complete</label><h2>⚛ Learning Atom 5 — <em>Generate &amp; Choose Solutions</em></h2>
+<p><strong>Phase:</strong> 🙊 3 · Applied Practice (<em>do</em>) · <strong>KSA:</strong> 🛠️ Skill + 🌱 Ability · <strong>Target level:</strong> L2 · <strong>Component ids:</strong> <code>S-solutions</code>, <code>A-persistence</code>, <code>A-critical-curious</code></p>
+<h3>🎯 Learning objective</h3>
+<ul>
+<li><strong>Generate</strong> several options (divergent) and <strong>choose</strong> one (convergent) using a <strong>decision matrix</strong></li>
+</ul>
+<p>  and explicit <strong>trade-offs</strong> — persisting through ambiguity and questioning assumptions.</p>
+<h3>🧩 Prerequisites</h3>
+<ul>
+<li>Atom 4 (a confirmed root cause). Now solve <em>that</em>.</li>
+</ul>
+<h3>🧭 Atom description</h3>
+<p>With the real problem and its root cause in hand, this atom is the <em>generate + decide</em> steps. You'll practice producing many options before judging any, then choosing transparently with criteria and trade-offs. It's also where the <strong>Abilities</strong> show up: staying with the discomfort of an unclear problem (persistence) and challenging the obvious answer (critical curiosity).</p>
+<hr>
+<h3>📖 Reading — <em>Diverge to find options, converge to choose</em> (≈ 8 min)</h3>
+<p><strong>Step 1 — Diverge (generate options).</strong> Resist the first idea. Aim for <strong>quantity first</strong>, judgment later:</p>
+<ul>
+<li><strong>Brainstorm broadly.</strong> Target 5–10 candidate solutions for the root cause. Include a "do nothing"</li>
+</ul>
+<p>  option and at least one "wild" option to stretch the space.</p>
+<ul>
+<li><strong>Borrow &amp; combine.</strong> How do others solve this? Can two weak ideas combine into a strong one?</li>
+<li><strong>Use prompts to expand.</strong> <em>"What if we had no budget? Unlimited budget? Had to solve it in a day?"</em></li>
+</ul>
+<p>  Constraints provoke fresh options.</p>
+<ul>
+<li><strong>Don't judge yet.</strong> Write them all down before evaluating — premature judging kills good ideas</li>
+</ul>
+<p>  (Atom 1's divergent/convergent rule).</p>
+<p><strong>Step 2 — Converge (choose).</strong> Now apply judgment, on purpose:</p>
+<ul>
+<li><strong>Define criteria.</strong> What makes a good solution <em>here</em>? Typical: **impact, effort/cost, time, risk,</li>
+</ul>
+<p>  feasibility.** Weight them (some matter more).</p>
+<ul>
+<li><strong>Build a decision matrix.</strong> Score each option against each criterion; total the (weighted) scores.</li>
+</ul>
+<p>  The matrix doesn't decide <em>for</em> you — it makes the <strong>trade-offs visible</strong> and your reasoning   defensible.</p>
+<div class='tablewrap'><table><thead><tr><th>Option</th><th>Impact (×3)</th><th>Effort (×2, lower=better)</th><th>Risk (×2, lower=better)</th><th>Weighted total</th></tr></thead><tbody>
+<tr><td>A: fix the bug</td><td>5 → 15</td><td>2 → (inverted)</td><td>2 → (inverted)</td><td>…</td></tr>
+<tr><td>B: hire agents</td><td>3 → 9</td><td>4</td><td>3</td><td>…</td></tr>
+<tr><td>C: do nothing</td><td>1 → 3</td><td>1</td><td>1</td><td>…</td></tr>
+</tbody></table></div>
+<ul>
+<li><strong>Name the trade-off out loud.</strong> *"We're choosing A over B because it removes the cause for less</li>
+</ul>
+<p>  effort, accepting a small rollout risk."* Every real decision trades something — say what.</p>
+<ul>
+<li><strong>Prefer reversible, testable bets.</strong> When unsure, pick the option you can <strong>pilot small</strong> and undo.</li>
+</ul>
+<p>  Run it (implement), then <strong>review</strong> (Atom 1) and iterate.</p>
+<p><strong>Where the Abilities live:</strong></p>
+<ul>
+<li><strong>🌱 Persistence &amp; ambiguity tolerance.</strong> Hard problems stay foggy for a while. The skill is to keep</li>
+</ul>
+<p>  working the process — generating, testing, refining — without grabbing a premature answer just to   end the discomfort. Stuck ≠ failed; it's where the work is.</p>
+<ul>
+<li><strong>🌱 Critical, curious thinking.</strong> Keep asking *"why is that the obvious answer? what are we</li>
+</ul>
+<p>  assuming? what would change our mind?"* The best solvers interrogate their own favorite option   hardest.</p>
+<blockquote><strong>The discipline:</strong> options before judgment, criteria before choice, trade-off stated out loud, small reversible bet when unsure.</blockquote>
+<p><strong>Key takeaways</strong></p>
+<ul>
+<li><input type="checkbox" disabled> <strong>Diverge first:</strong> generate 5–10 options (incl. "do nothing" + a wild card) before judging.</li>
+<li><input type="checkbox" disabled> <strong>Converge with a decision matrix:</strong> explicit, weighted criteria; visible trade-offs.</li>
+<li><input type="checkbox" disabled> <strong>State the trade-off</strong> and prefer <strong>reversible, testable</strong> bets.</li>
+<li><input type="checkbox" disabled> <strong>Persist</strong> through ambiguity; <strong>question</strong> the obvious answer.</li>
+</ul>
+<hr>
+<h3>🖼️ See — diverge → converge</h3>
+<div class="mermaid">flowchart LR
+  RC[&quot;✅ Confirmed root cause&quot;] --&gt; DIV[&quot;💡 Diverge&lt;br/&gt;generate 5–10 options&quot;]
+  DIV --&gt; CRIT[&quot;📐 Define weighted criteria&quot;]
+  CRIT --&gt; MATRIX[&quot;🧮 Decision matrix&lt;br/&gt;(trade-offs visible)&quot;]
+  MATRIX --&gt; PICK[&quot;🎯 Choose + state trade-off&quot;]
+  PICK --&gt; PILOT[&quot;🧪 Pilot small &amp; review&quot;]</div>
+<p>A reusable prompt to generate an on-brand version:</p>
+<div class="promptcard"><div class="promptcard-h"><span>🖼️ Image / AI prompt</span><button class="copybtn" type="button">Copy</button></div><pre><code>Create a clean, modern infographic showing a &quot;diverge then converge&quot; double-diamond: from a confirmed
+root cause, widen to &quot;generate many options&quot;, then narrow through &quot;weighted criteria → decision matrix
+→ choose + state trade-off → pilot small&quot;. Use ADA brand colors (Indigo #1E2A6E, Turquoise #15B5C6,
+Gold #E0A53C), light background, flat vector, legible sans-serif. 16:9.</code></pre></div>
+<hr>
+<h3>🧪 Practice — <em>Solve it: options + matrix</em> (Challenge + Simulation + Pair)</h3>
+<p>For your confirmed root cause (from Atom 4):</p>
+<ol>
+<li><strong>Diverge.</strong> Generate <strong>at least 6</strong> options, including "do nothing" and one wild idea. No judging</li>
+</ol>
+<p>   while listing.</p>
+<ol>
+<li><strong>Criteria.</strong> Choose 3–4 criteria and weight them for your context.</li>
+<li><strong>Matrix.</strong> Score options, total them, and pick — then <strong>write one sentence naming the trade-off.</strong></li>
+<li><strong>Pilot plan.</strong> Describe the smallest reversible test of your choice and what "it worked" looks like.</li>
+<li><strong>Pair review (collaborate).</strong> Swap with a partner: each plays devil's advocate on the other's</li>
+</ol>
+<p>   choice — <em>"what assumption could be wrong? what option did you dismiss too fast?"</em></p>
+<hr>
+<h3>✅ Evaluate — Behavioral assessment (<code>behavioral</code>)</h3>
+<p>Scored from your work + pair observation — a key occasion for the Abilities:</p>
+<div class='tablewrap'><table><thead><tr><th>Criterion</th><th>Excellent (3)</th><th>Adequate (2)</th><th>Needs work (1)</th></tr></thead><tbody>
+<tr><td><strong>Divergence (🛠️)</strong></td><td>Many varied options before judging</td><td>A few options</td><td>First idea only</td></tr>
+<tr><td><strong>Convergence (🛠️)</strong></td><td>Clear weighted matrix; trade-off stated</td><td>Some structure</td><td>Decides by gut</td></tr>
+<tr><td><strong>Persistence (🌱)</strong></td><td>Stays with ambiguity; refines instead of forcing</td><td>Some persistence</td><td>Grabs premature answer</td></tr>
+<tr><td><strong>Critical curiosity (🌱)</strong></td><td>Questions own assumptions; welcomes challenge</td><td>Some questioning</td><td>Defends first instinct</td></tr>
+<tr><td><strong>Reversibility</strong></td><td>Plans a small, testable pilot</td><td>Vague plan</td><td>Big bet, no test</td></tr>
+</tbody></table></div>
+<blockquote>Pass = 2+ each. This is <strong>occasion 1 of 3</strong> for <code>A-persistence</code> and <code>A-critical-curious</code> (also observed in the capstone and throughout).</blockquote>
+<h3>📦 Deliverable</h3>
+<ul>
+<li>Your options list + weighted decision matrix + chosen option with the stated trade-off + pilot plan.</li>
+</ul>
+<h3>🧠 Final reflection</h3>
+<ul>
+<li>When did you want to stop and just pick something? What did persisting (or not) change?</li>
+</ul>
+<h3>🔗 Sources to verify (human-in-the-loop)</h3>
+<ul>
+<li>Heath &amp; Heath, <em>Decisive</em> (widen options; reality-test assumptions).</li>
+<li>Design Council — the <em>Double Diamond</em> (diverge/converge).</li>
+<li>Decision-matrix / weighted-scoring references (verify before use).</li>
+</ul>
+<h3>🧩 Connections</h3>
+<ul>
+<li><strong>Predecessor:</strong> Atom 4. <strong>Successor:</strong> Atom 6 (run the whole process on a real problem &amp; defend it).</li>
+</ul></section>
+<section class="page" id="page-atom-6" data-id="atom-6"><label class="donebox"><input type="checkbox" class="donechk" data-atom="atom-6"> Mark this atom complete</label><h2>⚛ Learning Atom 6 — <em>Capstone: Solve a Real Problem End-to-End</em></h2>
+<p><strong>Phase:</strong> 🐵 4 · Collaboration &amp; Reflection (<em>share</em>) · <strong>KSA:</strong> 🛠️ Skill + 🌱 Ability · <strong>Target level:</strong> L2 · <strong>Component ids:</strong> <code>S-frame</code>, <code>S-root-cause</code>, <code>S-solutions</code>, <code>A-persistence</code>, <code>A-critical-curious</code></p>
+<h3>🎯 Learning objective</h3>
+<ul>
+<li><strong>Take a real, messy problem</strong> from definition through root-cause to a <strong>chosen, defended solution</strong> —</li>
+</ul>
+<p>  documenting the reasoning and <strong>piloting</strong> where possible — then <strong>defend it</strong> and peer-review.</p>
+<h3>🧩 Prerequisites</h3>
+<ul>
+<li>All prior atoms.</li>
+</ul>
+<h3>🧭 Atom description</h3>
+<p>The capstone proves the whole process on something real. The learner picks an actual problem (work, study, community, or a provided scenario), runs the full loop — define → diagnose → generate → decide → (implement/pilot) → review — and presents not just the answer but the <strong>reasoning</strong>: how they framed it, found the root cause, weighed options, and what they'd do next.</p>
+<hr>
+<h3>🚀 The brief</h3>
+<blockquote>Pick a <strong>real, non-trivial problem</strong> you can work on within the course window. Run the <strong>full problem-solving process</strong> and produce: a sharp <strong>problem statement</strong>, a <strong>root-cause analysis</strong>, a set of <strong>options with a decision matrix</strong>, your <strong>chosen solution with the trade-off named</strong>, and a <strong>pilot or implementation plan</strong> (with the success metric). Then <strong>defend it</strong> in a short session and peer-review a classmate.</blockquote>
+<p>Pick something <strong>real and appropriately sized</strong> — the grade is on the <em>quality of the thinking</em>, not the size of the problem or whether the world is fully fixed by Friday.</p>
+<hr>
+<h3>📦 What to submit</h3>
+<ul>
+<li><input type="checkbox" disabled> <strong>Problem statement</strong> — specific, measurable, neutral, solution-free (Atom 3), with the success</li>
+</ul>
+<p>  metric.</p>
+<ul>
+<li><input type="checkbox" disabled> <strong>Root-cause analysis</strong> — 5 Whys and/or fishbone, plus how you <strong>tested</strong> the suspected cause</li>
+</ul>
+<p>  (Atom 4).</p>
+<ul>
+<li><input type="checkbox" disabled> <strong>Options + decision matrix</strong> — ≥5 options, weighted criteria, the choice, and the **trade-off</li>
+</ul>
+<p>  named** (Atom 5).</p>
+<ul>
+<li><input type="checkbox" disabled> <strong>Pilot/implementation plan</strong> — the smallest reversible test and what "it worked" looks like.</li>
+<li><input type="checkbox" disabled> <strong>A reflection</strong> (6–8 sentences) — where you got stuck, an assumption you had to discard, and a</li>
+</ul>
+<p>  bias you caught yourself in.</p>
+<ul>
+<li><input type="checkbox" disabled> <strong>A peer review you gave</strong> — the capstone rubric applied to a classmate, with specific, useful</li>
+</ul>
+<p>  feedback.</p>
+<hr>
+<h3>🎤 Showcase / defense structure (≈ 5 minutes)</h3>
+<ol>
+<li><strong>The problem</strong> (1 min) — your statement and why it matters.</li>
+<li><strong>The diagnosis</strong> (1–2 min) — root cause + how you know (your test).</li>
+<li><strong>The decision</strong> (1–2 min) — options, the matrix, your choice, and the trade-off.</li>
+<li><strong>Next &amp; lessons</strong> (30s) — pilot plan + one thing the process taught you.</li>
+</ol>
+<p>Expect <strong>challenge questions</strong> — "what if your root cause is wrong?", "what option did you dismiss?" — and answer them with your reasoning (that's the critical-curiosity Ability, observed live).</p>
+<hr>
+<h3>✅ Evaluate — Capstone (<code>capstone-5</code>)</h3>
+<p>Graded with the standard 5-criteria Assessment Rubric in <a href="../../index.html#/examples/problem-solving-micro-credential/atoms/rubrics.md" target="_blank" rel="noopener"><code>../rubrics.md</code></a> / <a href="../../index.html#/examples/problem-solving-micro-credential/atoms/capstone.md" target="_blank" rel="noopener"><code>../capstone.md</code></a>. This is the <strong>third and decisive occasion</strong> for the Abilities <code>A-persistence</code> and <code>A-critical-curious</code>, alongside the Skills.</p>
+<h3>📦 Deliverable</h3>
+<ul>
+<li>Your full case file (statement → root cause → options/matrix → choice → pilot plan) + reflection +</li>
+</ul>
+<p>  the peer review you gave.</p>
+<h3>🧠 Final reflection</h3>
+<ul>
+<li>Compare how you'd have "solved" this on day 1 vs. now. What changed in <em>how you think</em> about</li>
+</ul>
+<p>  problems? Name one habit you'll keep.</p>
+<h3>🔗 Sources to verify (human-in-the-loop)</h3>
+<ul>
+<li><a href="../../index.html#/examples/problem-solving-micro-credential/atoms/capstone.md" target="_blank" rel="noopener"><code>../capstone.md</code></a> · <a href="../../index.html#/examples/problem-solving-micro-credential/atoms/rubrics.md" target="_blank" rel="noopener"><code>../rubrics.md</code></a> · <a href="../../index.html#/examples/problem-solving-micro-credential/atoms/skills-map.md" target="_blank" rel="noopener"><code>../skills-map.md</code></a>.</li>
+<li>Pólya, <em>How to Solve It</em>; Heath &amp; Heath, <em>Decisive</em> (for the defense).</li>
+</ul>
+<h3>🧩 Connections</h3>
+<ul>
+<li><strong>Predecessor:</strong> Atom 5. <strong>Outcome:</strong> 🏅 <em>Problem Solver</em> badge → boosts almost any role</li>
+</ul>
+<p>  (see <a href="../../index.html#/examples/problem-solving-micro-credential/atoms/skills-map.md" target="_blank" rel="noopener"><code>../skills-map.md</code></a>).</p></section>
+<section class="page" id="page-capstone" data-id="capstone"><h1>🚀 Capstone — <em>Solve a Real Problem End-to-End</em></h1>
+<p>The capstone is delivered as <a href="#atom-6">Atom 6</a>. This file is the <strong>grading brief</strong>: what learners submit, how it maps to KSA, and the defense format.</p>
+<hr>
+<h2>🎯 The brief</h2>
+<blockquote>Pick a <strong>real, non-trivial problem</strong> you can work on within the course window. Run the <strong>full problem-solving process</strong> and produce a sharp <strong>problem statement</strong>, a <strong>root-cause analysis</strong>, a set of <strong>options with a decision matrix</strong>, your <strong>chosen solution with the trade-off named</strong>, and a <strong>pilot/implementation plan</strong> with a success metric. Then <strong>defend it</strong> and peer-review a classmate.</blockquote>
+<p>The point is the <strong>quality of the thinking</strong> — define → diagnose → decide — not the size of the problem.</p>
+<hr>
+<h2>📦 What to submit</h2>
+<ul>
+<li><input type="checkbox" disabled> <strong>Problem statement</strong> — specific, measurable, neutral, solution-free, with success metric.</li>
+<li><input type="checkbox" disabled> <strong>Root-cause analysis</strong> — 5 Whys and/or fishbone + how you <strong>tested</strong> the suspected cause.</li>
+<li><input type="checkbox" disabled> <strong>Options + decision matrix</strong> — ≥5 options, weighted criteria, the choice, the <strong>trade-off named.</strong></li>
+<li><input type="checkbox" disabled> <strong>Pilot/implementation plan</strong> — smallest reversible test + what "it worked" looks like.</li>
+<li><input type="checkbox" disabled> <strong>A reflection</strong> (6–8 sentences) — where you got stuck, an assumption discarded, a bias caught.</li>
+<li><input type="checkbox" disabled> <strong>A peer review you gave</strong> — the capstone rubric applied to a classmate, with useful feedback.</li>
+</ul>
+<hr>
+<h2>🎤 Showcase / defense structure (≈ 5 minutes)</h2>
+<ol>
+<li><strong>The problem</strong> (1 min) — statement + why it matters.</li>
+<li><strong>The diagnosis</strong> (1–2 min) — root cause + how you know.</li>
+<li><strong>The decision</strong> (1–2 min) — options, matrix, choice, trade-off.</li>
+<li><strong>Next &amp; lessons</strong> (30s) — pilot plan + one lesson.</li>
+</ol>
+<blockquote>Expect <strong>challenge questions</strong> ("what if your root cause is wrong?") — answering with your reasoning is part of the grade (critical-curiosity, observed live).</blockquote>
+<hr>
+<h2>🧬 How the capstone maps to KSA</h2>
+<div class='tablewrap'><table><thead><tr><th>Capstone element</th><th>Evidences</th><th>Component</th></tr></thead><tbody>
+<tr><td>Process discipline + symptom/root-cause distinction</td><td>The problem-solving process</td><td>🧠 K-process</td></tr>
+<tr><td>Naming trade-offs; catching a bias in the reflection</td><td>Decisions &amp; cognitive biases</td><td>🧠 K-decisions-biases</td></tr>
+<tr><td>Sharp, decomposed problem statement</td><td>Define &amp; decompose</td><td>🛠️ S-frame (L2)</td></tr>
+<tr><td>5 Whys / fishbone + a real test</td><td>Root cause analysis</td><td>🛠️ S-root-cause (L2)</td></tr>
+<tr><td>Options + weighted decision matrix + choice</td><td>Generate &amp; choose solutions</td><td>🛠️ S-solutions (L2)</td></tr>
+<tr><td>Staying with the messy problem; refining vs. forcing</td><td>Persistence &amp; ambiguity tolerance</td><td>🌱 A-persistence (L2)</td></tr>
+<tr><td>Questioning assumptions; handling challenge questions</td><td>Critical, curious thinking</td><td>🌱 A-critical-curious (L2)</td></tr>
+<tr><td>Defense + peer review + reflection</td><td>Collaboration &amp; reflection</td><td>(capstone-5 collaboration)</td></tr>
+</tbody></table></div>
+<blockquote>The Abilities (<code>A-persistence</code>, <code>A-critical-curious</code>) are confirmed here as the <strong>3rd observed occasion</strong>, after Atom 5 and across the course.</blockquote>
+<hr>
+<h2>✅ Grading</h2>
+<p>Atom-level checks (<code>knowledge-mini</code>, <code>skill</code>, <code>behavioral</code>) gate entry to the capstone, which is then scored on the standard 5-criteria <strong>Assessment Rubric</strong> below (also in <a href="#rubrics"><code>rubrics.md</code></a>).</p>
+<h2>📋 Assessment Rubric</h2>
+<p>Five criteria across four proficiency bands, weighted to <strong>100 points</strong>.</p>
+<div class='tablewrap'><table><thead><tr><th>Criteria</th><th>Excellent (100–90%)</th><th>Competent (89–80%)</th><th>Developing (79–70%)</th><th>Initial (69% or less)</th><th>Weight</th></tr></thead><tbody>
+<tr><td><strong>Relevance (competency alignment)</strong></td><td>A real, well-scoped problem run through the full process to a defensible solution.</td><td>Relevant; process mostly complete.</td><td>Process partial or problem trivial.</td><td>Off-target or solution-jumped.</td><td><strong>20 pts</strong></td></tr>
+<tr><td><strong>Application of skills</strong></td><td>Framing, root-cause analysis, and decision matrix all used correctly and naturally.</td><td>Most used correctly, minor gaps.</td><td>Several gaps (weak diagnosis, gut decision).</td><td>Minimal/incorrect application.</td><td><strong>25 pts</strong></td></tr>
+<tr><td><strong>Problem-solving (depth &amp; rigor)</strong></td><td>Tests the root cause; trade-offs explicit; reversible pilot; reasoning sound.</td><td>Adequate rigor.</td><td>Shallow diagnosis or unsupported choice.</td><td>No real analysis.</td><td><strong>20 pts</strong></td></tr>
+<tr><td><strong>Clarity &amp; communication (defense)</strong></td><td>Defense is clear and logical; handles challenge questions well.</td><td>Generally clear.</td><td>Uneven or hard to follow.</td><td>Unclear/missing.</td><td><strong>15 pts</strong></td></tr>
+<tr><td><strong>Collaboration &amp; reflection</strong></td><td>Persistence + critical curiosity evident; insightful peer review + honest reflection (bias caught).</td><td>Adequate review + reflection.</td><td>Minimal.</td><td>Missing.</td><td><strong>20 pts</strong></td></tr>
+<tr><td><strong>TOTAL</strong></td><td></td><td></td><td></td><td></td><td><strong>100 pts</strong></td></tr>
+</tbody></table></div>
+<blockquote><strong>Pass for the badge:</strong> atom-level checks ≥ 2 each (incl. the behavioral assessment), Assessment Rubric weighted score ≥ 70% (at least <em>Developing</em> on every criterion), and the peer review + reflection completed — <strong>verified by a mentor/instructor</strong> (human-in-the-loop). See <a href="#skillsmap"><code>skills-map.md</code></a> for what the badge unlocks.</blockquote></section>
+<section class="page" id="page-rubrics" data-id="rubrics"><h1>📊 Rubrics — Problem Solving</h1>
+<p>All rubrics for this micro-credential. Atom-level rubrics are <strong>formative</strong> (gate progress); the <strong>capstone-5</strong> rubric is the <strong>summative</strong> Assessment Rubric. Abilities are scored <strong>behaviorally across ≥3 occasions</strong>, never with a quiz.</p>
+<blockquote>See the rubric philosophy in <a href="../../index.html#/guides/curriculum-design-guide.md" target="_blank" rel="noopener"><code>../../guides/curriculum-design-guide.md</code></a> and the standard rubric in <a href="../../index.html#/templates/micro-credential-ada-template.md" target="_blank" rel="noopener"><code>../../templates/micro-credential-ada-template.md</code></a>.</blockquote>
+<hr>
+<h2>1) <code>knowledge-mini</code> — for Knowledge atoms (Atoms 1–2)</h2>
+<p>Formative checks for understanding (used by the pop quizzes).</p>
+<div class='tablewrap'><table><thead><tr><th>Criterion</th><th>Pass (✓)</th><th>Not yet (✗)</th></tr></thead><tbody>
+<tr><td><strong>Comprehension</strong></td><td>Explains the process / a bias in own words</td><td>Recites without understanding</td></tr>
+<tr><td><strong>Application</strong></td><td>Spots symptom-vs-cause or a bias in a scenario</td><td>Cannot transfer to a new case</td></tr>
+<tr><td><strong>Reflection</strong></td><td>Connects the idea to a real problem</td><td>No connection made</td></tr>
+</tbody></table></div>
+<p>Pass = all ✓. Retake allowed.</p>
+<hr>
+<h2>2) <code>skill</code> — for Skill atoms (Atoms 3–4)</h2>
+<div class='tablewrap'><table><thead><tr><th>Criterion</th><th>Excellent (3)</th><th>Adequate (2)</th><th>Needs work (1)</th></tr></thead><tbody>
+<tr><td><strong>Define &amp; decompose (Atom 3)</strong></td><td>Sharp, measurable, solution-free statement; MECE tree</td><td>Mostly clear + a breakdown</td><td>Vague / hides a solution</td></tr>
+<tr><td><strong>Root cause (Atom 4)</strong></td><td>Reaches actionable cause; tests it</td><td>Some digging + a test</td><td>Stops at symptom; assumes cause</td></tr>
+<tr><td><strong>Bias awareness</strong></td><td>Seeks disconfirming evidence</td><td>Some</td><td>Confirmation-driven</td></tr>
+</tbody></table></div>
+<p>Pass = 2+ on each relevant row → <strong>L2</strong> for the targeted Skill.</p>
+<hr>
+<h2>3) <code>behavioral</code> — for the Abilities (Atom 5, capstone, across the course)</h2>
+<p>Scored by <strong>observation across ≥3 occasions</strong> (Atom 5 challenge + pair review, the capstone defense, and general participation). The Ability is credited only if it shows up <strong>consistently.</strong></p>
+<div class='tablewrap'><table><thead><tr><th>Ability</th><th>Looks like (✓)</th><th>Doesn't look like (✗)</th><th>Occasions</th></tr></thead><tbody>
+<tr><td><strong>Persistence &amp; ambiguity tolerance (<code>A-persistence</code>)</strong></td><td>Stays with hard/unclear problems; refines instead of forcing</td><td>Grabs a premature answer; quits when foggy</td><td>Atom 5, capstone, throughout</td></tr>
+<tr><td><strong>Critical, curious thinking (<code>A-critical-curious</code>)</strong></td><td>Questions assumptions; asks why/what-if; welcomes challenge</td><td>Accepts the obvious; defends first instinct</td><td>Atom 5, capstone, throughout</td></tr>
+</tbody></table></div>
+<p>Credit at <strong>L2</strong> = observed ✓ in <strong>at least 3 occasions</strong> (the capstone alone is not enough).</p>
+<hr>
+<h2>4) <code>capstone-5</code> — summative Assessment Rubric (the badge gate)</h2>
+<p>The standard ADA 5-criteria / 4-band / 100-point rubric. Identical to the table in <a href="#capstone"><code>capstone.md</code></a>:</p>
+<div class='tablewrap'><table><thead><tr><th>Criteria</th><th>Excellent (100–90%)</th><th>Competent (89–80%)</th><th>Developing (79–70%)</th><th>Initial (69% or less)</th><th>Weight</th></tr></thead><tbody>
+<tr><td><strong>Relevance (competency alignment)</strong></td><td>A real, well-scoped problem run through the full process to a defensible solution.</td><td>Relevant; process mostly complete.</td><td>Process partial or problem trivial.</td><td>Off-target or solution-jumped.</td><td><strong>20 pts</strong></td></tr>
+<tr><td><strong>Application of skills</strong></td><td>Framing, root-cause analysis, and decision matrix all used correctly and naturally.</td><td>Most used correctly.</td><td>Several gaps.</td><td>Minimal/incorrect.</td><td><strong>25 pts</strong></td></tr>
+<tr><td><strong>Problem-solving (depth &amp; rigor)</strong></td><td>Tests the root cause; trade-offs explicit; reversible pilot.</td><td>Adequate rigor.</td><td>Shallow diagnosis / unsupported choice.</td><td>No real analysis.</td><td><strong>20 pts</strong></td></tr>
+<tr><td><strong>Clarity &amp; communication (defense)</strong></td><td>Clear, logical defense; handles challenge questions.</td><td>Generally clear.</td><td>Uneven.</td><td>Unclear/missing.</td><td><strong>15 pts</strong></td></tr>
+<tr><td><strong>Collaboration &amp; reflection</strong></td><td>Persistence + critical curiosity evident; insightful review + honest reflection.</td><td>Adequate.</td><td>Minimal.</td><td>Missing.</td><td><strong>20 pts</strong></td></tr>
+<tr><td><strong>TOTAL</strong></td><td></td><td></td><td></td><td></td><td><strong>100 pts</strong></td></tr>
+</tbody></table></div>
+<hr>
+<h2>🏅 Badge issuance — <em>Problem Solver</em></h2>
+<p>Issued when <strong>all</strong> hold (mentor-verified — human-in-the-loop):</p>
+<ul>
+<li><input type="checkbox" disabled> <strong>Knowledge:</strong> Atoms 1–2 pop quizzes passed.</li>
+<li><input type="checkbox" disabled> <strong>Skills:</strong> Atom 3 (frame) + Atom 4 (root cause) performance tasks ≥ 2 each → <strong>L2.</strong></li>
+<li><input type="checkbox" disabled> <strong>Abilities:</strong> <code>A-persistence</code> &amp; <code>A-critical-curious</code> observed ✓ across <strong>≥3 occasions.</strong></li>
+<li><input type="checkbox" disabled> <strong>Capstone:</strong> Assessment Rubric weighted score <strong>≥ 70%</strong> (≥ <em>Developing</em> on each criterion).</li>
+<li><input type="checkbox" disabled> <strong>Collaboration:</strong> defense delivered + peer review given + reflection submitted.</li>
+</ul>
+<p>The badge writes these KSA components (with levels) into the learner's <strong>skills map</strong> — see <a href="#skillsmap"><code>skills-map.md</code></a>.</p></section>
+<section class="page" id="page-skillsmap" data-id="skillsmap"><h1>🗺️ Skills Map — <em>Problem Solver</em></h1>
+<p>How earning this badge updates a learner's <strong>skills map</strong> and why it's one of the highest-leverage credentials to hold — problem solving is a near-universal job requirement.</p>
+<blockquote>Concept reference: <a href="../../index.html#/specs/skills-map-job-matching.md" target="_blank" rel="noopener"><code>../../specs/skills-map-job-matching.md</code></a>.</blockquote>
+<hr>
+<h2>🧩 What the badge writes to the skills map</h2>
+<p>On issuance, these KSA components are recorded with evidence and level:</p>
+<div class='tablewrap'><table><thead><tr><th>Component</th><th>Type</th><th>Level</th><th>Evidence</th></tr></thead><tbody>
+<tr><td><code>K-process</code> — the problem-solving process</td><td>🧠 Knowledge</td><td>L2</td><td>Atom 1 quiz</td></tr>
+<tr><td><code>K-decisions-biases</code> — decisions &amp; biases</td><td>🧠 Knowledge</td><td>L2</td><td>Atom 2 quiz</td></tr>
+<tr><td><code>S-frame</code> — define &amp; decompose</td><td>🛠️ Skill</td><td><strong>L2</strong></td><td>Atom 3 performance task + capstone</td></tr>
+<tr><td><code>S-root-cause</code> — root cause analysis</td><td>🛠️ Skill</td><td><strong>L2</strong></td><td>Atom 4 performance task + capstone</td></tr>
+<tr><td><code>S-solutions</code> — generate &amp; choose solutions</td><td>🛠️ Skill</td><td>L2</td><td>Atom 5 + capstone</td></tr>
+<tr><td><code>A-persistence</code> — persistence &amp; ambiguity tolerance</td><td>🌱 Ability</td><td>L2</td><td>Behavioral, ≥3 occasions</td></tr>
+<tr><td><code>A-critical-curious</code> — critical, curious thinking</td><td>🌱 Ability</td><td>L2</td><td>Behavioral, ≥3 occasions</td></tr>
+</tbody></table></div>
+<hr>
+<h2>🎯 Why this badge matters everywhere</h2>
+<div class="mermaid">flowchart TD
+  PS[&quot;🏅 Problem Solver&quot;] --&gt; IC[&quot;👩‍💻 Any IC role&lt;br/&gt;debug, analyze, decide&quot;]
+  PS --&gt; LEAD[&quot;🧭 Lead / manager&lt;br/&gt;prioritize, resolve, decide under pressure&quot;]
+  PS --&gt; ANALYST[&quot;📊 Analyst / ops&lt;br/&gt;root-cause &amp; process improvement&quot;]
+  PS --&gt; FOUND[&quot;🚀 Founder / PM&lt;br/&gt;frame the right problem&quot;]</div>
+<p>"Problem-solving skills" appears in the majority of job postings across functions. Unlike most badges that boost one role, <strong>Problem Solver is a multiplier</strong> on nearly every role's effectiveness and is frequently an explicit hiring criterion (O*NET lists Complex Problem Solving, Critical Thinking, and Judgment &amp; Decision Making as core skills across occupations).</p>
+<hr>
+<h2>🧭 How it fits a learning pathway</h2>
+<div class='tablewrap'><table><thead><tr><th>Stage</th><th>Credential</th><th>What it adds</th></tr></thead><tbody>
+<tr><td>Foundational (cognitive)</td><td>🏅 <strong>Problem Solver</strong> <em>(this one)</em></td><td>define, diagnose, decide</td></tr>
+<tr><td>Pairs well with</td><td>🏅 <a href="../../index.html#/examples/self-learning-micro-credential/skills-map.md" target="_blank" rel="noopener">Self-Learning</a></td><td>fill the knowledge gaps a problem reveals</td></tr>
+<tr><td>Pairs well with</td><td>🏅 <a href="../../index.html#/examples/effective-communication-micro-credential/skills-map.md" target="_blank" rel="noopener">Effective Communication</a></td><td>explain &amp; sell the chosen solution</td></tr>
+<tr><td>Pairs well with</td><td>🏅 <a href="../../index.html#/examples/growth-mindset-micro-credential/skills-map.md" target="_blank" rel="noopener">Growth Mindset</a></td><td>persist when the first solution fails</td></tr>
+<tr><td>Builds toward</td><td><em>Data Analysis · Systems Thinking · Decision Science</em></td><td>(future credentials) advanced problem work</td></tr>
+<tr><td>Role pathways</td><td><em>Analyst · Engineer · Operations · Product Manager · Consultant · Founder</em></td><td>problem solving is core to each</td></tr>
+</tbody></table></div>
+<blockquote><strong>Job-matching note:</strong> because problem solving is a <em>transversal</em> competency, this badge rarely appears alone in a role's minimums — it <strong>stacks</strong> with technical badges (e.g., <a href="../../index.html#/examples/python-variables-micro-credential/skills-map.md" target="_blank" rel="noopener">Python Variables</a> → developer pathway) to make a candidate credible end-to-end. Matching against a specific job's minimum bar still requires <strong>human (mentor/employer) validation</strong> — AI-suggested mappings are a starting point, not a verdict (see <a href="../../index.html#/CLAUDE.md" target="_blank" rel="noopener"><code>../../CLAUDE.md</code></a> §5).</blockquote></section></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var pages=Array.prototype.slice.call(document.querySelectorAll(".page"));
+  var ids=pages.map(function(p){return p.getAttribute("data-id");});
+  var links=Array.prototype.slice.call(document.querySelectorAll(".navlink"));
+  var atomIds=["atom-1","atom-2","atom-3","atom-4","atom-5","atom-6"];
+  var idx=0;
+
+  function show(id){
+    var i=ids.indexOf(id); if(i<0)i=0; idx=i;
+    pages.forEach(function(p){p.classList.toggle("active",p.getAttribute("data-id")===id);});
+    links.forEach(function(a){a.classList.toggle("active",a.getAttribute("data-target")===id);});
+    document.getElementById("prevbtn").disabled=(idx===0);
+    document.getElementById("nextbtn").disabled=(idx===pages.length-1);
+    if(location.hash.slice(1)!==id) history.replaceState(null,"","#"+id);
+    document.getElementById("side").classList.remove("open");
+    window.scrollTo(0,0);
+    renderMermaid();
+  }
+  links.forEach(function(a){a.addEventListener("click",function(e){e.preventDefault();show(a.getAttribute("data-target"));});});
+  document.getElementById("prevbtn").addEventListener("click",function(){if(idx>0)show(ids[idx-1]);});
+  document.getElementById("nextbtn").addEventListener("click",function(){if(idx<ids.length-1)show(ids[idx+1]);});
+  document.getElementById("menutoggle").addEventListener("click",function(){document.getElementById("side").classList.toggle("open");});
+
+  // progress (localStorage)
+  var KEY="problem-solving-progress";
+  function load(){try{return JSON.parse(localStorage.getItem(KEY)||"{}");}catch(e){return {};}}
+  function save(s){try{localStorage.setItem(KEY,JSON.stringify(s));}catch(e){}}
+  function refresh(){
+    var s=load(),done=0;
+    document.querySelectorAll(".donechk").forEach(function(c){
+      c.checked=!!s[c.getAttribute("data-atom")]; if(c.checked)done++;});
+    var pct=Math.round(done/atomIds.length*100);
+    document.getElementById("progfill").style.width=pct+"%";
+    document.getElementById("progtext").textContent=done+" / "+atomIds.length+" atoms complete";
+  }
+  document.querySelectorAll(".donechk").forEach(function(c){
+    c.addEventListener("change",function(){var s=load();s[c.getAttribute("data-atom")]=c.checked;save(s);refresh();});
+  });
+  refresh();
+
+  // copy buttons
+  document.querySelectorAll(".copybtn").forEach(function(b){
+    b.addEventListener("click",function(){
+      var pre=b.closest(".promptcard").querySelector("pre");
+      var txt=pre.innerText;
+      (navigator.clipboard?navigator.clipboard.writeText(txt):Promise.reject()).then(function(){
+        b.textContent="Copied!";b.classList.add("ok");setTimeout(function(){b.textContent="Copy";b.classList.remove("ok");},1400);
+      }).catch(function(){
+        var r=document.createRange();r.selectNodeContents(pre);var sel=getSelection();sel.removeAllRanges();sel.addRange(r);
+        try{document.execCommand("copy");}catch(e){} sel.removeAllRanges();
+        b.textContent="Copied!";b.classList.add("ok");setTimeout(function(){b.textContent="Copy";b.classList.remove("ok");},1400);
+      });
+    });
+  });
+
+  // youtube click-to-play
+  document.querySelectorAll(".yt").forEach(function(y){
+    var btn=y.querySelector(".yt-play");
+    btn.addEventListener("click",function(){
+      var id=y.getAttribute("data-id"); if(!id)return;
+      var f=document.createElement("iframe");
+      f.src="https://www.youtube-nocookie.com/embed/"+id+"?autoplay=1&rel=0";
+      f.allow="accelerated-sensors;autoplay;encrypted-media;picture-in-picture";
+      f.setAttribute("allowfullscreen","");
+      btn.replaceWith(f);
+    });
+  });
+
+  // mermaid (CDN, brand theme, root emphasis, graceful fallback)
+  var mmReady=null;
+  function ensureMermaid(){
+    if(mmReady)return mmReady;
+    mmReady=new Promise(function(res,rej){
+      if(window.mermaid)return res(window.mermaid);
+      var s=document.createElement("script");
+      s.src="https://cdn.jsdelivr.net/npm/mermaid@11.15.0/dist/mermaid.min.js";
+      s.onload=function(){res(window.mermaid);};
+      s.onerror=function(){
+        var s2=document.createElement("script");
+        s2.src="https://unpkg.com/mermaid@11.15.0/dist/mermaid.min.js";
+        s2.onload=function(){res(window.mermaid);}; s2.onerror=rej;
+        document.head.appendChild(s2);
+      };
+      document.head.appendChild(s);
+    });
+    return mmReady;
+  }
+  function src(n){var s=n.getAttribute("data-src");if(s===null){s=n.textContent;n.setAttribute("data-src",s);}return s;}
+  function fallback(n){n.classList.add("fallback");n.innerHTML="<pre>"+src(n).replace(/[&<>]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;"}[c];})+"</pre>";}
+  function detectRoots(s){
+    try{var L=s.split(/\r?\n/);if(!/^\s*(flowchart|graph)\b/i.test(L[0]||""))return [];
+      var all={},tg={};
+      for(var i=1;i<L.length;i++){var t=(L[i]||"").trim();
+        if(!t||/^%%/.test(t))continue;
+        if(/^(classdef|class|style|linkstyle|click|direction|subgraph|end)\b/i.test(t))continue;
+        var x=L[i];for(var k=0;k<8;k++){x=x.replace(/\(\([^()]*\)\)/g," ").replace(/\[[^\[\]]*\]/g," ").replace(/\{[^{}]*\}/g," ").replace(/\([^()]*\)/g," ");}
+        x=x.replace(/\|[^|]*\|/g," ");if(x.indexOf("--")<0&&x.indexOf("==")<0)continue;
+        var ids=x.split(/\s*(?:-{2,}>?|={2,}>?|-\.->?)\s*/).map(function(z){return (z.trim().match(/^[A-Za-z0-9_]+/)||[""])[0];}).filter(Boolean);
+        for(var j=0;j<ids.length;j++){all[ids[j]]=1;if(j>0)tg[ids[j]]=1;}}
+      var r=Object.keys(all).filter(function(id){return !tg[id];});
+      return r.length&&r.length<=4?r:[];
+    }catch(e){return [];}
+  }
+  function emphasize(s){var r=detectRoots(s);if(!r.length)return s;
+    return s+"\nclassDef adaRootNode fill:#1E2A6E,stroke:#E0A53C,stroke-width:3px,color:#ffffff,font-weight:bold,font-size:21px;\nclass "+r.join(",")+" adaRootNode;";}
+  var seq=0;
+  function renderMermaid(){
+    var nodes=Array.prototype.slice.call(document.querySelectorAll(".page.active .mermaid:not([data-done])"));
+    if(!nodes.length)return;
+    nodes.forEach(src);
+    ensureMermaid().then(function(m){
+      m.initialize({startOnLoad:false,securityLevel:"loose",theme:"base",fontFamily:"inherit",fontSize:"16px",
+        flowchart:{htmlLabels:true,useMaxWidth:true,curve:"basis",padding:14,nodeSpacing:52,rankSpacing:58},
+        themeVariables:{fontSize:"16px",primaryColor:"#1E2A6E",primaryTextColor:"#ffffff",primaryBorderColor:"#15B5C6",
+          mainBkg:"#1E2A6E",nodeBorder:"#15B5C6",nodeTextColor:"#ffffff",lineColor:"#1E2A6E",
+          clusterBkg:"#eef2fb",clusterBorder:"#15B5C6",titleColor:"#1E2A6E",
+          background:"#ffffff",textColor:"#1E2A6E",edgeLabelBackground:"#ffffff",
+          cScale0:"#1E2A6E",cScale1:"#15B5C6",cScale2:"#E0A53C",cScale3:"#2a3aa0",
+          cScaleLabel0:"#ffffff",cScaleLabel1:"#0A1124",cScaleLabel2:"#0A1124",cScaleLabel3:"#ffffff"}});
+      nodes.forEach(function(n){
+        n.setAttribute("data-done","1");
+        var id="mm-"+(Date.now())+"-"+(seq++);
+        try{m.render(id,emphasize(src(n))).then(function(o){n.innerHTML=o.svg;}).catch(function(){fallback(n);});}
+        catch(e){fallback(n);}
+      });
+    }).catch(function(){nodes.forEach(fallback);});
+  }
+
+  window.addEventListener("hashchange",function(){show(location.hash.slice(1)||ids[0]);});
+  show(location.hash.slice(1)||ids[0]);
+})();
+</script>
+</body>
+</html>

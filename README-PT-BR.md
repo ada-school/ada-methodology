@@ -20,6 +20,11 @@
 
 <br />
 
+<p align="center">
+  🎓 <strong>É novo por aqui?</strong> Aprenda e domine a metodologia criando uma →
+  <a href="LEARN.md"><strong>LEARN.md</strong></a> (uma micro-credencial ADA autoguiada, em inglês).
+</p>
+
 ---
 
 ## 🎯 Princípio Pedagógico
@@ -247,6 +252,11 @@ VAGA DE EMPREGO → [IA Generativa + validação humana] → PERFIL KSA ALVO
 * 🌱 [Atitude — Adaptabilidade e Mentalidade de Crescimento](examples/ksa-attitude-adaptability.md)
 * 🗺️ [Ponta a ponta — Vaga → mapa de habilidades → pronto para o trabalho](examples/skills-map-job-match-frontend.md)
 * 🌱 [**Curso completo** — microcredencial de Mentalidade de Crescimento](examples/growth-mindset-micro-credential/README.md) · 🖥️ [abrir o `course.html` interativo](examples/growth-mindset-micro-credential/course.html) *(conteúdo em inglês)*
+* 🐍 [**Curso completo** — microcredencial de Variáveis em Python (iniciante)](examples/python-variables-micro-credential/README.md) · 🖥️ [abrir o `course.html` interativo](examples/python-variables-micro-credential/course.html) *(conteúdo em inglês)*
+* 🎓 [**Curso completo** — microcredencial de Designer da Metodologia ADA](examples/ada-methodology-designer-micro-credential/README.md) · 🖥️ [abrir o `course.html` interativo](examples/ada-methodology-designer-micro-credential/course.html) *(conteúdo em inglês)*
+* 🗣️ [**Curso completo** — microcredencial de Comunicação Eficaz](examples/effective-communication-micro-credential/README.md) · 🖥️ [abrir o `course.html` interativo](examples/effective-communication-micro-credential/course.html) *(conteúdo em inglês)*
+* 🧭 [**Curso completo** — microcredencial de Autoaprendizagem (online + IA)](examples/self-learning-micro-credential/README.md) · 🖥️ [abrir o `course.html` interativo](examples/self-learning-micro-credential/course.html) *(conteúdo em inglês)*
+* 🧩 [**Curso completo** — microcredencial de Resolução de Problemas](examples/problem-solving-micro-credential/README.md) · 🖥️ [abrir o `course.html` interativo](examples/problem-solving-micro-credential/course.html) *(conteúdo em inglês)*
 
 ---
 
@@ -299,6 +309,7 @@ em seguida.
 
 ## 🧭 Recursos para Designers de Currículo
 
+* 🎓 [**Aprenda ADA (comece aqui)** — domine a metodologia criando uma credencial.](LEARN.md)
 * [Guia Passo a Passo](guides/guia-design-curriculo.md).
 * [Modelo de Átomo de Aprendizado.](templates/pt-br/modelo-atomo-aprendizado.md)
 * [Exemplos de Átomos de Aprendizado.](examples/learning-atom-art.md)
@@ -319,6 +330,11 @@ em seguida.
 * [Exemplos KSA: técnico / humano / atitude / match de vaga.](examples/skills-map-job-match-frontend.md)
 * [Exemplo de trilha de vaga: Processamento de Dados → Cientista de Dados.](examples/role-data-scientist-pathway.md)
 * [Curso completo: microcredencial de Mentalidade de Crescimento](examples/growth-mindset-micro-credential/README.md) (com [`course.html`](examples/growth-mindset-micro-credential/course.html) interativo).
+* [Curso completo: microcredencial de Variáveis em Python](examples/python-variables-micro-credential/README.md) — uma habilidade técnica para iniciantes (com [`course.html`](examples/python-variables-micro-credential/course.html) interativo).
+* 🎓 [Curso completo: microcredencial de Designer da Metodologia ADA](examples/ada-methodology-designer-micro-credential/README.md) — certifique-se para projetar credenciais ADA (com [`course.html`](examples/ada-methodology-designer-micro-credential/course.html) interativo).
+* 🗣️ [Curso completo: microcredencial de Comunicação Eficaz](examples/effective-communication-micro-credential/README.md) — uma habilidade humana quase universal (com [`course.html`](examples/effective-communication-micro-credential/course.html) interativo).
+* 🧭 [Curso completo: microcredencial de Autoaprendizagem](examples/self-learning-micro-credential/README.md) — aprenda qualquer coisa online e com IA, a meta-habilidade (com [`course.html`](examples/self-learning-micro-credential/course.html) interativo).
+* 🧩 [Curso completo: microcredencial de Resolução de Problemas](examples/problem-solving-micro-credential/README.md) — definir, diagnosticar e decidir (com [`course.html`](examples/problem-solving-micro-credential/course.html) interativo).
 
 ---
 

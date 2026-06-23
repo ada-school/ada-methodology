@@ -53,18 +53,23 @@ reframes, 3 feedback asks, sustained journal, showcase).
 
 ---
 
-## ✨ `capstone-5` — standard ADA capstone rubric
+## ✨ `capstone-5` — Assessment Rubric (standard ADA capstone)
 
-| Criterion | Excellent (5) | Good (3–4) | Needs improvement (1–2) | Weight |
-| --------- | ------------- | ---------- | ----------------------- | ------ |
-| **Relevance (competency alignment)** | Goal is a real, job-relevant stretch; mindset framing accurate | Mostly relevant | Weak / off-target | 20% |
-| **Application of skills** | YET Loop + deliberate-practice loops used well and visibly | Adequate use | Minimal / incorrect | 25% |
-| **Problem-solving & creativity** | Setbacks reframed into smart next reaches | Conventional responses | Stalled at obstacles | 20% |
-| **Clarity & communication** | Journal + showcase clear, honest, well-structured | Generally clear | Unclear / sanitized | 15% |
-| **Collaboration & reflection** | Strong feedback-seeking, peer 360, insightful reflection | Moderate | Minimal | 20% |
+The capstone is scored on **five criteria** across **four proficiency bands**, weighted to a total
+of **100 points**. Each criterion's band sets how much of its weight is earned. **Pass = ≥ 70%
+overall with at least *Developing* on every criterion**, mentor-verified (human-in-the-loop).
+
+| Criteria | Excellent (100–90%) | Competent (89–80%) | Developing (79–70%) | Initial (69% or less) | Weight |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Relevance (competency alignment)** | Goal is a real, job-relevant stretch; mindset framing is precise and accurate throughout. | Goal is relevant; mindset framing mostly accurate. | Goal loosely relevant; framing partly off or generic. | Weak / off-target goal; framing inaccurate or missing. | **20 pts** |
+| **Application of skills** | YET Loop + deliberate-practice loops used skillfully and visibly across the challenge. | Both techniques used adequately, with minor gaps. | Techniques attempted but inconsistent or superficial. | Techniques largely absent or misapplied. | **25 pts** |
+| **Problem-solving & creativity** | Setbacks reframed into smart, original next reaches. | Setbacks handled with sound, conventional responses. | Some response to setbacks, but stalls or repeats. | Stalls at obstacles; no reframing. | **20 pts** |
+| **Clarity & communication** | Journal + showcase are clear, honest, well-structured and compelling. | Generally clear and organized. | Uneven clarity; gaps or sanitized account. | Unclear, disorganized, or missing. | **15 pts** |
+| **Collaboration & reflection** | Proactive feedback-seeking, strong peer 360, deeply insightful reflection. | Solid engagement and reflection. | Minimal engagement; shallow reflection. | Little or no collaboration or reflection. | **20 pts** |
+| **TOTAL** | | | | | **100 pts** |
 
 > **Badge pass:** `ability-behavioral` ≥ 2 on every criterion **across occasions** AND
-> `capstone-5` weighted ≥ 60%, **mentor-verified** (human-in-the-loop).
+> `capstone-5` weighted ≥ 70%, **mentor-verified** (human-in-the-loop).
 
 ---
 

@@ -11,10 +11,49 @@ Re-run this script after changing docs:  python3 build-index.py
 """
 
 import html
+import json
 import os
 import re
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
+
+# Canonical (English) doc -> its translated copies. These translations stay on disk
+# (trilingual rule) and embedded in the page, but are hidden from the nav; the top-bar
+# language button swaps them in. Pairs are only used if both files actually exist.
+TRANSLATION_PAIRS = {
+    "README.md": {
+        "es": "README-ES.md",
+        "pt": "README-PT-BR.md",
+    },
+    "templates/micro-credential-ada-template.md": {
+        "es": "templates/es/plantilla-microcredencial-ada.md",
+        "pt": "templates/pt-br/modelo-microcredencial-ada.md",
+    },
+    "templates/learning-atom-template.md": {
+        "es": "templates/es/plantilla-atomo-aprendizaje.md",
+        "pt": "templates/pt-br/modelo-atomo-aprendizado.md",
+    },
+    "templates/codelab-ada-template.md": {
+        "es": "templates/es/plantilla-codelab-ada.md",
+        "pt": "templates/pt-br/modelo-codelab-ada.md",
+    },
+}
+
+def translation_maps(md_files):
+    """Return (translations, aliases) limited to files that actually exist."""
+    fileset = set(md_files)
+    translations, aliases = {}, {}
+    for canon, variants in TRANSLATION_PAIRS.items():
+        if canon not in fileset:
+            continue
+        present = {}
+        for lang, path in variants.items():
+            if path in fileset:
+                present[lang] = path
+                aliases[path] = canon
+        if present:
+            translations[canon] = present
+    return translations, aliases
 
 # Discover markdown files (skip .git and node_modules).
 def find_md():
@@ -87,10 +126,11 @@ html[data-theme="light"] header{background:rgba(255,255,255,.82)}
 .brand{display:flex;align-items:center;gap:12px;min-width:0}
 .iso-spin{width:42px;height:42px;flex:0 0 auto;display:block;border-radius:50%;
   background:#0A1124;box-shadow:0 0 0 2px var(--border),0 4px 14px rgba(21,181,198,.28);
-  animation:isospin 12s linear infinite;transition:box-shadow .3s ease}
-.brand:hover .iso-spin{animation-duration:2.4s;box-shadow:0 0 0 2px var(--accent),0 6px 20px rgba(21,181,198,.5)}
-@keyframes isospin{to{transform:rotate(360deg)}}
-@media (prefers-reduced-motion:reduce){.iso-spin{animation:none}}
+  transition:box-shadow .3s ease}
+.brand:hover .iso-spin{box-shadow:0 0 0 2px var(--accent),0 6px 20px rgba(21,181,198,.5)}
+.iso-spin.spin-once{animation:isospin .8s ease}
+@keyframes isospin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.iso-spin.spin-once{animation:none}}
 .brand h1{font-size:15px;margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--text)}
 .brand small{display:block;color:var(--accent);font-size:11px;font-weight:600;letter-spacing:.3px}
 html[data-theme="light"] .brand small{color:var(--brand)}
@@ -326,14 +366,25 @@ html[data-theme="light"] .diagram-canvas svg .edgeLabel foreignObject *{color:#1
 JS = r"""
 (function(){
   "use strict";
+  // ---- translation map: canonical EN doc -> {es,pt}; aliases stay loadable but hidden ----
+  var TRANSLATIONS = (window.__ADA_TRANS)||{};   // "README.md": {es:"README-ES.md", pt:"README-PT-BR.md"}
+  var ALIASES = (window.__ADA_ALIASES)||{};      // "README-ES.md" -> "README.md"
   // ---- collect embedded docs ----
   var DOCS = {};
   var ORDER = [];
   document.querySelectorAll('script[type="text/markdown"]').forEach(function(s){
     var p = s.getAttribute('data-path');
     DOCS[p] = s.textContent;
-    ORDER.push(p);
+    // Keep translated copies in DOCS (so the language button can load them) but
+    // leave them OUT of the nav tree / search so there are no duplicate entries.
+    if(!ALIASES[p]) ORDER.push(p);
   });
+  // Pick the language variant of a canonical doc for the current LANG (falls back to EN).
+  function effectivePath(p){
+    if(LANG!=="en" && TRANSLATIONS[p] && TRANSLATIONS[p][LANG] && DOCS[TRANSLATIONS[p][LANG]])
+      return TRANSLATIONS[p][LANG];
+    return p;
+  }
 
   // ---- i18n: simple JSON string map + EN/ES/PT switcher ----
   // Only the UI "chrome" + the home dashboard are translated. Document bodies are
@@ -351,6 +402,7 @@ JS = r"""
       pPosting:"\uD83D\uDCC4 Job Posting", pProfile:"\uD83E\uDDEC KSA Profile", pMap:"\uD83D\uDDFA\uFE0F Skills Map", pMC:"\u269B Micro-credentials", pReady:"\uD83C\uDFC5 Job-Ready",
       jumpIn:"Jump in", readme:"README.md",
       cards:{
+        learn:{h:"\uD83C\uDF93 Learn ADA",d:"A self-paced course to master the methodology by building one."},
         method:{h:"Methodology (v1)",d:"The canonical ADA methodology: atoms, phases, micro-credentials."},
         ksa:{h:"ADA v2 \u2014 KSA",d:"Knowledge \u00B7 Skills \u00B7 Abilities competency spine."},
         role:{h:"Role \u2192 Pathway",d:"Deconstruct a job into micro-credentials via high-performer observation."},
@@ -372,6 +424,7 @@ JS = r"""
       pPosting:"\uD83D\uDCC4 Oferta Laboral", pProfile:"\uD83E\uDDEC Perfil KSA", pMap:"\uD83D\uDDFA\uFE0F Mapa de Habilidades", pMC:"\u269B Micro-credenciales", pReady:"\uD83C\uDFC5 Listo para el Trabajo",
       jumpIn:"Empieza aqu\u00ED", readme:"README-ES.md",
       cards:{
+        learn:{h:"\uD83C\uDF93 Aprende ADA",d:"Un curso autoguiado para dominar la metodolog\u00EDa creando una."},
         method:{h:"Metodolog\u00EDa (v1)",d:"La metodolog\u00EDa ADA can\u00F3nica: \u00E1tomos, fases, micro-credenciales."},
         ksa:{h:"ADA v2 \u2014 KSA",d:"Columna de competencias Conocimientos \u00B7 Habilidades \u00B7 Aptitudes."},
         role:{h:"Cargo \u2192 Ruta",d:"Descompon un cargo en micro-credenciales con observaci\u00F3n de altos desempe\u00F1os."},
@@ -393,6 +446,7 @@ JS = r"""
       pPosting:"\uD83D\uDCC4 Vaga de Emprego", pProfile:"\uD83E\uDDEC Perfil KSA", pMap:"\uD83D\uDDFA\uFE0F Mapa de Habilidades", pMC:"\u269B Micro-credenciais", pReady:"\uD83C\uDFC5 Pronto para o Trabalho",
       jumpIn:"Comece aqui", readme:"README-PT-BR.md",
       cards:{
+        learn:{h:"\uD83C\uDF93 Aprenda ADA",d:"Um curso autoguiado para dominar a metodologia criando uma."},
         method:{h:"Metodologia (v1)",d:"A metodologia ADA can\u00F4nica: \u00E1tomos, fases, micro-credenciais."},
         ksa:{h:"ADA v2 \u2014 KSA",d:"Coluna de compet\u00EAncias Conhecimentos \u00B7 Habilidades \u00B7 Aptid\u00F5es."},
         role:{h:"Vaga \u2192 Trilha",d:"Decomponha uma vaga em micro-credenciais via observa\u00E7\u00E3o de alto desempenho."},
@@ -632,7 +686,8 @@ JS = r"""
     ORDER.forEach(function(p){var t=p.indexOf("/")<0?"root":p.split("/")[0];folders[t]=(folders[t]||0)+1;});
     var C=t("cards");
     var cards=[
-      {p:t("readme"),ic:"🏠",h:C.method.h,d:C.method.d},
+      {p:"LEARN.md",ic:"🎓",h:C.learn.h,d:C.learn.d},
+      {p:"README.md",ic:"🏠",h:C.method.h,d:C.method.d},
       {p:"specs/ada-v2-ksa-framework.md",ic:"🧬",h:C.ksa.h,d:C.ksa.d},
       {p:"specs/role-to-credential-mapping.md",ic:"🧭",h:C.role.h,d:C.role.d},
       {p:"specs/skills-map-and-job-matching.md",ic:"🗺️",h:C.map.h,d:C.map.d},
@@ -889,13 +944,15 @@ JS = r"""
   var content=document.getElementById("content");
   var toc=document.getElementById("toc");
   var crumbs=document.getElementById("crumbs");
-  var currentPath="";
+  var currentPath="", currentCanon="";
 
   function go(path,anchor){
     location.hash = "#/"+path + (anchor?("#"+anchor):"");
   }
   function render(path,anchor){
-    currentPath=path; window.__anchor=anchor;
+    if(ALIASES[path]) path=ALIASES[path];          // normalize a direct link to a translation
+    currentCanon=path; window.__anchor=anchor;
+    var eff=effectivePath(path); currentPath=eff;  // resolve assets/links against the shown file
     content.classList.remove("swap"); void content.offsetWidth; content.classList.add("swap");
     if(path==="__home__"||!path){
       crumbs.innerHTML="";
@@ -908,11 +965,11 @@ JS = r"""
       window.scrollTo(0,0);
       return;
     }
-    if(!DOCS[path]){
+    if(!DOCS[eff]){
       content.innerHTML='<div class="empty"><h2>404</h2><p>No document at <code>'+escapeHtml(path)+'</code></p></div>';
       toc.innerHTML=""; return;
     }
-    var res=mdToHtml(DOCS[path]);
+    var res=mdToHtml(DOCS[eff]);
     crumbs.innerHTML = path.split("/").map(function(s,idx,arr){
       return idx===arr.length-1?'<span>'+s+'</span>':s;
     }).join(" / ");
@@ -1034,7 +1091,7 @@ JS = r"""
     if(langSel&&langSel.value!==lang) langSel.value=lang;
     try{localStorage.setItem("ada-lang",lang);}catch(e){}
   }
-  function applyLang(lang){ setLangStatic(lang); render(currentPath, window.__anchor); }
+  function applyLang(lang){ setLangStatic(lang); render(currentCanon||currentPath, window.__anchor); }
   if(langSel) langSel.addEventListener("change",function(){applyLang(this.value);});
   var savedLang; try{savedLang=localStorage.getItem("ada-lang");}catch(e){}
   if(!savedLang){ var nl=((navigator&&navigator.language)||"en").toLowerCase();
@@ -1065,8 +1122,15 @@ JS = r"""
   function closeMobile(){sidebar.classList.remove("open");overlay.classList.remove("show");}
   overlay.addEventListener("click",closeMobile);
   document.getElementById("homeLink").addEventListener("click",function(){go("__home__");});
+  (function(){
+    var iso=document.querySelector(".iso-spin"); if(!iso)return;
+    function spinOnce(){ if(iso.classList.contains("spin-once"))return; iso.classList.add("spin-once"); }
+    iso.addEventListener("animationend",function(){iso.classList.remove("spin-once");});
+    iso.addEventListener("mouseenter",spinOnce);
+    iso.addEventListener("click",spinOnce);
+  })();
 
-  function afterSidebar(){setActive(currentPath);}
+  function afterSidebar(){setActive(currentCanon||currentPath);}
 
   // init
   renderSidebar();
@@ -1084,6 +1148,12 @@ def build():
         content = content.replace("</script", "<\\/script")
         embeds.append('<script type="text/markdown" data-path="%s">%s</script>' % (rel, content))
     embeds_html = "\n".join(embeds)
+
+    translations, aliases = translation_maps(md_files)
+    trans_script = (
+        "<script>window.__ADA_TRANS=%s;window.__ADA_ALIASES=%s;</script>\n"
+        % (json.dumps(translations), json.dumps(aliases))
+    )
 
     page = (
         "<!doctype html>\n"
@@ -1123,7 +1193,8 @@ def build():
         '<button id="top" aria-label="Scroll to top">↑</button>\n\n'
         "<!-- ===== Embedded Markdown content ===== -->\n"
         + embeds_html + "\n\n"
-        "<script>\n" + JS + "\n</script>\n"
+        + trans_script
+        + "<script>\n" + JS + "\n</script>\n"
         "</body>\n</html>\n"
     )
 
